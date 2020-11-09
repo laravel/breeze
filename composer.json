@@ -1,0 +1,41 @@
+{
+    "name": "laravel/breeze",
+    "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+    "keywords": ["laravel", "auth"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/laravel/breeze/issues",
+        "source": "https://github.com/laravel/breeze"
+    },
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/filesystem": "^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Breeze\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Laravel\\Breeze\\BreezeServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
