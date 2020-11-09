@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Console;
+namespace Laravel\Breeze\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -56,6 +56,10 @@ class InstallCommand extends Command
 
         copy(__DIR__.'/../../stubs/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
+        // Components...
+        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/View/Components', app_path('View/Components'));
+
         // Tests...
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/tests/Feature', base_path('tests/Feature'));
 
@@ -71,6 +75,7 @@ class InstallCommand extends Command
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
 
         $this->line('');
         $this->info('Breeze scaffolding installed successfully.');
