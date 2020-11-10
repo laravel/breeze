@@ -1,5 +1,10 @@
 # Laravel Breeze
 
+<p align="center">
+<img width="660" src="https://banners.beyondco.de/Laravel%20Breeze.png?theme=light&packageName=laravel%2Fbreeze+--dev&pattern=tinyCheckers&style=style_1&description=Minimal+starting+point+for+your+Laravel+application+with+authentication&md=1&showWatermark=0&fontSize=100px&images=lock-open">
+</p>
+
+<p align="center">
 <a href="https://packagist.org/packages/laravel/breeze">
     <img src="https://img.shields.io/packagist/dt/laravel/breeze" alt="Total Downloads">
 </a>
@@ -9,6 +14,7 @@
 <a href="https://packagist.org/packages/laravel/breeze">
     <img src="https://img.shields.io/packagist/l/laravel/breeze" alt="License">
 </a>
+</p>
 
 ## Introduction
 
