@@ -1,14 +1,16 @@
-# Laravel Breeze
+<p align="center"><img src="https://raw.githubusercontent.com/mnaderian/arts/main/logo-breeze.svg"></p>
 
-<a href="https://packagist.org/packages/laravel/breeze">
-    <img src="https://img.shields.io/packagist/dt/laravel/breeze" alt="Total Downloads">
-</a>
-<a href="https://packagist.org/packages/laravel/breeze">
-    <img src="https://img.shields.io/packagist/v/laravel/breeze" alt="Latest Stable Version">
-</a>
-<a href="https://packagist.org/packages/laravel/breeze">
-    <img src="https://img.shields.io/packagist/l/laravel/breeze" alt="License">
-</a>
+<p align="center">
+    <a href="https://packagist.org/packages/laravel/breeze">
+        <img src="https://img.shields.io/packagist/dt/laravel/breeze" alt="Total Downloads">
+    </a>
+    <a href="https://packagist.org/packages/laravel/breeze">
+        <img src="https://img.shields.io/packagist/v/laravel/breeze" alt="Latest Stable Version">
+    </a>
+    <a href="https://packagist.org/packages/laravel/breeze">
+        <img src="https://img.shields.io/packagist/l/laravel/breeze" alt="License">
+    </a>
+</p>
 
 ## Introduction
 
