@@ -29,19 +29,19 @@ Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->middleware(['guest'])
+                ->middleware('guest')
                 ->name('password.email');
 
 Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->middleware(['guest'])
+                ->middleware('guest')
                 ->name('password.reset');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
-                ->middleware(['guest'])
+                ->middleware('guest')
                 ->name('password.update');
 
 Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->middleware(['auth'])
+                ->middleware('auth')
                 ->name('verification.notice');
 
 Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
@@ -53,12 +53,12 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
                 ->name('verification.send');
 
 Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->middleware(['auth'])
+                ->middleware('auth')
                 ->name('password.confirm');
 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
-                ->middleware(['auth']);
+                ->middleware('auth');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout')
-                ->middleware('auth');
+                ->middleware('auth')
+                ->name('logout');
