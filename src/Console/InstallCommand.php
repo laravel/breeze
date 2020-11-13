@@ -38,31 +38,34 @@ class InstallCommand extends Command
             ] + $packages;
         });
 
+        // Create Filesystem for making directories and copying stubs
+        $fs = new Filesystem;
+
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        $fs->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        $fs->ensureDirectoryExists(app_path('Http/Requests/Auth'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        $fs->ensureDirectoryExists(resource_path('views/auth'));
+        $fs->ensureDirectoryExists(resource_path('views/layouts'));
+        $fs->ensureDirectoryExists(resource_path('views/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/components', resource_path('views/components'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/resources/views/auth', resource_path('views/auth'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/resources/views/layouts', resource_path('views/layouts'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/resources/views/components', resource_path('views/components'));
 
         copy(__DIR__.'/../../stubs/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Components...
-        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/View/Components', app_path('View/Components'));
+        $fs->ensureDirectoryExists(app_path('View/Components'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/App/View/Components', app_path('View/Components'));
 
         // Tests...
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/tests/Feature', base_path('tests/Feature'));
+        $fs->copyDirectory(__DIR__.'/../../stubs/tests/Feature', base_path('tests/Feature'));
 
         // Routes...
         copy(__DIR__.'/../../stubs/routes/web.php', base_path('routes/web.php'));
