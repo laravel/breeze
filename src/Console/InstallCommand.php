@@ -32,6 +32,7 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 '@tailwindcss/ui' => '^0.7.2',
+                'alpinejs' => '^2.7.3',
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => '^1.8.0',
             ] + $packages;
@@ -76,8 +77,8 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/../../stubs/resources/js/app.js', resource_path('js/app.js'));
 
-        $this->line('');
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
