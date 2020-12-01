@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \App\Http\Requests\LoginRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
