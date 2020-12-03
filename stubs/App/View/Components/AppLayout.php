@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 
 class AppLayout extends Component
@@ -11,7 +12,7 @@ class AppLayout extends Component
      *
      * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): Renderable
     {
         return view('layouts.app');
     }
