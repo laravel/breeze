@@ -32,7 +32,7 @@ class ConfirmablePasswordController extends Controller
             'email' => $request->user()->email,
             'password' => $request->password,
         ]);
-            
+
         if (! $validatedUser) {
             return back()->withErrors([
                 'password' => __('auth.password'),
