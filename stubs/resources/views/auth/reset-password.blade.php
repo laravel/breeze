@@ -24,18 +24,14 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <label for="password" class="block font-medium text-sm text-gray-700">
-                    {{ __('Password') }}
-                </label>
+                <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <label for="password_confirmation" class="block font-medium text-sm text-gray-700">
-                    {{ __('Confirm Password') }}
-                </label>
+                <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                     type="password"
