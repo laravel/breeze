@@ -7,6 +7,7 @@
 
 ### Changed
 - Reuse blade component ([#30](https://github.com/laravel/breeze/pull/30))
+- Improve SPA compatibility ([#29](https://github.com/laravel/breeze/pull/29))
 
 
 ## v1.0.0 (2020-10-08)
