@@ -12,6 +12,13 @@ use Illuminate\Validation\ValidationException;
 class LoginRequest extends FormRequest
 {
     /**
+     * The name of the guard this request is using.
+     *
+     * @var string
+     */
+    protected $guardName = 'DummyGuardName';
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -45,7 +52,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
+        if (! Auth::guard($this->guardName)->attempt($this->only('email', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -88,6 +95,11 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower(sprintf(
+            '%s|%s|%s',
+            $this->input('email'),
+            $this->ip(),
+            $this->guardName
+        ));
     }
 }
