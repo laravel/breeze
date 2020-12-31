@@ -132,7 +132,7 @@ class InstallCommand extends Command
         $this->publishAssets();
         $this->publishTests();
 
-        if ($this->guardName === 'web'){
+        if ($this->guardName === 'web') {
             // "Dashboard" Route...
             $this->replaceInFile('/home', '/dashboard', resource_path('views/welcome.blade.php'));
             $this->replaceInFile('Home', 'Dashboard', resource_path('views/welcome.blade.php'));
@@ -197,7 +197,7 @@ class InstallCommand extends Command
 
         $this->files->ensureDirectoryExists($this->controllerPath);
 
-        foreach ($controllers as $controller){
+        foreach ($controllers as $controller) {
             $stubPath = realpath(__DIR__.'/../../stubs/App/Http/Controllers/Auth/'.$controller.'.stub');
             $savePath = $this->controllerPath.$controller.'.php';
             $this->files->put($savePath, $this->buildClass($stubPath));
@@ -205,7 +205,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * Generate the request
+     * Generate the request.
      *
      * @return void
      */
@@ -215,7 +215,7 @@ class InstallCommand extends Command
 
         $this->files->ensureDirectoryExists($this->requestPath);
 
-        foreach ($requests as $request){
+        foreach ($requests as $request) {
             $stubPath = realpath(__DIR__.'/../../stubs/App/Http/Requests/Auth/'.$request.'.stub');
             $savePath = $this->requestPath.$request.'.php';
             $this->files->put($savePath, $this->buildClass($stubPath));
@@ -258,7 +258,7 @@ class InstallCommand extends Command
         $this->files->ensureDirectoryExists(sprintf('%s/auth', $this->viewsPath));
         $this->files->ensureDirectoryExists(sprintf('%s/layouts', $this->viewsPath));
 
-        foreach ($views as $view){
+        foreach ($views as $view) {
             $stubPath = realpath(__DIR__.'/../../stubs/resources/views/'.$view.'.blade.php');
             $savePath = $this->viewsPath.$view.'.blade.php';
             $this->files->put($savePath, $this->buildClass($stubPath));

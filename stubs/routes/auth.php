@@ -10,8 +10,8 @@ use DummyControllerNamespace\RegisteredUserController;
 use DummyControllerNamespace\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('DummyRoutePrefix')->group(function(){
-    Route::middleware('guestDummyRouteGuestMiddlewareGuard')->group(function(){
+Route::prefix('DummyRoutePrefix')->group(function () {
+    Route::middleware('guestDummyRouteGuestMiddlewareGuard')->group(function () {
         Route::get('/register', [RegisteredUserController::class, 'create'])
             ->name('DummyRouteNamePrefixregister');
 
@@ -35,7 +35,7 @@ Route::prefix('DummyRoutePrefix')->group(function(){
             ->name('DummyRouteNamePrefixpassword.update');
     });
 
-    Route::middleware('authDummyRouteGuestMiddlewareGuard')->group(function(){
+    Route::middleware('authDummyRouteGuestMiddlewareGuard')->group(function () {
         Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
             ->name('DummyRouteNamePrefixverification.notice');
 
