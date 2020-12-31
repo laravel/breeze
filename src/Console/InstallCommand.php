@@ -35,7 +35,7 @@ class InstallCommand extends Command
                 'alpinejs' => '^2.7.3',
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => 'npm:@tailwindcss/postcss7-compat@^2.0.1',
-                'autoprefixer' => '^9.8.6',
+                'autoprefixer' => '^10.0.2',
             ] + $packages;
         });
 
