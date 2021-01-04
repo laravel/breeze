@@ -33,9 +33,10 @@ class InstallCommand extends Command
             return [
                 '@tailwindcss/forms' => '^0.2.1',
                 'alpinejs' => '^2.7.3',
-                'postcss' => '^8.2.1',
-                'tailwindcss' => '^2.0.2',
                 'autoprefixer' => '^10.1.0',
+                'postcss' => '^8.2.1',
+                'postcss-import' => '^12.0.1',
+                'tailwindcss' => '^2.0.2',
             ] + $packages;
         });
 
