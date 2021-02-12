@@ -25,7 +25,7 @@ laravel new my-app
 
 cd my-app
 
-composer require laravel/breeze --dev
+composer require laravel/breeze
 
 php artisan breeze:install
 ```
