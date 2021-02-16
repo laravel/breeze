@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.0.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.0.3...1.x)
+
+
+## [v1.0.3 (2021-02-16)](https://github.com/laravel/breeze/compare/v1.0.2...v1.0.3)
+
+### Fixed
+- Redirect to intended path after login ([#39](https://github.com/laravel/breeze/pull/39))
+- Change "Logout" text to "Log out" and "Login" to "Log in" ([#41](https://github.com/laravel/breeze/pull/41))
 
 
 ## [v1.0.2 (2021-01-05)](https://github.com/laravel/breeze/compare/v1.0.1...v1.0.2)
