@@ -145,6 +145,9 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/resources/js/Layouts', resource_path('js/Layouts'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/resources/js/Pages', resource_path('js/Pages'));
 
+        // Tests...
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/tests/Feature', base_path('tests/Feature'));
+
         // Routes...
         copy(__DIR__.'/../../stubs/inertia/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/inertia/routes/auth.php', base_path('routes/auth.php'));
