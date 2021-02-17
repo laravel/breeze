@@ -18,7 +18,6 @@ createApp({
     .use(InertiaPlugin)
     .mount(el);
 
-
 InertiaProgress.init({
     delay: 250,
     color: '#F05340',
