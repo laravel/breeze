@@ -86,7 +86,6 @@ class InstallCommand extends Command
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../stubs/default/webpack.config.js', base_path('webpack.config.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
 
@@ -160,6 +159,7 @@ class InstallCommand extends Command
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/inertia/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/inertia/webpack.config.js', base_path('webpack.config.js'));
         copy(__DIR__.'/../../stubs/inertia/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
 
