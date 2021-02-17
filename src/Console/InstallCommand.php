@@ -4,6 +4,8 @@ namespace Laravel\Breeze\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
@@ -12,7 +14,9 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'breeze:install {--inertia : Indicates that the Inertia stack should be installed}';
+    protected $signature = 'breeze:install
+                            {--inertia : Indicates that the Inertia stack should be installed}
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
      * The console command description.
@@ -82,6 +86,7 @@ class InstallCommand extends Command
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/default/webpack.config.js', base_path('webpack.config.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
 
