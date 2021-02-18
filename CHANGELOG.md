@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.0.3...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.3...master)
 
 
 ## [v1.1.3 (2021-02-18)](https://github.com/laravel/breeze/compare/v1.1.2...v1.1.3)
