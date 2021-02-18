@@ -38,11 +38,9 @@
                                     </template>
 
                                     <template #content>
-                                        <form @submit.prevent="logout">
-                                            <breeze-dropdown-link as="button">
-                                                Log Out
-                                            </breeze-dropdown-link>
-                                        </form>
+                                        <breeze-dropdown-link :href="route('logout')" method="post" as="button">
+                                            Log Out
+                                        </breeze-dropdown-link>
                                     </template>
                                 </breeze-dropdown>
                             </div>
@@ -76,11 +74,9 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <form method="POST" @submit.prevent="logout">
-                                <breeze-responsive-nav-link as="button">
-                                    Log Out
-                                </breeze-responsive-nav-link>
-                            </form>
+                            <breeze-responsive-nav-link :href="route('logout')" method="post" as="button">
+                                Log Out
+                            </breeze-responsive-nav-link>
                         </div>
                     </div>
                 </div>
@@ -122,11 +118,5 @@
                 showingNavigationDropdown: false,
             }
         },
-
-        methods: {
-            logout() {
-                this.$inertia.post(route('logout'));
-            },
-        }
     }
 </script>
