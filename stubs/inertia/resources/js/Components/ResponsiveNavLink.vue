@@ -1,6 +1,6 @@
 <template>
     <inertia-link :class="classes">
-        <slot></slot>
+        <slot />
     </inertia-link>
 </template>
 
