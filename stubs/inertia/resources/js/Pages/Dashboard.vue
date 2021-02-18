@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <authenticated-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
@@ -15,15 +15,15 @@
                 </div>
             </div>
         </div>
-    </app-layout>
+    </authenticated-layout>
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
+    import AuthenticatedLayout from '@/Layouts/Authenticated'
 
     export default {
         components: {
-            AppLayout,
+            AuthenticatedLayout,
         },
     }
 </script>
