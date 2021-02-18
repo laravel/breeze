@@ -18,9 +18,4 @@ createApp({
     .use(InertiaPlugin)
     .mount(el);
 
-InertiaProgress.init({
-    delay: 250,
-    color: '#4B5563',
-    includeCSS: true,
-    showSpinner: false,
-});
+InertiaProgress.init({ color: '#4B5563' });
