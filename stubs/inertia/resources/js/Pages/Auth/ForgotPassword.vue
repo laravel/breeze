@@ -12,7 +12,7 @@
     <form @submit.prevent="submit">
         <div>
             <breeze-label for="email" value="Email" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
         </div>
 
         <div class="flex items-center justify-end mt-4">

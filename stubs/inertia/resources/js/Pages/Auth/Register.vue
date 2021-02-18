@@ -9,7 +9,7 @@
 
         <div class="mt-4">
             <breeze-label for="email" value="Email" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required />
+            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
         </div>
 
         <div class="mt-4">
