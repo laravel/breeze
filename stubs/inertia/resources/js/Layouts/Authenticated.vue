@@ -95,7 +95,7 @@
 
             <!-- Page Content -->
             <main>
-                <slot></slot>
+                <slot />
             </main>
         </div>
     </div>
