@@ -56,7 +56,9 @@
 
         props: {
             canResetPassword: Boolean,
-            status: String
+            status: String,
+            errors: Object,
+            auth: Object,
         },
 
         data() {
