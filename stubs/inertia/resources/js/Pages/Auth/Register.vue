@@ -36,8 +36,7 @@
 
 <script>
     import BreezeButton from '@/Components/Button'
-    import BreezeCheckbox from "@/Components/Checkbox";
-    import BreezeGuestLayout from "@/Layouts/Guest"
+    import BreezeGuestLayout from '@/Layouts/Guest'
     import BreezeInput from '@/Components/Input'
     import BreezeLabel from '@/Components/Label'
     import BreezeValidationErrors from '@/Components/ValidationErrors'
@@ -47,7 +46,6 @@
 
         components: {
             BreezeButton,
-            BreezeCheckbox,
             BreezeInput,
             BreezeLabel,
             BreezeValidationErrors,
