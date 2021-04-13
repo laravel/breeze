@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.4...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.5...1.x)
+
+
+## [v1.1.5 (2021-04-13)](https://github.com/laravel/breeze/compare/v1.1.4...v1.1.5)
+
+### Fixed
+- Fix Login event firing before Register ([#59](https://github.com/laravel/breeze/pull/59))
 
 
 ## [v1.1.4 (2021-03-23)](https://github.com/laravel/breeze/compare/v1.1.3...v1.1.4)
