@@ -25,5 +25,10 @@
         components: {
             BreezeAuthenticatedLayout,
         },
+
+        props: {
+            auth: Object,
+            errors: Object,
+        },
     }
 </script>

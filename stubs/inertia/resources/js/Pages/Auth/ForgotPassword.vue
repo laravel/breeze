@@ -41,7 +41,9 @@
         },
 
         props: {
-            status: String
+            auth: Object,
+            errors: Object,
+            status: String,
         },
 
         data() {

@@ -36,6 +36,11 @@
             BreezeValidationErrors,
         },
 
+        props: {
+            auth: Object,
+            errors: Object,
+        },
+
         data() {
             return {
                 form: this.$inertia.form({
