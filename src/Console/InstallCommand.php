@@ -39,12 +39,12 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@tailwindcss/forms' => '^0.2.1',
-                'alpinejs' => '^2.7.3',
-                'autoprefixer' => '^10.1.0',
-                'postcss' => '^8.2.1',
-                'postcss-import' => '^12.0.1',
-                'tailwindcss' => '^2.0.2',
+                '@tailwindcss/forms' => '^0.3.1',
+                'alpinejs' => '^2.8.2',
+                'autoprefixer' => '^10.2.5',
+                'postcss' => '^8.2.12',
+                'postcss-import' => '^14.0.1',
+                'tailwindcss' => '^2.1.1',
             ] + $packages;
         });
 
@@ -106,15 +106,15 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@inertiajs/inertia' => '^0.8.4',
-                '@inertiajs/inertia-vue3' => '^0.3.5',
+                '@inertiajs/inertia' => '^0.8.7',
+                '@inertiajs/inertia-vue3' => '^0.3.14',
                 '@inertiajs/progress' => '^0.2.4',
-                '@tailwindcss/forms' => '^0.2.1',
-                '@vue/compiler-sfc' => '^3.0.5',
-                'autoprefixer' => '^10.2.4',
-                'postcss' => '^8.2.1',
-                'postcss-import' => '^12.0.1',
-                'tailwindcss' => '^2.0.3',
+                '@tailwindcss/forms' => '^0.3.1',
+                '@vue/compiler-sfc' => '^3.0.11',
+                'autoprefixer' => '^10.2.5',
+                'postcss' => '^8.2.12',
+                'postcss-import' => '^14.0.1',
+                'tailwindcss' => '^2.1.1',
                 'vue' => '^3.0.5',
                 'vue-loader' => '^16.1.2',
             ] + $packages;
