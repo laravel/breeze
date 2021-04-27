@@ -43,7 +43,9 @@
         },
 
         props: {
+            auth: Object,
             email: String,
+            errors: Object,
             token: String,
         },
 
