@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.5...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.6...1.x)
+
+
+## [v1.1.6 (2021-04-27)](https://github.com/laravel/breeze/compare/v1.1.5...v1.1.6)
+
+### Fixed
+- Fix Vue warning ([#62](https://github.com/laravel/breeze/pull/62))
 
 
 ## [v1.1.5 (2021-04-13)](https://github.com/laravel/breeze/compare/v1.1.4...v1.1.5)
