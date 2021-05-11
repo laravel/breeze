@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.6...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.7...1.x)
+
+
+## [v1.1.7 (2021-05-11)](https://github.com/laravel/breeze/compare/v1.1.6...v1.1.7)
+
+### Changed
+- Uses password rule by default ([#65](https://github.com/laravel/breeze/pull/65))
+
+### Fixed
+- Use boolean() instead of filled() ([#68](https://github.com/laravel/breeze/pull/68))
+- Fix create method docblock return value ([#69](https://github.com/laravel/breeze/pull/69))
 
 
 ## [v1.1.6 (2021-04-27)](https://github.com/laravel/breeze/compare/v1.1.5...v1.1.6)
