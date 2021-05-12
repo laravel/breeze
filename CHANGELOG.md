@@ -1,6 +1,37 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.7...1.x)
+
+
+## [v1.1.7 (2021-05-11)](https://github.com/laravel/breeze/compare/v1.1.6...v1.1.7)
+
+### Changed
+- Uses password rule by default ([#65](https://github.com/laravel/breeze/pull/65))
+
+### Fixed
+- Use boolean() instead of filled() ([#68](https://github.com/laravel/breeze/pull/68))
+- Fix create method docblock return value ([#69](https://github.com/laravel/breeze/pull/69))
+
+
+## [v1.1.6 (2021-04-27)](https://github.com/laravel/breeze/compare/v1.1.5...v1.1.6)
+
+### Fixed
+- Fix Vue warning ([#62](https://github.com/laravel/breeze/pull/62))
+
+
+## [v1.1.5 (2021-04-13)](https://github.com/laravel/breeze/compare/v1.1.4...v1.1.5)
+
+### Fixed
+- Fix Login event firing before Register ([#59](https://github.com/laravel/breeze/pull/59))
+
+
+## [v1.1.4 (2021-03-23)](https://github.com/laravel/breeze/compare/v1.1.3...v1.1.4)
+
+### Fixed
+- Fixes Vue warning ([#55](https://github.com/laravel/breeze/pull/55))
+
+### Removed
+- Remove unused component ([#54](https://github.com/laravel/breeze/pull/54))
 
 
 ## [v1.1.3 (2021-02-18)](https://github.com/laravel/breeze/compare/v1.1.2...v1.1.3)
