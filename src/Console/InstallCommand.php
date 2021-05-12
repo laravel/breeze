@@ -122,7 +122,7 @@ class InstallCommand extends Command
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
@@ -131,26 +131,26 @@ class InstallCommand extends Command
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
 
-        copy(__DIR__.'/../../stubs/inertia/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
+        copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
         // Views...
-        copy(__DIR__.'/../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
 
         // Tests...
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/tests/Feature', base_path('tests/Feature'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/inertia/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/inertia/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.vue'));
@@ -158,11 +158,11 @@ class InstallCommand extends Command
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
-        copy(__DIR__.'/../../stubs/inertia/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../stubs/inertia/webpack.config.js', base_path('webpack.config.js'));
-        copy(__DIR__.'/../../stubs/inertia/resources/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__.'/../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__.'/../../stubs/inertia-common/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/inertia-common/webpack.config.js', base_path('webpack.config.js'));
+        copy(__DIR__.'/../../stubs/inertia-common/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
 
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
