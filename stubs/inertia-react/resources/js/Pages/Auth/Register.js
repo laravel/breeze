@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import { useForm } from "@inertiajs/inertia-react";
-import { InertiaLink } from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
-import TextInput from "@/Components/TextInput";
 import Guest from "@/Layouts/Guest";
+import React, { useEffect } from "react";
+import Label from "@/Components/Label";
+import TextInput from "@/Components/TextInput";
 import ValidationErrors from "@/Components/ValidationErrors";
+import { InertiaLink } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function Register() {
 
@@ -23,64 +24,75 @@ export default function Register() {
     }, []);
 
     const onHandleChange = (event) => {
-        if (event.target.type === "checkbox") {
-            setData(event.target.name, event.target.checked);
-        } else {
-            setData(event.target.name, event.target.value);
-        }
+        setData(event.target.name, event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
+
         post(route("register"));
     };
 
     return (
-        <Guest title="Register">
+        <Guest>
             <ValidationErrors errors={errors} />
+
             <form onSubmit={submit}>
-                <TextInput
-                    value={data.name}
-                    error={errors.name}
-                    type="text"
-                    handleChange={onHandleChange}
-                    isFocused={true}
-                    label="Name"
-                    name="name"
-                    autoComplete="name"
-                />
+                <div>
+                    <Label forInput="name" value="Name" />
 
-                <div className="mt-4">
                     <TextInput
-                        value={data.email}
-                        error={errors.email}
                         type="text"
+                        name="name"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="name"
+                        isFocused={true}
                         handleChange={onHandleChange}
-                        label="Email"
-                        name="email"
-                        autoComplete="username"
-                    />
-                </div>
-                <div className="mt-4">
-                    <TextInput
-                        value={data.password}
-                        error={errors.password}
-                        type="password"
-                        handleChange={onHandleChange}
-                        label="Password"
-                        name="password"
-                        autoComplete="new-password"
+                        required
                     />
                 </div>
 
                 <div className="mt-4">
+                    <Label forInput="email" value="Email" />
+
                     <TextInput
-                        value={data.password_confirmation}
-                        type="password"
+                        type="email"
+                        name="email"
+                        value={data.email}
+                        className="mt-1 block w-full"
+                        autoComplete="username"
                         handleChange={onHandleChange}
-                        label="Password"
-                        name="password_confirmation"
+                        required
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <Label forInput="password" value="Password" />
+
+                    <TextInput
+                        type="password"
+                        name="password"
+                        value={data.password}
+                        className="mt-1 block w-full"
                         autoComplete="new-password"
+                        handleChange={onHandleChange}
+                        required
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <Label forInput="password_confirmation" value="Confirm Password" />
+
+                    <TextInput
+                        type="password"
+                        name="password_confirmation"
+                        value={data.password_confirmation}
+                        className="mt-1 block w-full"
+                        handleChange={onHandleChange}
+                        required
                     />
                 </div>
 
@@ -91,11 +103,10 @@ export default function Register() {
                     >
                         Already registered?
                     </InertiaLink>
-                    <div className="ml-4">
-                        <Button processing={processing}>
-                            Register
-                        </Button>
-                    </div>
+
+                    <Button className="ml-4" processing={processing}>
+                        Register
+                    </Button>
                 </div>
             </form>
         </Guest>
