@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/inertia-react";
-import ValidationErros from "@/Components/Forms/ValidationErrors";
+import ValidationErros from "@/Componentss/ValidationErrors";
 import Guest from "@/Layouts/Guest";
-import TextInput from "@/Components/Forms/TextInput";
-import Button from "@/Components/Forms/Button";
+import TextInput from "@/Componentss/TextInput";
+import Button from "@/Componentss/Button";
 
 export default function ResetPassword({ token, email }) {
 

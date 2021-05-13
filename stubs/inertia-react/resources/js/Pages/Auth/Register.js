@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import { InertiaLink } from "@inertiajs/inertia-react";
-import Button from "@/Components/Forms/Button";
-import TextInput from "@/Components/Forms/TextInput";
+import Button from "@/Componentss/Button";
+import TextInput from "@/Componentss/TextInput";
 import Guest from "@/Layouts/Guest";
-import ValidationErrors from "@/Components/Forms/ValidationErrors";
+import ValidationErrors from "@/Componentss/ValidationErrors";
 
 export default function Register() {
 

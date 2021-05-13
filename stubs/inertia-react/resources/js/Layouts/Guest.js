@@ -1,4 +1,4 @@
-import ApplicationLogo from "../Components/UI/ApplicationLogo";
+import ApplicationLogo from "../Components/ApplicationLogo";
 import React, { useEffect } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 

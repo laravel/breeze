@@ -1,8 +1,8 @@
-import ApplicationLogo from "../Components/UI/ApplicationLogo";
-import Dropdown from "../Components/UI/Dropdown";
-import NavLink from "../Components/UI/NavLink";
+import ApplicationLogo from "../Components/ApplicationLogo";
+import Dropdown from "../Components/Dropdown";
+import NavLink from "../Components/NavLink";
 import React, { useEffect, useState } from "react";
-import ResponsiveNavLink from "../Components/UI/ResponsiveNavLink";
+import ResponsiveNavLink from "../Components/ResponsiveNavLink";
 import { InertiaLink } from "@inertiajs/inertia-react";
 
 export default function Authenticated({ auth, header, children }) {
@@ -155,7 +155,9 @@ export default function Authenticated({ auth, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
         </div>
     );
 }
