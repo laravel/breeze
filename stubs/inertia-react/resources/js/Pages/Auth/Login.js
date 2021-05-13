@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useForm } from "@inertiajs/inertia-react";
-import { InertiaLink } from "@inertiajs/inertia-react";
-import Checkbox from "@/Componentss/Checkbox";
-import Button from "@/Componentss/Button";
-import TextInput from "@/Componentss/TextInput";
+import Button from "@/Components/Button";
+import Checkbox from "@/Components/Checkbox";
 import Guest from "@/Layouts/Guest";
-import ValidationErros from "@/Componentss/ValidationErrors";
+import Label from "@/Components/Label";
+import React, { useEffect } from "react";
+import TextInput from "@/Components/TextInput";
+import ValidationErrors from "@/Components/ValidationErrors";
+import { InertiaLink } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function Login({ status, canResetPassword }) {
 
@@ -22,15 +23,14 @@ export default function Login({ status, canResetPassword }) {
     }, []);
 
     const onHandleChange = (event) => {
-        if (event.target.type === "checkbox") {
-            setData(event.target.name, event.target.checked);
-        } else {
-            setData(event.target.name, event.target.value);
-        }
+        setData(event.target.name, event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
+
         post(route("login"));
     };
 
@@ -41,36 +41,47 @@ export default function Login({ status, canResetPassword }) {
                     {status}
                 </div>
             )}
-            <ValidationErros errors={errors} />
+
+            <ValidationErrors errors={errors} />
+
             <form onSubmit={submit}>
-                <TextInput
-                    value={data.email}
-                    error={errors.email}
-                    type="text"
-                    handleChange={onHandleChange}
-                    isFocused={true}
-                    label="Email"
-                    name="email"
-                />
+                <div>
+                    <Label forInput="email" value="Email" />
+
+                    <TextInput
+                        type="text"
+                        name="email"
+                        value={data.email}
+                        className="mt-1 block w-full"
+                        autoComplete="username"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                    />
+                </div>
 
                 <div className="mt-4">
+                    <Label forInput="password" value="Password" />
+
                     <TextInput
-                        value={data.password}
-                        error={errors.password}
                         type="password"
-                        handleChange={onHandleChange}
-                        label="Password"
                         name="password"
+                        value={data.password}
+                        className="mt-1 block w-full"
+                        autoComplete="current-password"
+                        handleChange={onHandleChange}
                     />
                 </div>
 
                 <div className="block mt-4">
-                    <Checkbox
-                        name="remember"
-                        value={data.remember}
-                        handleChange={onHandleChange}
-                        label="Remember me"
-                    />
+                    <label className="flex items-center">
+                        <Checkbox
+                            name="remember"
+                            value={data.remember}
+                            handleChange={onHandleChange}
+                        />
+
+                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                    </label>
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
@@ -82,11 +93,10 @@ export default function Login({ status, canResetPassword }) {
                             Forgot your password?
                         </InertiaLink>
                     )}
-                    <div className="ml-4">
-                        <Button processing={processing}>
-                            Log in
-                        </Button>
-                    </div>
+
+                    <Button className="ml-4" processing={processing}>
+                        Log in
+                    </Button>
                 </div>
             </form>
         </Guest>
