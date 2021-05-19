@@ -15,9 +15,9 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/filesystem": "^8.40",
-        "illuminate/support": "^8.40",
-        "illuminate/validation": "^8.40"
+        "illuminate/filesystem": "^8.42",
+        "illuminate/support": "^8.42",
+        "illuminate/validation": "^8.42"
     },
     "autoload": {
         "psr-4": {
