@@ -30,7 +30,12 @@ export default function VerifyEmail({ status }) {
                 <div className="mt-4 flex items-center justify-between">
                     <Button processing={processing}>Resend Verification Email</Button>
 
-                    <InertiaLink href={route('logout')} method="post" as="button" className="underline text-sm text-gray-600 hover:text-gray-900">
+                    <InertiaLink
+                        href={route('logout')}
+                        method="post"
+                        as="button"
+                        className="underline text-sm text-gray-600 hover:text-gray-900"
+                    >
                         Log Out
                     </InertiaLink>
                 </div>
