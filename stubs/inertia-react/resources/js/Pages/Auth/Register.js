@@ -14,7 +14,6 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
-        terms: false,
     });
 
     useEffect(() => {

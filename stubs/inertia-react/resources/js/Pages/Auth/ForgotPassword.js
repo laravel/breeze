@@ -1,9 +1,10 @@
-import React from "react";
-import { useForm } from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
-import TextInput from "@/Components/TextInput";
 import Guest from "@/Layouts/Guest";
-import ValidationErros from "@/Components/ValidationErrors";
+import Label from "@/Components/Label";
+import React from "react";
+import TextInput from "@/Components/TextInput";
+import ValidationErrors from "@/Components/ValidationErrors";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function ForgotPassword({ status }) {
 
@@ -17,43 +18,40 @@ export default function ForgotPassword({ status }) {
 
     const submit = (e) => {
         e.preventDefault();
+
         post(route("password.email"));
     };
 
     return (
-        <Guest title="Forgot Password">
-            {status ? (
-                <div className="font-medium text-sm py-2 text-center text-green-600">
+        <Guest>
+            <div className="mb-4 text-sm text-gray-500 leading-normal">
+                Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+            </div>
+
+            {status && (
+                <div className="mb-4 font-medium text-sm text-green-600">
                     {status}
                 </div>
-            ) : (
-                <>
-                    <div className="mb-4 text-sm text-gray-500 leading-normal">
-                        Forgot your password? No problem. Just let us know your
-                        email address and we will email you a password reset
-                        link that will allow you to choose a new one.
-                    </div>
-                    <ValidationErros errors={errors} />
-                    <form onSubmit={submit}>
-                        <TextInput
-                            value={data.email}
-                            error={errors.email}
-                            type="text"
-                            handleChange={onHandleChange}
-                            isFocused={true}
-                            label="Email"
-                            name="email"
-                        />
-                        <div className="flex items-center justify-end mt-4">
-                            <div className="ml-4">
-                                <Button processing={processing}>
-                                    Email Password Reset Link
-                                </Button>
-                            </div>
-                        </div>
-                    </form>
-                </>
             )}
+
+            <ValidationErrors errors={errors} />
+
+            <form onSubmit={submit}>
+                <TextInput
+                    type="text"
+                    name="email"
+                    value={data.email}
+                    className="mt-1 block w-full"
+                    isFocused={true}
+                    handleChange={onHandleChange}
+                />
+
+                <div className="flex items-center justify-end mt-4">
+                    <Button className="ml-4" processing={processing}>
+                        Email Password Reset Link
+                    </Button>
+                </div>
+            </form>
         </Guest>
     );
 }

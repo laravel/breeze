@@ -35,9 +35,9 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <Guest title="Log in">
+        <Guest>
             {status && (
-                <div className="font-medium text-sm py-2 text-center text-green-600">
+                <div className="mb-4 font-medium text-sm text-green-600">
                     {status}
                 </div>
             )}

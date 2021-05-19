@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { useForm } from "@inertiajs/inertia-react";
-import ValidationErros from "@/Components/ValidationErrors";
-import Guest from "@/Layouts/Guest";
-import TextInput from "@/Components/TextInput";
 import Button from "@/Components/Button";
+import Guest from "@/Layouts/Guest";
+import Label from "@/Components/Label";
+import React, { useEffect } from "react";
+import TextInput from "@/Components/TextInput";
+import ValidationErrors from "@/Components/ValidationErrors";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function ResetPassword({ token, email }) {
 
@@ -26,55 +27,59 @@ export default function ResetPassword({ token, email }) {
 
     const submit = (e) => {
         e.preventDefault();
+
         post(route("password.update"));
     };
 
     return (
-        <Guest title="Reset Password">
-            <ValidationErros errors={errors} />
+        <Guest>
+            <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
-                <div className="mt-4">
+                <div>
+                    <Label forInput="email" value="Email" />
+
                     <TextInput
-                        value={data.email}
-                        error={errors.email}
-                        type="text"
-                        handleChange={onHandleChange}
-                        label="Email"
+                        type="email"
                         name="email"
+                        value={data.email}
+                        className="mt-1 block w-full"
                         autoComplete="username"
-                    />
-                </div>
-                <div className="mt-4">
-                    <TextInput
-                        isFocused={true}
-                        error={errors.password}
-                        value={data.password}
-                        type="password"
                         handleChange={onHandleChange}
-                        label="Password"
-                        name="password"
-                        autoComplete="new-password"
                     />
                 </div>
 
                 <div className="mt-4">
+                    <Label forInput="password" value="Password" />
+
                     <TextInput
-                        value={data.password_confirmation}
                         type="password"
-                        handleChange={onHandleChange}
-                        label="Password"
-                        name="password_confirmation"
+                        name="password"
+                        value={data.password}
+                        className="mt-1 block w-full"
                         autoComplete="new-password"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <Label forInput="password_confirmation" value="Confirm Password" />
+
+                    <TextInput
+                        type="password"
+                        name="password_confirmation"
+                        value={data.password_confirmation}
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
+                        handleChange={onHandleChange}
                     />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <div className="ml-4">
-                        <Button processing={processing}>
-                            Reset Password
-                        </Button>
-                    </div>
+                    <Button className="ml-4" processing={processing}>
+                        Reset Password
+                    </Button>
                 </div>
             </form>
         </Guest>
