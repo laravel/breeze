@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.8...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.0...1.x)
+
+
+## [v1.2.0 (2021-05-20)](https://github.com/laravel/breeze/compare/v1.1.8...v1.2.0)
+
+### Added
+- React installation option ([#73](https://github.com/laravel/breeze/pull/73))
 
 
 ## [v1.1.8 (2021-05-18)](https://github.com/laravel/breeze/compare/v1.1.7...v1.1.8)

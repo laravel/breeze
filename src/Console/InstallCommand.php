@@ -14,7 +14,8 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed}
+    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue)}
+                            {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -31,7 +32,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if ($this->argument('stack') === 'vue') {
+        if ($this->option('inertia') || $this->argument('stack') === 'vue') {
             return $this->installInertiaVueStack();
         }
 
