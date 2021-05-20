@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function TextInput({
-    label,
+export default function Input({
     type = 'text',
     name,
     value,
