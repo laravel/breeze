@@ -1,5 +1,5 @@
 import ApplicationLogo from '../Components/ApplicationLogo';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 
 export default function Guest({ children }) {
