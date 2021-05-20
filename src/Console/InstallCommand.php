@@ -185,6 +185,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
+                '@headlessui/react' => '^1.2.0',
                 '@inertiajs/inertia' => '^0.8.4',
                 '@inertiajs/inertia-react' => '^0.5.12',
                 '@inertiajs/progress' => '^0.2.4',
