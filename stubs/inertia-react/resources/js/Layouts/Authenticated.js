@@ -101,9 +101,8 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="flex flex-col items-start px-4">
+                        <div className="px-4">
                             <div className="font-medium text-base text-gray-800">{auth.user.name}</div>
-
                             <div className="font-medium text-sm text-gray-500">{auth.user.email}</div>
                         </div>
 
