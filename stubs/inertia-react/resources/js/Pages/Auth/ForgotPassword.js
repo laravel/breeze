@@ -1,8 +1,8 @@
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
+import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import React from 'react';
-import TextInput from '@/Components/TextInput';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { useForm } from '@inertiajs/inertia-react';
 
@@ -33,7 +33,7 @@ export default function ForgotPassword({ status }) {
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
-                <TextInput
+                <Input
                     type="text"
                     name="email"
                     value={data.email}

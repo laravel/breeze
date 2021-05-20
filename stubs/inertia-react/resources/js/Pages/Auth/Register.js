@@ -1,8 +1,8 @@
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
-import React, { useEffect } from 'react';
+import Input from '@/Components/Input';
 import Label from '@/Components/Label';
-import TextInput from '@/Components/TextInput';
+import React, { useEffect } from 'react';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import { useForm } from '@inertiajs/inertia-react';
@@ -39,7 +39,7 @@ export default function Register() {
                 <div>
                     <Label forInput="name" value="Name" />
 
-                    <TextInput
+                    <Input
                         type="text"
                         name="name"
                         value={data.name}
@@ -54,7 +54,7 @@ export default function Register() {
                 <div className="mt-4">
                     <Label forInput="email" value="Email" />
 
-                    <TextInput
+                    <Input
                         type="email"
                         name="email"
                         value={data.email}
@@ -68,7 +68,7 @@ export default function Register() {
                 <div className="mt-4">
                     <Label forInput="password" value="Password" />
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password"
                         value={data.password}
@@ -82,7 +82,7 @@ export default function Register() {
                 <div className="mt-4">
                     <Label forInput="password_confirmation" value="Confirm Password" />
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
