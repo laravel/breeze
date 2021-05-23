@@ -1,7 +1,7 @@
 import { InertiaLink } from '@inertiajs/inertia-react';
 import React from 'react';
 
-export default function ResponsiveNavLink({ method = 'get', as = 'a', href, active = false, children }) {
+export default function ResponsiveNavLink({ method = 'get', as = 'button', href, active = false, children }) {
     return (
         <InertiaLink
             method={method}
