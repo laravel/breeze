@@ -7,6 +7,7 @@
 
 ### Added
 - React installation option ([#73](https://github.com/laravel/breeze/pull/73))
+- Use new `Password::defaults()` feature ([#71](https://github.com/laravel/breeze/pull/71))
 
 
 ## [v1.1.8 (2021-05-18)](https://github.com/laravel/breeze/compare/v1.1.7...v1.1.8)
