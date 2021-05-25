@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.1...1.x)
+
+
+## [v1.2.1 (2021-05-25)](https://github.com/laravel/breeze/compare/v1.2.0...v1.2.1)
+
+### Fixed
+- Fix dropdown ([87e849a](https://github.com/laravel/breeze/commit/87e849a2fd635628d99aa8514e2ee9321decee27))
+- Fix link type ([c83d1ac](https://github.com/laravel/breeze/commit/c83d1ac389a58f1fb9ee6491ce14488f6a0a746b))
 
 
 ## [v1.2.0 (2021-05-20)](https://github.com/laravel/breeze/compare/v1.1.8...v1.2.0)
