@@ -1,6 +1,20 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.8...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.1...master)
+
+
+## [v1.2.1 (2021-05-25)](https://github.com/laravel/breeze/compare/v1.2.0...v1.2.1)
+
+### Fixed
+- Fix dropdown ([87e849a](https://github.com/laravel/breeze/commit/87e849a2fd635628d99aa8514e2ee9321decee27))
+- Fix link type ([c83d1ac](https://github.com/laravel/breeze/commit/c83d1ac389a58f1fb9ee6491ce14488f6a0a746b))
+
+
+## [v1.2.0 (2021-05-20)](https://github.com/laravel/breeze/compare/v1.1.8...v1.2.0)
+
+### Added
+- React installation option ([#73](https://github.com/laravel/breeze/pull/73))
+- Use new `Password::defaults()` feature ([#71](https://github.com/laravel/breeze/pull/71))
 
 
 ## [v1.1.8 (2021-05-18)](https://github.com/laravel/breeze/compare/v1.1.7...v1.1.8)
