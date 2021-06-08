@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.2...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.3...master)
+
+
+## [v1.2.3 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.2...v1.2.3)
+
+### Fixed
+- Fix purge line to include *.js ([#83](https://github.com/laravel/breeze/pull/83))
 
 
 ## [v1.2.2 (2021-06-01)](https://github.com/laravel/breeze/compare/v1.2.1...v1.2.2)

@@ -247,6 +247,7 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.js', resource_path('js/app.js'));
 
         $this->replaceInFile('.vue()', '.react()', base_path('webpack.mix.js'));
+        $this->replaceInFile('.vue', '.js', base_path('tailwind.config.js'));
 
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
