@@ -177,10 +177,8 @@
 <script>
     export default {
         props: {
-            auth: Object,
             canLogin: Boolean,
             canRegister: Boolean,
-            errors: Object,
             laravelVersion: String,
             phpVersion: String,
         }
