@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.3...1.x)
 
+## [v1.3.0 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.3...v1.3.0)
+
+- Update Inertia ([c439176](https://github.com/laravel/breeze/commit/c43917630e9b45b78dfd805f152262e08a7d2ffb))
+
 
 ## [v1.2.3 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.2...v1.2.3)
 
