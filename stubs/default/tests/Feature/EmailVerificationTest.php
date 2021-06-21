@@ -30,7 +30,7 @@ class EmailVerificationTest extends TestCase
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
-        
+
         Event::fake();
 
         $verificationUrl = URL::temporarySignedRoute(
