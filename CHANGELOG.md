@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.2.3...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.3.1...master)
+
+
+## [v1.3.1 (2021-06-22)](https://github.com/laravel/breeze/compare/v1.3.0...v1.3.1)
+
+### Fixed
+- Fix EmailVerificationTest to pass using Uuids ([#85](https://github.com/laravel/breeze/pull/85))
+
+
+## [v1.3.0 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.3...v1.3.0)
+
+### Changed
+- Update Inertia ([c439176](https://github.com/laravel/breeze/commit/c43917630e9b45b78dfd805f152262e08a7d2ffb))
+- Update versions ([aa90bfd](https://github.com/laravel/breeze/commit/aa90bfd5b31cedf848087d105b6924b0f120fc99))
 
 
 ## [v1.2.3 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.2...v1.2.3)
