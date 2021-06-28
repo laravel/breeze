@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="__('Reset Password')">
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

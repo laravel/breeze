@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="__('Verify Email')">
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
