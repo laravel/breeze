@@ -8,6 +8,8 @@
 
 <script>
     export default {
+        name: 'BreezeInputError',
+
         props: ['message']
     }
 </script>

@@ -32,6 +32,8 @@
 import { onMounted, onUnmounted, ref } from "vue";
 
 export default {
+    name: 'BreezeDropdown',
+
     props: {
         align: {
             default: 'right'

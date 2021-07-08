@@ -3,3 +3,9 @@
         <slot />
     </inertia-link>
 </template>
+
+<script>
+export default {
+    name: 'BreezeDropdownLink',
+}
+</script>

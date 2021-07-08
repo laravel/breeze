@@ -6,6 +6,8 @@
 
 <script>
     export default {
+        name: 'BreezeResponsiveNavLink',
+
         props: ['active'],
 
         computed: {

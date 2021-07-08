@@ -4,6 +4,8 @@
 
 <script>
     export default {
+        name: 'BreezeInput',
+
         props: ['modelValue'],
 
         emits: ['update:modelValue'],

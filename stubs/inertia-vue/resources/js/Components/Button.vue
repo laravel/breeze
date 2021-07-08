@@ -6,6 +6,8 @@
 
 <script>
     export default {
+        name: 'BreezeButton',
+
         props: {
             type: {
                 type: String,

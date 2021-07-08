@@ -10,6 +10,8 @@
 
 <script>
     export default {
+        name: 'BreezeValidationErrors',
+
         computed: {
             errors() {
                 return this.$page.props.errors

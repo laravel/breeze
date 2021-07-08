@@ -6,6 +6,8 @@
 
 <script>
     export default {
+        name: 'BreezeNavLink',
+
         props: ['href', 'active'],
 
         computed: {

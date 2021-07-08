@@ -5,6 +5,8 @@
 
 <script>
 export default {
+    name: 'BreezeCheckbox',
+
     emits: ['update:checked'],
 
     props: {
