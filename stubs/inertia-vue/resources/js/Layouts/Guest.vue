@@ -16,6 +16,8 @@
     import BreezeApplicationLogo from '@/Components/ApplicationLogo'
 
     export default {
+        name: 'BreezeGuestLayout',
+
         components: {
             BreezeApplicationLogo,
         }

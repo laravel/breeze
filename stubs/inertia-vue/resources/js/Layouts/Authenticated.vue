@@ -105,6 +105,8 @@
     import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
 
     export default {
+        name: 'BreezeAuthenticatedLayout',
+
         components: {
             BreezeApplicationLogo,
             BreezeDropdown,
