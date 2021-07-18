@@ -19,8 +19,8 @@
 </template>
 
 <script>
-    import BreezeButton from '@/Components/Button'
-    import BreezeGuestLayout from "@/Layouts/Guest"
+    import BreezeButton from '@/Components/Button.vue'
+    import BreezeGuestLayout from '@/Layouts/Guest.vue'
 
     export default {
         layout: BreezeGuestLayout,

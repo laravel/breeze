@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
+    import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 
     export default {
         components: {

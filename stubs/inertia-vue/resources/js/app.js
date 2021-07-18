@@ -8,7 +8,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 const el = document.getElementById('app');
 
 createInertiaApp({
-    resolve: (name) => require(`./Pages/${name}`),
+    resolve: (name) => require(`./Pages/${name}.vue`),
     setup({ el, app, props, plugin }) {
         createApp({ render: () => h(app, props) })
             .mixin({ methods: { route } })
