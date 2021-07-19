@@ -98,11 +98,11 @@
 </template>
 
 <script>
-    import BreezeApplicationLogo from '@/Components/ApplicationLogo'
-    import BreezeDropdown from '@/Components/Dropdown'
-    import BreezeDropdownLink from '@/Components/DropdownLink'
-    import BreezeNavLink from '@/Components/NavLink'
-    import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
+    import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
+    import BreezeDropdown from '@/Components/Dropdown.vue'
+    import BreezeDropdownLink from '@/Components/DropdownLink.vue'
+    import BreezeNavLink from '@/Components/NavLink.vue'
+    import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 
     export default {
         components: {

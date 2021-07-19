@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import BreezeApplicationLogo from '@/Components/ApplicationLogo'
+    import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
 
     export default {
         components: {
