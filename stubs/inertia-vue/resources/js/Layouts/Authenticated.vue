@@ -9,22 +9,22 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <breeze-application-logo class="block h-9 w-auto" />
+                                    <BreezeApplicationLogo class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <breeze-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
-                                </breeze-nav-link>
+                                </BreezeNavLink>
                             </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
-                                <breeze-dropdown align="right" width="48">
+                                <BreezeDropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -38,11 +38,11 @@
                                     </template>
 
                                     <template #content>
-                                        <breeze-dropdown-link :href="route('logout')" method="post" as="button">
+                                        <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
-                                        </breeze-dropdown-link>
+                                        </BreezeDropdownLink>
                                     </template>
-                                </breeze-dropdown>
+                                </BreezeDropdown>
                             </div>
                         </div>
 
@@ -61,9 +61,9 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <breeze-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
-                        </breeze-responsive-nav-link>
+                        </BreezeResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -74,9 +74,9 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <breeze-responsive-nav-link :href="route('logout')" method="post" as="button">
+                            <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 Log Out
-                            </breeze-responsive-nav-link>
+                            </BreezeResponsiveNavLink>
                         </div>
                     </div>
                 </div>

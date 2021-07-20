@@ -9,18 +9,18 @@
         {{ status }}
     </div>
 
-    <breeze-validation-errors class="mb-4" />
+    <BreezeValidationErrors class="mb-4" />
 
     <form @submit.prevent="submit">
         <div>
-            <breeze-label for="email" value="Email" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+            <BreezeLabel for="email" value="Email" />
+            <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Email Password Reset Link
-            </breeze-button>
+            </BreezeButton>
         </div>
     </form>
 </template>
