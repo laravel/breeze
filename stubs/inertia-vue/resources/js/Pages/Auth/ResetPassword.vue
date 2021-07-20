@@ -1,5 +1,6 @@
 <template>
     <Head title="Reset Password" />
+
     <breeze-validation-errors class="mb-4" />
 
     <form @submit.prevent="submit">
