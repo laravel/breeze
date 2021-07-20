@@ -14,11 +14,11 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 // documentation can be found at https://inertiajs.com/client-side-setup
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: name => require(`./Pages/${name}`),
+    resolve: (name) => require(`./Pages/${name}`),
     setup({ el, App, props }) {
-        return render(<App {...props} />, el)
+        return render(<App {...props} />, el);
     },
-})
+});
 
 // Finally, we'll initialize Inertia's NProgress-based progress bar plugin, for which
 // the documentation can be found at https://inertiajs.com/progress-indicators

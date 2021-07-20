@@ -9,7 +9,6 @@ import { InertiaProgress } from '@inertiajs/progress';
 // When this isn't available, we'll instead use the static value of 'Laravel'.
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-
 // Next, we'll initialize our Inertia.js client-side application, for which the
 // documentation can be found at https://inertiajs.com/client-side-setup
 createInertiaApp({

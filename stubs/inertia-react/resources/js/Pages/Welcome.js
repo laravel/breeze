@@ -89,7 +89,10 @@ export default function Welcome(props) {
                                     </svg>
 
                                     <div className="ml-4 text-lg leading-7 font-semibold">
-                                        <a href="https://laracasts.com" className="underline text-gray-900 dark:text-white">
+                                        <a
+                                            href="https://laracasts.com"
+                                            className="underline text-gray-900 dark:text-white"
+                                        >
                                             Laracasts
                                         </a>
                                     </div>
@@ -174,8 +177,8 @@ export default function Welcome(props) {
                                         <a href="https://envoyer.io" className="underline">
                                             Envoyer
                                         </a>{' '}
-                                        help you take your projects to the next level. Pair them with powerful open source
-                                        libraries like{' '}
+                                        help you take your projects to the next level. Pair them with powerful open
+                                        source libraries like{' '}
                                         <a href="https://laravel.com/docs/billing" className="underline">
                                             Cashier
                                         </a>
