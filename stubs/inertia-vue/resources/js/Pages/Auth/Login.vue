@@ -24,9 +24,9 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+            <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                 Forgot your password?
-            </inertia-link>
+            </Link>
 
             <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Log in
@@ -36,45 +36,47 @@
 </template>
 
 <script>
-    import BreezeButton from '@/Components/Button.vue'
-    import BreezeGuestLayout from '@/Layouts/Guest.vue'
-    import BreezeInput from '@/Components/Input.vue'
-    import BreezeCheckbox from '@/Components/Checkbox.vue'
-    import BreezeLabel from '@/Components/Label.vue'
-    import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
+import { Link } from '@inertiajs/inertia-vue3';
+import BreezeButton from '@/Components/Button.vue'
+import BreezeGuestLayout from '@/Layouts/Guest.vue'
+import BreezeInput from '@/Components/Input.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue'
+import BreezeLabel from '@/Components/Label.vue'
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
-    export default {
-        layout: BreezeGuestLayout,
+export default {
+    layout: BreezeGuestLayout,
 
-        components: {
-            BreezeButton,
-            BreezeInput,
-            BreezeCheckbox,
-            BreezeLabel,
-            BreezeValidationErrors
-        },
+    components: {
+        BreezeButton,
+        BreezeInput,
+        BreezeCheckbox,
+        BreezeLabel,
+        BreezeValidationErrors,
+        Link,
+    },
 
-        props: {
-            canResetPassword: Boolean,
-            status: String,
-        },
+    props: {
+        canResetPassword: Boolean,
+        status: String,
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    email: '',
-                    password: '',
-                    remember: false
-                })
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form({
+                email: '',
+                password: '',
+                remember: false
+            })
+        }
+    },
 
-        methods: {
-            submit() {
-                this.form.post(this.route('login'), {
-                    onFinish: () => this.form.reset('password'),
-                })
-            }
+    methods: {
+        submit() {
+            this.form.post(this.route('login'), {
+                onFinish: () => this.form.reset('password'),
+            })
         }
     }
+}
 </script>

@@ -1,7 +1,7 @@
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
 import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 import { useForm } from '@inertiajs/inertia-react';
 
 export default function VerifyEmail({ status }) {
@@ -30,14 +30,14 @@ export default function VerifyEmail({ status }) {
                 <div className="mt-4 flex items-center justify-between">
                     <Button processing={processing}>Resend Verification Email</Button>
 
-                    <InertiaLink
+                    <Link
                         href={route('logout')}
                         method="post"
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
                         Log Out
-                    </InertiaLink>
+                    </Link>
                 </div>
             </form>
         </Guest>

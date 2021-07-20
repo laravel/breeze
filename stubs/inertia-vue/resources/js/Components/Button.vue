@@ -5,12 +5,12 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            type: {
-                type: String,
-                default: 'submit',
-            },
-        }
+export default {
+    props: {
+        type: {
+            type: String,
+            default: 'submit',
+        },
     }
+}
 </script>

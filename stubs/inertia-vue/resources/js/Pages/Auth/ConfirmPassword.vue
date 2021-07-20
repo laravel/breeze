@@ -20,36 +20,36 @@
 </template>
 
 <script>
-    import BreezeButton from '@/Components/Button.vue'
-    import BreezeGuestLayout from '@/Layouts/Guest.vue'
-    import BreezeInput from '@/Components/Input.vue'
-    import BreezeLabel from '@/Components/Label.vue'
-    import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
+import BreezeButton from '@/Components/Button.vue'
+import BreezeGuestLayout from '@/Layouts/Guest.vue'
+import BreezeInput from '@/Components/Input.vue'
+import BreezeLabel from '@/Components/Label.vue'
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
-    export default {
-        layout: BreezeGuestLayout,
+export default {
+    layout: BreezeGuestLayout,
 
-        components: {
-            BreezeButton,
-            BreezeInput,
-            BreezeLabel,
-            BreezeValidationErrors,
-        },
+    components: {
+        BreezeButton,
+        BreezeInput,
+        BreezeLabel,
+        BreezeValidationErrors,
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    password: '',
-                })
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form({
+                password: '',
+            })
+        }
+    },
 
-        methods: {
-            submit() {
-                this.form.post(this.route('password.confirm'), {
-                    onFinish: () => this.form.reset(),
-                })
-            }
+    methods: {
+        submit() {
+            this.form.post(this.route('password.confirm'), {
+                onFinish: () => this.form.reset(),
+            })
         }
     }
+}
 </script>
