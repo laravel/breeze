@@ -1,11 +1,10 @@
-import Button from '@/Components/Button';
+import React, { useEffect } from 'react';
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import Guest from '@/Layouts/Guest';
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
 import ValidationErrors from '@/Components/ValidationErrors';
-import { Link } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,6 +32,7 @@ export default function Register() {
 
     return (
         <Guest>
+            <Head title="Register" />
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>

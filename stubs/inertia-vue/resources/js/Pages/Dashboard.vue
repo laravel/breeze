@@ -1,4 +1,5 @@
 <template>
+    <Head title="Dashboard" />
     <breeze-authenticated-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -19,11 +20,13 @@
 </template>
 
 <script>
+import { Head } from '@inertiajs/inertia-vue3';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 
 export default {
     components: {
         BreezeAuthenticatedLayout,
+        Head,
     },
 }
 </script>

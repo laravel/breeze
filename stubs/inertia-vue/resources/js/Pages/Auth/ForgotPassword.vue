@@ -1,4 +1,5 @@
 <template>
+    <Head title="Forgot Password" />
     <div class="mb-4 text-sm text-gray-600">
         Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
     </div>
@@ -24,8 +25,9 @@
 </template>
 
 <script>
-import BreezeButton from '@/Components/Button.vue'
+import { Head } from '@inertiajs/inertia-vue3';
 import BreezeGuestLayout from '@/Layouts/Guest.vue'
+import BreezeButton from '@/Components/Button.vue'
 import BreezeInput from '@/Components/Input.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
@@ -38,6 +40,7 @@ export default {
         BreezeInput,
         BreezeLabel,
         BreezeValidationErrors,
+        Head,
     },
 
     props: {

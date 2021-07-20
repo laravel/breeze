@@ -1,4 +1,5 @@
 <template>
+    <Head title="Log in" />
     <breeze-validation-errors class="mb-4" />
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -36,11 +37,11 @@
 </template>
 
 <script>
-import { Link } from '@inertiajs/inertia-vue3';
-import BreezeButton from '@/Components/Button.vue'
+import { Head, Link } from '@inertiajs/inertia-vue3';
 import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
+import BreezeButton from '@/Components/Button.vue'
 import BreezeCheckbox from '@/Components/Checkbox.vue'
+import BreezeInput from '@/Components/Input.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
@@ -49,10 +50,11 @@ export default {
 
     components: {
         BreezeButton,
-        BreezeInput,
         BreezeCheckbox,
+        BreezeInput,
         BreezeLabel,
         BreezeValidationErrors,
+        Head,
         Link,
     },
 

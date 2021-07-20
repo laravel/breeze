@@ -1,4 +1,5 @@
 <template>
+    <Head title="Reset Password" />
     <breeze-validation-errors class="mb-4" />
 
     <form @submit.prevent="submit">
@@ -26,8 +27,9 @@
 </template>
 
 <script>
-import BreezeButton from '@/Components/Button.vue'
+import { Head } from '@inertiajs/inertia-vue3';
 import BreezeGuestLayout from '@/Layouts/Guest.vue'
+import BreezeButton from '@/Components/Button.vue'
 import BreezeInput from '@/Components/Input.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
@@ -40,6 +42,7 @@ export default {
         BreezeInput,
         BreezeLabel,
         BreezeValidationErrors,
+        Head,
     },
 
     props: {
