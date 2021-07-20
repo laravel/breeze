@@ -105,14 +105,14 @@ class InstallCommand extends Command
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.4.1', 'laravel/sanctum:^2.6', 'tightenco/ziggy:^1.0');
+        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.4.3', 'laravel/sanctum:^2.6', 'tightenco/ziggy:^1.0');
 
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@inertiajs/inertia' => '^0.9.0',
-                '@inertiajs/inertia-vue3' => '^0.4.0',
-                '@inertiajs/progress' => '^0.2.4',
+                '@inertiajs/inertia' => '^0.10.0',
+                '@inertiajs/inertia-vue3' => '^0.5.1',
+                '@inertiajs/progress' => '^0.2.6',
                 '@tailwindcss/forms' => '^0.2.1',
                 '@vue/compiler-sfc' => '^3.0.5',
                 'autoprefixer' => '^10.2.4',
