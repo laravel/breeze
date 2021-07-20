@@ -33,6 +33,7 @@ export default function Register() {
     return (
         <Guest>
             <Head title="Register" />
+
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
