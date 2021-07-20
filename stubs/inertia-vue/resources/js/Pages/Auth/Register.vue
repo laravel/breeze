@@ -1,5 +1,6 @@
 <template>
     <Head title="Register" />
+
     <breeze-validation-errors class="mb-4" />
 
     <form @submit.prevent="submit">
