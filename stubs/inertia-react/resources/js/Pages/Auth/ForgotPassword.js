@@ -1,9 +1,9 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
 import React from 'react';
+import { Head, useForm } from '@inertiajs/inertia-react';
+import Guest from '@/Layouts/Guest';
+import Button from '@/Components/Button';
+import Input from '@/Components/Input';
 import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -22,6 +22,8 @@ export default function ForgotPassword({ status }) {
 
     return (
         <Guest>
+            <Head title="Forgot Password" />
+
             <div className="mb-4 text-sm text-gray-500 leading-normal">
                 Forgot your password? No problem. Just let us know your email address and we will email you a password
                 reset link that will allow you to choose a new one.

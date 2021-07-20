@@ -1,4 +1,6 @@
 <template>
+    <Head title="Register" />
+
     <breeze-validation-errors class="mb-4" />
 
     <form @submit.prevent="submit">
@@ -23,9 +25,9 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
+            <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
                 Already registered?
-            </inertia-link>
+            </Link>
 
             <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Register
@@ -35,40 +37,43 @@
 </template>
 
 <script>
-    import BreezeButton from '@/Components/Button.vue'
-    import BreezeGuestLayout from '@/Layouts/Guest.vue'
-    import BreezeInput from '@/Components/Input.vue'
-    import BreezeLabel from '@/Components/Label.vue'
-    import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
+import { Head, Link } from '@inertiajs/inertia-vue3';
+import BreezeGuestLayout from '@/Layouts/Guest.vue'
+import BreezeButton from '@/Components/Button.vue'
+import BreezeInput from '@/Components/Input.vue'
+import BreezeLabel from '@/Components/Label.vue'
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
-    export default {
-        layout: BreezeGuestLayout,
+export default {
+    layout: BreezeGuestLayout,
 
-        components: {
-            BreezeButton,
-            BreezeInput,
-            BreezeLabel,
-            BreezeValidationErrors,
-        },
+    components: {
+        BreezeButton,
+        BreezeInput,
+        BreezeLabel,
+        BreezeValidationErrors,
+        Head,
+        Link,
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    name: '',
-                    email: '',
-                    password: '',
-                    password_confirmation: '',
-                    terms: false,
-                })
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form({
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+                terms: false,
+            })
+        }
+    },
 
-        methods: {
-            submit() {
-                this.form.post(this.route('register'), {
-                    onFinish: () => this.form.reset('password', 'password_confirmation'),
-                })
-            }
+    methods: {
+        submit() {
+            this.form.post(this.route('register'), {
+                onFinish: () => this.form.reset('password', 'password_confirmation'),
+            })
         }
     }
+}
 </script>

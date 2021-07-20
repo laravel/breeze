@@ -1,9 +1,9 @@
-import { InertiaLink } from '@inertiajs/inertia-react';
 import React from 'react';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function ResponsiveNavLink({ method = 'get', as = 'a', href, active = false, children }) {
     return (
-        <InertiaLink
+        <Link
             method={method}
             as={as}
             href={href}
@@ -14,6 +14,6 @@ export default function ResponsiveNavLink({ method = 'get', as = 'a', href, acti
             } text-base font-medium focus:outline-none transition duration-150 ease-in-out`}
         >
             {children}
-        </InertiaLink>
+        </Link>
     );
 }

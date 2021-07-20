@@ -1,10 +1,10 @@
-import Button from '@/Components/Button';
+import React, { useEffect } from 'react';
+import { Head, useForm } from '@inertiajs/inertia-react';
 import Guest from '@/Layouts/Guest';
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
 import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -29,6 +29,8 @@ export default function ConfirmPassword() {
 
     return (
         <Guest>
+            <Head title="Secure Area" />
+
             <div className="mb-4 text-sm text-gray-600">
                 This is a secure area of the application. Please confirm your password before continuing.
             </div>

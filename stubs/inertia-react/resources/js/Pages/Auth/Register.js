@@ -1,11 +1,10 @@
-import Button from '@/Components/Button';
+import React, { useEffect } from 'react';
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import Guest from '@/Layouts/Guest';
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
 import ValidationErrors from '@/Components/ValidationErrors';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,6 +32,8 @@ export default function Register() {
 
     return (
         <Guest>
+            <Head title="Register" />
+
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
@@ -93,9 +94,9 @@ export default function Register() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <InertiaLink href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
+                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
                         Already registered?
-                    </InertiaLink>
+                    </Link>
 
                     <Button className="ml-4" processing={processing}>
                         Register

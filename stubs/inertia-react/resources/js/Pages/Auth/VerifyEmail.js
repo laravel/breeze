@@ -1,8 +1,7 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
+import Guest from '@/Layouts/Guest';
+import Button from '@/Components/Button';
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm();
@@ -15,6 +14,8 @@ export default function VerifyEmail({ status }) {
 
     return (
         <Guest>
+            <Head title="Email Verification" />
+
             <div className="mb-4 text-sm text-gray-600">
                 Thanks for signing up! Before getting started, could you verify your email address by clicking on the
                 link we just emailed to you? If you didn't receive the email, we will gladly send you another.
@@ -30,14 +31,14 @@ export default function VerifyEmail({ status }) {
                 <div className="mt-4 flex items-center justify-between">
                     <Button processing={processing}>Resend Verification Email</Button>
 
-                    <InertiaLink
+                    <Link
                         href={route('logout')}
                         method="post"
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
                         Log Out
-                    </InertiaLink>
+                    </Link>
                 </div>
             </form>
         </Guest>
