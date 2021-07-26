@@ -73,7 +73,7 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
     );
 };
 
-const Link = ({ href, method = 'post', as = 'a', children }) => {
+const DropdownLink = ({ href, method = 'post', as = 'a', children }) => {
     return (
         <Link
             href={href}
@@ -88,6 +88,6 @@ const Link = ({ href, method = 'post', as = 'a', children }) => {
 
 Dropdown.Trigger = Trigger;
 Dropdown.Content = Content;
-Dropdown.Link = Link;
+Dropdown.Link = DropdownLink;
 
 export default Dropdown;
