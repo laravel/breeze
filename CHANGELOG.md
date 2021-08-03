@@ -1,6 +1,17 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.3.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.3.2...1.x)
+
+
+## [v1.3.2 (2021-08-03)](https://github.com/laravel/breeze/compare/v1.3.1...v1.3.2)
+
+### Changed
+- Update url for JS ([eba8457](https://github.com/laravel/breeze/commit/eba8457b2e16d92fb0909e6e4a36f7cf9f50bc78))
+- Add Vue file extension to all Vue components imported ([#89](https://github.com/laravel/breeze/pull/89))
+- Update `<Link>` tags & implement `<Head>` management (title tag) ([#90](https://github.com/laravel/breeze/pull/90), [4dce8a8](https://github.com/laravel/breeze/commit/4dce8a8c9dd1b0ca23fbe92fa51b17cc5ccd6bb5), [128fd28](https://github.com/laravel/breeze/commit/128fd28e2ebd5fde7730d90b0052d175b887568a), [#94](https://github.com/laravel/breeze/pull/94))
+
+### Fixed
+- Change from POST to GET on responsive dashboard link ([#92](https://github.com/laravel/breeze/pull/92))
 
 
 ## [v1.3.1 (2021-06-22)](https://github.com/laravel/breeze/compare/v1.3.0...v1.3.1)
