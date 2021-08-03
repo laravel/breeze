@@ -3,16 +3,15 @@
 </template>
 
 <script>
-    export default {
-        props: ['modelValue'],
+export default {
+    props: ['modelValue'],
 
-        emits: ['update:modelValue'],
+    emits: ['update:modelValue'],
 
-        methods: {
-            focus() {
-                this.$refs.input.focus()
-            }
+    methods: {
+        focus() {
+            this.$refs.input.focus()
         }
     }
+}
 </script>
-
