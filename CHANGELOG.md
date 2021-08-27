@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.3.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.0...1.x)
+
+
+## [v1.4.0 (2021-08-27)](https://github.com/laravel/breeze/compare/v1.3.2...v1.4.0)
+
+### Added
+- Pest scaffolding ([#99](https://github.com/laravel/breeze/pull/99))
 
 
 ## [v1.3.2 (2021-08-03)](https://github.com/laravel/breeze/compare/v1.3.1...v1.3.2)
