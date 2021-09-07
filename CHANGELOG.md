@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.3.2...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.1...master)
+
+
+## [v1.4.1 (2021-09-07)](https://github.com/laravel/breeze/compare/v1.4.0...v1.4.1)
+
+### Fixed
+- Fixes installation of pest on vue/react stacks ([#100](https://github.com/laravel/breeze/pull/100))
+
+
+## [v1.4.0 (2021-08-27)](https://github.com/laravel/breeze/compare/v1.3.2...v1.4.0)
+
+### Added
+- Pest scaffolding ([#99](https://github.com/laravel/breeze/pull/99))
 
 
 ## [v1.3.2 (2021-08-03)](https://github.com/laravel/breeze/compare/v1.3.1...v1.3.2)
