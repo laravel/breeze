@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.1...1.x)
+
+
+## [v1.4.1 (2021-09-07)](https://github.com/laravel/breeze/compare/v1.4.0...v1.4.1)
+
+### Fixed
+- Fixes installation of pest on vue/react stacks ([#100](https://github.com/laravel/breeze/pull/100))
 
 
 ## [v1.4.0 (2021-08-27)](https://github.com/laravel/breeze/compare/v1.3.2...v1.4.0)
