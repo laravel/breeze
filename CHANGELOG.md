@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.2...1.x)
+
+
+## [v1.4.2 (2021-09-28)](https://github.com/laravel/breeze/compare/v1.4.1...v1.4.2)
+
+### Changed
+- Change namespace ([7b39f9c](https://github.com/laravel/breeze/commit/7b39f9c114c713a7d75ceeb79b4f5efe3d4f682a))
 
 
 ## [v1.4.1 (2021-09-07)](https://github.com/laravel/breeze/compare/v1.4.0...v1.4.1)
