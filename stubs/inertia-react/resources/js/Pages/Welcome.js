@@ -8,7 +8,7 @@ export default function Welcome(props) {
             <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="fixed top-0 right-0 px-6 py-4 sm:block">
                     {props.auth.user ? (
-                        <Link href="/dashboard" className="text-sm text-gray-700 underline">
+                        <Link href={route('dashboard')} className="text-sm text-gray-700 underline">
                             Dashboard
                         </Link>
                     ) : (
