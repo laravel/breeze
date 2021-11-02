@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.3...1.x)
+
+
+## [v1.4.3 (2021-11-02)](https://github.com/laravel/breeze/compare/v1.4.2...v1.4.3)
+
+### Changed
+- Upgrade alpinejs to v3 ([#105](https://github.com/laravel/breeze/pull/105))
+- Use dashboard named routes ([#106](https://github.com/laravel/breeze/pull/106))
 
 
 ## [v1.4.2 (2021-09-28)](https://github.com/laravel/breeze/compare/v1.4.1...v1.4.2)
