@@ -15,6 +15,8 @@ trait InstallsApiStack
     {
         //
 
+        // Point 'verified' middleware at App namespaced middleware...
+
         $this->info('Breeze scaffolding installed successfully.');
     }
 }
