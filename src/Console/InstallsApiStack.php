@@ -15,6 +15,7 @@ trait InstallsApiStack
     {
         //
 
+        // Prepend \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class to 'api' middleware group...
         // Point 'verified' middleware at App namespaced middleware...
 
         $this->info('Breeze scaffolding installed successfully.');
