@@ -35,6 +35,12 @@ trait InstallsApiStack
         // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
 
+        $this->replaceInFile(
+            "'url' => env('APP_URL', 'http://localhost')",
+            "'url' => env('APP_URL', 'http://localhost'),".PHP_EOL.PHP_EOL."    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000')",
+            config_path('app.php')
+        );
+
         // Tests...
         $this->installTests();
 
@@ -44,6 +50,17 @@ trait InstallsApiStack
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
         copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
+
+        // Environment...
+        if (! $files->exists(base_path('.env'))) {
+            copy(base_path('.env.example'), base_path('.env'));
+        }
+
+        $this->replaceInFile(
+            'APP_URL=http://localhost',
+            'APP_URL=http://localhost'.PHP_EOL.'FRONTEND_URL=http://localhost:3000',
+            base_path('.env')
+        );
 
         $this->removeScaffoldingUnnecessaryForApis();
 
