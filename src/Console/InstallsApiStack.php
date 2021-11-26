@@ -32,6 +32,9 @@ trait InstallsApiStack
         // Providers...
         $files->copyDirectory(__DIR__.'/../../stubs/api/App/Providers', app_path('Providers'));
 
+        // Config...
+        $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
+
         // Tests...
         $this->installTests();
 
