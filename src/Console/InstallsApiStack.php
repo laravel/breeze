@@ -35,8 +35,8 @@ trait InstallsApiStack
         $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/default/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
 
         // Remove frontend related files...
         $files->delete(base_path('package.json'));
