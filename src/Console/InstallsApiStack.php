@@ -34,6 +34,10 @@ trait InstallsApiStack
 
         $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
 
+        // Routes...
+        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/default/routes/auth.php', base_path('routes/auth.php'));
+
         // Remove frontend related files...
         $files->delete(base_path('package.json'));
         $files->delete(base_path('webpack.mix.js'));
@@ -49,8 +53,6 @@ trait InstallsApiStack
         // Configure middleware...
         $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
         $this->replaceInFile('\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class', '\App\Http\Middleware\EnsureEmailIsVerified::class', app_path('Http/Kernel.php'));
-
-        // Install stubs...
 
         $this->info('Breeze scaffolding installed successfully.');
     }
