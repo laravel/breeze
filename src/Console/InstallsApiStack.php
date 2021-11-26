@@ -13,12 +13,25 @@ trait InstallsApiStack
      */
     protected function installApiStack()
     {
-        //
+        $files = new Filesystem;
 
-        // Always remove Tailwind, JS scaffolding, webpack configuration, etc.
-        // Always remove welcome view...
-        // Prepend \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class to 'api' middleware group...
-        // Point 'verified' middleware at App namespaced middleware...
+        // Remove frontend related files...
+        $files->delete(base_path('package.json'));
+        $files->delete(base_path('webpack.mix.js'));
+
+        // Remove Laravel "welcome" view...
+        $files->delete(resource_path('views/welcome.blade.php'));
+        $files->put(resource_path('views/.gitkeep'), PHP_EOL);
+
+        // Remove CSS and JavaScript directories...
+        $files->deleteDirectory(resource_path('css'));
+        $files->deleteDirectory(resource_path('js'));
+
+        // Configure middleware...
+        $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
+        $this->replaceInFile('\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class', '\App\Http\Middleware\EnsureEmailIsVerified::class', app_path('Http/Kernel.php'));
+
+        // Install stubs...
 
         $this->info('Breeze scaffolding installed successfully.');
     }
