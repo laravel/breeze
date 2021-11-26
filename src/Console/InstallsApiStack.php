@@ -32,7 +32,7 @@ trait InstallsApiStack
         // Providers...
         $files->copyDirectory(__DIR__.'/../../stubs/api/App/Providers', app_path('Providers'));
 
-        // Config...
+        // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
 
         // Tests...
@@ -41,8 +41,10 @@ trait InstallsApiStack
         $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
+
+        $files->delete(base_path('routes/web.php'));
 
         $this->removeScaffoldingUnnecessaryForApis();
 
