@@ -22,6 +22,9 @@ trait InstallsApiStack
         // Middleware...
         $files->copyDirectory(__DIR__.'/../../stubs/api/App/Http/Middleware', app_path('Http/Middleware'));
 
+        $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
+        $this->replaceInFile('\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class', '\App\Http\Middleware\EnsureEmailIsVerified::class', app_path('Http/Kernel.php'));
+
         // Requests...
         $files->ensureDirectoryExists(app_path('Http/Requests/Auth'));
         $files->copyDirectory(__DIR__.'/../../stubs/api/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
@@ -38,6 +41,20 @@ trait InstallsApiStack
         copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
 
+        $this->removeScaffoldingUnnecessaryForApis();
+
+        $this->info('Breeze scaffolding installed successfully.');
+    }
+
+    /**
+     * Remove any application scaffolding that isn't needed for APIs.
+     *
+     * @return void
+     */
+    protected function removeScaffoldingUnnecessaryForApis()
+    {
+        $files = new Filesystem;
+
         // Remove frontend related files...
         $files->delete(base_path('package.json'));
         $files->delete(base_path('webpack.mix.js'));
@@ -49,11 +66,5 @@ trait InstallsApiStack
         // Remove CSS and JavaScript directories...
         $files->deleteDirectory(resource_path('css'));
         $files->deleteDirectory(resource_path('js'));
-
-        // Configure middleware...
-        $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
-        $this->replaceInFile('\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class', '\App\Http\Middleware\EnsureEmailIsVerified::class', app_path('Http/Kernel.php'));
-
-        $this->info('Breeze scaffolding installed successfully.');
     }
 }
