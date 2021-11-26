@@ -44,8 +44,6 @@ trait InstallsApiStack
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
 
-        $files->delete(base_path('routes/web.php'));
-
         $this->removeScaffoldingUnnecessaryForApis();
 
         $this->info('Breeze scaffolding installed successfully.');
