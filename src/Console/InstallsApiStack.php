@@ -15,6 +15,25 @@ trait InstallsApiStack
     {
         $files = new Filesystem;
 
+        // Controllers...
+        $files->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        $files->copyDirectory(__DIR__.'/../../stubs/api/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+
+        // Middleware...
+        $files->copyDirectory(__DIR__.'/../../stubs/api/App/Http/Middleware', app_path('Http/Middleware'));
+
+        // Requests...
+        $files->ensureDirectoryExists(app_path('Http/Requests/Auth'));
+        $files->copyDirectory(__DIR__.'/../../stubs/api/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+
+        // Providers...
+        $files->copyDirectory(__DIR__.'/../../stubs/api/App/Providers', app_path('Providers'));
+
+        // Tests...
+        $this->installTests();
+
+        $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
+
         // Remove frontend related files...
         $files->delete(base_path('package.json'));
         $files->delete(base_path('webpack.mix.js'));
