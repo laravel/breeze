@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.3...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.5.0...master)
+
+
+## [v1.5.0 (2021-12-07)](https://github.com/laravel/breeze/compare/v1.4.3...v1.5.0)
+
+### Added
+- Breeze "API" / SPA Stack ([#109](https://github.com/laravel/breeze/pull/109))
+
+### Changed
+- Use KeyboardEvent key attribute for Escape ([#108](https://github.com/laravel/breeze/pull/108))
 
 
 ## [v1.4.3 (2021-11-02)](https://github.com/laravel/breeze/compare/v1.4.2...v1.4.3)
