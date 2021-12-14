@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.5.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.6.0...1.x)
+
+
+## [v1.6.0 (2021-12-14)](https://github.com/laravel/breeze/compare/v1.5.0...v1.6.0)
+
+### Changed
+- Tailwind CSS v3 support ([#110](https://github.com/laravel/breeze/pull/110))
 
 
 ## [v1.5.0 (2021-12-07)](https://github.com/laravel/breeze/compare/v1.4.3...v1.5.0)
