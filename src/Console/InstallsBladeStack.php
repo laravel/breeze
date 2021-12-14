@@ -16,12 +16,12 @@ trait InstallsBladeStack
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@tailwindcss/forms' => '^0.2.1',
+                '@tailwindcss/forms' => '^0.4.0',
                 'alpinejs' => '^3.4.2',
                 'autoprefixer' => '^10.1.0',
                 'postcss' => '^8.2.1',
-                'postcss-import' => '^12.0.1',
-                'tailwindcss' => '^2.0.2',
+                'postcss-import' => '^14.0.1',
+                'tailwindcss' => '^3.0.0',
             ] + $packages;
         });
 
