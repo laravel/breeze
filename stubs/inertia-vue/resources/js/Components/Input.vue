@@ -12,6 +12,12 @@ export default {
         focus() {
             this.$refs.input.focus()
         }
+    },
+
+    mounted() {
+        if (this.$refs.input.hasAttribute('autofocus')) {
+            this.focus()
+        }
     }
 }
 </script>
