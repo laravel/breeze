@@ -143,8 +143,6 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.js'));
-        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.js'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
@@ -156,7 +154,7 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.js', resource_path('js/app.js'));
 
         $this->replaceInFile('.vue()', '.react()', base_path('webpack.mix.js'));
-        $this->replaceInFile('.vue', '.js', base_path('tailwind.config.js'));
+        $this->replaceInFile('.vue', '.{js,jsx}', base_path('tailwind.config.js'));
 
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
