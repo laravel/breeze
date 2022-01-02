@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 
-export default function Welcome(props) {
+export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="fixed top-0 right-0 px-6 py-4 sm:block">
-                    {props.auth.user ? (
+                    {auth.user ? (
                         <Link href={route('dashboard')} className="text-sm text-gray-700 underline">
                             Dashboard
                         </Link>
@@ -247,7 +247,7 @@ export default function Welcome(props) {
                         </div>
 
                         <div className="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                            Laravel v{props.laravelVersion} (PHP v{props.phpVersion})
+                            Laravel v{laravelVersion} (PHP v{phpVersion})
                         </div>
                     </div>
                 </div>
