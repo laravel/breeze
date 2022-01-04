@@ -6,8 +6,8 @@
 ## [v1.6.1 (2022-01-04)](https://github.com/laravel/breeze/compare/v1.6.0...v1.6.1)
 
 ### Changed
-* Fix Inertia Controllers @return tag and Inertia Vue Input Component by @thewebartisan7 in https://github.com/laravel/breeze/pull/112
-* Update outdated dependencies for react stack by @eumatv in https://github.com/laravel/breeze/pull/114
+* Fix Inertia Controllers @return tag and Inertia Vue Input Component by @thewebartisan7 in [#112](https://github.com/laravel/breeze/pull/112)
+* Update outdated dependencies for react stack by @eumatv in [#114](https://github.com/laravel/breeze/pull/114)
 
 
 ## [v1.6.0 (2021-12-14)](https://github.com/laravel/breeze/compare/v1.5.0...v1.6.0)
