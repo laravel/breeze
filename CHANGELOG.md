@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.6.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.0...1.x)
+
+
+## [v1.7.0 (2022-01-12)](https://github.com/laravel/breeze/compare/v1.6.1...v1.7.0)
+
+### Changed
+- Laravel 9 Support ([#119](https://github.com/laravel/breeze/pull/119))
 
 
 ## [v1.6.1 (2022-01-04)](https://github.com/laravel/breeze/compare/v1.6.0...v1.6.1)
