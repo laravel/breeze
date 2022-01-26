@@ -23,6 +23,6 @@ jobs:
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: ${{ github.ref_name }}
+          branch: ${{ github.event.repository.default_branch }}
           commit_message: Update CHANGELOG.md
           file_pattern: CHANGELOG.md
