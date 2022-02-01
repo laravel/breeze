@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.1...1.x)
+
+
+## [v1.7.1 (2022-02-01)](https://github.com/laravel/breeze/compare/v1.7.0...v1.7.1)
+
+### Changed
+- Fix exception throwing on older PHP versions ([#120](https://github.com/laravel/breeze/pull/120))
 
 
 ## [v1.7.0 (2022-01-12)](https://github.com/laravel/breeze/compare/v1.6.1...v1.7.0)
