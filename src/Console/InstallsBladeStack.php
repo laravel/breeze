@@ -18,10 +18,10 @@ trait InstallsBladeStack
             return [
                 '@tailwindcss/forms' => '^0.4.0',
                 'alpinejs' => '^3.4.2',
-                'autoprefixer' => '^10.1.0',
-                'postcss' => '^8.2.1',
-                'postcss-import' => '^14.0.1',
-                'tailwindcss' => '^3.0.0',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.18',
             ] + $packages;
         });
 
