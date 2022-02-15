@@ -1,6 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.8.1...1.x)
+
+## [v1.8.1](https://github.com/laravel/breeze/compare/v1.7.3...v1.8.1) - 2022-02-15
+
+### Changed
+
+- Update `InitialVueStack` packages to latest by @dammy001 in https://github.com/laravel/breeze/pull/128
+- Update `InertiaReactStack` dependencies by @dammy001 in https://github.com/laravel/breeze/pull/130
+- Update `BladeStack` dependencies by @dammy001 in https://github.com/laravel/breeze/pull/129
+- Don't mix __() and trans() in the same file by @hailwood in https://github.com/laravel/breeze/pull/132
+- Group common middleware instead of duplicating by @dammy001 in https://github.com/laravel/breeze/pull/131
+- Group common middleware instead of duplicating on inertia-common by @dammy001 in https://github.com/laravel/breeze/pull/135
+
+### Fixed
+
+- Fix assertRedirect in EmailVerificationTest when using API with pest by @lpheller in https://github.com/laravel/breeze/pull/133
 
 ## [v1.7.3](https://github.com/laravel/breeze/compare/v1.7.2...v1.7.3) - 2022-02-15
 
