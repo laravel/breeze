@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.7.3...1.x)
+
+## [v1.7.3](https://github.com/laravel/breeze/compare/v1.7.2...v1.7.3) - 2022-02-15
+
+### Fixed
+
+- Fix url replacement ([5af95ec](https://github.com/laravel/breeze/commit/5af95eca8ee2d18077347a34b74a2658c8356682))
 
 ## [v1.7.2](https://github.com/laravel/breeze/compare/v1.7.1...v1.7.2) - 2022-02-08
 
