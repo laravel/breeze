@@ -17,6 +17,12 @@
 
 - Fix assertRedirect in EmailVerificationTest when using API with pest by @lpheller in https://github.com/laravel/breeze/pull/133
 
+## [v1.8.0](https://github.com/laravel/breeze/compare/v1.7.3...v1.8.0) - 2022-02-15
+
+### Changed
+
+- Transition Inertia Vue stubs to `<script setup>` syntax by @jessarcher in https://github.com/laravel/breeze/pull/127
+
 ## [v1.7.3](https://github.com/laravel/breeze/compare/v1.7.2...v1.7.3) - 2022-02-15
 
 ### Fixed
