@@ -47,7 +47,6 @@ trait InstallsApiStack
             base_path('routes/web.php'),
             file_get_contents(__DIR__.'/../../stubs/api/routes/web.php'),
             FILE_APPEND);
-
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
 
         // Configuration...

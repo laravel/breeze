@@ -144,7 +144,6 @@ trait InstallsInertiaStacks
         file_put_contents(base_path('routes/web.php'),
             file_get_contents(__DIR__.'/../../stubs/inertia-common/routes/web.php'),
             FILE_APPEND);
-
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
