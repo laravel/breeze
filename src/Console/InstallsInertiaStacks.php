@@ -19,18 +19,18 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/inertia' => '^0.10.0',
-                    '@inertiajs/inertia-vue3' => '^0.6.0',
-                    '@inertiajs/progress' => '^0.2.6',
-                    '@tailwindcss/forms' => '^0.4.0',
-                    '@vue/compiler-sfc' => '^3.2.30',
-                    'autoprefixer' => '^10.4.2',
-                    'postcss' => '^8.4.6',
-                    'postcss-import' => '^14.0.2',
-                    'tailwindcss' => '^3.0.18',
-                    'vue' => '^3.2.30',
-                    'vue-loader' => '^16.1.2',
-                ] + $packages;
+                '@inertiajs/inertia' => '^0.10.0',
+                '@inertiajs/inertia-vue3' => '^0.6.0',
+                '@inertiajs/progress' => '^0.2.6',
+                '@tailwindcss/forms' => '^0.4.0',
+                '@vue/compiler-sfc' => '^3.2.30',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.18',
+                'vue' => '^3.2.30',
+                'vue-loader' => '^16.1.2',
+            ] + $packages;
         });
 
         // Controllers...
@@ -97,19 +97,19 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@headlessui/react' => '^1.4.2',
-                    '@inertiajs/inertia' => '^0.10.0',
-                    '@inertiajs/inertia-react' => '^0.8.0',
-                    '@inertiajs/progress' => '^0.2.6',
-                    '@tailwindcss/forms' => '^0.4.0',
-                    'autoprefixer' => '^10.4.2',
-                    'postcss' => '^8.4.6',
-                    'postcss-import' => '^14.0.2',
-                    'tailwindcss' => '^3.0.18',
-                    'react' => '^17.0.2',
-                    'react-dom' => '^17.0.2',
-                    '@babel/preset-react' => '^7.16.7',
-                ] + $packages;
+                '@headlessui/react' => '^1.4.2',
+                '@inertiajs/inertia' => '^0.10.0',
+                '@inertiajs/inertia-react' => '^0.8.0',
+                '@inertiajs/progress' => '^0.2.6',
+                '@tailwindcss/forms' => '^0.4.0',
+                'autoprefixer' => '^10.4.2',
+                'postcss' => '^8.4.6',
+                'postcss-import' => '^14.0.2',
+                'tailwindcss' => '^3.0.18',
+                'react' => '^17.0.2',
+                'react-dom' => '^17.0.2',
+                '@babel/preset-react' => '^7.16.7',
+            ] + $packages;
         });
 
         // Controllers...
