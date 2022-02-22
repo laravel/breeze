@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.8.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.8.2...1.x)
+
+## [v1.8.2](https://github.com/laravel/breeze/compare/v1.8.1...v1.8.2) - 2022-02-21
+
+### Changed
+
+- Remove unused import by @MohmmedAshraf in https://github.com/laravel/breeze/pull/141
+- Add routes name to register and login  paths by @alphaolomi in https://github.com/laravel/breeze/pull/140
+- Updated Inertia Version to Latest by @As1fAli in https://github.com/laravel/breeze/pull/142
 
 ## [v1.8.1](https://github.com/laravel/breeze/compare/v1.7.3...v1.8.1) - 2022-02-15
 
