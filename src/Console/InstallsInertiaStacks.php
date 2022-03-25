@@ -3,7 +3,6 @@
 namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 trait InstallsInertiaStacks
@@ -105,8 +104,7 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-vue/webpack.ssr.mix.js', base_path('webpack.ssr.mix.js'));
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
 
-        $phpBinary = (new PhpExecutableFinder())->find(false) ?: 'php';
-        (new Process([$phpBinary, 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
+        (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
             ->run(function ($type, $output) {
                 $this->output->write($output);
@@ -191,7 +189,38 @@ trait InstallsInertiaStacks
         $this->replaceInFile('.vue()', '.react()', base_path('webpack.mix.js'));
         $this->replaceInFile('.vue', '.js', base_path('tailwind.config.js'));
 
+        if ($this->option('ssr')) {
+            $this->installInertiaReactSsrStack();
+        }
+
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    /**
+     * Install the Inertia React SSR stack into the application.
+     *
+     * @return void
+     */
+    protected function installInertiaReactSsrStack()
+    {
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@inertiajs/server' => '^0.1.0',
+                'webpack-node-externals' => '^3.0.0',
+            ] + $packages;
+        });
+
+        copy(__DIR__.'/../../stubs/inertia-react/webpack.ssr.mix.js', base_path('webpack.ssr.mix.js'));
+        copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.js', resource_path('js/ssr.js'));
+
+        (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            });
+
+        $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));
+        $this->replaceInFile('mix --production', 'mix --production --mix-config=webpack.ssr.mix.js && mix --production', base_path('package.json'));
     }
 }
