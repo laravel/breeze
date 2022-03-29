@@ -1,6 +1,17 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.8.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.0...1.x)
+
+## [v1.9.0](https://github.com/laravel/breeze/compare/v1.8.2...v1.9.0) - 2022-03-26
+
+### Added
+
+- Add Inertia SSR Support  by @xiCO2k in https://github.com/laravel/breeze/pull/146
+
+### Changed
+
+- Update cors.php by @trungpv1601 in https://github.com/laravel/breeze/pull/144
+- Use `.alias` method from `Mix` by @xiCO2k in https://github.com/laravel/breeze/pull/145
 
 ## [v1.8.2](https://github.com/laravel/breeze/compare/v1.8.1...v1.8.2) - 2022-02-21
 
