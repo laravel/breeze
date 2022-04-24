@@ -37,6 +37,7 @@ export default function ForgotPassword({ status }) {
                 <Input
                     type="text"
                     name="email"
+                    id="email"
                     value={data.email}
                     className="mt-1 block w-full"
                     isFocused={true}
