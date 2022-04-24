@@ -44,6 +44,7 @@ export default function ConfirmPassword() {
                     <Input
                         type="password"
                         name="password"
+                        id="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         isFocused={true}
