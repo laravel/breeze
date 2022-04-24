@@ -45,6 +45,7 @@ export default function Login({ status, canResetPassword }) {
                     <Input
                         type="text"
                         name="email"
+                        id="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
@@ -59,6 +60,7 @@ export default function Login({ status, canResetPassword }) {
                     <Input
                         type="password"
                         name="password"
+                        id="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
