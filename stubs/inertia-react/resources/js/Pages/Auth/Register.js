@@ -42,8 +42,8 @@ export default function Register() {
 
                     <Input
                         type="text"
-                        name="name"
                         id="name"
+                        name="name"
                         value={data.name}
                         className="mt-1 block w-full"
                         autoComplete="name"
@@ -58,8 +58,8 @@ export default function Register() {
 
                     <Input
                         type="email"
-                        name="email"
                         id="email"
+                        name="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
@@ -73,8 +73,8 @@ export default function Register() {
 
                     <Input
                         type="password"
-                        name="password"
                         id="password"
+                        name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
@@ -88,8 +88,8 @@ export default function Register() {
 
                     <Input
                         type="password"
-                        name="password_confirmation"
                         id="password_confirmation"
+                        name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
                         handleChange={onHandleChange}
