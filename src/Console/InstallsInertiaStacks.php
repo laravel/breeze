@@ -83,7 +83,7 @@ trait InstallsInertiaStacks
         }
 
         $this->info('Breeze scaffolding installed successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->comment('Please execute the "npm install" && "npm run dev" commands to build your assets.');
     }
 
     /**
@@ -194,7 +194,7 @@ trait InstallsInertiaStacks
         }
 
         $this->info('Breeze scaffolding installed successfully.');
-        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->comment('Please execute the "npm install" && "npm run dev" commands to build your assets.');
     }
 
     /**
