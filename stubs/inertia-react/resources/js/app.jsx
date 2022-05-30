@@ -1,4 +1,4 @@
-require('./bootstrap');
+import './bootstrap';
 
 import React from 'react';
 import { render } from 'react-dom';
