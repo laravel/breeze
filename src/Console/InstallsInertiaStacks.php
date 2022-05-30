@@ -27,7 +27,6 @@ trait InstallsInertiaStacks
                 '@vue/compiler-sfc' => '^3.2.31',
                 'autoprefixer' => '^10.4.2',
                 'postcss' => '^8.4.6',
-                'postcss-import' => '^14.0.2',
                 'tailwindcss' => '^3.0.18',
                 'vue' => '^3.2.31',
                 'vue-loader' => '^17.0.0',
@@ -72,10 +71,10 @@ trait InstallsInertiaStacks
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
+        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
-        copy(__DIR__.'/../../stubs/inertia-common/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
 
         if ($this->option('ssr')) {
@@ -134,7 +133,6 @@ trait InstallsInertiaStacks
                 '@tailwindcss/forms' => '^0.4.0',
                 'autoprefixer' => '^10.4.2',
                 'postcss' => '^8.4.6',
-                'postcss-import' => '^14.0.2',
                 'tailwindcss' => '^3.0.18',
                 'react' => '^17.0.2',
                 'react-dom' => '^17.0.2',
@@ -180,10 +178,10 @@ trait InstallsInertiaStacks
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
+        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
-        copy(__DIR__.'/../../stubs/inertia-common/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.js', resource_path('js/app.js'));
 
         $this->replaceInFile('.vue()', '.react()', base_path('webpack.mix.js'));
