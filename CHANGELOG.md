@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.2...1.x)
+
+## [v1.9.2](https://github.com/laravel/breeze/compare/v1.9.1...v1.9.2) - 2022-05-30
+
+### Changed
+
+- Simplify Tailwind installation by @jessarcher in https://github.com/laravel/breeze/pull/155
+
+### Fixed
+
+- Fix inability to click dropdown content in React version by @jessarcher in https://github.com/laravel/breeze/pull/153
 
 ## [v1.9.1](https://github.com/laravel/breeze/compare/v1.9.0...v1.9.1) - 2022-05-11
 
