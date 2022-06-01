@@ -173,8 +173,8 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.js'));
-        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.js'));
+        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.jsx'));
+        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.jsx'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
@@ -182,10 +182,12 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
+        unlink(resource_path('js/app.js'));
 
         $this->replaceInFile('.vue()', '.react()', base_path('webpack.mix.js'));
-        $this->replaceInFile('.vue', '.js', base_path('tailwind.config.js'));
+        $this->replaceInFile('app.js', 'app.jsx', base_path('webpack.mix.js'));
+        $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
 
         if ($this->option('ssr')) {
             $this->installInertiaReactSsrStack();
@@ -210,7 +212,7 @@ trait InstallsInertiaStacks
         });
 
         copy(__DIR__.'/../../stubs/inertia-react/webpack.ssr.mix.js', base_path('webpack.ssr.mix.js'));
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.js', resource_path('js/ssr.js'));
+        copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
