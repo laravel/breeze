@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.3...1.x)
+
+## [v1.9.3](https://github.com/laravel/breeze/compare/v1.9.2...v1.9.3) - 2022-06-01
+
+### Changed
+
+- Improve Vite compatibility by @jessarcher in https://github.com/laravel/breeze/pull/154
 
 ## [v1.9.2](https://github.com/laravel/breeze/compare/v1.9.1...v1.9.2) - 2022-05-30
 
