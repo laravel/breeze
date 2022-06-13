@@ -20,7 +20,7 @@ trait InstallsBladeStack
                 'alpinejs' => '^3.4.2',
                 'autoprefixer' => '^10.4.2',
                 'postcss' => '^8.4.6',
-                'tailwindcss' => '^3.0.18',
+                'tailwindcss' => '^3.1.0',
             ] + $packages;
         });
 

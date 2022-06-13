@@ -27,7 +27,7 @@ trait InstallsInertiaStacks
                 '@vue/compiler-sfc' => '^3.2.31',
                 'autoprefixer' => '^10.4.2',
                 'postcss' => '^8.4.6',
-                'tailwindcss' => '^3.0.18',
+                'tailwindcss' => '^3.1.0',
                 'vue' => '^3.2.31',
                 'vue-loader' => '^17.0.0',
             ] + $packages;
@@ -133,7 +133,7 @@ trait InstallsInertiaStacks
                 '@tailwindcss/forms' => '^0.4.0',
                 'autoprefixer' => '^10.4.2',
                 'postcss' => '^8.4.6',
-                'tailwindcss' => '^3.0.18',
+                'tailwindcss' => '^3.1.0',
                 'react' => '^17.0.2',
                 'react-dom' => '^17.0.2',
                 '@babel/preset-react' => '^7.16.7',
