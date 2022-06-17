@@ -3,7 +3,7 @@ import { renderToString } from '@vue/server-renderer';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import createServer from '@inertiajs/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import route from 'ziggy';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
 const appName = 'Laravel';
 
@@ -16,15 +16,9 @@ createServer((page) =>
         setup({ app, props, plugin }) {
             return createSSRApp({ render: () => h(app, props) })
                 .use(plugin)
-                .mixin({
-                    methods: {
-                        route: (name, params, absolute) => {
-                            return route(name, params, absolute, {
-                                ...page.props.ziggy,
-                                location: new URL(page.props.ziggy.url),
-                            });
-                        },
-                    },
+                .use(ZiggyVue, {
+                    ...page.props.ziggy,
+                    location: new URL(page.props.ziggy.url),
                 });
         },
     })
