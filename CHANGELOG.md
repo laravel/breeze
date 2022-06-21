@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.4...1.x)
+
+## [v1.9.4](https://github.com/laravel/breeze/compare/v1.9.3...v1.9.4) - 2022-06-13
+
+### Changed
+
+- Bump TailwindCSS to 3.1 by @geisi in https://github.com/laravel/breeze/pull/156
 
 ## [v1.9.3](https://github.com/laravel/breeze/compare/v1.9.2...v1.9.3) - 2022-06-01
 
