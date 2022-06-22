@@ -83,7 +83,7 @@ trait InstallsApiStack
 
         // Remove frontend related files...
         $files->delete(base_path('package.json'));
-        $files->delete(base_path('webpack.mix.js'));
+        $files->delete(base_path('vite.config.js'));
 
         // Remove Laravel "welcome" view...
         $files->delete(resource_path('views/welcome.blade.php'));
