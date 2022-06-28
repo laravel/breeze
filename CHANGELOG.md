@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.9.4...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.10.0...1.x)
+
+## [v1.10.0](https://github.com/laravel/breeze/compare/v1.9.4...v1.10.0) - 2022-06-28
+
+### Added
+
+- Vite by @jessarcher in https://github.com/laravel/breeze/pull/158
+
+### Fixed
+
+- fix TailwindCSS first party TypeScript types weren't working right by @geisi in https://github.com/laravel/breeze/pull/160
+- Bump `@tailwindcss/forms` fix console warning with Vite by @timacdonald in https://github.com/laravel/breeze/pull/161
+- Fix ziggy determing current URL when using SSR by @timacdonald in https://github.com/laravel/breeze/pull/163
 
 ## [v1.9.4](https://github.com/laravel/breeze/compare/v1.9.3...v1.9.4) - 2022-06-13
 
