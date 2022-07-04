@@ -19,6 +19,9 @@
         "illuminate/support": "^8.42|^9.0",
         "illuminate/validation": "^8.42|^9.0"
     },
+    "conflict": {
+        "laravel/framework": "< 9.0"
+    },
     "autoload": {
         "psr-4": {
             "Laravel\\Breeze\\": "src/"
