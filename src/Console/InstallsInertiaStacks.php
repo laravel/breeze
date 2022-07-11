@@ -185,7 +185,10 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-react/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
-        unlink(resource_path('js/app.js'));
+
+        if (file_exists(resource_path('js/app.js'))) {
+            unlink(resource_path('js/app.js'));
+        }
 
         $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
 
