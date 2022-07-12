@@ -16,7 +16,7 @@ module.exports = {
             },
             colors: {
                 brand: colors.indigo,
-            }
+            },
         },
     },
 
