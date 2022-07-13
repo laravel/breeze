@@ -1,6 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.10.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.0...1.x)
+
+## [v1.11.0](https://github.com/laravel/breeze/compare/v1.10.0...v1.11.0) - 2022-07-11
+
+### Changed
+
+- Add default view / routes reloading to breeze stacks by @timacdonald in https://github.com/laravel/breeze/pull/166
+- Update SSR directory by @jessarcher in https://github.com/laravel/breeze/pull/168
+
+### Fixed
+
+- Fix: React SSR installation error by @renomureza in https://github.com/laravel/breeze/pull/169
+
+### Removed
+
+- Laravel 8 don't support the vite. by @Jehong-Ahn in https://github.com/laravel/breeze/pull/167
 
 ## [v1.10.0](https://github.com/laravel/breeze/compare/v1.9.4...v1.10.0) - 2022-06-28
 
