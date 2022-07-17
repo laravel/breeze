@@ -12,7 +12,6 @@ export default defineConfig({
         react(),
     ],
     ssr: {
-        noExternal: ['@inertiajs/server']
+        noExternal: ['@inertiajs/server'],
     },
 });
-

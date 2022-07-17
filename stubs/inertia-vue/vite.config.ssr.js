@@ -19,6 +19,6 @@ export default defineConfig({
         }),
     ],
     ssr: {
-        noExternal: ['@inertiajs/server']
+        noExternal: ['@inertiajs/server'],
     },
 });
