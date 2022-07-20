@@ -69,7 +69,7 @@ trait InstallsApiStack
         // Cleaning...
         $this->removeScaffoldingUnnecessaryForApis();
 
-        $this->info('Breeze scaffolding installed successfully.');
+        $this->components->info('Breeze scaffolding installed successfully.');
     }
 
     /**
