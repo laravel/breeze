@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.2...1.x)
+
+## [v1.11.2](https://github.com/laravel/breeze/compare/v1.11.1...v1.11.2) - 2022-07-20
+
+### Changed
+
+- Improved console output by @nunomaduro in https://github.com/laravel/breeze/pull/172
 
 ## [v1.11.1](https://github.com/laravel/breeze/compare/v1.11.0...v1.11.1) - 2022-07-20
 
