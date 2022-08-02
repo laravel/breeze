@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.3...1.x)
+
+## [v1.11.3](https://github.com/laravel/breeze/compare/v1.11.2...v1.11.3) - 2022-08-01
+
+### Changed
+
+- Transliterate throttle key by @JurianArie in https://github.com/laravel/breeze/pull/173
+- Switch to fonts.bunny.net instead of Google Fonts by @lucasRolff in https://github.com/laravel/breeze/pull/174
 
 ## [v1.11.2](https://github.com/laravel/breeze/compare/v1.11.1...v1.11.2) - 2022-07-20
 
