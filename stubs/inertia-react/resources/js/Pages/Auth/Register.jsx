@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
+import InputError from '@/Components/InputError';
 import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function Register() {
@@ -34,8 +34,6 @@ export default function Register() {
         <Guest>
             <Head title="Register" />
 
-            <ValidationErrors errors={errors} />
-
             <form onSubmit={submit}>
                 <div>
                     <Label forInput="name" value="Name" />
@@ -50,6 +48,8 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+
+                    <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -64,6 +64,8 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+
+                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -78,6 +80,8 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+
+                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -91,6 +95,8 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+
+                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
