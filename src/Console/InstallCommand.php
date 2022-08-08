@@ -47,7 +47,7 @@ class InstallCommand extends Command
             return $this->installBladeStack();
         }
 
-        $this->components->error('The stack must be blade, react, vue, or api.');
+        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
 
         return 1;
     }
