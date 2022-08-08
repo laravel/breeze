@@ -33,7 +33,7 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return int|null
      */
     public function handle()
     {
@@ -43,9 +43,13 @@ class InstallCommand extends Command
             return $this->installInertiaReactStack();
         } elseif ($this->argument('stack') === 'api') {
             return $this->installApiStack();
-        } else {
+        } elseif ($this->argument('stack') === 'blade') {
             return $this->installBladeStack();
         }
+
+        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
+
+        return 1;
     }
 
     /**
