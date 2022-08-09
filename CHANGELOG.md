@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.4...1.x)
+
+## [v1.11.4](https://github.com/laravel/breeze/compare/v1.11.3...v1.11.4) - 2022-08-08
+
+### Changed
+
+- Display validation errors alongside their field by @jessarcher in https://github.com/laravel/breeze/pull/175
+- Validate the stack argument by @jessarcher in https://github.com/laravel/breeze/pull/178
+- Style improvements by @jessarcher in https://github.com/laravel/breeze/pull/177
 
 ## [v1.11.3](https://github.com/laravel/breeze/compare/v1.11.2...v1.11.3) - 2022-08-01
 
