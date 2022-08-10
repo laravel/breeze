@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
+import GuestLayout from '@/Layouts/GuestLayout';
 import Input from '@/Components/Input';
 import InputError from '@/Components/InputError';
 import { Head, useForm } from '@inertiajs/inertia-react';
@@ -21,7 +21,7 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <Guest>
+        <GuestLayout>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-500 leading-normal">
@@ -49,6 +49,6 @@ export default function ForgotPassword({ status }) {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </GuestLayout>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Button from '@/Components/Button';
 import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
+import GuestLayout from '@/Layouts/GuestLayout';
 import Input from '@/Components/Input';
 import InputError from '@/Components/InputError';
 import Label from '@/Components/Label';
@@ -31,7 +31,7 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <Guest>
+        <GuestLayout>
             <Head title="Log in" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
@@ -91,6 +91,6 @@ export default function Login({ status, canResetPassword }) {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </GuestLayout>
     );
 }

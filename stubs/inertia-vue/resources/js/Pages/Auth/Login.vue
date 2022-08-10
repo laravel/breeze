@@ -1,7 +1,7 @@
 <script setup>
 import Button from '@/Components/Button.vue';
 import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/Guest.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import Input from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
 import Label from '@/Components/Label.vue';

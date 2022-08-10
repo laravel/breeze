@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
+import GuestLayout from '@/Layouts/GuestLayout';
 import Input from '@/Components/Input';
 import InputError from '@/Components/InputError';
 import Label from '@/Components/Label';
@@ -31,7 +31,7 @@ export default function Register() {
     };
 
     return (
-        <Guest>
+        <GuestLayout>
             <Head title="Register" />
 
             <form onSubmit={submit}>
@@ -109,6 +109,6 @@ export default function Register() {
                     </Button>
                 </div>
             </form>
-        </Guest>
+        </GuestLayout>
     );
 }
