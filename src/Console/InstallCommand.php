@@ -203,7 +203,7 @@ class InstallCommand extends Command
      * Run the given commands.
      *
      * @param  array  $commands
-     * @return voidSymfony\Component\Process\Process
+     * @return void
      */
     protected function runCommands($commands)
     {
