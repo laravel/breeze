@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.11.4...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.12.0...1.x)
+
+## [v1.12.0](https://github.com/laravel/breeze/compare/v1.11.4...v1.12.0) - 2022-08-16
+
+### Changed
+
+- Install NPM dependencies and build assets by @jessarcher in https://github.com/laravel/breeze/pull/180
+- Set application home URI to /dashboard by @nikolaynikolaevn in https://github.com/laravel/breeze/pull/181
+- Update inertia-laravel by @timacdonald in https://github.com/laravel/breeze/commit/6d95e9aacbe992e19c81d5cd6f7eec994e50dd8d
 
 ## [v1.11.4](https://github.com/laravel/breeze/compare/v1.11.3...v1.11.4) - 2022-08-08
 
