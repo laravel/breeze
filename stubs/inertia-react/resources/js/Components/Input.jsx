@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import { usePage } from "@inertiajs/inertia-react";
+import React, { useEffect, useRef } from "react";
+import InputError from "./InputError";
+import Label from "./Label";
 
 export default function Input({
-    type = 'text',
+    type = "text",
+    label = "",
     name,
     value,
     className,
@@ -10,6 +14,8 @@ export default function Input({
     isFocused,
     handleChange,
 }) {
+    const { errors } = usePage().props; // error bag
+    const inputError = errors[name];
     const input = useRef();
 
     useEffect(() => {
@@ -20,19 +26,24 @@ export default function Input({
 
     return (
         <div className="flex flex-col items-start">
+            {label && <Label forInput={name} value={label} />}
             <input
                 type={type}
                 name={name}
                 value={value}
-                className={
-                    `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
-                    className
-                }
+                className={`${
+                    inputError ? "text-negative-500 border-negative-500" : ""
+                } ${className}`}
                 ref={input}
                 autoComplete={autoComplete}
                 required={required}
                 onChange={(e) => handleChange(e)}
             />
+            {errors && (
+                <div className="mt-2">
+                    <InputError message={inputError} />
+                </div>
+            )}
         </div>
     );
 }
