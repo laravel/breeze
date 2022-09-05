@@ -1,9 +1,11 @@
 {
     "name": "protonemedia/laravel-splade-breeze",
-    "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+    "description": "Minimal Laravel authentication scaffolding with Laravel Splade.",
     "keywords": [
         "laravel",
-        "auth"
+        "auth",
+        "splade",
+        "laravel-splade"
     ],
     "license": "MIT",
     "support": {
