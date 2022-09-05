@@ -39,7 +39,7 @@ trait InstallsSpladeStack
 
         $defaultStubsDir = __DIR__.'/../../stubs/default/';
         $spladeBreezeStubsDir = __DIR__.'/../../stubs/splade/';
-        $spladeBaseStubsDir = base_path('vendor/protonemedia/laravel-splade/stubs');
+        $spladeBaseStubsDir = base_path('vendor/protonemedia/laravel-splade/stubs/');
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
