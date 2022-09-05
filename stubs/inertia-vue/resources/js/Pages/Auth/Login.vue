@@ -1,10 +1,10 @@
 <script setup>
-import Button from '@/Components/Button.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import Input from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
-import Label from '@/Components/Label.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -35,14 +35,14 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <Label for="email" value="Email" />
-                <Input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                <InputLabel for="email" value="Email" />
+                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <Label for="password" value="Password" />
-                <Input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                <InputLabel for="password" value="Password" />
+                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
@@ -58,9 +58,9 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
-                </Button>
+                </PrimaryButton>
             </div>
         </form>
     </GuestLayout>

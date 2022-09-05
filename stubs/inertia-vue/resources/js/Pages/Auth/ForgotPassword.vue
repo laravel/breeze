@@ -1,9 +1,9 @@
 <script setup>
-import Button from '@/Components/Button.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import Input from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
-import Label from '@/Components/Label.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -33,15 +33,15 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <Label for="email" value="Email" />
-                <Input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                <InputLabel for="email" value="Email" />
+                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Email Password Reset Link
-                </Button>
+                </PrimaryButton>
             </div>
         </form>
     </GuestLayout>

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Button';
 import GuestLayout from '@/Layouts/GuestLayout';
-import Input from '@/Components/Input';
 import InputError from '@/Components/InputError';
-import Label from '@/Components/Label';
+import InputLabel from '@/Components/InputLabel';
+import PrimaryButton from '@/Components/PrimaryButton';
+import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ResetPassword({ token, email }) {
@@ -36,9 +36,9 @@ export default function ResetPassword({ token, email }) {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="email" value="Email" />
+                    <InputLabel forInput="email" value="Email" />
 
-                    <Input
+                    <TextInput
                         type="email"
                         name="email"
                         value={data.email}
@@ -51,9 +51,9 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <InputLabel forInput="password" value="Password" />
 
-                    <Input
+                    <TextInput
                         type="password"
                         name="password"
                         value={data.password}
@@ -67,9 +67,9 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password_confirmation" value="Confirm Password" />
+                    <InputLabel forInput="password_confirmation" value="Confirm Password" />
 
-                    <Input
+                    <TextInput
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
@@ -82,9 +82,9 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                    <PrimaryButton className="ml-4" processing={processing}>
                         Reset Password
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </form>
         </GuestLayout>

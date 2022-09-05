@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Button({ type = 'submit', className = '', processing, children }) {
+export default function PrimaryButton({ type = 'submit', className = '', processing, children }) {
     return (
         <button
             type={type}
