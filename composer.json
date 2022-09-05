@@ -1,16 +1,23 @@
 {
-    "name": "laravel/breeze",
+    "name": "protonemedia/laravel-splade-breeze",
     "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
-    "keywords": ["laravel", "auth"],
+    "keywords": [
+        "laravel",
+        "auth"
+    ],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/breeze/issues",
-        "source": "https://github.com/laravel/breeze"
+        "issues": "https://github.com/protonemedia/laravel-splade-breeze/issues",
+        "source": "https://github.com/protonemedia/laravel-splade-breeze"
     },
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Pascal Baljet",
+            "email": "pascal@protone.media"
         }
     ],
     "require": {
@@ -18,7 +25,8 @@
         "illuminate/console": "^9.21",
         "illuminate/filesystem": "^9.21",
         "illuminate/support": "^9.21",
-        "illuminate/validation": "^9.21"
+        "illuminate/validation": "^9.21",
+        "protonemedia/laravel-splade": "^0.4.10"
     },
     "conflict": {
         "laravel/framework": "<9.19.0"
@@ -42,5 +50,8 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.1"
+    }
 }

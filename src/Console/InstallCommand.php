@@ -11,14 +11,14 @@ use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsSpladeStack;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue,api)}
+    protected $signature = 'breeze:install {stack=splade : The development stack that should be installed (blade,react,vue,api,splade)}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -46,9 +46,11 @@ class InstallCommand extends Command
             return $this->installApiStack();
         } elseif ($this->argument('stack') === 'blade') {
             return $this->installBladeStack();
+        } elseif ($this->argument('stack') === 'splade') {
+            return $this->installSpladeStack();
         }
 
-        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
+        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], [api], and [splade].');
 
         return 1;
     }
@@ -64,15 +66,43 @@ class InstallCommand extends Command
 
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
-        if ($this->option('pest')) {
-            $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1');
+        $spladeStack = $this->argument('stack') === 'splade';
 
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature/Auth'));
+        if ($spladeStack) {
+            $this->installDusk();
+            (new Filesystem)->ensureDirectoryExists(base_path('tests/Browser/Auth'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/splade/dusk-tests/Auth', base_path('tests/Browser/Auth'));
+            (new Filesystem)->copy(__DIR__.'/../../stubs/splade/dusk-tests/.env.dusk', base_path('.env.dusk'));
+        }
+
+        if ($this->option('pest')) {
+            $this->requireComposerPackages(['pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1']);
+
+            if (! $spladeStack) {
+                (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature/Auth'));
+            }
+
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
             (new Filesystem)->copy(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Pest.php', base_path('tests/Pest.php'));
-        } else {
+        } elseif (! $spladeStack) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature/Auth'));
         }
+    }
+
+    /**
+     * Install Laravel Dusk.
+     *
+     * @return void
+     */
+    protected function installDusk()
+    {
+        $this->requireComposerPackages(['laravel/dusk', 'protonemedia/laravel-dusk-fakes'], true);
+
+        (new Process([$this->phpBinary(), 'artisan', 'dusk:install'], base_path()))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            });
     }
 
     /**
@@ -109,9 +139,10 @@ class InstallCommand extends Command
      * Installs the given Composer Packages into the application.
      *
      * @param  mixed  $packages
+     * @param  bool  $dev
      * @return void
      */
-    protected function requireComposerPackages($packages)
+    protected function requireComposerPackages($packages, $dev = false)
     {
         $composer = $this->option('composer');
 
@@ -121,6 +152,7 @@ class InstallCommand extends Command
 
         $command = array_merge(
             $command ?? ['composer', 'require'],
+            $dev ? ['--dev'] : [],
             is_array($packages) ? $packages : func_get_args()
         );
 
