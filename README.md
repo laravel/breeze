@@ -1,6 +1,6 @@
 # Laravel Breeze for Laravel Splade
 
-This is a fork of the [Laravel Breeze starter kit](https://laravel.com/docs/9.x/starter-kits#laravel-breeze) with a [Laravel Splade](https://github.com/protonemedia/laravel-splade) implementation.
+💡 This is a fork of the [Laravel Breeze starter kit](https://laravel.com/docs/9.x/starter-kits#laravel-breeze) with a [Laravel Splade](https://github.com/protonemedia/laravel-splade) implementation.
 
 ## Documentation
 
