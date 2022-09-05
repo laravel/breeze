@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function Input({
+export default function TextInput({
     type = 'text',
     name,
     value,

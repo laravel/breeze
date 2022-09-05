@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
+import GuestLayout from '@/Layouts/GuestLayout';
+import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function VerifyEmail({ status }) {
@@ -13,7 +13,7 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <Guest>
+        <GuestLayout>
             <Head title="Email Verification" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -29,7 +29,7 @@ export default function VerifyEmail({ status }) {
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <Button processing={processing}>Resend Verification Email</Button>
+                    <PrimaryButton processing={processing}>Resend Verification Email</PrimaryButton>
 
                     <Link
                         href={route('logout')}
@@ -41,6 +41,6 @@ export default function VerifyEmail({ status }) {
                     </Link>
                 </div>
             </form>
-        </Guest>
+        </GuestLayout>
     );
 }

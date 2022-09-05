@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
+import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
-import Label from '@/Components/Label';
+import InputLabel from '@/Components/InputLabel';
+import PrimaryButton from '@/Components/PrimaryButton';
+import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ConfirmPassword() {
@@ -28,7 +28,7 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <Guest>
+        <GuestLayout>
             <Head title="Confirm Password" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -37,9 +37,9 @@ export default function ConfirmPassword() {
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <InputLabel forInput="password" value="Password" />
 
-                    <Input
+                    <TextInput
                         type="password"
                         name="password"
                         value={data.password}
@@ -52,11 +52,11 @@ export default function ConfirmPassword() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                    <PrimaryButton className="ml-4" processing={processing}>
                         Confirm
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </form>
-        </Guest>
+        </GuestLayout>
     );
 }

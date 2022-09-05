@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
-import BreezeButton from '@/Components/Button.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
@@ -18,7 +18,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 </script>
 
 <template>
-    <BreezeGuestLayout>
+    <GuestLayout>
         <Head title="Email Verification" />
 
         <div class="mb-4 text-sm text-gray-600">
@@ -31,12 +31,12 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
-                <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Resend Verification Email
-                </BreezeButton>
+                </PrimaryButton>
 
                 <Link :href="route('logout')" method="post" as="button" class="underline text-sm text-gray-600 hover:text-gray-900">Log Out</Link>
             </div>
         </form>
-    </BreezeGuestLayout>
+    </GuestLayout>
 </template>
