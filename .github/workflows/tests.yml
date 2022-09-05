@@ -1,0 +1,58 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  stub-tests:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      fail-fast: true
+      matrix:
+        stack: [blade, react, react --ssr, vue, vue --ssr, api]
+
+    name: Test Stubs (${{ matrix.stack }})
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: dom, curl, libxml, mbstring, zip
+          ini-values: error_reporting=E_ALL
+          tools: composer:v2
+          coverage: none
+
+      - name: Setup Laravel
+        run: |
+          composer create-project laravel/laravel:^9 .
+          composer require --dev laravel/breeze:^1
+          rm -rf vendor/laravel/breeze
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          path: 'vendor/laravel/breeze'
+
+      - name: Install Breeze
+        run: |
+          composer dump
+          php artisan breeze:install ${{ matrix.stack }}
+
+      - name: Install NPM dependencies
+        if: matrix.stack != 'api'
+        run: npm i
+
+      - name: Compile assets
+        if: matrix.stack != 'api'
+        run: npm run build
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
