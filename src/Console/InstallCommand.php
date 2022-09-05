@@ -73,6 +73,7 @@ class InstallCommand extends Command
             (new Filesystem)->ensureDirectoryExists(base_path('tests/Browser/Auth'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/splade/dusk-tests/Auth', base_path('tests/Browser/Auth'));
             (new Filesystem)->copy(__DIR__.'/../../stubs/splade/dusk-tests/.env.dusk', base_path('.env.dusk'));
+            (new Filesystem)->put(base_path('database/database.sqlite'), '');
         }
 
         if ($this->option('pest')) {

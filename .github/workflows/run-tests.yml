@@ -46,7 +46,6 @@ jobs:
         run: |
           composer dump
           php artisan breeze:install
-          touch database/database.sqlite
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
 
       - name: Start Chrome Driver
