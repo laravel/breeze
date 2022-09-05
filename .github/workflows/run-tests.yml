@@ -43,11 +43,15 @@ jobs:
         with:
           path: "vendor/protonemedia/laravel-splade-breeze"
 
-      - name: Install Breeze
+      - name: Install Breeze and Setup Dusk environment
         run: |
           composer dump
           php artisan breeze:install
           touch database/database.sqlite
+          php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
 
       - name: Run Laravel Server
         run: php artisan serve &
