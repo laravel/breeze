@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.12.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.13.0...1.x)
+
+## [v1.13.0](https://github.com/laravel/breeze/compare/v1.12.0...v1.13.0) - 2022-09-06
+
+### Changed
+
+- Remove "Breeze" component prefix by @jessarcher in https://github.com/laravel/breeze/pull/179
 
 ## [v1.12.0](https://github.com/laravel/breeze/compare/v1.11.4...v1.12.0) - 2022-08-16
 
