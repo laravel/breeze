@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/react';
 
 export default function ResponsiveNavLink({ method = 'get', as = 'a', href, active = false, children }) {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { createInertiaApp } from '@inertiajs/inertia-react';
-import createServer from '@inertiajs/server';
+import { createInertiaApp } from '@inertiajs/react';
+import createServer from '@inertiajs/react/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import route from '../../vendor/tightenco/ziggy/dist/index.m';
 

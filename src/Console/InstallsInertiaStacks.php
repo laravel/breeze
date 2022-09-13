@@ -20,9 +20,7 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@inertiajs/inertia' => '^0.11.0',
-                '@inertiajs/inertia-vue3' => '^0.6.0',
-                '@inertiajs/progress' => '^0.2.7',
+                '@inertiajs/vue3' => '^0.12.0',
                 '@tailwindcss/forms' => '^0.5.2',
                 '@vitejs/plugin-vue' => '^3.0.0',
                 'autoprefixer' => '^10.4.2',
@@ -96,14 +94,13 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                '@inertiajs/server' => '^0.1.0',
                 '@vue/server-renderer' => '^3.2.31',
             ] + $packages;
         });
 
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
         $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
-        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/server'],".PHP_EOL.'    },'.PHP_EOL.'});', base_path('vite.config.js'));
+        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/vue/server'],".PHP_EOL.'    },'.PHP_EOL.'});', base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
@@ -130,9 +127,7 @@ trait InstallsInertiaStacks
         $this->updateNodePackages(function ($packages) {
             return [
                 '@headlessui/react' => '^1.4.2',
-                '@inertiajs/inertia' => '^0.11.0',
-                '@inertiajs/inertia-react' => '^0.8.0',
-                '@inertiajs/progress' => '^0.2.6',
+                '@inertiajs/react' => '^0.12.0',
                 '@tailwindcss/forms' => '^0.5.2',
                 '@vitejs/plugin-react' => '^2.0.0',
                 'autoprefixer' => '^10.4.2',
@@ -212,15 +207,9 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaReactSsrStack()
     {
-        $this->updateNodePackages(function ($packages) {
-            return [
-                '@inertiajs/server' => '^0.1.0',
-            ] + $packages;
-        });
-
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
         $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
-        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/server'],".PHP_EOL.'    },'.PHP_EOL.'});', base_path('vite.config.js'));
+        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/react/server'],".PHP_EOL.'    },'.PHP_EOL.'});', base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
