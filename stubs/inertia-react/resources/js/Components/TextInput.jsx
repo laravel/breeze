@@ -1,16 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 
-export default function TextInput({
-    type = 'text',
-    name,
-    value,
-    className,
-    autoComplete,
-    required,
-    isFocused,
-    handleChange,
-}) {
-    const input = useRef();
+export default forwardRef(function TextInput(
+    { type = 'text', name, value, className, autoComplete, required, isFocused, handleChange },
+    ref
+) {
+    const input = ref ? ref : useRef();
 
     useEffect(() => {
         if (isFocused) {
@@ -35,4 +29,4 @@ export default function TextInput({
             />
         </div>
     );
-}
+});
