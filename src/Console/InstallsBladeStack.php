@@ -15,16 +15,16 @@ trait InstallsBladeStack
     {
         // Get NPM Package Manager...
         $npmPackageManager = (function () {
-            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) {
+            if ((new Filesystem)->exists(base_path().'/package-lock.json')) {
                 return 'npm';
             }
-            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) {
+            if ((new Filesystem)->exists(base_path().'/pnpm-lock.yaml')) {
                 return 'pnpm';
             }
-            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) {
+            if ((new Filesystem)->exists(base_path().'/yarn.lock')) {
                 return 'yarn';
             }
-            
+
             return 'npm';
         })();
 
