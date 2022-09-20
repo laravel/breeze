@@ -16,9 +16,16 @@ trait InstallsInertiaStacks
     {
         // Get NPM Package Manager...
         $npmPackageManager = (function () {
-            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) return 'npm';
-            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) return 'pnpm';
-            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) return 'yarn';
+            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) {
+                return 'npm';
+            }
+            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) {
+                return 'pnpm';
+            }
+            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) {
+                return 'yarn';
+            }
+            
             return 'npm';
         })();
 
@@ -136,9 +143,16 @@ trait InstallsInertiaStacks
     {
         // Get NPM Package Manager...
         $npmPackageManager = (function () {
-            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) return 'npm';
-            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) return 'pnpm';
-            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) return 'yarn';
+            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) {
+                return 'npm';
+            }
+            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) {
+                return 'pnpm';
+            }
+            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) {
+                return 'yarn';
+            }
+            
             return 'npm';
         })();
 
