@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.13.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.13.1...1.x)
+
+## [v1.13.1](https://github.com/laravel/breeze/compare/v1.13.0...v1.13.1) - 2022-09-20
+
+### Fixed
+
+- Make app directory consistently lowercase by @jessarcher in https://github.com/laravel/breeze/pull/187
 
 ## [v1.13.0](https://github.com/laravel/breeze/compare/v1.12.0...v1.13.0) - 2022-09-06
 
