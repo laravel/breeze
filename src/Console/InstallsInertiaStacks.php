@@ -14,6 +14,14 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaVueStack()
     {
+        // Get NPM Package Manager...
+        $npmPackageManager = (function () {
+            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) return 'npm';
+            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) return 'pnpm';
+            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) return 'yarn';
+            return 'npm';
+        })();
+
         // Install Inertia...
         $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^2.8', 'tightenco/ziggy:^1.0');
 
@@ -81,7 +89,10 @@ trait InstallsInertiaStacks
             $this->installInertiaVueSsrStack();
         }
 
-        $this->runCommands(['npm install', 'npm run build']);
+        // Install and Build NPM Packages...
+        $this->line('');
+        $this->components->info("Installing $npmPackageManager packages.");
+        $this->runCommands(["$npmPackageManager install", "$npmPackageManager run build"]);
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
@@ -123,6 +134,14 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaReactStack()
     {
+        // Get NPM Package Manager...
+        $npmPackageManager = (function () {
+            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) return 'npm';
+            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) return 'pnpm';
+            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) return 'yarn';
+            return 'npm';
+        })();
+
         // Install Inertia...
         $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^2.8', 'tightenco/ziggy:^1.0');
 
@@ -199,7 +218,10 @@ trait InstallsInertiaStacks
             $this->installInertiaReactSsrStack();
         }
 
-        $this->runCommands(['npm install', 'npm run build']);
+        // Install and Build NPM Packages...
+        $this->line('');
+        $this->components->info("Installing $npmPackageManager packages.");
+        $this->runCommands(["$npmPackageManager install", "$npmPackageManager run build"]);
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');

@@ -13,6 +13,14 @@ trait InstallsBladeStack
      */
     protected function installBladeStack()
     {
+        // Get NPM Package Manager...
+        $npmPackageManager = (function () {
+            if ((new Filesystem)->exists(base_path() . '/package-lock.json')) return 'npm';
+            if ((new Filesystem)->exists(base_path() . '/pnpm-lock.yaml')) return 'pnpm';
+            if ((new Filesystem)->exists(base_path() . '/yarn.lock')) return 'yarn';
+            return 'npm';
+        })();
+
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
@@ -66,7 +74,10 @@ trait InstallsBladeStack
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
 
-        $this->runCommands(['npm install', 'npm run build']);
+        // Install and Build NPM Packages...
+        $this->line('');
+        $this->components->info("Installing $npmPackageManager packages.");
+        $this->runCommands(["$npmPackageManager install", "$npmPackageManager run build"]);
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
