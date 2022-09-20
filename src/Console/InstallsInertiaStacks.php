@@ -25,7 +25,7 @@ trait InstallsInertiaStacks
             if ((new Filesystem)->exists(base_path().'/yarn.lock')) {
                 return 'yarn';
             }
-            
+
             return 'npm';
         })();
 
@@ -152,7 +152,7 @@ trait InstallsInertiaStacks
             if ((new Filesystem)->exists(base_path().'/yarn.lock')) {
                 return 'yarn';
             }
-            
+
             return 'npm';
         })();
 
