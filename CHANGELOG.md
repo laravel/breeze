@@ -1,6 +1,22 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.13.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.0...1.x)
+
+## [v1.14.0](https://github.com/laravel/breeze/compare/v1.13.1...v1.14.0) - 2022-09-27
+
+### Added
+
+- Upgrade to React 18 by @kjoedion in https://github.com/laravel/breeze/pull/192
+
+### Changed
+
+- Display errors alongside fields in Blade stack by @jessarcher in https://github.com/laravel/breeze/pull/191
+- Consistently use `verified` middleware on `/dashboard` route. by @jessarcher in https://github.com/laravel/breeze/pull/190
+- Make Blade app header optional by @jessarcher in https://github.com/laravel/breeze/pull/189
+
+### Fixed
+
+- Fixes `HandleInertiaRequests::handle` related types by @felixdorn in https://github.com/laravel/breeze/pull/193
 
 ## [v1.13.1](https://github.com/laravel/breeze/compare/v1.13.0...v1.13.1) - 2022-09-20
 
