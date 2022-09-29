@@ -31,7 +31,7 @@ jobs:
         run: |
           composer create-project laravel/laravel:^9 .
           composer require laravel/breeze:* --no-interaction --no-update
-          composer config repositories.breeze '{\"type\": \"path\", \"url\": \"breeze\"}' --file composer.json
+          composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
 
       - name: Checkout code
         uses: actions/checkout@v2
