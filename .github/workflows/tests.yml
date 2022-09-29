@@ -30,17 +30,17 @@ jobs:
       - name: Setup Laravel
         run: |
           composer create-project laravel/laravel:^9 .
-          composer require --dev laravel/breeze:^1
-          rm -rf vendor/laravel/breeze
+          composer require laravel/breeze:* --no-interaction --no-update
+          composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
 
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          path: 'vendor/laravel/breeze'
+          path: 'breeze'
 
       - name: Install Breeze
         run: |
-          composer dump
+          composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress -W
           php artisan breeze:install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
