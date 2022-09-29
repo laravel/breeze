@@ -55,7 +55,7 @@ jobs:
         run: npm --prefix="./vendor/laravel/laravel" run build
 
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose ./vendor/laravel/laravel
+        run: vendor/bin/phpunit --verbose ./vendor/laravel/laravel/tests
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
