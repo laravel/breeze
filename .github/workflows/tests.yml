@@ -60,3 +60,4 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
+          APP_ENV: AckfSECXIvnK5r28GVIWUAxmbBSjTsmF
