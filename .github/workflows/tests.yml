@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Breeze
         run: |
-          composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress
+          composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress -W
           php artisan breeze:install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
