@@ -26,35 +26,37 @@ jobs:
           ini-values: error_reporting=E_ALL
           tools: composer:v2
           coverage: none
+        
+      - name: Setup Laravel
+        run: |
+          composer create-project laravel/laravel:^9 .
+          composer require laravel/breeze:* --no-interaction --no-update
+          composer config repositories.breeze '{\"type\": \"path\", \"url\": \"breeze\"}' --file composer.json"
 
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Laravel
-        run: |
-          composer require "laravel/laravel:^9" --dev
-          composer update --working-dir=./vendor/laravel/laravel --prefer-dist --no-dev --no-interaction --no-progress
+        with: 
+          path: 'breeze'
 
       - name: Install Breeze
         run: |
           composer dump
-          php ./vendor/bin/testbench breeze:install ${{ matrix.stack }}
+          php artisan breeze:install ${{ matrix.stack }}
 
       - name: Update Dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-progress
-          php ./vendor/bin/testbench package:discover --ansi
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
-        run: npm --prefix="./vendor/laravel/laravel" install
+        run: npm install
 
       - name: Compile assets
         if: matrix.stack != 'api'
-        run: npm --prefix="./vendor/laravel/laravel" run build
+        run: npm run build
 
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose ./vendor/laravel/laravel/tests
+        run: vendor/bin/phpunit --verbose
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
