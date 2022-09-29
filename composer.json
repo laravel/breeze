@@ -31,6 +31,11 @@
             "Laravel\\Breeze\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "vendor/laravel/laravel/tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
