@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Breeze
         run: |
-          omposer update "laravel/breeze" --prefer-dist --no-interaction --no-progress
+          composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress
           php artisan breeze:install ${{ matrix.stack }}
 
       - name: Update Dependencies
