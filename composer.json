@@ -20,6 +20,9 @@
         "illuminate/support": "^9.21",
         "illuminate/validation": "^9.21"
     },
+    "require-dev": {
+        "orchestra/testbench": "^7.7.1"
+    },
     "conflict": {
         "laravel/framework": "<9.19.0"
     },

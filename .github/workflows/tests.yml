@@ -27,21 +27,17 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Setup Laravel
-        run: |
-          composer create-project laravel/laravel:^9 .
-          composer require --dev laravel/breeze:^1
-          rm -rf vendor/laravel/breeze
-
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          path: 'vendor/laravel/breeze'
+
+      - name: Setup Laravel
+        run: |
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Install Breeze
         run: |
           composer dump
-          php artisan breeze:install ${{ matrix.stack }}
+          php ./vendor/bin/testbench breeze:install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
@@ -52,7 +48,7 @@ jobs:
         run: npm run build
 
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose
+        run: vendor/bin/phpunit --verbose ./vendor/bin/testbench-core/laravel
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
