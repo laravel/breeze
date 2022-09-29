@@ -15,4 +15,5 @@
 .styleci.yml export-ignore
 CHANGELOG.md export-ignore
 phpunit.xml.dist export-ignore
+testbench.yaml export-ignore
 UPGRADE.md export-ignore
