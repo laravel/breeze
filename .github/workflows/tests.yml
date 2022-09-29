@@ -40,7 +40,6 @@ jobs:
           composer dump
           php ./vendor/bin/testbench breeze:install ${{ matrix.stack }}
 
-
       - name: Update Dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-progress
