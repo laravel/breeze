@@ -26,7 +26,7 @@ jobs:
           ini-values: error_reporting=E_ALL
           tools: composer:v2
           coverage: none
-        
+
       - name: Setup Laravel
         run: |
           composer create-project laravel/laravel:^9 .
@@ -35,7 +35,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-        with: 
+        with:
           path: 'breeze'
 
       - name: Install Breeze
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
-        run: npm install
+        run: npm i
 
       - name: Compile assets
         if: matrix.stack != 'api'
@@ -60,4 +60,3 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-          APP_KEY: AckfSECXIvnK5r28GVIWUAxmbBSjTsmF
