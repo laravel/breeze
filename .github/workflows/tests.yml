@@ -43,10 +43,6 @@ jobs:
           composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress
           php artisan breeze:install ${{ matrix.stack }}
 
-      - name: Update Dependencies
-        run: |
-          composer update --prefer-dist --no-interaction --no-progress
-
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
         run: npm i
