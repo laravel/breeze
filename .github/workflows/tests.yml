@@ -45,6 +45,7 @@ jobs:
       - name: Update Dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-progress
+          php ./vendor/bin/testbench package:discover --ansi
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
