@@ -33,7 +33,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\": "vendor/laravel/laravel/app/",
             "Tests\\": "vendor/laravel/laravel/tests/"
         }
     },
