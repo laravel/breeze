@@ -32,8 +32,8 @@ jobs:
 
       - name: Setup Laravel
         run: |
-          composer require "laravel/laravel:^9" --dev --no-update
-          composer update --prefer-dist --no-interaction --no-progress
+          composer require "laravel/laravel:^9" --dev
+          composer update --working-dir=./vendor/laravel/laravel --prefer-dist --no-interaction --no-progress
 
       - name: Install Breeze
         continue-on-error: true
