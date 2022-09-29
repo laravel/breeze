@@ -36,9 +36,15 @@ jobs:
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Install Breeze
+        continue-on-error: true
         run: |
           composer dump
           php ./vendor/bin/testbench breeze:install ${{ matrix.stack }}
+
+
+      - name: Update Dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
