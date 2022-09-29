@@ -48,11 +48,11 @@ jobs:
 
       - name: Install NPM dependencies
         if: matrix.stack != 'api'
-        run: npm i
+        run: npm --prefix="./vendor/laravel/laravel" install
 
       - name: Compile assets
         if: matrix.stack != 'api'
-        run: npm run build
+        run: npm --prefix="./vendor/laravel/laravel" run build
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose ./vendor/laravel/laravel
