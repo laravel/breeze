@@ -24,7 +24,7 @@ trait InstallsSpladeStack
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@protonemedia/laravel-splade' => '^0.5.0',
+                '@protonemedia/laravel-splade' => '^0.6.0',
                 '@tailwindcss/forms' => '^0.5.2',
                 '@tailwindcss/typography' => '^0.5.2',
                 '@vitejs/plugin-vue' => '^3.0.0',
@@ -36,6 +36,9 @@ trait InstallsSpladeStack
                 'vue' => '^3.2.37',
             ] + $packages;
         });
+
+        // Add SSR build step...
+        $this->updateNodeScript();
 
         $defaultStubsDir = __DIR__.'/../../stubs/default/';
         $spladeBreezeStubsDir = __DIR__.'/../../stubs/splade/';
@@ -88,5 +91,24 @@ trait InstallsSpladeStack
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
+    }
+
+    /**
+     * Adds the SSR build step to the 'build' command.
+     *
+     * @return void
+     */
+    protected function updateNodeScript()
+    {
+        if (!file_exists(base_path('package.json'))) {
+            return;
+        }
+
+        $packageFile = file_get_contents(base_path('package.json'));
+
+        file_put_contents(
+            base_path('package.json'),
+            str_replace('"vite build"', '"vite build && vite build --ssr"', $packageFile)
+        );
     }
 }
