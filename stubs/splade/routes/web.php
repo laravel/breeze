@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('splade')->group(function () {
-    // Route::spladeTable();
+    Route::spladeTable();
 
     Route::get('/', function () {
         return view('welcome');
