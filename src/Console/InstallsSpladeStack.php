@@ -100,7 +100,7 @@ trait InstallsSpladeStack
      */
     protected function updateNodeScript()
     {
-        if (!file_exists(base_path('package.json'))) {
+        if (! file_exists(base_path('package.json'))) {
             return;
         }
 
