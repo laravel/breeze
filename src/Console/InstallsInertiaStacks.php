@@ -42,6 +42,7 @@ trait InstallsInertiaStacks
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
+        $this->installMiddlewareAfter('\App\Http\Middleware\HandleInertiaRequests::class', '\Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class');
 
         copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
@@ -153,12 +154,13 @@ trait InstallsInertiaStacks
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
+        $this->installMiddlewareAfter('\App\Http\Middleware\HandleInertiaRequests::class', '\Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class');
 
         copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
         // Views...
         copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
-        $this->replaceInFile("@vite('resources/js/app.js')", '@viteReactRefresh'.PHP_EOL."        @vite('resources/js/app.jsx')", resource_path('views/app.blade.php'));
+        $this->replaceInFile("@vite(\"resources/js/Pages/{\$page['component']}.vue\")", '@viteReactRefresh'.PHP_EOL."        @vite(\"resources/js/Pages/{\$page['component']}.jsx\")", resource_path('views/app.blade.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
