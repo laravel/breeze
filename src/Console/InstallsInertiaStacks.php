@@ -23,12 +23,12 @@ trait InstallsInertiaStacks
                 '@inertiajs/inertia' => '^0.11.0',
                 '@inertiajs/inertia-vue3' => '^0.6.0',
                 '@inertiajs/progress' => '^0.2.7',
-                '@tailwindcss/forms' => '^0.5.2',
+                '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-vue' => '^3.0.0',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
-                'tailwindcss' => '^3.1.0',
-                'vue' => '^3.2.31',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
+                'vue' => '^3.2.41',
             ] + $packages;
         });
 
@@ -131,13 +131,13 @@ trait InstallsInertiaStacks
             return [
                 '@headlessui/react' => '^1.4.2',
                 '@inertiajs/inertia' => '^0.11.0',
-                '@inertiajs/inertia-react' => '^0.8.0',
+                '@inertiajs/inertia-react' => '^0.8.1',
                 '@inertiajs/progress' => '^0.2.6',
-                '@tailwindcss/forms' => '^0.5.2',
+                '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-react' => '^2.0.0',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
-                'tailwindcss' => '^3.1.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
                 'react' => '^18.2.0',
                 'react-dom' => '^18.2.0',
             ] + $packages;
