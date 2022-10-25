@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.1...1.x)
+
+## [v1.14.1](https://github.com/laravel/breeze/compare/v1.14.0...v1.14.1) - 2022-10-25
+
+### Changed
+
+- Replace double quote(") with single quote(') by @itxshakil in https://github.com/laravel/breeze/pull/195
+- Bump React and Vue Dependencies by @dammy001 in https://github.com/laravel/breeze/pull/197
+- Vite preloading by @timacdonald in https://github.com/laravel/breeze/pull/196
 
 ## [v1.14.0](https://github.com/laravel/breeze/compare/v1.13.1...v1.14.0) - 2022-09-27
 
