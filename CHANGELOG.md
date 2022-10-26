@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.2...1.x)
+
+## [v1.14.2](https://github.com/laravel/breeze/compare/v1.14.1...v1.14.2) - 2022-10-26
+
+### Fixed
+
+- Fix preloading in dev by @timacdonald in https://github.com/laravel/breeze/pull/199
 
 ## [v1.14.1](https://github.com/laravel/breeze/compare/v1.14.0...v1.14.1) - 2022-10-25
 
