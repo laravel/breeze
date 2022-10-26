@@ -160,7 +160,9 @@ trait InstallsInertiaStacks
 
         // Views...
         copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
-        $this->replaceInFile("@vite(\"resources/js/Pages/{\$page['component']}.vue\")", '@viteReactRefresh'.PHP_EOL."        @vite(\"resources/js/Pages/{\$page['component']}.jsx\")", resource_path('views/app.blade.php'));
+        $this->replaceInFile("@vite", '@viteReactRefresh'.PHP_EOL."        @vite", resource_path('views/app.blade.php'));
+        $this->replaceInFile("resources/js/Pages/{\$page['component']}.vue", "resources/js/Pages/{\$page['component']}.jsx", resource_path('views/app.blade.php'));
+        $this->replaceInFile("resources/js/app.js", "resources/js/app.jsx", resource_path('views/app.blade.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
