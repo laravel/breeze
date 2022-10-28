@@ -19,6 +19,7 @@ trait InstallsBladeStack
                 '@tailwindcss/forms' => '^0.5.2',
                 'alpinejs' => '^3.4.2',
                 'autoprefixer' => '^10.4.2',
+                'picocolors' => '^1.0.0',
                 'postcss' => '^8.4.6',
                 'tailwindcss' => '^3.1.0',
             ] + $packages;
