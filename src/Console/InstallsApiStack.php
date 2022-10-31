@@ -36,7 +36,7 @@ trait InstallsApiStack
 
         // Providers...
         $files->copyDirectory(__DIR__.'/../../stubs/api/app/Providers', app_path('Providers'));
-        $this->replaceInFile("HOME = '/home'", "HOME = '/dashboard'", app_path('Providers/RouteServiceProvider.php'));
+        $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Routes...
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
