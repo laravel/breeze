@@ -7,7 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { useForm, usePage } from '@inertiajs/inertia-react';
 
-export default function DeleteUserForm(props) {
+export default function DeleteUserForm({ className }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef();
 
@@ -47,7 +47,7 @@ export default function DeleteUserForm(props) {
     };
 
     return (
-        <section className="space-y-6">
+        <section className={`space-y-6 ${className}`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">Delete Account</h2>
                 <p className="mt-1 text-sm text-gray-600">
