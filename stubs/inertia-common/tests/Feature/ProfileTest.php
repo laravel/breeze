@@ -36,7 +36,9 @@ class ProfileTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
+
         $user->refresh();
+
         $this->assertSame('Test User', $user->name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertNull($user->email_verified_at);
@@ -56,6 +58,7 @@ class ProfileTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
+
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
@@ -74,6 +77,7 @@ class ProfileTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
+
         $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
     }
 
@@ -108,6 +112,7 @@ class ProfileTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/');
+
         $this->assertGuest();
         $this->assertNull($user->fresh());
     }
@@ -126,6 +131,7 @@ class ProfileTest extends TestCase
         $response
             ->assertSessionHasErrors('password')
             ->assertRedirect('/profile');
+
         $this->assertNotNull($user->fresh());
     }
 }
