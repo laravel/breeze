@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.3...1.x)
+
+## [v1.14.3](https://github.com/laravel/breeze/compare/v1.14.2...v1.14.3) - 2022-11-06
+
+### Changed
+
+- RegisteredUserController stubs should use the User model name instead of table name in the validators by @viliamjr in https://github.com/laravel/breeze/pull/206
 
 ## [v1.14.2](https://github.com/laravel/breeze/compare/v1.14.1...v1.14.2) - 2022-10-26
 
