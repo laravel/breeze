@@ -31,19 +31,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->only('name', 'email'));
+        $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
-        if ($request->has('password')) {
-            $request->user()->password = Hash::make($request->input('password'));
-        }
-
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**

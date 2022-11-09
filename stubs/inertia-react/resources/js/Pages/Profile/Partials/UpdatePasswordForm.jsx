@@ -10,7 +10,7 @@ export default function UpdatePasswordForm({ className }) {
     const passwordInput = useRef();
     const currentPasswordInput = useRef();
 
-    const { data, setData, errors, patch, reset, processing, recentlySuccessful } = useForm({
+    const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
         current_password: '',
         password: '',
         password_confirmation: '',
@@ -18,7 +18,7 @@ export default function UpdatePasswordForm({ className }) {
 
     const updatePassword = (e) => {
         e.preventDefault();
-        patch(route('profile.update'), {
+        put(route('password.update'), {
             preserveScroll: true,
             onSuccess: () => reset(),
             onError: () => {

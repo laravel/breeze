@@ -16,7 +16,7 @@ const form = useForm({
 });
 
 const updatePassword = () => {
-    form.patch(route('profile.update'), {
+    form.put(route('password.update'), {
         preserveScroll: true,
         onSuccess: () => form.reset(),
         onError: () => {
