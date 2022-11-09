@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 class ProfileController extends Controller
 {
     /**
-     * Display the user profile form.
+     * Display the user's profile form.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
@@ -23,7 +23,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user profile information.
+     * Update the user's profile information.
      *
      * @param  \App\Http\Requests\ProfileUpdateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -42,7 +42,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user account.
+     * Delete the user's account.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse

@@ -27,6 +27,7 @@
                 <div>
                     <p class="text-sm mt-2">
                         Your email address is unverified.
+
                         <button form="send-verification" class="underline text-gray-600 hover:text-gray-900">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
@@ -43,6 +44,7 @@
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
+
             @if (session('status') === 'profile-updated')
                 <p
                     x-data="{ show: true }"

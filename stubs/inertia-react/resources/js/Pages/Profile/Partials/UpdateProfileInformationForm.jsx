@@ -23,6 +23,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+
                 <p className="mt-1 text-sm text-gray-600">
                     Update your account's profile information and email address.
                 </p>
@@ -31,6 +32,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
                     <InputLabel for="name" value="Name" />
+
                     <TextInput
                         id="name"
                         type="text"
@@ -41,11 +43,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         autofocus
                         autocomplete="name"
                     />
+
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
                 <div>
                     <InputLabel for="email" value="Email" />
+
                     <TextInput
                         id="email"
                         type="email"
@@ -55,6 +59,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         required
                         autocomplete="email"
                     />
+
                     <InputError className="mt-2" message={errors.email} />
                 </div>
 
@@ -62,6 +67,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     <div>
                         <p className="text-sm mt-2">
                             Your email address is unverified.
+
                             <Link
                                 href={route('verification.send')}
                                 method="post"
@@ -71,6 +77,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                                 Click here to re-send the verification email.
                             </Link>
                         </p>
+
                         {status === 'verification-link-sent' && (
                             <div className="mt-2 font-medium text-sm text-green-600">
                                 A new verification link has been sent to your email address.
@@ -81,6 +88,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton processing={processing}>Save</PrimaryButton>
+
                     <Transition
                         show={recentlySuccessful}
                         enterFrom="opacity-0"

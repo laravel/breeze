@@ -12,7 +12,7 @@ use Inertia\Inertia;
 class ProfileController extends Controller
 {
     /**
-     * Display the user profile form.
+     * Display the user's profile form.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
@@ -26,7 +26,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user profile information.
+     * Update the user's profile information.
      *
      * @param  \App\Http\Requests\ProfileUpdateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user account.
+     * Delete the user's account.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
