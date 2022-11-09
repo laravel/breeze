@@ -25,23 +25,16 @@ trait InstallsBladeStack
         });
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Controllers', app_path('Http/Controllers'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Requests', app_path('Http/Requests'));
 
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
-
-        copy(__DIR__.'/../../stubs/default/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views', resource_path('views'));
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));

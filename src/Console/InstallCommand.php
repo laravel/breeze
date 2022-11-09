@@ -60,18 +60,18 @@ class InstallCommand extends Command
      */
     protected function installTests()
     {
-        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature/Auth'));
+        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature'));
 
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
         if ($this->option('pest')) {
             $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1');
 
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature/Auth'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
             (new Filesystem)->copy(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Pest.php', base_path('tests/Pest.php'));
         } else {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature/Auth'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature'));
         }
     }
 
