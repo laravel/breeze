@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use RuntimeException;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -19,6 +20,7 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue,api)}
+                            {--dark : Indicate that dark mode support should be installed}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -220,5 +222,18 @@ class InstallCommand extends Command
         $process->run(function ($type, $line) {
             $this->output->write('    '.$line);
         });
+    }
+
+    /**
+     * Remove Tailwind dark classes from the given files.
+     *
+     * @param  \Symfony\Component\Finder\Finder  $finder
+     * @return void
+     */
+    protected function removeDarkClasses(Finder $finder)
+    {
+        foreach ($finder as $file) {
+            file_put_contents($file->getPathname(), preg_replace('/\sdark:[^\s"\']+/', '', $file->getContents()));
+        }
     }
 }
