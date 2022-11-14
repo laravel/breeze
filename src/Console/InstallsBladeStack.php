@@ -3,6 +3,7 @@
 namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 trait InstallsBladeStack
 {
@@ -35,6 +36,14 @@ trait InstallsBladeStack
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views', resource_path('views'));
+
+        if (! $this->option('dark')) {
+            $this->removeDarkClasses((new Finder)
+                ->in(resource_path('views'))
+                ->name('*.blade.php')
+                ->notName('welcome.blade.php')
+            );
+        }
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
