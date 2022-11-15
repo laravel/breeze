@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.14.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.0...1.x)
+
+## [v1.15.0](https://github.com/laravel/breeze/compare/v1.14.3...v1.15.0) - 2022-11-15
+
+### Added
+
+- Add "Profile" page by @jessarcher in https://github.com/laravel/breeze/pull/205
+- Opt-in dark mode support :crescent_moon:  by @jessarcher in https://github.com/laravel/breeze/pull/209
 
 ## [v1.14.3](https://github.com/laravel/breeze/compare/v1.14.2...v1.14.3) - 2022-11-06
 
