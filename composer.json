@@ -28,7 +28,7 @@
         "illuminate/filesystem": "^9.21",
         "illuminate/support": "^9.21",
         "illuminate/validation": "^9.21",
-        "protonemedia/laravel-splade": "^0.6.0"
+        "protonemedia/laravel-splade": "^0.7.0"
     },
     "conflict": {
         "laravel/framework": "<9.19.0"
