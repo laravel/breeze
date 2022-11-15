@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.1...1.x)
+
+## [v1.15.1](https://github.com/laravel/breeze/compare/v1.15.0...v1.15.1) - 2022-11-15
+
+### Fixed
+
+- Fix namespace in PasswordUpdateTest.php by @irsyadadl in https://github.com/laravel/breeze/pull/211
 
 ## [v1.15.0](https://github.com/laravel/breeze/compare/v1.14.3...v1.15.0) - 2022-11-15
 
