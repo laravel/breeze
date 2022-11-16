@@ -13,7 +13,7 @@ const form = useForm({
 const submit = () => {
     form.post(route('password.confirm'), {
         onFinish: () => form.reset(),
-    })
+    });
 };
 </script>
 
@@ -28,7 +28,15 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="password" value="Password" />
-                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+                <TextInput
+                    id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
+                    required
+                    autocomplete="current-password"
+                    autofocus
+                />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
