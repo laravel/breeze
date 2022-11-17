@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import DangerButton from '@/Components/DangerButton';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
-import { useForm, usePage } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/inertia-react';
 
 export default function DeleteUserForm({ className }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
@@ -21,11 +21,6 @@ export default function DeleteUserForm({ className }) {
     } = useForm({
         password: '',
     });
-
-    const submit = (e) => {
-        e.preventDefault();
-        post(route('profile.destroy'));
-    };
 
     const confirmUserDeletion = () => {
         setConfirmingUserDeletion(true);
