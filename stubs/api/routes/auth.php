@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -23,12 +24,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store'])
-        ->name('password.confirm');
-
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
-
     Route::middleware('throttle:6,1')->group(function () {
         Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
             ->middleware('signed')
@@ -37,4 +32,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
             ->name('verification.send');
     });
+
+    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store'])
+        ->name('password.confirm');
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
 });
