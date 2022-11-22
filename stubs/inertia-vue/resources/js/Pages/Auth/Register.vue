@@ -28,6 +28,7 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
+
                 <TextInput
                     id="name"
                     type="text"
@@ -37,11 +38,13 @@ const submit = () => {
                     autofocus
                     autocomplete="name"
                 />
+
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="email" value="Email" />
+
                 <TextInput
                     id="email"
                     type="email"
@@ -50,11 +53,13 @@ const submit = () => {
                     required
                     autocomplete="username"
                 />
+
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
+
                 <TextInput
                     id="password"
                     type="password"
@@ -63,11 +68,13 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
+
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
+
                 <TextInput
                     id="password_confirmation"
                     type="password"
@@ -76,6 +83,7 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
+
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 

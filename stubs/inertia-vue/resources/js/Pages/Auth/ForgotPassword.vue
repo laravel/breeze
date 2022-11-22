@@ -35,6 +35,7 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
+
                 <TextInput
                     id="email"
                     type="email"
@@ -44,6 +45,7 @@ const submit = () => {
                     autofocus
                     autocomplete="username"
                 />
+
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
