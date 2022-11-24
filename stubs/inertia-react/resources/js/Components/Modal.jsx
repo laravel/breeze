@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Transition } from '@headlessui/react';
 
@@ -14,7 +14,7 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
     };
 
     const closeOnEscape = (e) => {
-        if (e.key === 'Escape' && props.show) {
+        if (e.key === 'Escape' && show) {
             close();
         }
     };
@@ -25,7 +25,7 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
             document.removeEventListener('keydown', closeOnEscape);
             document.body.style.overflow = null;
         };
-    }, []);
+    }, [show]);
 
     const maxWidthClass = {
         sm: 'sm:max-w-sm',

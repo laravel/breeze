@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 export default forwardRef(function TextInput(
     { type = 'text', name, value, className, autoComplete, required, isFocused, handleChange },

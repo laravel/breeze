@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SecondaryButton({ type = 'button', className = '', processing, children, onClick }) {
     return (
         <button
