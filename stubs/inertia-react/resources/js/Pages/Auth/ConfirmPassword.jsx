@@ -40,6 +40,7 @@ export default function ConfirmPassword() {
                     <InputLabel forInput="password" value="Password" />
 
                     <TextInput
+                        id="password"
                         type="password"
                         name="password"
                         value={data.password}
