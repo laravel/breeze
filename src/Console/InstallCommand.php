@@ -46,13 +46,12 @@ class InstallCommand extends Command
             $stacksList = implode(', ', $stacks);
 
             $this->components->error("Invalid stack. Supported stacks are {$stacksList}.");
+
             return 0;
         }
 
         $installer = app($stacks[$stack], ['command' => $this]);
         $installer->install();
-
-        return 1;
     }
 
     public function getComponents(): Factory
