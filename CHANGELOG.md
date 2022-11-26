@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.2...1.x)
+
+## [v1.15.2](https://github.com/laravel/breeze/compare/v1.15.1...v1.15.2) - 2022-11-21
+
+### Fixed
+
+- Fix closing tag by @kaozaza2 in https://github.com/laravel/breeze/pull/213
+- Vue code formatting by @jessarcher in https://github.com/laravel/breeze/pull/212
+- React formatting by @fouteox in https://github.com/laravel/breeze/pull/214
+- Add missing translation methods to Blade stack by @jessarcher in https://github.com/laravel/breeze/pull/215
 
 ## [v1.15.1](https://github.com/laravel/breeze/compare/v1.15.0...v1.15.1) - 2022-11-15
 

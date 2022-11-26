@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -18,6 +18,7 @@ export default function UpdatePasswordForm({ className }) {
 
     const updatePassword = (e) => {
         e.preventDefault();
+
         put(route('password.update'), {
             preserveScroll: true,
             onSuccess: () => reset(),

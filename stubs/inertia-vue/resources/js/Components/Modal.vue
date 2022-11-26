@@ -18,13 +18,16 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
-watch(() => props.show, () => {
-    if (props.show) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = null;
+watch(
+    () => props.show,
+    () => {
+        if (props.show) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = null;
+        }
     }
-});
+);
 
 const close = () => {
     if (props.closeable) {
@@ -47,10 +50,10 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        'sm': 'sm:max-w-sm',
-        'md': 'sm:max-w-md',
-        'lg': 'sm:max-w-lg',
-        'xl': 'sm:max-w-xl',
+        sm: 'sm:max-w-sm',
+        md: 'sm:max-w-md',
+        lg: 'sm:max-w-lg',
+        xl: 'sm:max-w-xl',
         '2xl': 'sm:max-w-2xl',
     }[props.maxWidth];
 });
@@ -81,7 +84,11 @@ const maxWidthClass = computed(() => {
                     leave-from-class="opacity-100 translate-y-0 sm:scale-100"
                     leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                    <div v-show="show" class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto" :class="maxWidthClass">
+                    <div
+                        v-show="show"
+                        class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto"
+                        :class="maxWidthClass"
+                    >
                         <slot v-if="show" />
                     </div>
                 </transition>
