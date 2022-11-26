@@ -2,10 +2,10 @@
 
 namespace Laravel\Breeze\Installers;
 
-use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
 use Laravel\Breeze\Contracts\StackInstaller;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 class InertiaReactStack extends AbstractInstaller implements StackInstaller
 {

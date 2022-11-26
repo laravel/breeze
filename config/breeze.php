@@ -2,8 +2,8 @@
 
 use Laravel\Breeze\Installers\ApiStack;
 use Laravel\Breeze\Installers\BladeStack;
-use Laravel\Breeze\Installers\InertiaVueStack;
 use Laravel\Breeze\Installers\InertiaReactStack;
+use Laravel\Breeze\Installers\InertiaVueStack;
 
 return [
 

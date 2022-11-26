@@ -2,19 +2,20 @@
 
 namespace Laravel\Breeze\Installers;
 
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use RuntimeException;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 
 abstract class AbstractInstaller
 {
-    function __construct(
+    public function __construct(
         protected Command $command
-    ) {}
+    ) {
+    }
 
     /**
      * Install Breeze's tests.

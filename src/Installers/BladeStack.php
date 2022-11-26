@@ -2,9 +2,9 @@
 
 namespace Laravel\Breeze\Installers;
 
-use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
 use Laravel\Breeze\Contracts\StackInstaller;
+use Symfony\Component\Finder\Finder;
 
 class BladeStack extends AbstractInstaller implements StackInstaller
 {
