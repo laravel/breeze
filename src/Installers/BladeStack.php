@@ -2,6 +2,7 @@
 
 namespace Laravel\Breeze\Installers;
 
+use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
 use Laravel\Breeze\Contracts\StackInstaller;
 
@@ -37,7 +38,7 @@ class BladeStack extends AbstractInstaller implements StackInstaller
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views', resource_path('views'));
 
-        if (! $this->option('dark')) {
+        if (! $this->command->option('dark')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('views'))
                 ->name('*.blade.php')
@@ -71,6 +72,6 @@ class BladeStack extends AbstractInstaller implements StackInstaller
         $this->runCommands(['npm install', 'npm run build']);
 
         $this->command->line('');
-        $this->command->components->info('Breeze scaffolding installed successfully.');
+        $this->command->getComponents()->info('Breeze scaffolding installed successfully.');
     }
 }

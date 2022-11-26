@@ -71,7 +71,7 @@ class ApiStack extends AbstractInstaller implements StackInstaller
         // Cleaning...
         $this->removeScaffoldingUnnecessaryForApis();
 
-        $this->command->components->info('Breeze scaffolding installed successfully.');
+        $this->command->getComponents()->info('Breeze scaffolding installed successfully.');
     }
 
     /**

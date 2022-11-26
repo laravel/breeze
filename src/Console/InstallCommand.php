@@ -2,14 +2,8 @@
 
 namespace Laravel\Breeze\Console;
 
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Symfony\Component\Finder\Finder;
-use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
-use Laravel\Breeze\Installers\ApiStack;
-use Symfony\Component\Process\PhpExecutableFinder;
+use Illuminate\Console\View\Components\Factory;
 
 class InstallCommand extends Command
 {
@@ -38,6 +32,9 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        // dd($this->components);
+        // dd(123);
+
         $stack = $this->argument('stack');
         $stacks = config('breeze.stacks', []);
 
@@ -56,5 +53,10 @@ class InstallCommand extends Command
         $installer->install();
 
         return 1;
+    }
+
+    public function getComponents(): Factory
+    {
+        return $this->components;
     }
 }

@@ -2,10 +2,13 @@
 
 namespace Laravel\Breeze\Installers;
 
+use RuntimeException;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Laravel\Breeze\Contracts\StackInstaller;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\PhpExecutableFinder;
 
 abstract class AbstractInstaller
 {
@@ -87,7 +90,7 @@ abstract class AbstractInstaller
         (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
             ->setTimeout(null)
             ->run(function ($type, $output) {
-                $this->command->output->write($output);
+                $this->command->getOutput()->write($output);
             });
     }
 
@@ -173,12 +176,12 @@ abstract class AbstractInstaller
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->command->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
+                $this->command->getOutput()->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->command->output->write('    '.$line);
+            $this->command->getOutput()->write('    '.$line);
         });
     }
 

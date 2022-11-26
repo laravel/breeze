@@ -2,7 +2,9 @@
 
 namespace Laravel\Breeze\Installers;
 
+use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
 use Laravel\Breeze\Contracts\StackInstaller;
 
 class InertiaReactStack extends AbstractInstaller implements StackInstaller
@@ -102,7 +104,7 @@ class InertiaReactStack extends AbstractInstaller implements StackInstaller
         $this->runCommands(['npm install', 'npm run build']);
 
         $this->command->line('');
-        $this->command->components->info('Breeze scaffolding installed successfully.');
+        $this->command->getComponents()->info('Breeze scaffolding installed successfully.');
     }
 
     /**
@@ -125,7 +127,7 @@ class InertiaReactStack extends AbstractInstaller implements StackInstaller
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
             ->run(function ($type, $output) {
-                $this->command->output->write($output);
+                $this->command->getOutput()->write($output);
             });
 
         $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));

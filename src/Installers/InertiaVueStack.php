@@ -2,7 +2,9 @@
 
 namespace Laravel\Breeze\Installers;
 
+use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
 use Laravel\Breeze\Contracts\StackInstaller;
 
 class InertiaVueStack extends AbstractInstaller implements StackInstaller
@@ -87,14 +89,14 @@ class InertiaVueStack extends AbstractInstaller implements StackInstaller
         copy(__DIR__.'/../../stubs/inertia-vue/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
 
-        if ($this->option('ssr')) {
+        if ($this->command->option('ssr')) {
             $this->installInertiaVueSsrStack();
         }
 
         $this->runCommands(['npm install', 'npm run build']);
 
         $this->command->line('');
-        $this->command->components->info('Breeze scaffolding installed successfully.');
+        $this->command->getComponents()->info('Breeze scaffolding installed successfully.');
     }
 
     /**
@@ -118,7 +120,7 @@ class InertiaVueStack extends AbstractInstaller implements StackInstaller
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
             ->run(function ($type, $output) {
-                $this->command->output->write($output);
+                $this->command->getOutput()->write($output);
             });
 
         $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));
