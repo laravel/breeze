@@ -28,6 +28,14 @@ class BreezeServiceProvider extends ServiceProvider implements DeferrableProvide
             return;
         }
 
+        $this->publishes([
+            __DIR__.'/../config/breeze.php' => config_path('breeze.php'),
+        ], 'breeze-config');
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/breeze.php', 'breeze'
+        );
+
         $this->commands([
             Console\InstallCommand::class,
         ]);

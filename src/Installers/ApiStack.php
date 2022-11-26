@@ -1,17 +1,18 @@
 <?php
 
-namespace Laravel\Breeze\Console;
+namespace Laravel\Breeze\Installers;
 
 use Illuminate\Filesystem\Filesystem;
+use Laravel\Breeze\Contracts\StackInstaller;
 
-trait InstallsApiStack
+class ApiStack extends AbstractInstaller implements StackInstaller
 {
     /**
      * Install the API Breeze stack.
      *
      * @return void
      */
-    protected function installApiStack()
+    public function install(): void
     {
         $files = new Filesystem;
 
@@ -70,7 +71,7 @@ trait InstallsApiStack
         // Cleaning...
         $this->removeScaffoldingUnnecessaryForApis();
 
-        $this->components->info('Breeze scaffolding installed successfully.');
+        $this->command->components->info('Breeze scaffolding installed successfully.');
     }
 
     /**

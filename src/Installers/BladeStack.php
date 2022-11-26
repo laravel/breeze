@@ -1,18 +1,18 @@
 <?php
 
-namespace Laravel\Breeze\Console;
+namespace Laravel\Breeze\Installers;
 
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
+use Laravel\Breeze\Contracts\StackInstaller;
 
-trait InstallsBladeStack
+class BladeStack extends AbstractInstaller implements StackInstaller
 {
     /**
-     * Install the Blade Breeze stack.
+     * Install the API Breeze stack.
      *
      * @return void
      */
-    protected function installBladeStack()
+    public function install(): void
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -70,7 +70,7 @@ trait InstallsBladeStack
 
         $this->runCommands(['npm install', 'npm run build']);
 
-        $this->line('');
-        $this->components->info('Breeze scaffolding installed successfully.');
+        $this->command->line('');
+        $this->command->components->info('Breeze scaffolding installed successfully.');
     }
 }
