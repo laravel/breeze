@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -41,6 +41,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputLabel forInput="email" value="Email" />
 
                     <TextInput
+                        id="email"
                         type="email"
                         name="email"
                         value={data.email}
@@ -57,6 +58,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputLabel forInput="password" value="Password" />
 
                     <TextInput
+                        id="password"
                         type="password"
                         name="password"
                         value={data.password}

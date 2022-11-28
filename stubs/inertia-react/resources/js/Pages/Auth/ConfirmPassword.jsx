@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -40,6 +40,7 @@ export default function ConfirmPassword() {
                     <InputLabel forInput="password" value="Password" />
 
                     <TextInput
+                        id="password"
                         type="password"
                         name="password"
                         value={data.password}
