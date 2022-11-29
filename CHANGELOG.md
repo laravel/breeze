@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.3...1.x)
+
+## [v1.15.3](https://github.com/laravel/breeze/compare/v1.15.2...v1.15.3) - 2022-11-28
+
+### Fixed
+
+- Fix-psr-4-warning by @Kamona-WD in https://github.com/laravel/breeze/pull/221
+- Status must be String by @marsuboss in https://github.com/laravel/breeze/pull/219
+- Fix close modal with escape keydown and cleanup import react by @fouteox in https://github.com/laravel/breeze/pull/218
 
 ## [v1.15.2](https://github.com/laravel/breeze/compare/v1.15.1...v1.15.2) - 2022-11-21
 
