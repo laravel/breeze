@@ -92,7 +92,14 @@ trait InstallsInertiaStacks
             $this->installInertiaVueSsrStack();
         }
 
-        $this->runCommands(['npm install', 'npm run build']);
+        // Use user's existing package manager if already found (default to npm if not found)
+        if (file_exists(base_path('pnpm-lock.yaml'))) {
+            $this->runCommands(['pnpm install', 'pnpm run build']);
+        } elseif (file_exists(base_path('yarn.lock'))) {
+            $this->runCommands(['yarn install', 'yarn run build']);
+        } else {
+            $this->runCommands(['npm install', 'npm run build']);
+        }
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
@@ -219,7 +226,14 @@ trait InstallsInertiaStacks
             $this->installInertiaReactSsrStack();
         }
 
-        $this->runCommands(['npm install', 'npm run build']);
+        // Use user's existing package manager if already found (default to npm if not found)
+        if (file_exists(base_path('pnpm-lock.yaml'))) {
+            $this->runCommands(['pnpm install', 'pnpm run build']);
+        } elseif (file_exists(base_path('yarn.lock'))) {
+            $this->runCommands(['yarn install', 'yarn run build']);
+        } else {
+            $this->runCommands(['npm install', 'npm run build']);
+        }
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
