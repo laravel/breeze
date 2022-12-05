@@ -92,7 +92,6 @@ trait InstallsInertiaStacks
             $this->installInertiaVueSsrStack();
         }
 
-        // Use user's existing package manager if already found (default to npm if not found)
         if (file_exists(base_path('pnpm-lock.yaml'))) {
             $this->runCommands(['pnpm install', 'pnpm run build']);
         } elseif (file_exists(base_path('yarn.lock'))) {
@@ -226,7 +225,6 @@ trait InstallsInertiaStacks
             $this->installInertiaReactSsrStack();
         }
 
-        // Use user's existing package manager if already found (default to npm if not found)
         if (file_exists(base_path('pnpm-lock.yaml'))) {
             $this->runCommands(['pnpm install', 'pnpm run build']);
         } elseif (file_exists(base_path('yarn.lock'))) {
