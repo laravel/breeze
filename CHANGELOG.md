@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.4...1.x)
+
+## [v1.15.4](https://github.com/laravel/breeze/compare/v1.15.3...v1.15.4) - 2022-12-05
+
+### Changed
+
+- Use Default NPM Package Manager of User if Lock File Exists In Base Path by @andrewdwallo in https://github.com/laravel/breeze/pull/224
 
 ## [v1.15.3](https://github.com/laravel/breeze/compare/v1.15.2...v1.15.3) - 2022-11-28
 
