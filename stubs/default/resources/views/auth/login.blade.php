@@ -48,7 +48,7 @@
     </x-auth-card>
 
     @if (Route::has('register'))
-        <div class="text-sm pt-5 text-center text-gray-600">{{ __("Don't have an account yet?") }} <a
+        <div class="text-sm my-4 text-center text-gray-600">{{ __("Don't have an account yet?") }} <a
                 href="{{ route('register') }}"
                 class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ __("Register here!") }}</a>
         </div>
