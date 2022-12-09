@@ -18,7 +18,8 @@ class PasswordResetTest extends DuskTestCase
     public function test_reset_password_link_screen_can_be_rendered()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/forgot-password')
+            $browser->logout()
+                ->visit('/forgot-password')
                 ->assertInputPresent('email');
         });
     }
@@ -28,7 +29,8 @@ class PasswordResetTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create();
 
-            $browser->visit('/forgot-password')
+            $browser->logout()
+                ->visit('/forgot-password')
                 ->type('email', $user->email)
                 ->press('Email Password Reset Link')
                 ->waitForText('We have emailed your password reset link!');
@@ -42,7 +44,8 @@ class PasswordResetTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create();
 
-            $browser->visit('/forgot-password')
+            $browser->logout()
+                ->visit('/forgot-password')
                 ->type('email', $user->email)
                 ->press('Email Password Reset Link')
                 ->waitForText('We have emailed your password reset link!');
@@ -63,7 +66,8 @@ class PasswordResetTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create();
 
-            $browser->visit('/forgot-password')
+            $browser->logout()
+                ->visit('/forgot-password')
                 ->type('email', $user->email)
                 ->press('Email Password Reset Link')
                 ->waitForText('We have emailed your password reset link!');

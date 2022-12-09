@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use RuntimeException;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -19,6 +20,7 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'breeze:install {stack=splade : The development stack that should be installed (blade,react,vue,api,splade)}
+                            {--dark : Indicate that dark mode support should be installed}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -62,7 +64,7 @@ class InstallCommand extends Command
      */
     protected function installTests()
     {
-        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature/Auth'));
+        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature'));
 
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
@@ -70,8 +72,8 @@ class InstallCommand extends Command
 
         if ($spladeStack) {
             $this->installDusk();
-            (new Filesystem)->ensureDirectoryExists(base_path('tests/Browser/Auth'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/splade/dusk-tests/Auth', base_path('tests/Browser/Auth'));
+            (new Filesystem)->ensureDirectoryExists(base_path('tests/Browser'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/splade/dusk-tests', base_path('tests/Browser'));
             (new Filesystem)->copy(__DIR__.'/../../stubs/splade/dusk-tests/.env.dusk', base_path('.env.dusk'));
             (new Filesystem)->put(base_path('database/database.sqlite'), '');
         }
@@ -83,10 +85,11 @@ class InstallCommand extends Command
                 (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature/Auth'));
             }
 
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
             (new Filesystem)->copy(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Pest.php', base_path('tests/Pest.php'));
         } elseif (! $spladeStack) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature/Auth'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature'));
         }
     }
 
@@ -253,5 +256,18 @@ class InstallCommand extends Command
         $process->run(function ($type, $line) {
             $this->output->write('    '.$line);
         });
+    }
+
+    /**
+     * Remove Tailwind dark classes from the given files.
+     *
+     * @param  \Symfony\Component\Finder\Finder  $finder
+     * @return void
+     */
+    protected function removeDarkClasses(Finder $finder)
+    {
+        foreach ($finder as $file) {
+            file_put_contents($file->getPathname(), preg_replace('/\sdark:[^\s"\']+/', '', $file->getContents()));
+        }
     }
 }

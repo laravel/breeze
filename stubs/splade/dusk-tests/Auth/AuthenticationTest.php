@@ -15,23 +15,10 @@ class AuthenticationTest extends DuskTestCase
     public function test_login_screen_can_be_rendered()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
+            $browser->logout()
+                ->visit('/login')
                 ->assertInputPresent('email')
                 ->assertInputPresent('password');
-        });
-    }
-
-    public function test_users_can_not_authenticate_with_invalid_password()
-    {
-        $this->browse(function (Browser $browser) {
-            $user = User::factory()->create();
-
-            $browser->visit('/login')
-                ->type('email', $user->email)
-                ->type('password', 'wrong-password')
-                ->press('Log in')
-                ->waitForText('These credentials do not match our records.')
-                ->assertGuest();
         });
     }
 
@@ -40,12 +27,28 @@ class AuthenticationTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create();
 
-            $browser->visit('/login')
+            $browser->logout()
+                ->visit('/login')
                 ->type('email', $user->email)
                 ->type('password', 'password')
                 ->press('Log in')
                 ->waitForLocation(RouteServiceProvider::HOME)
                 ->assertAuthenticatedAs($user);
+        });
+    }
+
+    public function test_users_can_not_authenticate_with_invalid_password()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+
+            $browser->logout()
+                ->visit('/login')
+                ->type('email', $user->email)
+                ->type('password', 'wrong-password')
+                ->press('Log in')
+                ->waitForText('These credentials do not match our records.')
+                ->assertGuest();
         });
     }
 }

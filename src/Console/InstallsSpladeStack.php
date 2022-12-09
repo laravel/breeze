@@ -5,6 +5,7 @@ namespace Laravel\Breeze\Console;
 use Illuminate\Filesystem\Filesystem;
 use ProtoneMedia\Splade\Commands\InstallsSpladeExceptionHandler;
 use ProtoneMedia\Splade\Commands\InstallsSpladeRouteMiddleware;
+use Symfony\Component\Finder\Finder;
 
 trait InstallsSpladeStack
 {
@@ -25,15 +26,15 @@ trait InstallsSpladeStack
         $this->updateNodePackages(function ($packages) {
             return [
                 '@protonemedia/laravel-splade' => '^1.1.0',
-                '@tailwindcss/forms' => '^0.5.2',
+                '@tailwindcss/forms' => '^0.5.3',
                 '@tailwindcss/typography' => '^0.5.2',
                 '@vitejs/plugin-vue' => '^3.0.0',
-                'autoprefixer' => '^10.4.7',
+                'autoprefixer' => '^10.4.12',
                 'laravel-vite-plugin' => '^0.5.0',
-                'postcss' => '^8.4.14',
-                'tailwindcss' => '^3.1.0',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
                 'vite' => '^3.0.0',
-                'vue' => '^3.2.37',
+                'vue' => '^3.2.41',
             ] + $packages;
         });
 
@@ -45,21 +46,22 @@ trait InstallsSpladeStack
         $spladeBaseStubsDir = base_path('vendor/protonemedia/laravel-splade/stubs/');
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory($defaultStubsDir.'App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
+        (new Filesystem)->copyDirectory($defaultStubsDir.'app/Http/Controllers', app_path('Http/Controllers'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory($defaultStubsDir.'App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+        (new Filesystem)->copyDirectory($defaultStubsDir.'app/Http/Requests', app_path('Http/Requests'));
 
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+        (new Filesystem)->copyDirectory($spladeBreezeStubsDir.'resources/views', resource_path('views'));
 
-        (new Filesystem)->copyDirectory($spladeBreezeStubsDir.'resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory($spladeBreezeStubsDir.'resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory($spladeBreezeStubsDir.'resources/views/components', resource_path('views/components'));
+        $this->removeDarkClasses(
+            (new Finder)
+                ->in(resource_path('views'))
+                ->name('*.blade.php')
+        );
 
         copy($spladeBreezeStubsDir.'resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy($spladeBreezeStubsDir.'resources/views/root.blade.php', resource_path('views/root.blade.php'));
@@ -67,7 +69,7 @@ trait InstallsSpladeStack
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
-        (new Filesystem)->copyDirectory($defaultStubsDir.'App/View/Components', app_path('View/Components'));
+        (new Filesystem)->copyDirectory($defaultStubsDir.'app/View/Components', app_path('View/Components'));
 
         // Tests...
         $this->installTests();
@@ -87,10 +89,29 @@ trait InstallsSpladeStack
         copy($spladeBaseStubsDir.'resources/js/app.js', resource_path('js/app.js'));
         copy($spladeBaseStubsDir.'resources/js/ssr.js', resource_path('js/ssr.js'));
 
-        $this->runCommands(['npm install', 'npm run build']);
+        if (file_exists(base_path('pnpm-lock.yaml'))) {
+            $this->runCommands(['pnpm install', 'pnpm run build']);
+        } elseif (file_exists(base_path('yarn.lock'))) {
+            $this->runCommands(['yarn install', 'yarn run build']);
+        } else {
+            $this->runCommands(['npm install', 'npm run build']);
+        }
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
+    }
+
+    /**
+     * Remove Tailwind dark classes from the given files.
+     *
+     * @param  \Symfony\Component\Finder\Finder  $finder
+     * @return void
+     */
+    protected function removeDarkClasses(Finder $finder)
+    {
+        foreach ($finder as $file) {
+            file_put_contents($file->getPathname(), preg_replace('/\sdark:[^\s"\']+/', '', $file->getContents()));
+        }
     }
 
     /**

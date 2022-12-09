@@ -1,6 +1,90 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.12.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.4...1.x)
+
+## [v1.15.4](https://github.com/laravel/breeze/compare/v1.15.3...v1.15.4) - 2022-12-05
+
+### Changed
+
+- Use Default NPM Package Manager of User if Lock File Exists In Base Path by @andrewdwallo in https://github.com/laravel/breeze/pull/224
+
+## [v1.15.3](https://github.com/laravel/breeze/compare/v1.15.2...v1.15.3) - 2022-11-28
+
+### Fixed
+
+- Fix-psr-4-warning by @Kamona-WD in https://github.com/laravel/breeze/pull/221
+- Status must be String by @marsuboss in https://github.com/laravel/breeze/pull/219
+- Fix close modal with escape keydown and cleanup import react by @fouteox in https://github.com/laravel/breeze/pull/218
+
+## [v1.15.2](https://github.com/laravel/breeze/compare/v1.15.1...v1.15.2) - 2022-11-21
+
+### Fixed
+
+- Fix closing tag by @kaozaza2 in https://github.com/laravel/breeze/pull/213
+- Vue code formatting by @jessarcher in https://github.com/laravel/breeze/pull/212
+- React formatting by @fouteox in https://github.com/laravel/breeze/pull/214
+- Add missing translation methods to Blade stack by @jessarcher in https://github.com/laravel/breeze/pull/215
+
+## [v1.15.1](https://github.com/laravel/breeze/compare/v1.15.0...v1.15.1) - 2022-11-15
+
+### Fixed
+
+- Fix namespace in PasswordUpdateTest.php by @irsyadadl in https://github.com/laravel/breeze/pull/211
+
+## [v1.15.0](https://github.com/laravel/breeze/compare/v1.14.3...v1.15.0) - 2022-11-15
+
+### Added
+
+- Add "Profile" page by @jessarcher in https://github.com/laravel/breeze/pull/205
+- Opt-in dark mode support :crescent_moon:  by @jessarcher in https://github.com/laravel/breeze/pull/209
+
+## [v1.14.3](https://github.com/laravel/breeze/compare/v1.14.2...v1.14.3) - 2022-11-06
+
+### Changed
+
+- RegisteredUserController stubs should use the User model name instead of table name in the validators by @viliamjr in https://github.com/laravel/breeze/pull/206
+
+## [v1.14.2](https://github.com/laravel/breeze/compare/v1.14.1...v1.14.2) - 2022-10-26
+
+### Fixed
+
+- Fix preloading in dev by @timacdonald in https://github.com/laravel/breeze/pull/199
+
+## [v1.14.1](https://github.com/laravel/breeze/compare/v1.14.0...v1.14.1) - 2022-10-25
+
+### Changed
+
+- Replace double quote(") with single quote(') by @itxshakil in https://github.com/laravel/breeze/pull/195
+- Bump React and Vue Dependencies by @dammy001 in https://github.com/laravel/breeze/pull/197
+- Vite preloading by @timacdonald in https://github.com/laravel/breeze/pull/196
+
+## [v1.14.0](https://github.com/laravel/breeze/compare/v1.13.1...v1.14.0) - 2022-09-27
+
+### Added
+
+- Upgrade to React 18 by @kjoedion in https://github.com/laravel/breeze/pull/192
+
+### Changed
+
+- Display errors alongside fields in Blade stack by @jessarcher in https://github.com/laravel/breeze/pull/191
+- Consistently use `verified` middleware on `/dashboard` route. by @jessarcher in https://github.com/laravel/breeze/pull/190
+- Make Blade app header optional by @jessarcher in https://github.com/laravel/breeze/pull/189
+
+### Fixed
+
+- Fixes `HandleInertiaRequests::handle` related types by @felixdorn in https://github.com/laravel/breeze/pull/193
+
+## [v1.13.1](https://github.com/laravel/breeze/compare/v1.13.0...v1.13.1) - 2022-09-20
+
+### Fixed
+
+- Make app directory consistently lowercase by @jessarcher in https://github.com/laravel/breeze/pull/187
+
+## [v1.13.0](https://github.com/laravel/breeze/compare/v1.12.0...v1.13.0) - 2022-09-06
+
+### Changed
+
+- Remove "Breeze" component prefix by @jessarcher in https://github.com/laravel/breeze/pull/179
 
 ## [v1.12.0](https://github.com/laravel/breeze/compare/v1.11.4...v1.12.0) - 2022-08-16
 

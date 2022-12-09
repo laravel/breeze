@@ -14,7 +14,8 @@ class RegistrationTest extends DuskTestCase
     public function test_registration_screen_can_be_rendered()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register')
+            $browser->logout()
+                ->visit('/register')
                 ->assertInputPresent('name')
                 ->assertInputPresent('email')
                 ->assertInputPresent('password')
@@ -25,7 +26,8 @@ class RegistrationTest extends DuskTestCase
     public function test_new_users_can_register()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register')
+            $browser->logout()
+                ->visit('/register')
                 ->type('name', 'Test User')
                 ->type('email', 'test@example.com')
                 ->type('password', 'password')
