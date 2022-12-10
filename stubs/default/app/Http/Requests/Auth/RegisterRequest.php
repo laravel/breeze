@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use App\Models\User;
-use Illuminate\Validation\Rules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
 class RegisterRequest extends FormRequest
 {
