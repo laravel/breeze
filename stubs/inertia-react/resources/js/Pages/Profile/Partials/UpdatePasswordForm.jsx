@@ -57,7 +57,7 @@ export default function UpdatePasswordForm({ className }) {
                         handleChange={(e) => setData('current_password', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
-                        autocomplete="current-password"
+                        autoComplete="current-password"
                     />
 
                     <InputError message={errors.current_password} className="mt-2" />
@@ -73,7 +73,7 @@ export default function UpdatePasswordForm({ className }) {
                         handleChange={(e) => setData('password', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
-                        autocomplete="new-password"
+                        autoComplete="new-password"
                     />
 
                     <InputError message={errors.password} className="mt-2" />
@@ -88,7 +88,7 @@ export default function UpdatePasswordForm({ className }) {
                         handleChange={(e) => setData('password_confirmation', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
-                        autocomplete="new-password"
+                        autoComplete="new-password"
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />

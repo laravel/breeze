@@ -40,7 +40,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         handleChange={(e) => setData('name', e.target.value)}
                         required
                         autofocus
-                        autocomplete="name"
+                        autoComplete="name"
                     />
 
                     <InputError className="mt-2" message={errors.name} />
@@ -56,7 +56,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         value={data.email}
                         handleChange={(e) => setData('email', e.target.value)}
                         required
-                        autocomplete="email"
+                        autoComplete="email"
                     />
 
                     <InputError className="mt-2" message={errors.email} />
