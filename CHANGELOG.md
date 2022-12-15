@@ -1,6 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.15.4...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.16.0...1.x)
+
+## [v1.16.0](https://github.com/laravel/breeze/compare/v1.15.4...v1.16.0) - 2022-12-16
+
+### Added
+
+- [1.x] Vite 4 support by @timacdonald in https://github.com/laravel/breeze/pull/226
+
+### Changed
+
+- Blade stack - Moved duplicated logo component to guest layout by @magdicom in https://github.com/laravel/breeze/pull/228
+
+### Fixed
+
+- Fix typo in delete user forms by @alexcanana in https://github.com/laravel/breeze/pull/225
+- Fixed capitalization of autoComplete prop by @drewmw5 in https://github.com/laravel/breeze/pull/230
 
 ## [v1.15.4](https://github.com/laravel/breeze/compare/v1.15.3...v1.15.4) - 2022-12-05
 
