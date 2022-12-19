@@ -159,7 +159,7 @@ trait InstallsInertiaStacks
                 'tailwindcss' => '^3.2.1',
                 'typescript' => '^4.8.4',
                 'vue' => '^3.2.41',
-                'vue-tsc' => '^1.0.9'
+                'vue-tsc' => '^1.0.9',
             ] + $packages;
         });
 
