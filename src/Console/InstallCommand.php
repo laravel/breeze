@@ -45,6 +45,7 @@ class InstallCommand extends Command
             if ($this->option('ts')) {
                 return $this->installInertiaVueTsStack();
             }
+
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
