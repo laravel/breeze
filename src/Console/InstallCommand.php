@@ -24,6 +24,7 @@ class InstallCommand extends Command
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
+                            {--ts : Indicates if Typescript support should be installed (only Vue is supported)}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -41,6 +42,7 @@ class InstallCommand extends Command
     public function handle()
     {
         if ($this->option('inertia') || $this->argument('stack') === 'vue') {
+            if($this->option('ts')) return $this->installInertiaVueTsStack();
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
