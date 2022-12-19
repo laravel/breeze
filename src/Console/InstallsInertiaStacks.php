@@ -254,7 +254,6 @@ trait InstallsInertiaStacks
         $this->components->info('Breeze scaffolding installed successfully.');
         $this->line('');
         $this->components->info("please make sur to generate the ziggy routes when you change the routes file with the command \n php artisan ziggy:generate");
-
     }
 
     /**
