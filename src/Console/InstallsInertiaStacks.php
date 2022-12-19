@@ -21,16 +21,16 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/inertia' => '^0.11.0',
-                    '@inertiajs/inertia-vue3' => '^0.6.0',
-                    '@inertiajs/progress' => '^0.2.7',
-                    '@tailwindcss/forms' => '^0.5.3',
-                    '@vitejs/plugin-vue' => '^4.0.0',
-                    'autoprefixer' => '^10.4.12',
-                    'postcss' => '^8.4.18',
-                    'tailwindcss' => '^3.2.1',
-                    'vue' => '^3.2.41',
-                ] + $packages;
+                '@inertiajs/inertia' => '^0.11.0',
+                '@inertiajs/inertia-vue3' => '^0.6.0',
+                '@inertiajs/progress' => '^0.2.7',
+                '@tailwindcss/forms' => '^0.5.3',
+                '@vitejs/plugin-vue' => '^4.0.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
+                'vue' => '^3.2.41',
+            ] + $packages;
         });
 
         // Controllers...
@@ -59,7 +59,7 @@ trait InstallsInertiaStacks
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
 
-        if (!$this->option('dark')) {
+        if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
                 ->name('*.vue')
@@ -113,14 +113,14 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/server' => '^0.1.0',
-                    '@vue/server-renderer' => '^3.2.31',
-                ] + $packages;
+                '@inertiajs/server' => '^0.1.0',
+                '@vue/server-renderer' => '^3.2.31',
+            ] + $packages;
         });
 
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
         $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js'," . PHP_EOL . "            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
-        $this->replaceInFile('});', '    ssr: {' . PHP_EOL . "        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },' . PHP_EOL . '});', base_path('vite.config.js'));
+        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },'.PHP_EOL.'});', base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
@@ -130,7 +130,7 @@ trait InstallsInertiaStacks
 
         $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
-        $this->replaceInFile('/node_modules', '/bootstrap/ssr' . PHP_EOL . '/node_modules', base_path('.gitignore'));
+        $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
 
     /**
@@ -150,16 +150,16 @@ trait InstallsInertiaStacks
                 '@inertiajs/inertia-vue3' => '^0.6.0',
                 '@inertiajs/progress' => '^0.2.7',
                 '@tailwindcss/forms' => '^0.5.3',
-                "@types/lodash" => "^4.14.191",
-                "@types/ziggy-js" => "^1.3.2",
+                "@types/lodash" => '^4.14.191',
+                "@types/ziggy-js" => '^1.3.2',
                 '@vitejs/plugin-vue' => '^4.0.0',
                 'autoprefixer' => '^10.4.12',
                 'ziggy-js' => '^1.5.0',
                 'postcss' => '^8.4.18',
                 'tailwindcss' => '^3.2.1',
-                "typescript" => "^4.8.4",
+                "typescript" => '^4.8.4',
                 'vue' => '^3.2.41',
-                "vue-tsc" => "^1.0.9"
+                "vue-tsc" => '^1.0.9'
             ] + $packages;
         });
 
@@ -191,7 +191,7 @@ trait InstallsInertiaStacks
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Pages', resource_path('js/Pages'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Types', resource_path('js/Types'));
 
-        if (!$this->option('dark')) {
+        if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
                 ->name('*.vue')
@@ -225,8 +225,12 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/inertia.d.ts', resource_path('js/inertia.d.ts'));
         copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/vite-env.d.ts', resource_path('js/vite-env.d.ts'));
 
-        if (file_exists(resource_path('js/app.js'))) unlink(resource_path('js/app.js'));
-        if (file_exists(resource_path('js/bootstrap.js'))) unlink(resource_path('js/bootstrap.js'));
+        if (file_exists(resource_path('js/app.js'))) {
+            unlink(resource_path('js/app.js'));
+        }
+        if (file_exists(resource_path('js/bootstrap.js'))) {
+            unlink(resource_path('js/bootstrap.js'));
+        }
 
         if ($this->option('ssr')) {
             $this->installInertiaVueSsrTsStack();
@@ -262,15 +266,19 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/server' => '^0.1.0',
-                    '@vue/server-renderer' => '^3.2.31',
-                ] + $packages;
+                '@inertiajs/server' => '^0.1.0',
+                '@vue/server-renderer' => '^3.2.31',
+            ] + $packages;
         });
 
         copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.ts', resource_path('js/ssr.ts'));
-        if (file_exists(resource_path('js/ssr.js'))) unlink(resource_path('js/ssr.js'));
+
+        if (file_exists(resource_path('js/ssr.js'))) {
+            unlink(resource_path('js/ssr.js'));
+        }
+
         $this->replaceInFile("input: 'resources/js/app.ts',", "input: 'resources/js/app.ts'," . PHP_EOL . "            ssr: 'resources/js/ssr.ts',", base_path('vite.config.js'));
-        $this->replaceInFile('});', '    ssr: {' . PHP_EOL . "        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },' . PHP_EOL . '});', base_path('vite.config.js'));
+        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },'.PHP_EOL.'});', base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
@@ -280,7 +288,7 @@ trait InstallsInertiaStacks
 
         $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));
         $this->replaceInFile('vite build', 'vue-tsc && vite build && vite build --ssr', base_path('package.json'));
-        $this->replaceInFile('/node_modules', '/bootstrap/ssr' . PHP_EOL . '/node_modules', base_path('.gitignore'));
+        $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
 
     /**
@@ -296,18 +304,18 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@headlessui/react' => '^1.4.2',
-                    '@inertiajs/inertia' => '^0.11.0',
-                    '@inertiajs/inertia-react' => '^0.8.1',
-                    '@inertiajs/progress' => '^0.2.6',
-                    '@tailwindcss/forms' => '^0.5.3',
-                    '@vitejs/plugin-react' => '^3.0.0',
-                    'autoprefixer' => '^10.4.12',
-                    'postcss' => '^8.4.18',
-                    'tailwindcss' => '^3.2.1',
-                    'react' => '^18.2.0',
-                    'react-dom' => '^18.2.0',
-                ] + $packages;
+                '@headlessui/react' => '^1.4.2',
+                '@inertiajs/inertia' => '^0.11.0',
+                '@inertiajs/inertia-react' => '^0.8.1',
+                '@inertiajs/progress' => '^0.2.6',
+                '@tailwindcss/forms' => '^0.5.3',
+                '@vitejs/plugin-react' => '^3.0.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
+                'react' => '^18.2.0',
+                'react-dom' => '^18.2.0',
+            ] + $packages;
         });
 
         // Controllers...
@@ -336,7 +344,7 @@ trait InstallsInertiaStacks
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
 
-        if (!$this->option('dark')) {
+        if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
                 ->name('*.jsx')
@@ -396,13 +404,13 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/server' => '^0.1.0',
-                ] + $packages;
+                '@inertiajs/server' => '^0.1.0',
+            ] + $packages;
         });
 
         copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
         $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx'," . PHP_EOL . "            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
-        $this->replaceInFile('});', '    ssr: {' . PHP_EOL . "        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },' . PHP_EOL . '});', base_path('vite.config.js'));
+        $this->replaceInFile('});', '    ssr: {'.PHP_EOL."        noExternal: ['@inertiajs/server']," . PHP_EOL . '    },'.PHP_EOL.'});', base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
             ->setTimeout(null)
@@ -412,6 +420,6 @@ trait InstallsInertiaStacks
 
         $this->replaceInFile("'enabled' => false", "'enabled' => true", config_path('inertia.php'));
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
-        $this->replaceInFile('/node_modules', '/bootstrap/ssr' . PHP_EOL . '/node_modules', base_path('.gitignore'));
+        $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
 }
