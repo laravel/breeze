@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.16.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.16.1...1.x)
+
+## [v1.16.1](https://github.com/laravel/breeze/compare/v1.16.0...v1.16.1) - 2022-12-19
+
+### Fixed
+
+- Remove unused vue imports by @dillingham in https://github.com/laravel/breeze/pull/231
+- Renamed isFocused prop on TextInput component by @drewmw5 in https://github.com/laravel/breeze/pull/232
 
 ## [v1.16.0](https://github.com/laravel/breeze/compare/v1.15.4...v1.16.0) - 2022-12-16
 
