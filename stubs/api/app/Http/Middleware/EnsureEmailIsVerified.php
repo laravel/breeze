@@ -4,18 +4,17 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class EnsureEmailIsVerified
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $redirectToRoute
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|null
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next, $redirectToRoute = null)
+    public function handle(Request $request, Closure $next, string $redirectToRoute = null): Response
     {
         if (! $request->user() ||
             ($request->user() instanceof MustVerifyEmail &&
