@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.16.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.17.0...1.x)
+
+## [v1.17.0](https://github.com/laravel/breeze/compare/v1.16.1...v1.17.0) - 2023-01-03
+
+### Changed
+
+- Uses PHP Native Type Declarations 🐘  by @nunomaduro in https://github.com/laravel/breeze/pull/201
 
 ## [v1.16.1](https://github.com/laravel/breeze/compare/v1.16.0...v1.16.1) - 2022-12-19
 
