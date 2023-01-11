@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use RuntimeException;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -19,7 +21,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue,api)}
+    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,react,vue,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
@@ -34,13 +36,20 @@ class InstallCommand extends Command
     protected $description = 'Install the Breeze controllers and resources';
 
     /**
+     * The available stacks.
+     *
+     * @var array<int, string>
+     */
+    protected $stacks = ['blade', 'react', 'vue', 'api'];
+
+    /**
      * Execute the console command.
      *
      * @return int|null
      */
     public function handle()
     {
-        if ($this->option('inertia') || $this->argument('stack') === 'vue') {
+        if ($this->argument('stack') === 'vue') {
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
@@ -53,6 +62,34 @@ class InstallCommand extends Command
         $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
 
         return 1;
+    }
+
+    /**
+     * Interact with the user to prompt them when the stack argument is missing.
+     *
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return void
+     */
+    protected function interact(InputInterface $input, OutputInterface $output)
+    {
+        if ($this->argument('stack') === null && $this->option('inertia')) {
+            $input->setArgument('stack', 'vue');
+        }
+
+        if ($this->argument('stack')) {
+            return;
+        }
+
+        $input->setArgument('stack', $this->choice('Which stack would you like to install?', $this->stacks));
+
+        $input->setOption('dark', $this->confirm('Would you like to install dark mode support?'));
+
+        if (in_array($input->getArgument('stack'), ['vue', 'react'])) {
+            $input->setOption('ssr', $this->confirm('Would you like to install Inertia SSR support?'));
+        }
+
+        $input->setOption('pest', $this->confirm('Would you prefer Pest tests instead of PHPUnit?'));
     }
 
     /**
