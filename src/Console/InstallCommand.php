@@ -81,15 +81,15 @@ class InstallCommand extends Command
             return;
         }
 
-        $input->setArgument('stack', $this->choice('Which stack would you like to install?', $this->stacks));
+        $input->setArgument('stack', $this->components->choice('Which stack would you like to install?', $this->stacks));
 
-        $input->setOption('dark', $this->confirm('Would you like to install dark mode support?'));
+        $input->setOption('dark', $this->components->confirm('Would you like to install dark mode support?'));
 
         if (in_array($input->getArgument('stack'), ['vue', 'react'])) {
-            $input->setOption('ssr', $this->confirm('Would you like to install Inertia SSR support?'));
+            $input->setOption('ssr', $this->components->confirm('Would you like to install Inertia SSR support?'));
         }
 
-        $input->setOption('pest', $this->confirm('Would you prefer Pest tests instead of PHPUnit?'));
+        $input->setOption('pest', $this->components->confirm('Would you prefer Pest tests instead of PHPUnit?'));
     }
 
     /**
