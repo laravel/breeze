@@ -17,6 +17,7 @@ jobs:
       fail-fast: true
       matrix:
         stack: [blade, react, vue, api]
+        laravel: [^9, 10.x-dev]
         args: [null, --pest]
         include:
           - stack: vue
@@ -24,7 +25,7 @@ jobs:
           - stack: react
             args: --ssr
 
-    name: Test Stubs - ${{ matrix.stack }} ${{ matrix.args }}
+    name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
 
     steps:
       - name: Setup PHP
@@ -38,7 +39,7 @@ jobs:
 
       - name: Setup Laravel
         run: |
-          composer create-project laravel/laravel:^9 .
+          composer create-project laravel/laravel:${{ matrix.laravel }} .
           composer require laravel/breeze:* --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
 

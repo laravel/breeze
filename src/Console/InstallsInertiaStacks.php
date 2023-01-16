@@ -11,12 +11,14 @@ trait InstallsInertiaStacks
     /**
      * Install the Inertia Vue Breeze stack.
      *
-     * @return void
+     * @return int|null
      */
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^2.8', 'tightenco/ziggy:^1.0');
+        if (! $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^1.0')) {
+            return 1;
+        }
 
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -136,12 +138,14 @@ trait InstallsInertiaStacks
     /**
      * Install the Inertia React Breeze stack.
      *
-     * @return void
+     * @return int|null
      */
     protected function installInertiaReactStack()
     {
         // Install Inertia...
-        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^2.8', 'tightenco/ziggy:^1.0');
+        if (! $this->requireComposerPackages('inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^1.0')) {
+            return 1;
+        }
 
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
