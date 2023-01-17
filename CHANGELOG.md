@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.17.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.0...1.x)
+
+## [v1.18.0](https://github.com/laravel/breeze/compare/v1.17.0...v1.18.0) - 2023-01-18
+
+### Added
+
+- Laravel v10 Support by @driesvints in https://github.com/laravel/breeze/pull/235
+- Inertia v1 Support by @jessarcher in https://github.com/laravel/breeze/pull/238
+
+### Changed
+
+- Prompt when the stack argument is not provided by @jessarcher in https://github.com/laravel/breeze/pull/236
+- Use Illuminate console components for prompting by @jessarcher in https://github.com/laravel/breeze/pull/237
 
 ## [v1.17.0](https://github.com/laravel/breeze/compare/v1.16.1...v1.17.0) - 2023-01-03
 
