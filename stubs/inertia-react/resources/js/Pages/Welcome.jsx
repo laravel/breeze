@@ -1,4 +1,4 @@
-import { Link, Head } from '@inertiajs/inertia-react';
+import { Link, Head } from '@inertiajs/react';
 
 export default function Welcome(props) {
     return (

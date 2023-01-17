@@ -2,13 +2,13 @@
 import { computed } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
     status: String,
 });
 
-const form = useForm();
+const form = useForm({});
 
 const submit = () => {
     form.post(route('verification.send'));
