@@ -91,6 +91,8 @@ trait InstallsInertiaStacks
             $this->installInertiaVueSsrStack();
         }
 
+        $this->components->info('Installing and building Node dependencies.');
+
         if (file_exists(base_path('pnpm-lock.yaml'))) {
             $this->runCommands(['pnpm install', 'pnpm run build']);
         } elseif (file_exists(base_path('yarn.lock'))) {
@@ -213,6 +215,8 @@ trait InstallsInertiaStacks
         if ($this->option('ssr')) {
             $this->installInertiaReactSsrStack();
         }
+
+        $this->components->info('Installing and building Node dependencies.');
 
         if (file_exists(base_path('pnpm-lock.yaml'))) {
             $this->runCommands(['pnpm install', 'pnpm run build']);
