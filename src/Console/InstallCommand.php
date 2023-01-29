@@ -49,6 +49,10 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        if (static::hasMacro($this->argument('stack'))) {
+            return call_user_func(static::$macros[$this->argument('stack')], $this);
+        }
+
         if ($this->argument('stack') === 'vue') {
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
@@ -71,7 +75,7 @@ class InstallCommand extends Command
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @return void
      */
-    protected function interact(InputInterface $input, OutputInterface $output)
+    public function interact(InputInterface $input, OutputInterface $output)
     {
         if ($this->argument('stack') === null && $this->option('inertia')) {
             $input->setArgument('stack', 'vue');
@@ -97,7 +101,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function installTests()
+    public function installTests()
     {
         (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature'));
 
@@ -122,7 +126,7 @@ class InstallCommand extends Command
      * @param  string  $group
      * @return void
      */
-    protected function installMiddlewareAfter($after, $name, $group = 'web')
+    public function installMiddlewareAfter($after, $name, $group = 'web')
     {
         $httpKernel = file_get_contents(app_path('Http/Kernel.php'));
 
@@ -150,7 +154,7 @@ class InstallCommand extends Command
      * @param  mixed  $packages
      * @return bool
      */
-    protected function requireComposerPackages($packages)
+    public function requireComposerPackages($packages)
     {
         $composer = $this->option('composer');
 
@@ -177,7 +181,7 @@ class InstallCommand extends Command
      * @param  bool  $dev
      * @return void
      */
-    protected static function updateNodePackages(callable $callback, $dev = true)
+    public static function updateNodePackages(callable $callback, $dev = true)
     {
         if (! file_exists(base_path('package.json'))) {
             return;
@@ -205,7 +209,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected static function flushNodeModules()
+    public static function flushNodeModules()
     {
         tap(new Filesystem, function ($files) {
             $files->deleteDirectory(base_path('node_modules'));
@@ -223,7 +227,7 @@ class InstallCommand extends Command
      * @param  string  $path
      * @return void
      */
-    protected function replaceInFile($search, $replace, $path)
+    public function replaceInFile($search, $replace, $path)
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
     }
@@ -233,7 +237,7 @@ class InstallCommand extends Command
      *
      * @return string
      */
-    protected function phpBinary()
+    public function phpBinary()
     {
         return (new PhpExecutableFinder())->find(false) ?: 'php';
     }
@@ -244,7 +248,7 @@ class InstallCommand extends Command
      * @param  array  $commands
      * @return void
      */
-    protected function runCommands($commands)
+    public function runCommands($commands)
     {
         $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
 
@@ -267,7 +271,7 @@ class InstallCommand extends Command
      * @param  \Symfony\Component\Finder\Finder  $finder
      * @return void
      */
-    protected function removeDarkClasses(Finder $finder)
+    public function removeDarkClasses(Finder $finder)
     {
         foreach ($finder as $file) {
             file_put_contents($file->getPathname(), preg_replace('/\sdark:[^\s"\']+/', '', $file->getContents()));
