@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.1...1.x)
+
+## [v1.18.1](https://github.com/laravel/breeze/compare/v1.18.0...v1.18.1) - 2023-01-31
+
+### Changed
+
+- Inform user of dependency install process by @itxshakil in https://github.com/laravel/breeze/pull/241
+
+### Fixed
+
+- Update nav menu dark text to be consistent with nav link by @RhysLees in https://github.com/laravel/breeze/pull/239
 
 ## [v1.18.0](https://github.com/laravel/breeze/compare/v1.17.0...v1.18.0) - 2023-01-18
 
