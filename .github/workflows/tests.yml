@@ -40,7 +40,7 @@ jobs:
       - name: Setup Laravel
         run: |
           composer create-project laravel/laravel:${{ matrix.laravel }} .
-          composer require laravel/breeze:* --no-interaction --no-update
+          composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
 
       - name: Checkout code
