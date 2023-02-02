@@ -95,6 +95,7 @@ export default function Register() {
                         name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
+                        autoComplete="new-password"
                         handleChange={onHandleChange}
                         required
                     />
