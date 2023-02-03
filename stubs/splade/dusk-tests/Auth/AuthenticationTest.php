@@ -17,6 +17,7 @@ class AuthenticationTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->logout()
                 ->visit('/login')
+                ->waitForInput('email')
                 ->assertInputPresent('email')
                 ->assertInputPresent('password');
         });
@@ -29,6 +30,7 @@ class AuthenticationTest extends DuskTestCase
 
             $browser->logout()
                 ->visit('/login')
+                ->waitForInput('email')
                 ->type('email', $user->email)
                 ->type('password', 'password')
                 ->press('Log in')
@@ -44,6 +46,7 @@ class AuthenticationTest extends DuskTestCase
 
             $browser->logout()
                 ->visit('/login')
+                ->waitForInput('email')
                 ->type('email', $user->email)
                 ->type('password', 'wrong-password')
                 ->press('Log in')

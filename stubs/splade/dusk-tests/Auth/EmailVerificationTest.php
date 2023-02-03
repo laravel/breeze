@@ -22,6 +22,7 @@ class EmailVerificationTest extends DuskTestCase
 
             $browser->loginAs($user)
                 ->visit('/verify-email')
+                ->waitForText('Thanks for signing up!')
                 ->assertSeeIn('button', 'Resend Verification Email');
         });
     }

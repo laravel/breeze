@@ -16,6 +16,7 @@ class RegistrationTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->logout()
                 ->visit('/register')
+                ->waitForInput('name')
                 ->assertInputPresent('name')
                 ->assertInputPresent('email')
                 ->assertInputPresent('password')
@@ -28,6 +29,7 @@ class RegistrationTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->logout()
                 ->visit('/register')
+                ->waitForInput('name')
                 ->type('name', 'Test User')
                 ->type('email', 'test@example.com')
                 ->type('password', 'password')

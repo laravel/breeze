@@ -19,6 +19,7 @@ class PasswordConfirmationTest extends DuskTestCase
 
             $browser->loginAs($user)
                 ->visit('/confirm-password')
+                ->waitForText('Please confirm your password before continuing.')
                 ->assertInputPresent('password');
         });
     }
@@ -30,6 +31,7 @@ class PasswordConfirmationTest extends DuskTestCase
 
             $browser->loginAs($user)
                 ->visit('/confirm-password')
+                ->waitForText('Please confirm your password before continuing.')
                 ->type('password', 'password')
                 ->press('Confirm')
                 ->waitForLocation(RouteServiceProvider::HOME)
@@ -44,6 +46,7 @@ class PasswordConfirmationTest extends DuskTestCase
 
             $browser->loginAs($user)
                 ->visit('/confirm-password')
+                ->waitForText('Please confirm your password before continuing.')
                 ->type('password', 'wrong-password')
                 ->press('Confirm')
                 ->waitForText('The provided password is incorrect.')

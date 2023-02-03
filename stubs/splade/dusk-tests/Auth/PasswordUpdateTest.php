@@ -19,6 +19,7 @@ class PasswordUpdateTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Update Password')
                 ->within('@update-password', function (Browser $browser) {
                     $browser->type('current_password', 'password')
                         ->type('password', 'new-password')
@@ -38,6 +39,7 @@ class PasswordUpdateTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Update Password')
                 ->within('@update-password', function (Browser $browser) {
                     $browser->type('current_password', 'wrong-password')
                         ->type('password', 'new-password')

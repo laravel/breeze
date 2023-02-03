@@ -18,6 +18,7 @@ class ProfileTest extends DuskTestCase
 
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Profile Information')
                 ->assertInputPresent('current_password');
         });
     }
@@ -29,6 +30,7 @@ class ProfileTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Profile Information')
                 ->within('@update-profile-information', function (Browser $browser) {
                     $browser->type('name', 'Test User')
                         ->type('email', 'test@example.com')
@@ -51,6 +53,7 @@ class ProfileTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Profile Information')
                 ->within('@update-profile-information', function (Browser $browser) use ($user) {
                     $browser->type('name', 'Test User')
                         ->type('email', $user->email)
@@ -71,16 +74,17 @@ class ProfileTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/profile')
+                ->waitForText('Delete Account')
                 ->scrollTo('@delete-user')
-                ->click('@open-delete-modal')
-                ->waitFor('@confirm-user-deletion')
-                ->within('@confirm-user-deletion', function (Browser $browser) {
-                    $browser->waitForText('Are you sure')
+                ->press('Delete Account')
+                ->waitForText('Are you sure you want to delete your account?')
+                ->within('#headlessui-portal-root', function (Browser $browser) {
+                    $browser
                         ->type('password', 'wrong_password')
-                        ->press('@confirm-delete-account')
-                        ->waitForText('The password is incorrect.')
+                        ->press('Delete Account')
+                        ->waitForText('The provided password is incorrect.')
                         ->type('password', 'password')
-                        ->press('@confirm-delete-account')
+                        ->press('Delete Account')
                         ->waitForLocation('/')
                         ->assertGuest();
                 });
