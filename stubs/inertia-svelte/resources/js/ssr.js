@@ -9,4 +9,4 @@ createServer((page) =>
       return pages[`./Pages/${name}.svelte`];
     },
   }),
-)
+);
