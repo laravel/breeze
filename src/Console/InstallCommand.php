@@ -21,7 +21,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,react,vue,api)}
+    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,react,vue,svelte,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
@@ -40,7 +40,7 @@ class InstallCommand extends Command
      *
      * @var array<int, string>
      */
-    protected $stacks = ['blade', 'react', 'vue', 'api'];
+    protected $stacks = ['blade', 'react', 'vue', 'svelte', 'api'];
 
     /**
      * Execute the console command.
@@ -53,13 +53,15 @@ class InstallCommand extends Command
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
+        } elseif ($this->argument('stack') === 'svelte') {
+            return $this->installInertiaSvelteStack();
         } elseif ($this->argument('stack') === 'api') {
             return $this->installApiStack();
         } elseif ($this->argument('stack') === 'blade') {
             return $this->installBladeStack();
         }
 
-        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
+        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], [svelte] and [api].');
 
         return 1;
     }
@@ -85,7 +87,7 @@ class InstallCommand extends Command
 
         $input->setOption('dark', $this->components->confirm('Would you like to install dark mode support?'));
 
-        if (in_array($input->getArgument('stack'), ['vue', 'react'])) {
+        if (in_array($input->getArgument('stack'), ['vue', 'react', 'svelte'])) {
             $input->setOption('ssr', $this->components->confirm('Would you like to install Inertia SSR support?'));
         }
 
