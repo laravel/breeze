@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.2...1.x)
+
+## [v1.18.2](https://github.com/laravel/breeze/compare/v1.18.1...v1.18.2) - 2023-02-02
+
+### Changed
+
+- Use autocomplete for all fields for password manager compatibility by @lukearmstrong in https://github.com/laravel/breeze/pull/245
 
 ## [v1.18.1](https://github.com/laravel/breeze/compare/v1.18.0...v1.18.1) - 2023-01-31
 
