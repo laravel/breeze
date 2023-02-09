@@ -62,7 +62,7 @@ jobs:
         run: npm run build
 
       - name: Execute tests
-        run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }} --verbose
+        run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }}
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
