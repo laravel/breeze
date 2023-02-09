@@ -9,7 +9,7 @@ trait InstallsApiStack
     /**
      * Install the API Breeze stack.
      *
-     * @return void
+     * @return int|null
      */
     protected function installApiStack()
     {
@@ -63,7 +63,9 @@ trait InstallsApiStack
         );
 
         // Tests...
-        $this->installTests();
+        if (! $this->installTests()) {
+            return 1;
+        }
 
         $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
 

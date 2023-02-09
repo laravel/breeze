@@ -95,7 +95,7 @@ class InstallCommand extends Command
     /**
      * Install Breeze's tests.
      *
-     * @return void
+     * @return bool
      */
     protected function installTests()
     {
@@ -104,7 +104,9 @@ class InstallCommand extends Command
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
         if ($this->option('pest')) {
-            $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1');
+            if (! $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1')) {
+                return false;
+            }
 
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
@@ -112,6 +114,8 @@ class InstallCommand extends Command
         } else {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature'));
         }
+
+        return true;
     }
 
     /**
@@ -163,11 +167,11 @@ class InstallCommand extends Command
             is_array($packages) ? $packages : func_get_args()
         );
 
-        return ! (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
+        return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
             ->setTimeout(null)
             ->run(function ($type, $output) {
                 $this->output->write($output);
-            });
+            }) === 0;
     }
 
     /**
