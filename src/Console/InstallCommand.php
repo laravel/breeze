@@ -104,7 +104,8 @@ class InstallCommand extends Command
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
         if ($this->option('pest')) {
-            $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1');
+            $this->removeComposerPackages(['nunomaduro/collision', 'phpunit/phpunit'], true);
+            $this->requireComposerPackages(['nunomaduro/collision:^6.4', 'pestphp/pest:^1.22', 'pestphp/pest-plugin-laravel:^1.2'], true);
 
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
@@ -145,12 +146,41 @@ class InstallCommand extends Command
     }
 
     /**
-     * Installs the given Composer Packages into the application.
+     * Removes the given Composer Packages from the application.
      *
-     * @param  mixed  $packages
+     * @param  array  $packages
+     * @param  bool  $asDev
      * @return bool
      */
-    protected function requireComposerPackages($packages)
+    protected function removeComposerPackages($packages, $asDev)
+    {
+        $composer = $this->option('composer');
+
+        if ($composer !== 'global') {
+            $command = ['php', $composer, 'require'];
+        }
+
+        $command = array_merge(
+            $command ?? ['composer', 'remove',
+            $packages,
+            $asDev ? ['--dev'] : [],
+        );
+
+        return ! (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            });
+    }
+
+    /**
+     * Installs the given Composer Packages into the application.
+     *
+     * @param  array  $packages
+     * @param  bool  $asDev
+     * @return bool
+     */
+    protected function requireComposerPackages($packages, $asDev)
     {
         $composer = $this->option('composer');
 
@@ -160,7 +190,8 @@ class InstallCommand extends Command
 
         $command = array_merge(
             $command ?? ['composer', 'require'],
-            is_array($packages) ? $packages : func_get_args()
+            $packages,
+            $asDev ? ['--dev'] : [],
         );
 
         return ! (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
