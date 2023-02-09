@@ -10,7 +10,7 @@ trait InstallsBladeStack
     /**
      * Install the Blade Breeze stack.
      *
-     * @return void
+     * @return int|null
      */
     protected function installBladeStack()
     {
@@ -50,7 +50,9 @@ trait InstallsBladeStack
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/View/Components', app_path('View/Components'));
 
         // Tests...
-        $this->installTests();
+        if (! $this->installTests()) {
+            return 1;
+        }
 
         // Routes...
         copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
