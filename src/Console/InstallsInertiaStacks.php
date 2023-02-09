@@ -70,7 +70,7 @@ trait InstallsInertiaStacks
         if (! $this->installTests()) {
             return 1;
         }
-        
+
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
 
         // Routes...
