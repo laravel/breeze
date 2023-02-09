@@ -10,7 +10,7 @@ trait InstallsBladeStack
     /**
      * Install the Blade Breeze stack.
      *
-     * @return void
+     * @return int|null
      */
     protected function installBladeStack()
     {
