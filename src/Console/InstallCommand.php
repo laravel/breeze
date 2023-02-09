@@ -161,7 +161,7 @@ class InstallCommand extends Command
         }
 
         $command = array_merge(
-            $command ?? ['composer', 'remove',
+            $command ?? ['composer', 'remove'],
             $packages,
             $asDev ? ['--dev'] : [],
         );
