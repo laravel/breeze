@@ -157,7 +157,7 @@ class InstallCommand extends Command
      * @param  bool  $asDev
      * @return bool
      */
-    protected function removeComposerPackages($packages, $asDev = false)
+    protected function removeComposerPackages(array $packages, $asDev = false)
     {
         $composer = $this->option('composer');
 
@@ -185,7 +185,7 @@ class InstallCommand extends Command
      * @param  bool  $asDev
      * @return bool
      */
-    protected function requireComposerPackages($packages, $asDev = false)
+    protected function requireComposerPackages(array $packages, $asDev = false)
     {
         $composer = $this->option('composer');
 
