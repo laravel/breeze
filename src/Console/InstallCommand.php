@@ -151,34 +151,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * Removes the given Composer Packages from the application.
-     *
-     * @param  array  $packages
-     * @param  bool  $asDev
-     * @return bool
-     */
-    protected function removeComposerPackages(array $packages, $asDev = false)
-    {
-        $composer = $this->option('composer');
-
-        if ($composer !== 'global') {
-            $command = ['php', $composer, 'require'];
-        }
-
-        $command = array_merge(
-            $command ?? ['composer', 'remove'],
-            $packages,
-            $asDev ? ['--dev'] : [],
-        );
-
-        return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
-            ->setTimeout(null)
-            ->run(function ($type, $output) {
-                $this->output->write($output);
-            }) === 0;
-    }
-
-    /**
      * Installs the given Composer Packages into the application.
      *
      * @param  array  $packages
@@ -195,6 +167,34 @@ class InstallCommand extends Command
 
         $command = array_merge(
             $command ?? ['composer', 'require'],
+            $packages,
+            $asDev ? ['--dev'] : [],
+        );
+
+        return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            }) === 0;
+    }
+
+    /**
+     * Removes the given Composer Packages from the application.
+     *
+     * @param  array  $packages
+     * @param  bool  $asDev
+     * @return bool
+     */
+    protected function removeComposerPackages(array $packages, $asDev = false)
+    {
+        $composer = $this->option('composer');
+
+        if ($composer !== 'global') {
+            $command = ['php', $composer, 'remove'];
+        }
+
+        $command = array_merge(
+            $command ?? ['composer', 'remove'],
             $packages,
             $asDev ? ['--dev'] : [],
         );
