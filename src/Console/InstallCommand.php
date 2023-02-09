@@ -95,7 +95,7 @@ class InstallCommand extends Command
     /**
      * Install Breeze's tests.
      *
-     * @return void
+     * @return bool
      */
     protected function installTests()
     {
@@ -105,7 +105,10 @@ class InstallCommand extends Command
 
         if ($this->option('pest')) {
             $this->removeComposerPackages(['nunomaduro/collision', 'phpunit/phpunit'], true);
-            $this->requireComposerPackages(['nunomaduro/collision:^6.4', 'pestphp/pest:^1.22', 'pestphp/pest-plugin-laravel:^1.2'], true);
+
+            if (! $this->requireComposerPackages(['nunomaduro/collision:^6.4', 'pestphp/pest:^1.22', 'pestphp/pest-plugin-laravel:^1.2'], true)) {
+                return false;
+            }
 
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
@@ -113,6 +116,8 @@ class InstallCommand extends Command
         } else {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature'));
         }
+
+        return true;
     }
 
     /**
@@ -194,11 +199,11 @@ class InstallCommand extends Command
             $asDev ? ['--dev'] : [],
         );
 
-        return ! (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
+        return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
             ->setTimeout(null)
             ->run(function ($type, $output) {
                 $this->output->write($output);
-            });
+            }) === 0;
     }
 
     /**
