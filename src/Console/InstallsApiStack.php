@@ -21,6 +21,11 @@ trait InstallsApiStack
 
         // Middleware...
         $files->copyDirectory(__DIR__.'/../../stubs/api/app/Http/Middleware', app_path('Http/Middleware'));
+        $this->replaceInFile(
+            "if (Auth::guard(\$guard)->check()) {",
+            "if (Auth::guard(\$guard)->check() && !\$request->wantsJson()) {",
+            app_path('Http/Middleware/RedirectIfAuthenticated.php')
+        );
 
         $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
 
