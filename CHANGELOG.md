@@ -1,6 +1,23 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.18.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.0...1.x)
+
+## [v1.19.0](https://github.com/laravel/breeze/compare/v1.18.2...v1.19.0) - 2023-02-14
+
+### Changed
+
+- Clean up route definition for Single Action Controllers by @istiak-tridip in https://github.com/laravel/breeze/pull/249
+- Add translation to placeholder in delete-user-form.blade.php by @castrohenworx in https://github.com/laravel/breeze/pull/250
+- Allowed a hardcoded string to be localized by @Wendelstein7 in https://github.com/laravel/breeze/pull/254
+- Update font and welcome page by @jessarcher in https://github.com/laravel/breeze/pull/253
+
+### Fixed
+
+- Allows to install `--pest` in Laravel 10 by @driesvints in https://github.com/laravel/breeze/pull/251
+
+### Removed
+
+- Remove unused files from stubs by @emargareten in https://github.com/laravel/breeze/pull/255
 
 ## [v1.18.2](https://github.com/laravel/breeze/compare/v1.18.1...v1.18.2) - 2023-02-02
 
