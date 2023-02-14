@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.1...1.x)
+
+## [v1.19.1](https://github.com/laravel/breeze/compare/v1.19.0...v1.19.1) - 2023-02-14
+
+### Changed
+
+- Remove link
 
 ## [v1.19.0](https://github.com/laravel/breeze/compare/v1.18.2...v1.19.0) - 2023-02-14
 
