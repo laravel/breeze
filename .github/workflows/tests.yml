@@ -22,8 +22,10 @@ jobs:
         include:
           - stack: vue
             args: --ssr
+            laravel: 10
           - stack: react
             args: --ssr
+            laravel: 10
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
 
