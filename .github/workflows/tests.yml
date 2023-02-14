@@ -18,7 +18,7 @@ jobs:
       matrix:
         stack: [blade, react, vue, api]
         laravel: [9, 10]
-        args: [null, --pest]
+        args: ["", --pest]
         include:
           - stack: vue
             args: --ssr
