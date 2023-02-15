@@ -48,13 +48,13 @@ export default function UpdatePasswordForm({ className }) {
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel for="current_password" value="Current Password" />
+                    <InputLabel htmlFor="current_password" value="Current Password" />
 
                     <TextInput
                         id="current_password"
                         ref={currentPasswordInput}
                         value={data.current_password}
-                        handleChange={(e) => setData('current_password', e.target.value)}
+                        onChange={(e) => setData('current_password', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
                         autoComplete="current-password"
@@ -64,13 +64,13 @@ export default function UpdatePasswordForm({ className }) {
                 </div>
 
                 <div>
-                    <InputLabel for="password" value="New Password" />
+                    <InputLabel htmlFor="password" value="New Password" />
 
                     <TextInput
                         id="password"
                         ref={passwordInput}
                         value={data.password}
-                        handleChange={(e) => setData('password', e.target.value)}
+                        onChange={(e) => setData('password', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
                         autoComplete="new-password"
@@ -80,12 +80,12 @@ export default function UpdatePasswordForm({ className }) {
                 </div>
 
                 <div>
-                    <InputLabel for="password_confirmation" value="Confirm Password" />
+                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
                     <TextInput
                         id="password_confirmation"
                         value={data.password_confirmation}
-                        handleChange={(e) => setData('password_confirmation', e.target.value)}
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
                         type="password"
                         className="mt-1 block w-full"
                         autoComplete="new-password"
@@ -95,7 +95,7 @@ export default function UpdatePasswordForm({ className }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton processing={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}

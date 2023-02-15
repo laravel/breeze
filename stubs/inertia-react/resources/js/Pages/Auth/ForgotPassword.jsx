@@ -38,13 +38,13 @@ export default function ForgotPassword({ status }) {
                     value={data.email}
                     className="mt-1 block w-full"
                     isFocused={true}
-                    handleChange={onHandleChange}
+                    onChange={onHandleChange}
                 />
 
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="flex items-center justify-end mt-4">
-                    <PrimaryButton className="ml-4" processing={processing}>
+                    <PrimaryButton className="ml-4" disabled={processing}>
                         Email Password Reset Link
                     </PrimaryButton>
                 </div>

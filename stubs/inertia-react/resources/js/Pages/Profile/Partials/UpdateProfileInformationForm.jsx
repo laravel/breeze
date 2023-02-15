@@ -31,13 +31,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel htmlFor="name" value="Name" />
 
                     <TextInput
                         id="name"
                         className="mt-1 block w-full"
                         value={data.name}
-                        handleChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData('name', e.target.value)}
                         required
                         isFocused
                         autoComplete="name"
@@ -47,14 +47,14 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel for="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
                         id="email"
                         type="email"
                         className="mt-1 block w-full"
                         value={data.email}
-                        handleChange={(e) => setData('email', e.target.value)}
+                        onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
                     />
@@ -85,7 +85,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton processing={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
