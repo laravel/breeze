@@ -4,16 +4,18 @@ on: [push, pull_request]
 
 jobs:
   stub-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: false
       matrix:
         php: [8.2, 8.1, 8.0]
-        laravel: [9.*]
-        dependency-version: [prefer-lowest, prefer-stable]
+        laravel: [10.0, 9.3]
+        exclude:
+          - php: 8.0
+          - laravel: 10.0
 
-    name: Test Stubs ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    name: Test Stubs P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
       - name: Setup PHP
@@ -25,12 +27,11 @@ jobs:
 
       - name: Setup Laravel
         run: |
-          composer create-project laravel/laravel:^9.3 .
+          composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require protonemedia/laravel-splade-breeze
 
-      - name: Remove installed Breeze (Unix)
+      - name: Remove installed Breeze
         run: rm -rf vendor/protonemedia/laravel-splade-breeze
-        if: matrix.os == 'ubuntu-latest'
 
       - name: Checkout code
         uses: actions/checkout@v2
