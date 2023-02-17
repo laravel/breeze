@@ -191,7 +191,11 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-vue-ts/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/app.ts', resource_path('js/app.ts'));
-        copy(__DIR__. '/../../stubs/inertia-vue-ts/resources/js/tsconfig.json', base_path('tsconfig.json'));
+        copy(__DIR__. '/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
+
+        if (file_exists(resource_path('js/app.js'))) {
+            unlink(resource_path('js/app.js'));
+        }
 
         if ($this->option('ssr')) {
             $this->installInertiaVueSsrTypescriptStack();
@@ -241,7 +245,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.js', resource_path('js/ssr.ts'));
+        copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.ts', resource_path('js/ssr.ts'));
         $this->replaceInFile("input: 'resources/js/app.ts',", "input: 'resources/js/app.ts',".PHP_EOL."            ssr: 'resources/js/ssr.ts',", base_path('vite.config.js'));
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
@@ -437,8 +441,8 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.jsx'));
-        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.jsx'));
+        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.tsx'));
+        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.tsx'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
@@ -447,16 +451,18 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-react-ts/vite.config.js', base_path('vite.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/app.jsx', resource_path('js/app.jsx'));
+        copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/app.tsx', resource_path('js/app.tsx'));
+        copy(__DIR__.'/../../stubs/inertia-react-ts/tsconfig.json', base_path('tsconfig.json'));
 
-        if (file_exists(resource_path('js/app.ts'))) {
+
+        if (file_exists(resource_path('js/app.js'))) {
             unlink(resource_path('js/app.js'));
         }
 
         $this->replaceInFile('.vue', '.tsx', base_path('tailwind.config.js'));
 
         if ($this->option('ssr')) {
-            $this->installInertiaReactSsrStack();
+            $this->installInertiaReactSsrTypescriptStack();
         }
 
         $this->components->info('Installing and building Node dependencies.');
@@ -477,7 +483,7 @@ trait InstallsInertiaStacks
      *
      * @return void
      */
-    protected function installInertiaReactSsTypescriptStack()
+    protected function installInertiaReactSsrTypescriptStack()
     {
         copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/ssr.tsx', resource_path('js/ssr.tsx'));
         $this->replaceInFile("input: 'resources/js/app.tsx',", "input: 'resources/js/app.tsx',".PHP_EOL."            ssr: 'resources/js/ssr.tsx',", base_path('vite.config.js'));
