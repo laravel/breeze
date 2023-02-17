@@ -26,6 +26,7 @@ class InstallCommand extends Command
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
+                            {--ts : Indicates if Typescript should be installed}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -87,6 +88,7 @@ class InstallCommand extends Command
 
         if (in_array($input->getArgument('stack'), ['vue', 'react'])) {
             $input->setOption('ssr', $this->components->confirm('Would you like to install Inertia SSR support?'));
+            $input->setOption('ts', $this->components->confirm('Would you like to install Typescript support? '));
         }
 
         $input->setOption('pest', $this->components->confirm('Would you prefer Pest tests instead of PHPUnit?'));
