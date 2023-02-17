@@ -51,9 +51,19 @@ class InstallCommand extends Command
     public function handle()
     {
         if ($this->argument('stack') === 'vue') {
-            return $this->installInertiaVueStack();
+            if ($this->option("ts"))
+            {
+                return $this->installInertiaVueTypescriptStack();
+            } else {
+                return $this->installInertiaVueStack();
+            }
         } elseif ($this->argument('stack') === 'react') {
-            return $this->installInertiaReactStack();
+            if ($this->option("ts"))
+            {
+                return $this->installInertiaReactTypescriptStack();
+            } else {
+                return $this->installInertiaReactStack();
+            }
         } elseif ($this->argument('stack') === 'api') {
             return $this->installApiStack();
         } elseif ($this->argument('stack') === 'blade') {
