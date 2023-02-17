@@ -26,6 +26,19 @@ jobs:
           - stack: react
             args: --ssr
             laravel: 10
+          - stack: vue
+            args: --ssr --ts
+            laravel: 10
+          - stack: react
+            args: --ssr --ts
+            laravel: 10
+          - stack: vue
+            args: --ts
+            laravel: 10
+          - stack: react
+            args: --ts
+            laravel: 10
+
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
 
