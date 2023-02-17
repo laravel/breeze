@@ -194,7 +194,7 @@ trait InstallsInertiaStacks
         copy(__DIR__. '/../../stubs/inertia-vue-ts/resources/js/tsconfig.json', base_path('tsconfig.json'));
 
         if ($this->option('ssr')) {
-            $this->installInertiaVueSsrStack();
+            $this->installInertiaVueSsrTypescriptStack();
         }
 
         $this->components->info('Installing and building Node dependencies.');
@@ -211,7 +211,7 @@ trait InstallsInertiaStacks
         $this->components->info('Breeze scaffolding installed successfully.');
     }
     /**
-     * Install the Inertia Vue SSR stack into the application.
+     * Install the Inertia Vue SSR stack into the application with Typescript.
      *
      * @return void
      */
