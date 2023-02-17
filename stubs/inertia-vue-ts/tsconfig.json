@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2020",
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "strict": true,                 // Enable strict type-checking options
+        "skipLibCheck": true,           // Skip type checking of declaration files
+        "noImplicitAny": false          // Bypass raising errors on `any` type
+    },
+    "include": ["resources/js/**/*"]  // Frontend paths pattern
+}
