@@ -107,6 +107,7 @@ trait InstallsInertiaStacks
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
     }
+
     /**
      * Install the Inertia Vue Typescript Breeze stack.
      *
@@ -122,15 +123,15 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/vue3' => '^1.0.0',
-                    '@tailwindcss/forms' => '^0.5.3',
-                    '@vitejs/plugin-vue' => '^4.0.0',
-                    'autoprefixer' => '^10.4.12',
-                    'postcss' => '^8.4.18',
-                    'tailwindcss' => '^3.2.1',
-                    'vue' => '^3.2.41',
-                    "typescript"=> "4.9.5",
-                ] + $packages;
+                '@inertiajs/vue3' => '^1.0.0',
+                '@tailwindcss/forms' => '^0.5.3',
+                '@vitejs/plugin-vue' => '^4.0.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
+                'vue' => '^3.2.41',
+                'typescript'=> '4.9.5',
+            ] + $packages;
         });
 
         // Controllers...
@@ -183,7 +184,6 @@ trait InstallsInertiaStacks
         $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.vue'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
-
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
@@ -191,7 +191,7 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-vue-ts/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/app.ts', resource_path('js/app.ts'));
-        copy(__DIR__. '/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
+        copy(__DIR__.'/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
 
         if (file_exists(resource_path('js/app.js'))) {
             unlink(resource_path('js/app.js'));
@@ -214,6 +214,7 @@ trait InstallsInertiaStacks
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
     }
+
     /**
      * Install the Inertia Vue SSR stack into the application with Typescript.
      *
@@ -223,8 +224,8 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@vue/server-renderer' => '^3.2.31',
-                ] + $packages;
+                '@vue/server-renderer' => '^3.2.31',
+            ] + $packages;
         });
 
         copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
@@ -232,6 +233,7 @@ trait InstallsInertiaStacks
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
+
     /**
      * Install the Inertia Vue SSR stack into the application.
      *
@@ -356,6 +358,7 @@ trait InstallsInertiaStacks
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
     }
+
     /**
      * Install the Inertia React SSR stack into the application.
      *
@@ -384,18 +387,18 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@headlessui/react' => '^1.4.2',
-                    '@inertiajs/react' => '^1.0.0',
-                    '@tailwindcss/forms' => '^0.5.3',
-                    '@vitejs/plugin-react' => '^3.0.0',
-                    'autoprefixer' => '^10.4.12',
-                    'postcss' => '^8.4.18',
-                    'tailwindcss' => '^3.2.1',
-                    'react' => '^18.2.0',
-                    'react-dom' => '^18.2.0',
-                    "typescript" => "4.9.5",
+                '@headlessui/react' => '^1.4.2',
+                '@inertiajs/react' => '^1.0.0',
+                '@tailwindcss/forms' => '^0.5.3',
+                '@vitejs/plugin-react' => '^3.0.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.18',
+                'tailwindcss' => '^3.2.1',
+                'react' => '^18.2.0',
+                'react-dom' => '^18.2.0',
+                'typescript' => '4.9.5',
 
-                ] + $packages;
+            ] + $packages;
         });
 
         // Controllers...
@@ -454,7 +457,6 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/app.tsx', resource_path('js/app.tsx'));
         copy(__DIR__.'/../../stubs/inertia-react-ts/tsconfig.json', base_path('tsconfig.json'));
 
-
         if (file_exists(resource_path('js/app.js'))) {
             unlink(resource_path('js/app.js'));
         }
@@ -478,6 +480,7 @@ trait InstallsInertiaStacks
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
     }
+
     /**
      * Install the Inertia React SSR stack with typescript into the application.
      *
