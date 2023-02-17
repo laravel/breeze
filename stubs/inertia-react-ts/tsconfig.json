@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
         "target": "es5",
+        "jsx": "react-jsx",
+        "types": ["vite/client"],
         "module": "es2020",
         "moduleResolution": "node",
-        "types": ["vite/client"],
         "baseUrl": "./",
         "strict": true,                 // Enable strict type-checking options
         "skipLibCheck": true,           // Skip type checking of declaration files
