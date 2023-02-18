@@ -36,6 +36,10 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers', app_path('Http/Controllers'));
 
+        // Trait...
+        (new Filesystem)->ensureDirectoryExists(app_path('Traits'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Traits', app_path('Traits'));
+
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Requests', app_path('Http/Requests'));
@@ -157,6 +161,10 @@ trait InstallsInertiaStacks
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers', app_path('Http/Controllers'));
+
+        // Trait...
+        (new Filesystem)->ensureDirectoryExists(app_path('Traits'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Traits', app_path('Traits'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));

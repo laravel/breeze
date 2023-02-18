@@ -2,12 +2,15 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\Translations;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
+    use Translations;
+
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -39,6 +42,7 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'translations' => $this->translations(),
         ]);
     }
 }
