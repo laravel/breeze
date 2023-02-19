@@ -32,7 +32,7 @@ export default function ForgotPassword({ status }) {
 
             <form onSubmit={submit}>
                 <TextInput
-                    id="password"
+                    id="email"
                     type="email"
                     name="email"
                     value={data.email}
