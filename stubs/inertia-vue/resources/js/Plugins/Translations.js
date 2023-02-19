@@ -1,7 +1,7 @@
 export default {
     install: (app, options = {}) => {
         if (!options.translations) {
-            console.warn("Please provide translations to the plugin.");
+            console.warn('Please provide translations to the plugin.');
         }
 
         const translations = options.translations || {};
@@ -22,7 +22,7 @@ export default {
         app.config.globalProperties.__ = translate;
 
         // Provide methods
-        app.provide("translate", { translate });
-        app.provide("__", { translate });
+        app.provide('translate', { translate });
+        app.provide('__', { translate });
     },
 };

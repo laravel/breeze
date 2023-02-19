@@ -5,7 +5,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
-import Translations from "@/Plugins/Translations.js";
+import Translations from '@/Plugins/Translations.js';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 

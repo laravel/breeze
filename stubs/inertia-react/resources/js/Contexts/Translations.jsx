@@ -1,11 +1,11 @@
-import React from "react";
-import { createContext } from "react";
+import React from 'react';
+import { createContext } from 'react';
 
 export const TranslationsContext = createContext();
 
 export const TranslationsProvider = ({ translations = {}, children }) => {
     if (!translations) {
-        console.warn("Please provide translations to the TranslationsProvider.");
+        console.warn('Please provide translations to the TranslationsProvider.');
     }
 
     // Translate the given message
@@ -22,9 +22,5 @@ export const TranslationsProvider = ({ translations = {}, children }) => {
     // Shorter alias
     const __ = translate;
 
-    return (
-        <TranslationsContext.Provider value={{ translate, __ }}>
-            {children}
-        </TranslationsContext.Provider>
-    );
+    return <TranslationsContext.Provider value={{ translate, __ }}>{children}</TranslationsContext.Provider>;
 };

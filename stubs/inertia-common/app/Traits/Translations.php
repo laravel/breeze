@@ -23,7 +23,7 @@ trait Translations
             if (File::exists(base_path("lang/$locale"))) {
                 $phpTranslations = collect(File::allFiles(base_path("lang/$locale")))
                     ->filter(function ($file) {
-                        return $file->getExtension() === "php";
+                        return $file->getExtension() === 'php';
                     })->flatMap(function ($file) {
                         return Arr::dot([$file->getFilenameWithoutExtension() => File::getRequire($file->getRealPath())]);
                     })->toArray();
