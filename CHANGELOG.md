@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.2...1.x)
+
+## [v1.19.2](https://github.com/laravel/breeze/compare/v1.19.1...v1.19.2) - 2023-02-18
+
+- Improve React components by @jessarcher in https://github.com/laravel/breeze/pull/257
+- Fix input field Id in ForgotPassword.jsx by @tomdupont in https://github.com/laravel/breeze/pull/262
 
 ## [v1.19.1](https://github.com/laravel/breeze/compare/v1.19.0...v1.19.1) - 2023-02-14
 
