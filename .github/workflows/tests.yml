@@ -21,10 +21,10 @@ jobs:
         args: ["", --pest]
         include:
           - stack: vue
-            args: --ssr
+            args: --ssr --typescript
             laravel: 10
           - stack: react
-            args: --ssr
+            args: --ssr --typescript
             laravel: 10
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
