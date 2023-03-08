@@ -1,7 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-defineProps(['modelValue']);
+defineProps({
+    modelValue: {
+        type: String,
+        required: true,
+    },
+});
 
 defineEmits(['update:modelValue']);
 
