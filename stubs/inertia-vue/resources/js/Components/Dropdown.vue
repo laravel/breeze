@@ -3,13 +3,16 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
     align: {
+        type: String,
         default: 'right',
     },
     width: {
+        type: String,
         default: '48',
     },
     contentClasses: {
-        default: () => ['py-1', 'bg-white dark:bg-gray-700'],
+        type: String,
+        default: 'py-1 bg-white dark:bg-gray-700',
     },
 });
 

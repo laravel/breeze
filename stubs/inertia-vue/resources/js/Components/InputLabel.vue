@@ -1,5 +1,9 @@
 <script setup>
-defineProps(['value']);
+defineProps({
+    value: {
+        type: String,
+    },
+});
 </script>
 
 <template>
