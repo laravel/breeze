@@ -20,10 +20,6 @@ export default function Register() {
         };
     }, []);
 
-    const handleOnChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
-    };
-
     const submit = (e) => {
         e.preventDefault();
 
@@ -45,7 +41,7 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={handleOnChange}
+                        onChange={(e) => setData('name', e.target.value)}
                         required
                     />
 
@@ -62,7 +58,7 @@ export default function Register() {
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        onChange={handleOnChange}
+                        onChange={(e) => setData('email', e.target.value)}
                         required
                     />
 
@@ -79,7 +75,7 @@ export default function Register() {
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={handleOnChange}
+                        onChange={(e) => setData('password', e.target.value)}
                         required
                     />
 
@@ -96,7 +92,7 @@ export default function Register() {
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={handleOnChange}
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                     />
 
