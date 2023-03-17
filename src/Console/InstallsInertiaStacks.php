@@ -36,8 +36,8 @@ trait InstallsInertiaStacks
             $this->updateNodePackages(function ($packages) {
                 return [
                     '@types/ziggy-js' => '^1.3.2',
-                    'typescript' => '^4.9.4',
-                    'vue-tsc' => '^1.0.24',
+                    'typescript' => '^5.0.2',
+                    'vue-tsc' => '^1.2.0',
                 ] + $packages;
             });
         }
@@ -195,7 +195,7 @@ trait InstallsInertiaStacks
                     '@types/react' => '^18.0.28',
                     '@types/react-dom' => '^18.0.10',
                     '@types/ziggy-js' => '^1.3.2',
-                    'typescript' => '^4.9.4',
+                    'typescript' => '^5.0.2',
                 ] + $packages;
             });
         }
