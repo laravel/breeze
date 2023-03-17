@@ -4,7 +4,7 @@ import { computed, onMounted, onUnmounted, watch } from 'vue';
 const props = withDefaults(
     defineProps<{
         show?: boolean;
-        maxWidth?: '2xl';
+        maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
         closeable?: boolean;
     }>(),
     {
