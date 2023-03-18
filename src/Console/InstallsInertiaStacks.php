@@ -32,6 +32,16 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
+        if ($this->option('typescript')) {
+            $this->updateNodePackages(function ($packages) {
+                return [
+                    '@types/ziggy-js' => '^1.3.2',
+                    'typescript' => '^5.0.2',
+                    'vue-tsc' => '^1.2.0',
+                ] + $packages;
+            });
+        }
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers', app_path('Http/Controllers'));
@@ -54,9 +64,16 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
+        if ($this->option('typescript')) {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Components', resource_path('js/Components'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Layouts', resource_path('js/Layouts'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Pages', resource_path('js/Pages'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/types', resource_path('js/types'));
+        } else {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
+        }
 
         if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)
@@ -78,17 +95,32 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.vue'));
-        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.vue'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-vue/vite.config.js', base_path('vite.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
+        if ($this->option('typescript')) {
+            copy(__DIR__.'/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
+            copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/app.ts', resource_path('js/app.ts'));
+
+            if (file_exists(resource_path('js/app.js'))) {
+                unlink(resource_path('js/app.js'));
+            }
+
+            if (file_exists(resource_path('js/bootstrap.js'))) {
+                rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
+            }
+
+            $this->replaceInFile('"vite build', '"vue-tsc && vite build', base_path('package.json'));
+            $this->replaceInFile('.js', '.ts', base_path('vite.config.js'));
+            $this->replaceInFile('.js', '.ts', resource_path('views/app.blade.php'));
+        } else {
+            copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
+            copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
+        }
 
         if ($this->option('ssr')) {
             $this->installInertiaVueSsrStack();
@@ -121,8 +153,14 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
-        $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
+        if ($this->option('typescript')) {
+            copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.ts', resource_path('js/ssr.ts'));
+            $this->replaceInFile("input: 'resources/js/app.ts',", "input: 'resources/js/app.ts',".PHP_EOL."            ssr: 'resources/js/ssr.ts',", base_path('vite.config.js'));
+        } else {
+            copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
+            $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
+        }
+
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
@@ -154,6 +192,18 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
+        if ($this->option('typescript')) {
+            $this->updateNodePackages(function ($packages) {
+                return [
+                    '@types/node' => '^18.13.0',
+                    '@types/react' => '^18.0.28',
+                    '@types/react-dom' => '^18.0.10',
+                    '@types/ziggy-js' => '^1.3.2',
+                    'typescript' => '^5.0.2',
+                ] + $packages;
+            });
+        }
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers', app_path('Http/Controllers'));
@@ -176,15 +226,22 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
+        if ($this->option('typescript')) {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Components', resource_path('js/Components'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Layouts', resource_path('js/Layouts'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Pages', resource_path('js/Pages'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/types', resource_path('js/types'));
+        } else {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
+        }
 
         if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
-                ->name('*.jsx')
-                ->notName('Welcome.jsx')
+                ->name(['*.jsx', '*.tsx'])
+                ->notName(['Welcome.jsx', 'Welcome.tsx'])
             );
         }
 
@@ -197,23 +254,36 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.jsx'));
-        $this->replaceInFile('Home', 'Dashboard', resource_path('js/Pages/Welcome.jsx'));
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
         copy(__DIR__.'/../../stubs/inertia-react/vite.config.js', base_path('vite.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
+
+        if ($this->option('typescript')) {
+            copy(__DIR__.'/../../stubs/inertia-react-ts/tsconfig.json', base_path('tsconfig.json'));
+            copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/app.tsx', resource_path('js/app.tsx'));
+
+            if (file_exists(resource_path('js/bootstrap.js'))) {
+                rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
+            }
+
+            $this->replaceInFile('"vite build', '"tsc && vite build', base_path('package.json'));
+            $this->replaceInFile('.jsx', '.tsx', base_path('vite.config.js'));
+            $this->replaceInFile('.jsx', '.tsx', resource_path('views/app.blade.php'));
+            $this->replaceInFile('.vue', '.tsx', base_path('tailwind.config.js'));
+        } else {
+            copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
+            copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
+
+            $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
+        }
 
         if (file_exists(resource_path('js/app.js'))) {
             unlink(resource_path('js/app.js'));
         }
-
-        $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
 
         if ($this->option('ssr')) {
             $this->installInertiaReactSsrStack();
@@ -240,8 +310,14 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaReactSsrStack()
     {
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
-        $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
+        if ($this->option('typescript')) {
+            copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/ssr.tsx', resource_path('js/ssr.tsx'));
+            $this->replaceInFile("input: 'resources/js/app.tsx',", "input: 'resources/js/app.tsx',".PHP_EOL."            ssr: 'resources/js/ssr.tsx',", base_path('vite.config.js'));
+        } else {
+            copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
+            $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
+        }
+
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
