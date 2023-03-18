@@ -105,12 +105,15 @@ trait InstallsInertiaStacks
         if ($this->option('typescript')) {
             copy(__DIR__.'/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/app.ts', resource_path('js/app.ts'));
+
             if (file_exists(resource_path('js/app.js'))) {
                 unlink(resource_path('js/app.js'));
             }
+
             if (file_exists(resource_path('js/bootstrap.js'))) {
                 rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
             }
+
             $this->replaceInFile('"vite build', '"vue-tsc && vite build', base_path('package.json'));
             $this->replaceInFile('.js', '.ts', base_path('vite.config.js'));
             $this->replaceInFile('.js', '.ts', resource_path('views/app.blade.php'));
