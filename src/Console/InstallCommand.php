@@ -107,9 +107,9 @@ class InstallCommand extends Command
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
         if ($this->option('pest')) {
-            $this->removeComposerPackages(['nunomaduro/collision', 'phpunit/phpunit'], true);
+            $this->removeComposerPackages(['phpunit/phpunit'], true);
 
-            if (! $this->requireComposerPackages(['nunomaduro/collision:^6.4', 'pestphp/pest:^1.22', 'pestphp/pest-plugin-laravel:^1.2'], true)) {
+            if (! $this->requireComposerPackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-laravel:^2.0'], true)) {
                 return false;
             }
 

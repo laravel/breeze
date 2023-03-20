@@ -17,7 +17,7 @@ jobs:
       fail-fast: true
       matrix:
         stack: [blade, react, vue, api]
-        laravel: [9, 10]
+        laravel: [10]
         args: ["", --pest]
         include:
           - stack: vue
