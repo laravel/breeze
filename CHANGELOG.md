@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.19.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.0...1.x)
+
+## [v1.20.0](https://github.com/laravel/breeze/compare/v1.19.2...v1.20.0) - 2023-03-20
+
+- Add opt-in TypeScript support by @jessarcher in https://github.com/laravel/breeze/pull/267
+- Uses Pest 2 by @nunomaduro in https://github.com/laravel/breeze/pull/274
+- API Stub EnsureEmailIsVerified Middleware: Remove unused function arguments in params by @raksbisht in https://github.com/laravel/breeze/pull/264
+- Prop consistency by @jessarcher in https://github.com/laravel/breeze/pull/272
+- React - Fix potential "undefined" class by @jessarcher in https://github.com/laravel/breeze/pull/271
+- React - Remove unnecessary text input wrapper by @jessarcher in https://github.com/laravel/breeze/pull/270
+- React - Fix input focusing when password update fails by @jessarcher in https://github.com/laravel/breeze/pull/269
+- React - Simplify Form Handler by @jessarcher in https://github.com/laravel/breeze/pull/268
+- Fix password-update pest tests by @mtvbrianking in https://github.com/laravel/breeze/pull/273
 
 ## [v1.19.2](https://github.com/laravel/breeze/compare/v1.19.1...v1.19.2) - 2023-02-18
 
