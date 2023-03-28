@@ -88,7 +88,11 @@ trait InstallsInertiaStacks
             return 1;
         }
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
+        if ($this->option('pest')) {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/pest-tests/Feature', base_path('tests/Feature'));
+        } else {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
+        }
 
         // Routes...
         copy(__DIR__.'/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
@@ -247,8 +251,15 @@ trait InstallsInertiaStacks
         }
 
         // Tests...
-        $this->installTests();
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
+        if (! $this->installTests()) {
+            return 1;
+        }
+
+        if ($this->option('pest')) {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/pest-tests/Feature', base_path('tests/Feature'));
+        } else {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
+        }
 
         // Routes...
         copy(__DIR__.'/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
