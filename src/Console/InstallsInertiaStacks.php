@@ -251,7 +251,9 @@ trait InstallsInertiaStacks
         }
 
         // Tests...
-        $this->installTests();
+        if (! $this->installTests()) {
+            return 1;
+        }
 
         if ($this->option('pest')) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/pest-tests/Feature', base_path('tests/Feature'));
