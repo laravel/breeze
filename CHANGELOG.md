@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.1...1.x)
+
+## [v1.20.1](https://github.com/laravel/breeze/compare/v1.20.0...v1.20.1) - 2023-03-28
+
+- Fix ref in react TextInput by @denis-n-ko in https://github.com/laravel/breeze/pull/277
+- Update `current_password` rule in ProfileController by @saade in https://github.com/laravel/breeze/pull/278
+- Fix Pest test installation for Inertia stack by @jessarcher in https://github.com/laravel/breeze/pull/279
 
 ## [v1.20.0](https://github.com/laravel/breeze/compare/v1.19.2...v1.20.0) - 2023-03-20
 
