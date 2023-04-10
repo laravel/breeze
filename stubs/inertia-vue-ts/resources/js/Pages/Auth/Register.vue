@@ -11,7 +11,6 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    terms: false,
 });
 
 const submit = () => {
