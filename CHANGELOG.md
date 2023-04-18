@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.2...1.x)
+
+## [v1.20.2](https://github.com/laravel/breeze/compare/v1.20.1...v1.20.2) - 2023-04-16
+
+- Remove redundant form data in vue stub by @datlechin in https://github.com/laravel/breeze/pull/280
+- Add Sanctum Guard by @taylorotwell in https://github.com/laravel/breeze/commit/b010ff3f8cd8e9ae2a2023ca323fba9987157f60
 
 ## [v1.20.1](https://github.com/laravel/breeze/compare/v1.20.0...v1.20.1) - 2023-03-28
 
