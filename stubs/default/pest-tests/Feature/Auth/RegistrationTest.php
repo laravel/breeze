@@ -20,7 +20,7 @@ test('new users can register', function () {
     $response->assertRedirect(RouteServiceProvider::HOME);
 });
 
-test('test new users cant register when password length less', function () {
+test('new users cant register when password length less', function () {
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',
@@ -30,7 +30,7 @@ test('test new users cant register when password length less', function () {
     $response->assertSessionHasErrors(['password']);
 });
 
-test('test new users cant register when password is not same confirm', function () {
+test('new users cant register when password is not same confirm', function () {
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',
