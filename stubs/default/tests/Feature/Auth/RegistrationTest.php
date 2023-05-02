@@ -29,4 +29,26 @@ class RegistrationTest extends TestCase
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
+
+    public function test_new_users_cant_register_when_password_length_less(): void
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => '111',
+            'password_confirmation' => '111',
+        ]);
+        $response->assertSessionHasErrors(['password']);
+    }
+
+    public function test_new_users_cant_register_when_password_is_not_same_confirm(): void
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => '0123456789',
+            'password_confirmation' => '1111111111',
+        ]);
+        $response->assertSessionHasErrors(['password']);
+    }
 }
