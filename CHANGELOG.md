@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.20.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.0...1.x)
+
+## [v1.21.0](https://github.com/laravel/breeze/compare/v1.20.2...v1.21.0) - 2023-05-04
+
+- Migrate to modules by @timacdonald in https://github.com/laravel/breeze/pull/246
 
 ## [v1.20.2](https://github.com/laravel/breeze/compare/v1.20.1...v1.20.2) - 2023-04-16
 
