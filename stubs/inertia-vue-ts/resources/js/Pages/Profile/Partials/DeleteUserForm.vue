@@ -9,7 +9,7 @@ import { useForm } from '@inertiajs/vue3';
 import { nextTick, ref } from 'vue';
 
 const confirmingUserDeletion = ref(false);
-const passwordInput = ref<HTMLInputElement | null>(null);
+const passwordInput = ref<HTMLInputElement>();
 
 const form = useForm({
     password: '',

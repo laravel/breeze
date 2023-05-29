@@ -7,7 +7,7 @@ defineProps<{
 
 defineEmits(['update:modelValue']);
 
-const input = ref<HTMLInputElement | null>(null);
+const input = ref<HTMLInputElement>();
 
 onMounted(() => {
     if (input.value?.hasAttribute('autofocus')) {
