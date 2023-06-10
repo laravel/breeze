@@ -24,6 +24,7 @@ class InstallCommand extends Command
     protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,react,vue,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
+                            {--livewire : Indicate that Livewire should be installed}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack (Experimental)}

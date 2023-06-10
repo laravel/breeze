@@ -25,6 +25,11 @@ trait InstallsBladeStack
             ] + $packages;
         });
 
+        // Livewire
+        if ($this->option('livewire')) {
+            $this->requireComposerPackages(['livewire/livewire']);
+        }
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Controllers', app_path('Http/Controllers'));
