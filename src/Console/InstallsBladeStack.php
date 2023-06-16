@@ -55,7 +55,11 @@ trait InstallsBladeStack
         }
 
         // Routes...
-        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
+         file_put_contents(
+            base_path('routes/web.php'),
+            file_get_contents(__DIR__.'/../../stubs/default/routes/web.stub'),
+            FILE_APPEND
+        );
         copy(__DIR__.'/../../stubs/default/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
