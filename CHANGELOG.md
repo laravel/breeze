@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.1...1.x)
+
+## [v1.21.1](https://github.com/laravel/breeze/compare/v1.21.0...v1.21.1) - 2023-06-16
+
+- Remove implicit form method calls by @Jacobtims in https://github.com/laravel/breeze/pull/290
 
 ## [v1.21.0](https://github.com/laravel/breeze/compare/v1.20.2...v1.21.0) - 2023-05-04
 
