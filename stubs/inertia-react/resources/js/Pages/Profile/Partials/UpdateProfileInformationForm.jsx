@@ -89,9 +89,10 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                     <Transition
                         show={recentlySuccessful}
+                        enter="transition ease-in-out"
                         enterFrom="opacity-0"
+                        leave="transition ease-in-out"
                         leaveTo="opacity-0"
-                        className="transition ease-in-out"
                     >
                         <p className="text-sm text-gray-600 dark:text-gray-400">Saved.</p>
                     </Transition>
