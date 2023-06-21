@@ -53,11 +53,11 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
                 as={Fragment}
                 show={open}
                 enter="transition ease-out duration-200"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
                 leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
             >
                 <div
                     className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
