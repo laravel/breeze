@@ -13,6 +13,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
 
@@ -310,14 +311,25 @@ class InstallCommand extends Command implements PromptsForMissingInput
     {
         $stack = $input->getArgument('stack');
 
-        collect(multiselect(
-            label: 'Would you like any optional extras?',
-            options: collect()
-                ->when($stack !== 'api', fn ($options) => $options->put('dark', 'Dark mode'))
-                ->when(in_array($stack, ['vue', 'react']), fn ($options) => $options->put('typescript', 'TypeScript (Experimental)'))
-                ->when(in_array($stack, ['vue', 'react']), fn ($options) => $options->put('ssr', 'Inertia SSR'))
-                ->put('pest', 'Pest tests instead of PHPUnit')
-                ->all(),
-        ))->each(fn ($option) => $input->setOption($option, true));
+        if (in_array($stack, ['react', 'vue'])) {
+            collect(multiselect(
+                label: 'Would you like any optional features?',
+                options: [
+                    'dark' => 'Dark mode',
+                    'ssr' => 'Inertia SSR',
+                    'typescript' => 'TypeScript (experimental)',
+                ]
+            ))->each(fn ($option) => $input->setOption($option, true));
+        } elseif ($stack === 'blade') {
+            $input->setOption('dark', confirm(
+                label: 'Would you like dark mode support?',
+                default: false
+            ));
+        }
+
+        $input->setOption('pest', select(
+            label: 'Which testing framework do you prefer?',
+            options: ['PHPUnit', 'Pest'],
+        ) === 'Pest');
     }
 }
