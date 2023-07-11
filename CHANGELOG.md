@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.2...1.x)
+
+## [v1.21.2](https://github.com/laravel/breeze/compare/v1.21.1...v1.21.2) - 2023-06-21
+
+- Fix and standardise transitions by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/293
+- Use appName directly from .env in <title> by [@domnantas](https://github.com/domnantas) in https://github.com/laravel/breeze/pull/292
 
 ## [v1.21.1](https://github.com/laravel/breeze/compare/v1.21.0...v1.21.1) - 2023-06-16
 
