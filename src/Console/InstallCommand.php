@@ -50,14 +50,19 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if ($this->argument('stack') === 'vue') {
-            return $this->installInertiaVueStack();
-        } elseif ($this->argument('stack') === 'react') {
-            return $this->installInertiaReactStack();
-        } elseif ($this->argument('stack') === 'api') {
-            return $this->installApiStack();
-        } elseif ($this->argument('stack') === 'blade') {
-            return $this->installBladeStack();
+        switch ($this->argument('stack')) {
+            case('vue'):
+                return $this->installInertiaVueStack();
+                break;
+            case ('react'):
+                return $this->installInertiaReactStack();
+                break;
+            case ('api'):
+                return $this->installApiStack();
+                break;
+            case ('blade'):
+                return $this->installBladeStack();
+                break;
         }
 
         $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
