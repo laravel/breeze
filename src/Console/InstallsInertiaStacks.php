@@ -188,7 +188,7 @@ trait InstallsInertiaStacks
                 '@headlessui/react' => '^1.4.2',
                 '@inertiajs/react' => '^1.0.0',
                 '@tailwindcss/forms' => '^0.5.3',
-                '@vitejs/plugin-react' => '^3.0.0',
+                '@vitejs/plugin-react' => '^4.0.3',
                 'autoprefixer' => '^10.4.12',
                 'postcss' => '^8.4.18',
                 'tailwindcss' => '^3.2.1',
