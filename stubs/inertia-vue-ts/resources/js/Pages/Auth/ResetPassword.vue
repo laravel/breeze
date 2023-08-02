@@ -5,15 +5,18 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { toRefs } from 'vue';
 
 const props = defineProps<{
     email: string;
     token: string;
 }>();
 
+const { email, token } = toRefs(props);
+    
 const form = useForm({
-    token: props.token,
-    email: props.email,
+    token: token.value,
+    email: email.value,
     password: '',
     password_confirmation: '',
 });
