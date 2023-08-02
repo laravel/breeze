@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.21.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.22.0...1.x)
+
+## [v1.22.0](https://github.com/laravel/breeze/compare/v1.21.2...v1.22.0) - 2023-08-02
+
+### What's Changed
+
+- [1.x] Update `[@vitejs](https://github.com/vitejs)/plugin-react` to v4 by [@parth391](https://github.com/parth391) in https://github.com/laravel/breeze/pull/298
+- [1.x] Prompts by [@jessarcher](https://github.com/jessarcher) in https://github.com/laravel/breeze/pull/295
+
+**Full Changelog**: https://github.com/laravel/breeze/compare/v1.21.2...v1.22.0
 
 ## [v1.21.2](https://github.com/laravel/breeze/compare/v1.21.1...v1.21.2) - 2023-06-21
 
