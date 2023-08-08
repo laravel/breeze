@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.22.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.0...1.x)
+
+## [v1.23.0](https://github.com/laravel/breeze/compare/v1.22.0...v1.23.0) - 2023-08-08
+
+- [1.x] Pest detection by [@jessarcher](https://github.com/jessarcher) in https://github.com/laravel/breeze/pull/300
 
 ## [v1.22.0](https://github.com/laravel/breeze/compare/v1.21.2...v1.22.0) - 2023-08-02
 
