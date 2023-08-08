@@ -357,6 +357,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     protected function isUsingPest()
     {
-        return file_exists(base_path('tests/Pest.php'));
+        return class_exists(\TestSuite\Pest::class);
     }
 }
