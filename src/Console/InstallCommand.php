@@ -330,6 +330,17 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
             options: ['PHPUnit', 'Pest'],
+            default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
         ) === 'Pest');
+    }
+
+    /**
+     * Determine whether the project is already using Pest.
+     *
+     * @return bool
+     */
+    protected function isUsingPest()
+    {
+        return file_exists(base_path('tests/Pest.php'));
     }
 }
