@@ -73,8 +73,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
 
-        if ($this->option('pest')) {
-            $this->removeComposerPackages(['phpunit/phpunit'], true);
+        if ($this->option('pest') || $this->isUsingPest()) {
+            if ($this->hasComposerPackage('phpunit/phpunit')) {
+                $this->removeComposerPackages(['phpunit/phpunit'], true);
+            }
 
             if (! $this->requireComposerPackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-laravel:^2.0'], true)) {
                 return false;
@@ -118,6 +120,20 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 $httpKernel
             ));
         }
+    }
+
+    /**
+     * Determine if the given Composer package is installed.
+     *
+     * @param  string  $package
+     * @return bool
+     */
+    protected function hasComposerPackage($package)
+    {
+        $packages = json_decode(file_get_contents(base_path('composer.json')), true);
+
+        return array_key_exists($package, $packages['require'] ?? [])
+            || array_key_exists($package, $packages['require-dev'] ?? []);
     }
 
     /**
@@ -330,6 +346,17 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
             options: ['PHPUnit', 'Pest'],
+            default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
         ) === 'Pest');
+    }
+
+    /**
+     * Determine whether the project is already using Pest.
+     *
+     * @return bool
+     */
+    protected function isUsingPest()
+    {
+        return class_exists(\Pest\TestSuite::class);
     }
 }
