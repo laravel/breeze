@@ -2,8 +2,10 @@
 
 namespace Laravel\Breeze;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\{
+    Contracts\Support\DeferrableProvider,
+    Support\ServiceProvider
+};
 
 class BreezeServiceProvider extends ServiceProvider implements DeferrableProvider
 {

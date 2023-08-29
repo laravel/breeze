@@ -1,10 +1,14 @@
 <?php
 
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\URL;
+use App\{
+    Models\User,
+    Providers\RouteServiceProvider
+};
+use Illuminate\{
+    Auth\Events\Verified,
+    Support\Facades\Event,
+    Support\Facades\URL
+};
 
 test('email verification screen can be rendered', function () {
     $user = User::factory()->create([

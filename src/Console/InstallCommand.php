@@ -2,20 +2,27 @@
 
 namespace Laravel\Breeze\Console;
 
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\PromptsForMissingInput;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
+use Illuminate\{
+    Console\Command,
+    Contracts\Console\PromptsForMissingInput,
+    Filesystem\Filesystem,
+    Support\Str
+};
 use RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\PhpExecutableFinder;
-use Symfony\Component\Process\Process;
-
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\multiselect;
-use function Laravel\Prompts\select;
+use Symfony\Component\Console\{
+    Input\InputInterface,
+    Output\OutputInterface
+};
+use Symfony\Component\{
+    Finder\Finder,
+    Process\PhpExecutableFinder,
+    Process\Process
+};
+use function Laravel\Prompts\{
+    confirm,
+    multiselect,
+    select
+};
 
 class InstallCommand extends Command implements PromptsForMissingInput
 {

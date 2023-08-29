@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\{
+    Auth\Notifications\ResetPassword,
+    Support\Facades\Notification
+};
 
 test('reset password link can be requested', function () {
     Notification::fake();

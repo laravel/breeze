@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use App\{
+    Http\Controllers\Controller,
+    Models\User,
+    Providers\RouteServiceProvider
+};
+use Illuminate\{
+    Auth\Events\Registered,
+    Http\RedirectResponse,
+    Http\Request,
+    Support\Facades\Auth,
+    Support\Facades\Hash,
+    Validation\Rules,
+    View\View
+};
 
 class RegisteredUserController extends Controller
 {
