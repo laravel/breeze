@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{
     RedirectResponse,
-    Http\Request,
+    Request,
     Support\Facades\Hash,
     Validation\Rules\Password
 };
