@@ -247,7 +247,9 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     protected function replaceInFile($search, $replace, $path)
     {
-        file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+        if (File::exists($path)) {
+            file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+        }
     }
 
     /**
