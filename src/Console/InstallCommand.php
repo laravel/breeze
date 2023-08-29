@@ -366,4 +366,5 @@ class InstallCommand extends Command implements PromptsForMissingInput
     {
         return class_exists(\Pest\TestSuite::class);
     }
+    
 }

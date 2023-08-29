@@ -83,4 +83,5 @@ trait InstallsBladeStack
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
     }
+
 }
