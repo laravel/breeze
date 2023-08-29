@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{
     RedirectResponse,
-    Request,
-    Support\Facades\Hash,
+    Request
 };
-use Illuminate\Validation\Rules\Password;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller
 {
