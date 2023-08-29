@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.1...1.x)
+
+## [v1.23.1](https://github.com/laravel/breeze/compare/v1.23.0...v1.23.1) - 2023-08-27
+
+- Replace `array_merge` with spread operator in `HandleInertiaRequests` by [@osbre](https://github.com/osbre) in https://github.com/laravel/breeze/pull/302
 
 ## [v1.23.0](https://github.com/laravel/breeze/compare/v1.22.0...v1.23.0) - 2023-08-08
 
