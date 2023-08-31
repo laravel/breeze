@@ -307,7 +307,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             'stack' => fn () => select(
                 label: 'Which Breeze stack would you like to install?',
                 options: [
-                    'blade' => 'Blade',
+                    'blade' => 'Blade with Alpine',
                     'react' => 'React with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
