@@ -62,4 +62,23 @@ class EmailVerificationTest extends TestCase
 
         $this->assertFalse($user->fresh()->hasVerifiedEmail());
     }
+
+    public function test_already_verificed_users_will_not_cause_event_to_dispatch()
+    {
+        $user = User::factory()->create();
+
+        Event::fake();
+
+        $verificationUrl = URL::temporarySignedRoute(
+            name: 'verification.verify',
+            expiration: now()->addMinutes(60),
+            parameters: ['id' => $user->id, 'hash' => sha1($user->email)]
+        );
+
+        $response = $this->actingAs($user)->get($verificationUrl);
+
+        Event::assertNotDispatched(Verified::class);
+        $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
+
+    }
 }
