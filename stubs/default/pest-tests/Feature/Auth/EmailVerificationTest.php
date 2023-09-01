@@ -52,7 +52,7 @@ test('email is not verified with invalid hash', function () {
     expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
 });
 
-test('already verified users will not cause event to dispatch', function() {
+test('already verified users will not cause event to dispatch', function () {
     $user = User::factory()->create();
 
     Event::fake();
@@ -66,5 +66,5 @@ test('already verified users will not cause event to dispatch', function() {
     Event::assertNotDispatched(Verified::class);
 
     $response = $this->actingAs($user)->get($verificationUrl);
-    $response->assertRedirect(RouteServiceProvider::HOME . '?verified=1');
+    $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
 });

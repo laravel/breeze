@@ -79,6 +79,5 @@ class EmailVerificationTest extends TestCase
 
         Event::assertNotDispatched(Verified::class);
         $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
-
     }
 }
