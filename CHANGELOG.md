@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.2...1.x)
+
+## [v1.23.2](https://github.com/laravel/breeze/compare/v1.23.1...v1.23.2) - 2023-09-01
+
+- Highlight Alpine by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/307
 
 ## [v1.23.1](https://github.com/laravel/breeze/compare/v1.23.0...v1.23.1) - 2023-08-27
 
