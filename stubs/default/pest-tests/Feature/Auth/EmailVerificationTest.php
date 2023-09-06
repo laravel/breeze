@@ -67,7 +67,6 @@ test('email is already verified', function () {
 
     $response = $this->actingAs($user)->get($verificationUrl);
 
-
     Event::assertNotDispatched(Verified::class);
     $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
 });
