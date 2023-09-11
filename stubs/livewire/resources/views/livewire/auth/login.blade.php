@@ -14,25 +14,16 @@ new #[Layout('layouts.guest')]
 class extends Component
 {
     #[Rule(['required', 'string', 'email'])]
-    public string $email;
+    public string $email = '';
 
     #[Rule(['required', 'string'])]
-    public string $password;
+    public string $password = '';
 
     public function login(): RedirectResponse
     {
-        request()->authenticate();
-
-        request()->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
-    }
-
-    protected function authenticate(): void
-    {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt(request()->only('email', 'password'), request()->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -41,6 +32,10 @@ class extends Component
         }
 
         RateLimiter::clear($this->throttleKey());
+
+        request()->session()->regenerate();
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     protected function ensureIsNotRateLimited(): void
@@ -63,7 +58,7 @@ class extends Component
 
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
 }; ?>
 
@@ -71,7 +66,7 @@ class extends Component
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form wire:submit="login">
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
