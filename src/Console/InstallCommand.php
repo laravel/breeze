@@ -19,14 +19,14 @@ use function Laravel\Prompts\select;
 
 class InstallCommand extends Command implements PromptsForMissingInput
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,react,vue,api)}
+    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,livewire,livewire-functional,react,vue,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -55,9 +55,13 @@ class InstallCommand extends Command implements PromptsForMissingInput
             return $this->installApiStack();
         } elseif ($this->argument('stack') === 'blade') {
             return $this->installBladeStack();
+        } elseif ($this->argument('stack') === 'livewire') {
+            return $this->installLivewireStack(functional: false);
+        } elseif ($this->argument('stack') === 'livewire-functional') {
+            return $this->installLivewireStack(functional: true);
         }
 
-        $this->components->error('Invalid stack. Supported stacks are [blade], [react], [vue], and [api].');
+        $this->components->error('Invalid stack. Supported stacks are [blade], [livewire], [livewire-functional], [react], [vue], and [api].');
 
         return 1;
     }
@@ -308,6 +312,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 label: 'Which Breeze stack would you like to install?',
                 options: [
                     'blade' => 'Blade with Alpine',
+                    'livewire' => 'Livewire with Class API',
+                    'livewire-functional' => 'Livewire with Functional API',
                     'react' => 'React with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
@@ -336,7 +342,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'typescript' => 'TypeScript (experimental)',
                 ]
             ))->each(fn ($option) => $input->setOption($option, true));
-        } elseif ($stack === 'blade') {
+        } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
                 label: 'Would you like dark mode support?',
                 default: false
