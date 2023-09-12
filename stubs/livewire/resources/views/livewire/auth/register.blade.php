@@ -19,15 +19,15 @@ class extends Component
 
     public string $password = '';
 
-    public function register(): RedirectResponse
+    public string $password_confirmation = '';
+
+    public function register(): void
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        dd($validated);
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -37,7 +37,7 @@ class extends Component
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        redirect()->to(RouteServiceProvider::HOME);
     }
 }; ?>
 
