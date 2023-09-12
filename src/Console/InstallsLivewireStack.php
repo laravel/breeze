@@ -34,9 +34,9 @@ trait InstallsLivewireStack
             return 1;
         }
 
-        // Layouts...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components/layouts', resource_path('views/layouts'));
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views', resource_path('views'));
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
@@ -44,11 +44,7 @@ trait InstallsLivewireStack
 
         // Views Layouts...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/layouts', resource_path('views/layouts'));
-
-        // Livewire Components
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/livewire', resource_path('views/livewire'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
 
         // Livewire Config
         copy(__DIR__.'/../../stubs/livewire/config/livewire.php', base_path('config/livewire.php'));

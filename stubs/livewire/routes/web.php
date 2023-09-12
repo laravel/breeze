@@ -22,4 +22,9 @@ Volt::route('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Volt::route('profile', 'profile.edit')
+        ->name('profile.edit');
+});
+
 require __DIR__.'/auth.php';

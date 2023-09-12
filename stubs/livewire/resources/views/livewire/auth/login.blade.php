@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +20,14 @@ class extends Component
     #[Rule(['required', 'string'])]
     public string $password = '';
 
-    public function login(): RedirectResponse
+    #[Rule(['boolean'])]
+    public bool $remember = false;
+
+    public function login(): void
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(request()->only('email', 'password'), request()->boolean('remember'))) {
+        if (! Auth::attempt($this->only(['email', 'password'], $this->remember))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -35,7 +39,7 @@ class extends Component
 
         request()->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        redirect()->intended(RouteServiceProvider::HOME);
     }
 
     protected function ensureIsNotRateLimited(): void
@@ -88,8 +92,8 @@ class extends Component
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+            <label for="remember" class="inline-flex items-center">
+                <input wire:model="remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>

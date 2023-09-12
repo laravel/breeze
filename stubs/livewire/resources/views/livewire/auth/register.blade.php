@@ -35,7 +35,7 @@ class extends Component
 
         event(new Registered($user));
 
-        Auth::login($user);
+        auth()->login($user);
 
         redirect()->to(RouteServiceProvider::HOME);
     }
