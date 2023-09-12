@@ -39,7 +39,9 @@ class extends Component
 
         request()->session()->regenerate();
 
-        redirect()->intended(RouteServiceProvider::HOME);
+        $path = session()->pull('url.intended', RouteServiceProvider::HOME);
+
+        $this->redirect($path, navigate: true);
     }
 
     protected function ensureIsNotRateLimited(): void
@@ -48,7 +50,7 @@ class extends Component
             return;
         }
 
-        event(new Lockout($this));
+        event(new Lockout(request()));
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
 

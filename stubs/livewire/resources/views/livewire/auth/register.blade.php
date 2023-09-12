@@ -37,7 +37,7 @@ class extends Component
 
         auth()->login($user);
 
-        redirect()->to(RouteServiceProvider::HOME);
+        $this->redirectRoute(RouteServiceProvider::HOME, navigate: true);
     }
 }; ?>
 
