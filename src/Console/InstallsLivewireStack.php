@@ -46,8 +46,9 @@ trait InstallsLivewireStack
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
 
-        // Livewire Config
-        copy(__DIR__.'/../../stubs/livewire/config/livewire.php', base_path('config/livewire.php'));
+        // Components...
+        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/View/Components', app_path('View/Components'));
 
         // Routes...
         copy(__DIR__.'/../../stubs/livewire/routes/web.php', base_path('routes/web.php'));

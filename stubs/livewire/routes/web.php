@@ -14,17 +14,16 @@ use Livewire\Volt\Volt;
 |
 */
 
-Route::get('/', function () {
     return view('welcome');
 });
 
-Volt::route('dashboard', 'dashboard')
+Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Volt::route('profile', 'profile.edit')
-        ->name('profile.edit');
+    Route::view('profile', 'profile')
+        ->name('profile');
 });
 
 require __DIR__.'/auth.php';
