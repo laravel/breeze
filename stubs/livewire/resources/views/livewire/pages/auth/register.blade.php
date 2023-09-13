@@ -4,11 +4,9 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
-use Illuminate\Http\RedirectResponse;
 
 new #[Layout('layouts.guest')]
 class extends Component
