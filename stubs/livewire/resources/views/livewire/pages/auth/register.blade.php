@@ -34,7 +34,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         auth()->login($user);
 
-        $this->redirectRoute(RouteServiceProvider::HOME, navigate: true);
+        $this->redirect(RouteServiceProvider::HOME, navigate: true);
     }
 }; ?>
 
