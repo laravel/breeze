@@ -22,6 +22,8 @@ new #[Layout('layouts.guest')] class extends Component
 
     public function login(): void
     {
+        $this->validate();
+
         $this->ensureIsNotRateLimited();
 
         if (! auth()->attempt($this->only(['email', 'password'], $this->remember))) {
