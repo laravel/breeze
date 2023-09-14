@@ -5,8 +5,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')]
-class extends Component
+new #[Layout('layouts.guest')] class extends Component
 {
     #[Rule(['required', 'string', 'email'])]
     public string $email = '';

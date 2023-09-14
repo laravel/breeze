@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
-use Livewire\Attributes\Locked;
 use Livewire\Volt\Component;
 
 new class extends Component

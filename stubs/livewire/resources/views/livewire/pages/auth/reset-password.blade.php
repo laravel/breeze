@@ -1,17 +1,15 @@
 <?php
 
-use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')]
-class extends Component
+new #[Layout('layouts.guest')] class extends Component
 {
     #[Locked]
     public string $token = '';
@@ -30,9 +28,9 @@ class extends Component
 
     public function resetPassword(): void
     {
-         $this->validate([
+        $this->validate([
             'token' => ['required'],
-            'email' => ['required', 'string', 'email',],
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
