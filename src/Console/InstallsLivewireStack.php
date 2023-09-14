@@ -34,6 +34,13 @@ trait InstallsLivewireStack
             return 1;
         }
 
+        // Controllers
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copy(
+            __DIR__.'/../../stubs/default/app/Http/Controllers/Auth/VerifyEmailController.php',
+            app_path('Http/Controllers/Auth/VerifyEmailController.php'),
+        );
+
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views', resource_path('views'));
