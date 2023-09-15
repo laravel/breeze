@@ -4,16 +4,16 @@ namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Volt\Console\InstallCommand;
+use Symfony\Component\Finder\Finder;
 
 trait InstallsLivewireStack
 {
     /**
      * Install the Livewire Breeze stack.
      *
-     * @param  bool  $functional
      * @return int|null
      */
-    protected function installLivewireStack($functional)
+    protected function installLivewireStack()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -26,9 +26,9 @@ trait InstallsLivewireStack
         });
 
         // Install Livewire...
-        // if (! $this->requireComposerPackages(['livewire/livewire:^3.0', 'livewire/volt:^1.0'])) {
-        //    return 1;
-        // }
+        if (! $this->requireComposerPackages(['livewire/livewire:dev-main as 3.0.4', 'livewire/volt:^1.0'])) {
+            return 1;
+        }
 
         if ($this->call(InstallCommand::class) !== 0) {
             return 1;
@@ -57,6 +57,15 @@ trait InstallsLivewireStack
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/View/Components', app_path('View/Components'));
+
+        // Dark mode...
+        if (! $this->option('dark')) {
+            $this->removeDarkClasses((new Finder)
+                ->in(resource_path('views'))
+                ->name('*.blade.php')
+                ->notName('welcome.blade.php')
+            );
+        }
 
         // Routes...
         copy(__DIR__.'/../../stubs/livewire/routes/web.php', base_path('routes/web.php'));
