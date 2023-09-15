@@ -73,7 +73,11 @@ class InstallCommand extends Command implements PromptsForMissingInput
     {
         (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature'));
 
-        $stubStack = $this->argument('stack') === 'api' ? 'api' : 'default';
+        $stubStack = match ($this->argument('stack')) {
+            'api' => 'api',
+            'livewire' => 'livewire',
+            default => 'default',
+        };
 
         if ($this->option('pest') || $this->isUsingPest()) {
             if ($this->hasComposerPackage('phpunit/phpunit')) {

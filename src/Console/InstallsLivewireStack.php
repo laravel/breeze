@@ -68,6 +68,11 @@ trait InstallsLivewireStack
             );
         }
 
+        // Tests...
+        if (! $this->installTests()) {
+            return 1;
+        }
+
         // Routes...
         copy(__DIR__.'/../../stubs/livewire/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/livewire/routes/auth.php', base_path('routes/auth.php'));
