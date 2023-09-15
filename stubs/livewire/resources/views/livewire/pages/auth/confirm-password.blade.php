@@ -8,7 +8,7 @@ use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    #[Rule(['required', 'string', 'email'])]
+    #[Rule(['required', 'string'])]
     public string $password = '';
 
     public function confirmPassword(): void
