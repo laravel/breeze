@@ -5,6 +5,7 @@ namespace Laravel\Breeze\Console;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Volt\Console\InstallCommand;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 trait InstallsLivewireStack
 {
@@ -30,9 +31,10 @@ trait InstallsLivewireStack
             return 1;
         }
 
-        if ($this->call(InstallCommand::class) !== 0) {
-            return 1;
-        }
+        // Install Volt...
+        (new Process([$this->phpBinary(), 'artisan', 'volt:install'], base_path()))
+            ->setTimeout(null)
+            ->run();
 
         // Controllers
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
