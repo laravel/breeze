@@ -57,13 +57,11 @@ new class extends Component
                         </x-dropdown-link>
 
                         <!-- Authentication -->
-                        <form wire:submit="logout">
-                            <button type="submit" class="w-full text-left">
-                                <x-dropdown-link>
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </button>
-                        </form>
+                        <button wire:click="logout" class="w-full text-left">
+                            <x-dropdown-link>
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </button>
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -101,13 +99,11 @@ new class extends Component
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
-                <form wire:submit="logout">
-                    <button type="submit" class="w-full text-left">
-                        <x-responsive-nav-link>
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </button>
-                </form>
+                <button wire:click="logout" class="w-full text-left">
+                    <x-responsive-nav-link>
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </button>
             </div>
         </div>
     </div>
