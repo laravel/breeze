@@ -36,9 +36,9 @@ new #[Layout('layouts.guest')] class extends Component
 
         RateLimiter::clear($this->throttleKey());
 
-        request()->session()->regenerate();
+        session()->regenerate();
 
-        $path = session()->pull('url.intended', RouteServiceProvider::HOME);
+        $path = session('url.intended', RouteServiceProvider::HOME);
 
         $this->redirect($path, navigate: true);
     }

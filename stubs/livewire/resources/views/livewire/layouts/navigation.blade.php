@@ -8,9 +8,9 @@ new class extends Component
     {
         auth()->guard('web')->logout();
 
-        request()->session()->invalidate();
+        session()->invalidate();
 
-        request()->session()->regenerateToken();
+        session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
     }

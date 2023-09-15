@@ -18,8 +18,8 @@ new class extends Component
 
         $user->delete();
 
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        session()->invalidate();
+        session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
     }
