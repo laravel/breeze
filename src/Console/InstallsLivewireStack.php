@@ -3,7 +3,6 @@
 namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
-use Livewire\Volt\Console\InstallCommand;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
