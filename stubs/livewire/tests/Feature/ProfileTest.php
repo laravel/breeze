@@ -39,7 +39,8 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $component->assertHasNoErrors()
+        $component
+            ->assertHasNoErrors()
             ->assertNoRedirect();
 
         $this->assertSame('Test User', $user->name);
@@ -58,7 +59,8 @@ class ProfileTest extends TestCase
             ->set('email', $user->email)
             ->call('updateProfileInformation');
 
-        $component->assertHasNoErrors()
+        $component
+            ->assertHasNoErrors()
             ->assertNoRedirect();
 
         $this->assertNotNull($user->refresh()->email_verified_at);
@@ -74,7 +76,8 @@ class ProfileTest extends TestCase
             ->set('password', 'password')
             ->call('deleteUser');
 
-        $component->assertHasNoErrors()
+        $component
+            ->assertHasNoErrors()
             ->assertRedirect('/');
 
         $this->assertGuest();
@@ -91,7 +94,8 @@ class ProfileTest extends TestCase
             ->set('password', 'wrong-password')
             ->call('deleteUser');
 
-        $component->assertHasErrors('password')
+        $component
+            ->assertHasErrors('password')
             ->assertNoRedirect();
 
         $this->assertNotNull($user->fresh());
