@@ -27,11 +27,11 @@ test('profile information can be updated', function () {
         ->set('email', 'test@example.com')
         ->call('updateProfileInformation');
 
-    $user->refresh();
-
     $component
         ->assertHasNoErrors()
         ->assertNoRedirect();
+
+    $user->refresh();
 
     $this->assertSame('Test User', $user->name);
     $this->assertSame('test@example.com', $user->email);
