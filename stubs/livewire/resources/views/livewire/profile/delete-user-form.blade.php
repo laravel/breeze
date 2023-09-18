@@ -19,6 +19,7 @@ new class extends Component
         $user->delete();
 
         session()->invalidate();
+
         session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
