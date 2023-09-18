@@ -20,9 +20,10 @@ new #[Layout('layouts.guest')] class extends Component
 
     public string $password_confirmation = '';
 
-    public function mount(): void
+    public function mount(string $token): void
     {
-        $this->token = request()->route('token');
+        $this->token = $token;
+
         $this->email = request()->string('email');
     }
 
