@@ -57,9 +57,9 @@ class AuthenticationTest extends TestCase
 
     public function test_navigation_menu_can_be_rendered(): void
     {
-        $this->actingAs(
-            User::factory()->create(),
-        );
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
 
         $response = $this->get('/dashboard');
 
@@ -70,9 +70,9 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_logout(): void
     {
-        $this->actingAs(
-            User::factory()->create(),
-        );
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
 
         $component = Volt::test('layout.navigation');
 

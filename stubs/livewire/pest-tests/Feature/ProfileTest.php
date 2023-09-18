@@ -4,9 +4,9 @@ use App\Models\User;
 use Livewire\Volt\Volt;
 
 test('profile page is displayed', function () {
-    $this->actingAs(
-        User::factory()->create(),
-    );
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
 
     $response = $this->get('/profile');
 
@@ -18,9 +18,9 @@ test('profile page is displayed', function () {
 });
 
 test('profile information can be updated', function () {
-    $this->actingAs(
-        $user = User::factory()->create(),
-    );
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
 
     $component = Volt::test('profile.update-profile-information-form')
         ->set('name', 'Test User')
@@ -39,9 +39,9 @@ test('profile information can be updated', function () {
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
-    $this->actingAs(
-        $user = User::factory()->create(),
-    );
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
 
     $component = Volt::test('profile.update-profile-information-form')
         ->set('name', 'Test User')
@@ -56,9 +56,9 @@ test('email verification status is unchanged when the email address is unchanged
 });
 
 test('user can delete their account', function () {
-    $this->actingAs(
-        $user = User::factory()->create(),
-    );
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
 
     $component = Volt::test('profile.delete-user-form')
         ->set('password', 'password')
@@ -73,9 +73,9 @@ test('user can delete their account', function () {
 });
 
 test('correct password must be provided to delete account', function () {
-    $this->actingAs(
-        $user = User::factory()->create(),
-    );
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
 
     $component = Volt::test('profile.delete-user-form')
         ->set('password', 'wrong-password')
