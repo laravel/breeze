@@ -5,7 +5,7 @@ use Livewire\Volt\Volt;
 
 test('profile page is displayed', function () {
     $this->actingAs(
-        $user = User::factory()->create(),
+        User::factory()->create(),
     );
 
     $response = $this->get('/profile');
