@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.3...1.x)
+
+## [v1.23.3](https://github.com/laravel/breeze/compare/v1.23.2...v1.23.3) - 2023-09-06
+
+- Add logout tests by [@xiCO2k](https://github.com/xiCO2k) in https://github.com/laravel/breeze/pull/311
 
 ## [v1.23.2](https://github.com/laravel/breeze/compare/v1.23.1...v1.23.2) - 2023-09-01
 
