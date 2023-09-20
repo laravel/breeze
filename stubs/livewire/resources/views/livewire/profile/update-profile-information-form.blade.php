@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 
@@ -77,7 +78,7 @@ new class extends Component
             <x-text-input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+            @if (auth()->user() instanceof MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                         {{ __('Your email address is unverified.') }}
