@@ -38,9 +38,10 @@ new #[Layout('layouts.guest')] class extends Component
 
         session()->regenerate();
 
-        $path = session('url.intended', RouteServiceProvider::HOME);
-
-        $this->redirect($path, navigate: true);
+        $this->redirect(
+            session('url.intended', RouteServiceProvider::HOME),
+            navigate: true
+        );
     }
 
     protected function ensureIsNotRateLimited(): void

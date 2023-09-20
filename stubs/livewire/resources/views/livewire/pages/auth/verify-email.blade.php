@@ -8,9 +8,10 @@ new #[Layout('layouts.guest')] class extends Component
     public function sendVerification(): void
     {
         if (auth()->user()->hasVerifiedEmail()) {
-            $path = session('url.intended', RouteServiceProvider::HOME);
-
-            $this->redirect($path, navigate: true);
+            $this->redirect(
+                session('url.intended', RouteServiceProvider::HOME),
+                navigate: true
+            );
 
             return;
         }
