@@ -11,11 +11,8 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component
 {
     public string $name = '';
-
     public string $email = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
     public function register(): void
@@ -28,9 +25,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        $user = User::create($validated);
-
-        event(new Registered($user));
+        event(new Registered($user = User::create($validated)));
 
         auth()->login($user);
 

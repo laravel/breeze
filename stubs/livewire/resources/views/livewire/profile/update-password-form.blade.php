@@ -8,9 +8,7 @@ use Livewire\Volt\Component;
 new class extends Component
 {
     public string $current_password = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
     public function updatePassword(): void
@@ -48,7 +46,6 @@ new class extends Component
     </header>
 
     <form wire:submit="updatePassword" class="mt-6 space-y-6">
-
         <div>
             <x-input-label for="current_password" :value="__('Current Password')" />
             <x-text-input wire:model="current_password" id="current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />

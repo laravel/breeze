@@ -12,14 +12,9 @@ new class extends Component
     {
         $this->validate();
 
-        $user = auth()->user();
-
-        auth()->logout();
-
-        $user->delete();
+        tap(auth()->user(), fn () => auth()->logout())->delete();
 
         session()->invalidate();
-
         session()->regenerateToken();
 
         $this->redirect('/', navigate: true);

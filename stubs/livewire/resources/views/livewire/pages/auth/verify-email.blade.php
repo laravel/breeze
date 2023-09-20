@@ -25,7 +25,6 @@ new #[Layout('layouts.guest')] class extends Component
         auth()->guard('web')->logout();
 
         session()->invalidate();
-
         session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
