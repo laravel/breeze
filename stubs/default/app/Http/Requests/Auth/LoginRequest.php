@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
+use Closure;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -22,7 +24,7 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array<string|Rule|Closure>|string>
      */
     public function rules(): array
     {
@@ -80,6 +82,9 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        /** @var string $email */
+        $email = $this->input('email');
+
+        return Str::transliterate(Str::lower($email).'|'.$this->ip());
     }
 }
