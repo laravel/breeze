@@ -15,16 +15,22 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(
-                config('app.frontend_url').RouteServiceProvider::HOME.'?verified=1'
-            );
+        $user = $request->user();
+
+        if ($user !== null && $user->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
         }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
+        if ($user !== null && $user->markEmailAsVerified()) {
+            /**
+             * The next line shows a PHPStan error:
+             * "Verified expects MustVerifyEmail, User given."
+             * This error is being ignored, but it will also go away when extending the User class with the MustVerifyEmail interface,
+             * which you can to do implement mandatory E-Mail verification.
+             */
+            /** @phpstan-ignore-next-line */
+            event(new Verified($user));
         }
-
         return redirect()->intended(
             config('app.frontend_url').RouteServiceProvider::HOME.'?verified=1'
         );
