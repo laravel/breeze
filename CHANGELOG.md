@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.23.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.24.0...1.x)
+
+## [v1.24.0](https://github.com/laravel/breeze/compare/v1.23.3...v1.24.0) - 2023-09-20
+
+- Adds Livewire stack 🐙 by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/314
 
 ## [v1.23.3](https://github.com/laravel/breeze/compare/v1.23.2...v1.23.3) - 2023-09-06
 
