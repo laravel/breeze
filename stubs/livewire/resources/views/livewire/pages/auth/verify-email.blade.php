@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
