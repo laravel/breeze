@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.24.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.24.1...1.x)
+
+## [v1.24.1](https://github.com/laravel/breeze/compare/v1.24.0...v1.24.1) - 2023-10-04
+
+- Fix missing class import by [@qwert1x](https://github.com/qwert1x) in https://github.com/laravel/breeze/pull/317
 
 ## [v1.24.0](https://github.com/laravel/breeze/compare/v1.23.3...v1.24.0) - 2023-09-20
 
