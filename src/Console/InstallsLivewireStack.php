@@ -49,8 +49,8 @@ trait InstallsLivewireStack
         // Livewire Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            . ($functional ? 'livewire-functional' : 'livewire')
-            . '/resources/views/livewire', resource_path('views/livewire'));
+            .($functional ? 'livewire-functional' : 'livewire')
+            .'/resources/views/livewire', resource_path('views/livewire'));
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
