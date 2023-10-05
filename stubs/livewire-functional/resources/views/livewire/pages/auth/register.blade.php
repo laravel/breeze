@@ -5,36 +5,34 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Livewire\Attributes\Layout;
-use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
-{
-    public string $name = '';
+use function Livewire\Volt\layout;
+use function Livewire\Volt\rules;
+use function Livewire\Volt\state;
 
-    public string $email = '';
+layout('layouts.guest');
 
-    public string $password = '';
+state(['name' => '', 'email' => '', 'password' => '', 'password_confirmation' => '']);
 
-    public string $password_confirmation = '';
+rules([
+    'name' => ['required', 'string', 'max:255'],
+    'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+    'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+]);
 
-    public function register(): void
-    {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+$register = function () {
+    $validated = $this->validate();
 
-        $validated['password'] = Hash::make($validated['password']);
+    $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
+    event(new Registered($user = User::create($validated)));
 
-        auth()->login($user);
+    auth()->login($user);
 
-        $this->redirect(RouteServiceProvider::HOME, navigate: true);
-    }
-}; ?>
+    $this->redirect(RouteServiceProvider::HOME, navigate: true);
+};
+
+?>
 
 <div>
     <form wire:submit="register">
