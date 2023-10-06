@@ -2,58 +2,52 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Validation\Rule;
-use Livewire\Volt\Component;
 
-new class extends Component
-{
-    public string $name = '';
+use function Livewire\Volt\state;
 
-    public string $email = '';
+state([
+    'name' => fn () => auth()->user()->name,
+    'email' => fn () => auth()->user()->email
+]);
 
-    public function mount(): void
-    {
-        $this->name = auth()->user()->name;
-        $this->email = auth()->user()->email;
+$updateProfileInformation = function () {
+    $user = auth()->user();
+
+    $validated = $this->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+    ]);
+
+    $user->fill($validated);
+
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null;
     }
 
-    public function updateProfileInformation(): void
-    {
-        $user = auth()->user();
+    $user->save();
 
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-        ]);
+    $this->dispatch('profile-updated', name: $user->name);
+};
 
-        $user->fill($validated);
+$sendVerification = function () {
+    $user = auth()->user();
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
+    if ($user->hasVerifiedEmail()) {
+        $path = session('url.intended', RouteServiceProvider::HOME);
 
-        $user->save();
+        $this->redirect($path);
 
-        $this->dispatch('profile-updated', name: $user->name);
+        return;
     }
 
-    public function sendVerification(): void
-    {
-        $user = auth()->user();
+    $user->sendEmailVerificationNotification();
 
-        if ($user->hasVerifiedEmail()) {
-            $path = session('url.intended', RouteServiceProvider::HOME);
+    session()->flash('status', 'verification-link-sent');
+};
 
-            $this->redirect($path);
-
-            return;
-        }
-
-        $user->sendEmailVerificationNotification();
-
-        session()->flash('status', 'verification-link-sent');
-    }
-}; ?>
+?>
 
 <section>
     <header>
@@ -78,7 +72,7 @@ new class extends Component
             <x-text-input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+            @if (auth()->user() instanceof MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                         {{ __('Your email address is unverified.') }}

@@ -13,7 +13,7 @@ trait InstallsLivewireStack
      *
      * @return int|null
      */
-    protected function installLivewireStack()
+    protected function installLivewireStack($functional = false)
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -44,16 +44,22 @@ trait InstallsLivewireStack
 
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views', resource_path('views'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views', resource_path('views'));
+
+        // Livewire Components...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
+            .($functional ? 'livewire-functional' : 'livewire')
+            .'/resources/views/livewire', resource_path('views/livewire'));
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/components', resource_path('views/components'));
 
         // Views Layouts...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/layouts', resource_path('views/layouts'));
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
@@ -74,8 +80,8 @@ trait InstallsLivewireStack
         }
 
         // Routes...
-        copy(__DIR__.'/../../stubs/livewire/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/livewire/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/livewire-common/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));

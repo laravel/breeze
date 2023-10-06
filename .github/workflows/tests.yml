@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        stack: [blade, livewire, react, vue, api]
+        stack: [blade, livewire, livewire-functional, react, vue, api]
         laravel: [10]
         args: ["", --pest]
         include:
