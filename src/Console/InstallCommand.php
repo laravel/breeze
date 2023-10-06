@@ -317,8 +317,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 label: 'Which Breeze stack would you like to install?',
                 options: [
                     'blade' => 'Blade with Alpine',
-                    'livewire' => 'Livewire with Alpine',
-                    'livewire-functional' => 'Functional Livewire with Alpine',
+                    'livewire' => 'Livewire (Volt Class API) with Alpine',
+                    'livewire-functional' => 'Livewire (Volt Functional API) with Alpine',
                     'react' => 'React with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
