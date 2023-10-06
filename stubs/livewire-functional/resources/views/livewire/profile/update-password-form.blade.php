@@ -7,7 +7,11 @@ use Illuminate\Validation\ValidationException;
 use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
-state(['current_password' => '', 'password' => '', 'password_confirmation' => '']);
+state([
+    'current_password' => '',
+    'password' => '',
+    'password_confirmation' => ''
+]);
 
 rules([
     'current_password' => ['required', 'string', 'current_password'],

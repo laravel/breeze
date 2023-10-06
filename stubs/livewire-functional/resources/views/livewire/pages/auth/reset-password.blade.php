@@ -14,7 +14,11 @@ layout('layouts.guest');
 
 state('token')->locked();
 
-state(['email' => fn () => request()->string('email')->value(), 'password' => '', 'password_confirmation' => '']);
+state([
+    'email' => fn () => request()->string('email')->value(),
+    'password' => '',
+    'password_confirmation' => ''
+]);
 
 rules([
     'token' => ['required'],

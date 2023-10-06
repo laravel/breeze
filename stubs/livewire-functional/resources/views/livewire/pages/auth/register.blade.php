@@ -5,14 +5,18 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
 use function Livewire\Volt\layout;
 use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
 layout('layouts.guest');
 
-state(['name' => '', 'email' => '', 'password' => '', 'password_confirmation' => '']);
+state([
+    'name' => '',
+    'email' => '',
+    'password' => '',
+    'password_confirmation' => ''
+]);
 
 rules([
     'name' => ['required', 'string', 'max:255'],
