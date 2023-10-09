@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.24.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.25.0...1.x)
+
+## [v1.25.0](https://github.com/laravel/breeze/compare/v1.24.1...v1.25.0) - 2023-10-06
+
+- Adds Livewire Volt Functional API by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/318
 
 ## [v1.24.1](https://github.com/laravel/breeze/compare/v1.24.0...v1.24.1) - 2023-10-04
 
