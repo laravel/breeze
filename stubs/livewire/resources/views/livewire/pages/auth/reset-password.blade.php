@@ -13,11 +13,8 @@ new #[Layout('layouts.guest')] class extends Component
 {
     #[Locked]
     public string $token = '';
-
     public string $email = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
     public function mount(string $token): void
