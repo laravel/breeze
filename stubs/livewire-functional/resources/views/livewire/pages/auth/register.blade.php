@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use function Livewire\Volt\layout;
 use function Livewire\Volt\rules;
@@ -25,6 +26,8 @@ rules([
 ]);
 
 $register = function () {
+    $this->email = Str::lower($this->email);
+
     $validated = $this->validate();
 
     $validated['password'] = Hash::make($validated['password']);
