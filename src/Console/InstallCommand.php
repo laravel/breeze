@@ -322,7 +322,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'react' => 'React with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
-                ]
+                ],
+                scroll: 6,
             ),
         ];
     }
