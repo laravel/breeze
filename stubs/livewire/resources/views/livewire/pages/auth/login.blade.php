@@ -26,7 +26,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->ensureIsNotRateLimited();
 
-        if (! auth()->attempt($this->only(['email', 'password'], $this->remember))) {
+        if (! auth()->attempt($this->only(['email', 'password']), $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

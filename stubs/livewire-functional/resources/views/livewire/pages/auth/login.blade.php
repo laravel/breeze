@@ -38,7 +38,7 @@ $login = function () {
         ]);
     }
 
-    if (! auth()->attempt($this->only(['email', 'password'], $this->remember))) {
+    if (! auth()->attempt($this->only(['email', 'password']), $this->remember)) {
         RateLimiter::hit($throttleKey);
 
         throw ValidationException::withMessages([
