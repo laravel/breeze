@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 
 use function Livewire\Volt\layout;
 use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
 layout('layouts.guest');
-
 state(['email' => '']);
-
 rules(['email' => ['required', 'string', 'email']]);
 
 $sendPasswordResetLink = function () {
@@ -30,7 +29,7 @@ $sendPasswordResetLink = function () {
 
     $this->reset('email');
 
-    session()->flash('status', __($status));
+    Session::flash('status', __($status));
 };
 
 ?>

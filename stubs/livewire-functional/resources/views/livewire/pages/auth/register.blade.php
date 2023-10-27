@@ -3,8 +3,10 @@
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+
 use function Livewire\Volt\layout;
 use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
@@ -31,7 +33,7 @@ $register = function () {
 
     event(new Registered($user = User::create($validated)));
 
-    auth()->login($user);
+    Auth::login($user);
 
     $this->redirect(RouteServiceProvider::HOME, navigate: true);
 };

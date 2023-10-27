@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
@@ -27,7 +28,7 @@ $updatePassword = function () {
         throw $e;
     }
 
-    auth()->user()->update([
+    Auth::user()->update([
         'password' => Hash::make($validated['password']),
     ]);
 

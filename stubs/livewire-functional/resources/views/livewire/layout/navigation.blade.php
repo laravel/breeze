@@ -1,10 +1,9 @@
 <?php
 
-$logout = function () {
-    auth()->guard('web')->logout();
+use App\Livewire\Actions\Logout;
 
-    session()->invalidate();
-    session()->regenerateToken();
+$logout = function (Logout $logout) {
+    $logout();
 
     $this->redirect('/', navigate: true);
 };
