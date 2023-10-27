@@ -8,7 +8,9 @@ use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
 layout('layouts.guest');
+
 state(['email' => '']);
+
 rules(['email' => ['required', 'string', 'email']]);
 
 $sendPasswordResetLink = function () {

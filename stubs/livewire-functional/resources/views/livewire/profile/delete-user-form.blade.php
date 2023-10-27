@@ -7,6 +7,7 @@ use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
 state(['password' => '']);
+
 rules(['password' => ['required', 'string', 'current_password']]);
 
 $deleteUser = function (Logout $logout) {

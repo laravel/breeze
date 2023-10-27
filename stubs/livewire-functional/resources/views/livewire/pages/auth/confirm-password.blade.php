@@ -9,7 +9,9 @@ use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 
 layout('layouts.guest');
+
 state(['password' => '']);
+
 rules(['password' => ['required', 'string']]);
 
 $confirmPassword = function () {
