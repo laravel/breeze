@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Actions\Logout;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -30,12 +31,9 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Log the current user out of the application.
      */
-    public function logout(): void
+    public function logout(Logout $logout): void
     {
-        Auth::guard('web')->logout();
-
-        Session::invalidate();
-        Session::regenerateToken();
+        $logout();
 
         $this->redirect('/', navigate: true);
     }
