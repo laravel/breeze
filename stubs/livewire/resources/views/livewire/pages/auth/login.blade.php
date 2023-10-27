@@ -19,7 +19,7 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login(Request $request): void
     {
         $this->validate([
             'email' => ['required', 'string', 'email'],
@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
             ]);
         }
 
-        RateLimiter::clear($this->throttleKey());
+        RateLimiter::clear($this->throttleKey($request));
 
         $request->session()->regenerate();
 
