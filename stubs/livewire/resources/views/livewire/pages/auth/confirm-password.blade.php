@@ -1,7 +1,6 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
@@ -14,14 +13,14 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Confirm the current user's password.
      */
-    public function confirmPassword(Request $request): void
+    public function confirmPassword(): void
     {
         $this->validate([
             'password' => ['required', 'string'],
         ]);
 
         if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
+            'email' => Auth::user()->email,
             'password' => $this->password,
         ])) {
             throw ValidationException::withMessages([
@@ -29,10 +28,10 @@ new #[Layout('layouts.guest')] class extends Component
             ]);
         }
 
-        $request->session()->put('auth.password_confirmed_at', time());
+        session(['auth.password_confirmed_at' => time()]);
 
         $this->redirect(
-            $request->session()->get('url.intended', RouteServiceProvider::HOME),
+            session('url.intended', RouteServiceProvider::HOME),
             navigate: true
         );
     }

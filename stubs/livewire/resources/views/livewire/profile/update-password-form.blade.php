@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
@@ -15,7 +15,7 @@ new class extends Component
     /**
      * Update the password for the currently authenticated user.
      */
-    public function updatePassword(Request $request): void
+    public function updatePassword(): void
     {
         try {
             $validated = $this->validate([
@@ -28,7 +28,7 @@ new class extends Component
             throw $e;
         }
 
-        $request->user()->update([
+        Auth::user()->update([
             'password' => Hash::make($validated['password']),
         ]);
 

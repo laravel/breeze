@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -21,17 +21,17 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Mount the component.
      */
-    public function mount(Request $request, string $token): void
+    public function mount(string $token): void
     {
         $this->token = $token;
 
-        $this->email = $request->string('email');
+        $this->email = request()->string('email');
     }
 
     /**
      * Reset the password for the given user.
      */
-    public function resetPassword(Request $request): void
+    public function resetPassword(): void
     {
         $this->validate([
             'token' => ['required'],
@@ -63,7 +63,7 @@ new #[Layout('layouts.guest')] class extends Component
             return;
         }
 
-        $request->session()->flash('status', __($status));
+        Session::flash('status', __($status));
 
         $this->redirectRoute('login', navigate: true);
     }

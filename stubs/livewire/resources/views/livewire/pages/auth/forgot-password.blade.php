@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
@@ -12,7 +11,7 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Send a password reset link to the provided email address.
      */
-    public function sendPasswordResetLink(Request $request): void
+    public function sendPasswordResetLink(): void
     {
         $this->validate([
             'email' => ['required', 'string', 'email'],
@@ -33,7 +32,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->reset('email');
 
-        $request->session()->flash('status', __($status));
+        session()->flash('status', __($status));
     }
 }; ?>
 

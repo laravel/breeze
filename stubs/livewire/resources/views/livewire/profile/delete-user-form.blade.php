@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Volt\Component;
 
 new class extends Component
@@ -11,16 +11,16 @@ new class extends Component
     /**
      * Delete the currently authenticated user.
      */
-    public function deleteUser(Request $request): void
+    public function deleteUser(): void
     {
         $this->validate([
             'password' => ['required', 'string', 'current_password'],
         ]);
 
-        tap($request->user(), fn () => Auth::logout())->delete();
+        tap(Auth::user(), fn () => Auth::logout())->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Session::invalidate();
+        Session::regenerateToken();
 
         $this->redirect('/', navigate: true);
     }
