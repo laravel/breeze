@@ -1,21 +1,26 @@
 <?php
 
-use Livewire\Attributes\Rule;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    #[Rule(['required', 'string', 'current_password'])]
     public string $password = '';
 
-    public function deleteUser(): void
+    /**
+     * Delete the currently authenticated user.
+     */
+    public function deleteUser(Request $request): void
     {
-        $this->validate();
+        $this->validate([
+            'password' => ['required', 'string', 'current_password'],
+        ]);
 
-        tap(auth()->user(), fn () => auth()->logout())->delete();
+        tap($request->user(), fn () => Auth::logout())->delete();
 
-        session()->invalidate();
-        session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
     }

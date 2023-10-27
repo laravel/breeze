@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -13,21 +14,24 @@ new #[Layout('layouts.guest')] class extends Component
 {
     #[Locked]
     public string $token = '';
-
     public string $email = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
-    public function mount(string $token): void
+    /**
+     * Mount the component.
+     */
+    public function mount(Request $request, string $token): void
     {
         $this->token = $token;
 
-        $this->email = request()->string('email');
+        $this->email = $request->string('email');
     }
 
-    public function resetPassword(): void
+    /**
+     * Reset the password for the given user.
+     */
+    public function resetPassword(Request $request): void
     {
         $this->validate([
             'token' => ['required'],
@@ -59,7 +63,7 @@ new #[Layout('layouts.guest')] class extends Component
             return;
         }
 
-        session()->flash('status', __($status));
+        $request->session()->flash('status', __($status));
 
         $this->redirectRoute('login', navigate: true);
     }

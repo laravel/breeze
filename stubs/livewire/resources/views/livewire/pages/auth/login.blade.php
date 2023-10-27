@@ -2,31 +2,34 @@
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Lockout;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    #[Rule(['required', 'string', 'email'])]
     public string $email = '';
-
-    #[Rule(['required', 'string'])]
     public string $password = '';
-
-    #[Rule(['boolean'])]
     public bool $remember = false;
 
+    /**
+     * Handle an incoming authentication request.
+     */
     public function login(): void
     {
-        $this->validate();
+        $this->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+            'remember' => ['boolean'],
+        ]);
 
-        $this->ensureIsNotRateLimited();
+        $this->ensureIsNotRateLimited($request);
 
-        if (! auth()->attempt($this->only(['email', 'password']), $this->remember)) {
+        if (! Auth::attempt($this->only(['email', 'password']), $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -36,23 +39,26 @@ new #[Layout('layouts.guest')] class extends Component
 
         RateLimiter::clear($this->throttleKey());
 
-        session()->regenerate();
+        $request->session()->regenerate();
 
         $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
+            $request->session()->get('url.intended', RouteServiceProvider::HOME),
             navigate: true
         );
     }
 
-    protected function ensureIsNotRateLimited(): void
+    /**
+     * Ensure the authentication request is not rate limited.
+     */
+    protected function ensureIsNotRateLimited(Request $request): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
             return;
         }
 
-        event(new Lockout(request()));
+        event(new Lockout($request));
 
-        $seconds = RateLimiter::availableIn($this->throttleKey());
+        $seconds = RateLimiter::availableIn($this->throttleKey($request));
 
         throw ValidationException::withMessages([
             'email' => trans('auth.throttle', [
@@ -62,9 +68,12 @@ new #[Layout('layouts.guest')] class extends Component
         ]);
     }
 
-    protected function throttleKey(): string
+    /**
+     * Get the authentication rate limiting throttle key.
+     */
+    protected function throttleKey(Request $request): string
     {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.$request->ip());
     }
 }; ?>
 

@@ -1,15 +1,20 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public function logout(): void
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Request $request): void
     {
-        auth()->guard('web')->logout();
+        Auth::guard('web')->logout();
 
-        session()->invalidate();
-        session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         $this->redirect('/', navigate: true);
     }

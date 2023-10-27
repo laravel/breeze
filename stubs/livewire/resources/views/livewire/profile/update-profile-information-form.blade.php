@@ -2,24 +2,30 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
     public string $name = '';
-
     public string $email = '';
 
-    public function mount(): void
+    /**
+     * Mount the component.
+     */
+    public function mount(Request $request): void
     {
-        $this->name = auth()->user()->name;
-        $this->email = auth()->user()->email;
+        $this->name = $request->user()->name;
+        $this->email = $request->user()->email;
     }
 
-    public function updateProfileInformation(): void
+    /**
+     * Update the profile information for the currently authenticated user.
+     */
+    public function updateProfileInformation(Request $request): void
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -37,12 +43,15 @@ new class extends Component
         $this->dispatch('profile-updated', name: $user->name);
     }
 
-    public function sendVerification(): void
+    /**
+     * Send an email verification notification to the current user.
+     */
+    public function sendVerification(Request $request): void
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         if ($user->hasVerifiedEmail()) {
-            $path = session('url.intended', RouteServiceProvider::HOME);
+            $path = $request->session()->get('url.intended', RouteServiceProvider::HOME);
 
             $this->redirect($path);
 
@@ -51,7 +60,7 @@ new class extends Component
 
         $user->sendEmailVerificationNotification();
 
-        session()->flash('status', 'verification-link-sent');
+        $request->session()->flash('status', 'verification-link-sent');
     }
 }; ?>
 

@@ -1,22 +1,27 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    #[Rule(['required', 'string'])]
     public string $password = '';
 
-    public function confirmPassword(): void
+    /**
+     * Confirm the current user's password.
+     */
+    public function confirmPassword(Request $request): void
     {
-        $this->validate();
+        $this->validate([
+            'password' => ['required', 'string'],
+        ]);
 
-        if (! auth()->guard('web')->validate([
-            'email' => auth()->user()->email,
+        if (! Auth::guard('web')->validate([
+            'email' => $request->user()->email,
             'password' => $this->password,
         ])) {
             throw ValidationException::withMessages([
@@ -24,10 +29,10 @@ new #[Layout('layouts.guest')] class extends Component
             ]);
         }
 
-        session(['auth.password_confirmed_at' => time()]);
+        $request->session()->put('auth.password_confirmed_at', time());
 
         $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
+            $request->session()->get('url.intended', RouteServiceProvider::HOME),
             navigate: true
         );
     }

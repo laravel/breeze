@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
@@ -8,12 +9,13 @@ use Livewire\Volt\Component;
 new class extends Component
 {
     public string $current_password = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
-    public function updatePassword(): void
+    /**
+     * Update the password for the currently authenticated user.
+     */
+    public function updatePassword(Request $request): void
     {
         try {
             $validated = $this->validate([
@@ -26,7 +28,7 @@ new class extends Component
             throw $e;
         }
 
-        auth()->user()->update([
+        $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
 

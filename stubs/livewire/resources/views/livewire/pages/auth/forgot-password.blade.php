@@ -1,18 +1,22 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    #[Rule(['required', 'string', 'email'])]
     public string $email = '';
 
-    public function sendPasswordResetLink(): void
+    /**
+     * Send a password reset link to the provided email address.
+     */
+    public function sendPasswordResetLink(Request $request): void
     {
-        $this->validate();
+        $this->validate([
+            'email' => ['required', 'string', 'email'],
+        ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -29,7 +33,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->reset('email');
 
-        session()->flash('status', __($status));
+        $request->session()->flash('status', __($status));
     }
 }; ?>
 
