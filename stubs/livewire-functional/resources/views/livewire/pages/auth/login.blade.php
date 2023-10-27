@@ -4,6 +4,7 @@ use App\Livewire\Forms\LoginForm;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 
+use function Livewire\Volt\form;
 use function Livewire\Volt\layout;
 
 layout('layouts.guest');
