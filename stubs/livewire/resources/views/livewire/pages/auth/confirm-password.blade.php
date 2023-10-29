@@ -1,22 +1,26 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    #[Rule(['required', 'string'])]
     public string $password = '';
 
+    /**
+     * Confirm the current user's password.
+     */
     public function confirmPassword(): void
     {
-        $this->validate();
+        $this->validate([
+            'password' => ['required', 'string'],
+        ]);
 
-        if (! auth()->guard('web')->validate([
-            'email' => auth()->user()->email,
+        if (! Auth::guard('web')->validate([
+            'email' => Auth::user()->email,
             'password' => $this->password,
         ])) {
             throw ValidationException::withMessages([

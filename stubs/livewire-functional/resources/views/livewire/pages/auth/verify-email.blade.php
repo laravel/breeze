@@ -1,13 +1,16 @@
 <?php
 
+use App\Livewire\Actions\Logout;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 use function Livewire\Volt\layout;
 
 layout('layouts.guest');
 
 $sendVerification = function () {
-    if (auth()->user()->hasVerifiedEmail()) {
+    if (Auth::user()->hasVerifiedEmail()) {
         $this->redirect(
             session('url.intended', RouteServiceProvider::HOME),
             navigate: true
@@ -16,16 +19,13 @@ $sendVerification = function () {
         return;
     }
 
-    auth()->user()->sendEmailVerificationNotification();
+    Auth::user()->sendEmailVerificationNotification();
 
-    session()->flash('status', 'verification-link-sent');
+    Session::flash('status', 'verification-link-sent');
 };
 
-$logout = function () {
-    auth()->guard('web')->logout();
-
-    session()->invalidate();
-    session()->regenerateToken();
+$logout = function (Logout $logout) {
+    $logout();
 
     $this->redirect('/', navigate: true);
 };

@@ -1,15 +1,17 @@
 <?php
 
+use App\Livewire\Actions\Logout;
+use App\Livewire\Forms\LogoutForm;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public function logout(): void
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
     {
-        auth()->guard('web')->logout();
-
-        session()->invalidate();
-        session()->regenerateToken();
+        $logout();
 
         $this->redirect('/', navigate: true);
     }

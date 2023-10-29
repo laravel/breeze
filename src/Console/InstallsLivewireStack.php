@@ -65,6 +65,14 @@ trait InstallsLivewireStack
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/View/Components', app_path('View/Components'));
 
+        // Actions...
+        (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Actions'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Actions', app_path('Livewire/Actions'));
+
+        // Forms...
+        (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Forms'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Forms', app_path('Livewire/Forms'));
+
         // Dark mode...
         if (! $this->option('dark')) {
             $this->removeDarkClasses((new Finder)

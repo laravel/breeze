@@ -3,6 +3,7 @@
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -13,13 +14,13 @@ new #[Layout('layouts.guest')] class extends Component
 {
     #[Locked]
     public string $token = '';
-
     public string $email = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
+    /**
+     * Mount the component.
+     */
     public function mount(string $token): void
     {
         $this->token = $token;
@@ -27,6 +28,9 @@ new #[Layout('layouts.guest')] class extends Component
         $this->email = request()->string('email');
     }
 
+    /**
+     * Reset the password for the given user.
+     */
     public function resetPassword(): void
     {
         $this->validate([
@@ -59,7 +63,7 @@ new #[Layout('layouts.guest')] class extends Component
             return;
         }
 
-        session()->flash('status', __($status));
+        Session::flash('status', __($status));
 
         $this->redirectRoute('login', navigate: true);
     }
