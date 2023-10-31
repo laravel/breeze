@@ -7,12 +7,6 @@
 - Fix Livewire 'remember me' flow for login doesn't remember by [@ebosveld](https://github.com/ebosveld) in https://github.com/laravel/breeze/pull/325
 - Beautify Livewire Stack by [@taylorotwell](https://github.com/taylorotwell) in https://github.com/laravel/breeze/pull/326
 
-### New Contributors
-
-- [@ebosveld](https://github.com/ebosveld) made their first contribution in https://github.com/laravel/breeze/pull/325
-
-**Full Changelog**: https://github.com/laravel/breeze/compare/v1.25.1...v1.26.0
-
 ## [v1.25.1](https://github.com/laravel/breeze/compare/v1.25.0...v1.25.1) - 2023-10-20
 
 - [1.x] Adds `lowercase` validation rule to user's `email` field by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/321
