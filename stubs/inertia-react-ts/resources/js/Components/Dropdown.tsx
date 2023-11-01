@@ -44,9 +44,9 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
     let alignmentClasses = 'origin-top';
 
     if (align === 'left') {
-        alignmentClasses = 'origin-top-left left-0';
+        alignmentClasses = 'ltr:origin-top-left rtl:origin-top-right start-0';
     } else if (align === 'right') {
-        alignmentClasses = 'origin-top-right right-0';
+        alignmentClasses = 'ltr:origin-top-right rtl:origin-top-left end-0';
     }
 
     let widthClasses = '';
@@ -83,7 +83,7 @@ const DropdownLink = ({ className = '', children, ...props }: InertiaLinkProps) 
         <Link
             {...props}
             className={
-                'block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out ' +
+                'block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out ' +
                 className
             }
         >
