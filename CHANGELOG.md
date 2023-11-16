@@ -1,6 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.25.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.1...1.x)
+
+## [v1.26.1](https://github.com/laravel/breeze/compare/v1.26.0...v1.26.1) - 2023-11-01
+
+- Better Support for RTL by [@joelbutcher](https://github.com/joelbutcher) in https://github.com/laravel/breeze/pull/327
+
+## [v1.26.0](https://github.com/laravel/breeze/compare/v1.25.1...v1.26.0) - 2023-10-29
+
+- Fix Livewire 'remember me' flow for login doesn't remember by [@ebosveld](https://github.com/ebosveld) in https://github.com/laravel/breeze/pull/325
+- Beautify Livewire Stack by [@taylorotwell](https://github.com/taylorotwell) in https://github.com/laravel/breeze/pull/326
+
+## [v1.25.1](https://github.com/laravel/breeze/compare/v1.25.0...v1.25.1) - 2023-10-20
+
+- [1.x] Adds `lowercase` validation rule to user's `email` field by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/321
+- [1.x] Fix React type issue for SSR route by [@parth391](https://github.com/parth391) in https://github.com/laravel/breeze/pull/320
+- [1.x] Don't hide options by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/322
 
 ## [v1.25.0](https://github.com/laravel/breeze/compare/v1.24.1...v1.25.0) - 2023-10-06
 

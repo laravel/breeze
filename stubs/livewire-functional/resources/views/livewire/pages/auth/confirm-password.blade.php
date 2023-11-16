@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 use function Livewire\Volt\layout;
@@ -16,8 +17,8 @@ rules(['password' => ['required', 'string']]);
 $confirmPassword = function () {
     $this->validate();
 
-    if (! auth()->guard('web')->validate([
-        'email' => auth()->user()->email,
+    if (! Auth::guard('web')->validate([
+        'email' => Auth::user()->email,
         'password' => $this->password,
     ])) {
         throw ValidationException::withMessages([

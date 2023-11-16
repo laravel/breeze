@@ -2,24 +2,31 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
     public string $name = '';
-
     public string $email = '';
 
+    /**
+     * Mount the component.
+     */
     public function mount(): void
     {
-        $this->name = auth()->user()->name;
-        $this->email = auth()->user()->email;
+        $this->name = Auth::user()->name;
+        $this->email = Auth::user()->email;
     }
 
+    /**
+     * Update the profile information for the currently authenticated user.
+     */
     public function updateProfileInformation(): void
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -37,9 +44,12 @@ new class extends Component
         $this->dispatch('profile-updated', name: $user->name);
     }
 
+    /**
+     * Send an email verification notification to the current user.
+     */
     public function sendVerification(): void
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         if ($user->hasVerifiedEmail()) {
             $path = session('url.intended', RouteServiceProvider::HOME);
@@ -51,7 +61,7 @@ new class extends Component
 
         $user->sendEmailVerificationNotification();
 
-        session()->flash('status', 'verification-link-sent');
+        Session::flash('status', 'verification-link-sent');
     }
 }; ?>
 
@@ -100,7 +110,7 @@ new class extends Component
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-            <x-action-message class="mr-3" on="profile-updated">
+            <x-action-message class="me-3" on="profile-updated">
                 {{ __('Saved.') }}
             </x-action-message>
         </div>

@@ -1,54 +1,22 @@
 <?php
 
+use App\Livewire\Forms\LoginForm;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
 
+use function Livewire\Volt\form;
 use function Livewire\Volt\layout;
-use function Livewire\Volt\rules;
-use function Livewire\Volt\state;
 
 layout('layouts.guest');
 
-state(['email' => '', 'password' => '', 'remember' => false]);
-
-rules([
-    'email' => ['required', 'string', 'email'],
-    'password' => ['required', 'string'],
-    'remember' => ['boolean'],
-]);
+form(LoginForm::class);
 
 $login = function () {
     $this->validate();
 
-    $throttleKey = Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+    $this->form->authenticate();
 
-    if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
-        event(new Lockout(request()));
-
-        $seconds = RateLimiter::availableIn($throttleKey);
-
-        throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
-    }
-
-    if (! auth()->attempt($this->only(['email', 'password'], $this->remember))) {
-        RateLimiter::hit($throttleKey);
-
-        throw ValidationException::withMessages([
-            'email' => trans('auth.failed'),
-        ]);
-    }
-
-    RateLimiter::clear($throttleKey);
-
-    session()->regenerate();
+    Session::regenerate();
 
     $this->redirect(
         session('url.intended', RouteServiceProvider::HOME),
@@ -66,7 +34,7 @@ $login = function () {
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
+            <x-text-input wire:model="form.email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -74,7 +42,7 @@ $login = function () {
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
@@ -85,8 +53,8 @@ $login = function () {
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember" class="inline-flex items-center">
-                <input wire:model="remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                <input wire:model="form.remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
 
@@ -97,7 +65,7 @@ $login = function () {
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

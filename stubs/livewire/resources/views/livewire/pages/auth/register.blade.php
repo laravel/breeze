@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -11,13 +12,13 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component
 {
     public string $name = '';
-
     public string $email = '';
-
     public string $password = '';
-
     public string $password_confirmation = '';
 
+    /**
+     * Handle an incoming registration request.
+     */
     public function register(): void
     {
         $validated = $this->validate([
@@ -30,7 +31,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         event(new Registered($user = User::create($validated)));
 
-        auth()->login($user);
+        Auth::login($user);
 
         $this->redirect(RouteServiceProvider::HOME, navigate: true);
     }
@@ -80,7 +81,7 @@ new #[Layout('layouts.guest')] class extends Component
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ml-4">
+            <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
