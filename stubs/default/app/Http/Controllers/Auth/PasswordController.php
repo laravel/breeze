@@ -23,7 +23,7 @@ class PasswordController extends Controller
 
         if (
             $request->user() &&
-            ($request->user() instanceof User)
+            $request->user() instanceof User
         ) {
             $request->user()->update([
                 'password' => Hash::make($validated['password']),
