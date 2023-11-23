@@ -20,7 +20,7 @@ Laravel Breeze is powered by Blade and Tailwind. If you're looking for a more ro
 
 ## Official Documentation
 
-Documentation for Breeze can be found on the [Laravel website](https://laravel.com/docs/8.x/starter-kits#laravel-breeze).
+Documentation for Breeze can be found on the [Laravel website](https://laravel.com/docs/starter-kits#laravel-breeze).
 
 ## Contributing
 

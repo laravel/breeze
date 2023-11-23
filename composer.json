@@ -14,10 +14,11 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/filesystem": "^8.42",
-        "illuminate/support": "^8.42",
-        "illuminate/validation": "^8.42"
+        "php": "^8.1.0",
+        "illuminate/console": "^10.17",
+        "illuminate/filesystem": "^10.17",
+        "illuminate/support": "^10.17",
+        "illuminate/validation": "^10.17"
     },
     "autoload": {
         "psr-4": {
@@ -38,5 +39,9 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "orchestra/testbench": "^8.0",
+        "phpstan/phpstan": "^1.10"
+    }
 }
