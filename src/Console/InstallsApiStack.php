@@ -24,13 +24,13 @@ trait InstallsApiStack
         // Middleware...
         $files->copyDirectory(__DIR__.'/../../stubs/api/app/Http/Middleware', app_path('Http/Middleware'));
 
-        $this->installMiddleware([
-            '\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class',
-        ], 'api', 'prepend');
-
         $this->installMiddlewareAliases([
             'verified' => '\App\Http\Middleware\EnsureEmailIsVerified::class',
         ]);
+
+        $this->installMiddleware([
+            '\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class',
+        ], 'api', 'prepend');
 
         // Requests...
         $files->ensureDirectoryExists(app_path('Http/Requests/Auth'));
