@@ -119,11 +119,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 $names = $names->map(fn ($name) => "$name")->implode(','.PHP_EOL.'            ');
 
                 $bootstrapApp = str_replace(
-                    '->withMiddleware(function (Middleware $middleware) {',
-                    "->withMiddleware(function (Middleware \$middleware) {"
-                        .PHP_EOL."        \$middleware->$group($modifier: ["
+                    '->withMiddleware(function (Middleware $middleware) {'
+                        .PHP_EOL."        \$middleware->$group(append: ["
                         .PHP_EOL."            $names,"
-                        .PHP_EOL."        ]);"
+                        .PHP_EOL.'        ]);'
                         .PHP_EOL,
                     $bootstrapApp,
                 );
