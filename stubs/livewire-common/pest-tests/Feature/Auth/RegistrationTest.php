@@ -21,7 +21,7 @@ test('new users can register', function () {
 
     $component->call('register');
 
-    $component->assertRedirect(route('dashboard', [], false));
+    $component->assertRedirect(route('dashboard', absolute: false));
 
     $this->assertAuthenticated();
 });

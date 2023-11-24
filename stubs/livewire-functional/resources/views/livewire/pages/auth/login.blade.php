@@ -18,7 +18,7 @@ $login = function () {
     Session::regenerate();
 
     $this->redirect(
-        session('url.intended', route('dashboard', [], false)),
+        session('url.intended', route('dashboard', absolute: false)),
         navigate: true
     );
 };

@@ -51,7 +51,7 @@ new class extends Component
         $user = Auth::user();
 
         if ($user->hasVerifiedEmail()) {
-            $path = session('url.intended', route('dashboard', [], false));
+            $path = session('url.intended', route('dashboard', absolute: false));
 
             $this->redirect($path);
 

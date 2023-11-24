@@ -11,7 +11,7 @@ layout('layouts.guest');
 $sendVerification = function () {
     if (Auth::user()->hasVerifiedEmail()) {
         $this->redirect(
-            session('url.intended', route('dashboard', [], false)),
+            session('url.intended', route('dashboard', absolute: false)),
             navigate: true
         );
 

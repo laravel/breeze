@@ -30,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component
         session(['auth.password_confirmed_at' => time()]);
 
         $this->redirect(
-            session('url.intended', route('dashboard', [], false)),
+            session('url.intended', route('dashboard', absolute: false)),
             navigate: true
         );
     }
