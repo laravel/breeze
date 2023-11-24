@@ -26,7 +26,7 @@ trait InstallsLivewireStack
         });
 
         // Install Livewire...
-        if (! $this->requireComposerPackages(['livewire/livewire:^3.0', 'livewire/volt:^1.0'])) {
+        if (! $this->requireComposerPackages(['livewire/livewire:dev-feat/l11 as 3.0', 'livewire/volt:^1.0'])) {
             return 1;
         }
 
@@ -90,9 +90,6 @@ trait InstallsLivewireStack
         // Routes...
         copy(__DIR__.'/../../stubs/livewire-common/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
-
-        // "Dashboard" Route...
-        $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
