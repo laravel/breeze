@@ -107,6 +107,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      *
      * @param  array|string  $name
      * @param  string  $group
+     * @param  string  $modifier
      * @return void
      */
     protected function installMiddleware($names, $group = 'web', $modifier = 'append')
