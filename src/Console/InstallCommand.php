@@ -115,7 +115,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         $names = collect(Arr::wrap($names))
             ->filter(fn ($name) => ! Str::contains($bootstrapApp, $name))
-            ->whenNotEmpty(function ($names) use ($bootstrapApp, $group, $modifier) {
+            ->whenNotEmpty(function ($names) use ($bootstrapApp, $group) {
                 $names = $names->map(fn ($name) => "$name")->implode(','.PHP_EOL.'            ');
 
                 $bootstrapApp = str_replace(
@@ -149,17 +149,16 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
                 $bootstrapApp = str_replace(
                     '->withMiddleware(function (Middleware $middleware) {',
-                    "->withMiddleware(function (Middleware \$middleware) {"
-                        .PHP_EOL."        \$middleware->alias(["
+                    '->withMiddleware(function (Middleware $middleware) {'
+                        .PHP_EOL.'        $middleware->alias(['
                         .PHP_EOL."            $aliases,"
-                        .PHP_EOL."        ]);"
+                        .PHP_EOL.'        ]);'
                         .PHP_EOL,
                     $bootstrapApp,
                 );
 
                 file_put_contents(base_path('bootstrap/app.php'), $bootstrapApp);
             });
-
     }
 
     /**
