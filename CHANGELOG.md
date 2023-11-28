@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.2...1.x)
+
+## [v1.26.2](https://github.com/laravel/breeze/compare/v1.26.1...v1.26.2) - 2023-11-24
+
+* refactor: remove unused import by [@hsndmr](https://github.com/hsndmr) in https://github.com/laravel/breeze/pull/328
+* Remove unused import statement by [@arifhp86](https://github.com/arifhp86) in https://github.com/laravel/breeze/pull/329
+* [1.x] Fix duplicate password fields by [@tonysm](https://github.com/tonysm) in https://github.com/laravel/breeze/pull/332
 
 ## [v1.26.1](https://github.com/laravel/breeze/compare/v1.26.0...v1.26.1) - 2023-11-01
 
