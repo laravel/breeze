@@ -30,7 +30,7 @@ $updateProfileInformation = function () {
 
     $user->save();
 
-    $this->dispatch('profile-updated', name: $user->name);
+    $this->dispatch('profile-updated', name: $user->name)->self();
 };
 
 $sendVerification = function () {
