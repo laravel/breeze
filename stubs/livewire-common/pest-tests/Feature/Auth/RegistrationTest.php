@@ -9,8 +9,8 @@ test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
     $response
-        ->assertSeeVolt('pages.auth.register')
-        ->assertOk();
+        ->assertOk()
+        ->assertSeeVolt('pages.auth.register');
 });
 
 test('new users can register', function () {
