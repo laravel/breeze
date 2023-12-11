@@ -15,8 +15,7 @@ trait InstallsInertiaStacks
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        // @todo update this...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^1.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^1.0'])) {
             return 1;
         }
 
@@ -179,8 +178,7 @@ trait InstallsInertiaStacks
     protected function installInertiaReactStack()
     {
         // Install Inertia...
-        // @todo update this...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^1.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^1.0'])) {
             return 1;
         }
 
