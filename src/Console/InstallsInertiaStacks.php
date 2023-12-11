@@ -16,7 +16,7 @@ trait InstallsInertiaStacks
     {
         // Install Inertia...
         // @todo update this...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:dev-patch-1', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
             return 1;
         }
 
@@ -180,7 +180,7 @@ trait InstallsInertiaStacks
     {
         // Install Inertia...
         // @todo update this...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:dev-patch-1', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel', 'laravel/sanctum:dev-master', 'tightenco/ziggy:^1.0'])) {
             return 1;
         }
 
