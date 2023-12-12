@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.2...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.3...1.x)
+
+## [v1.26.3](https://github.com/laravel/breeze/compare/v1.26.2...v1.26.3) - 2023-12-06
+
+* asserting responses are ok before asserting presence of components by [@da-mask](https://github.com/da-mask) in https://github.com/laravel/breeze/pull/337
+* Fix handling of names with single quotes in Livewire navigation by [@dragi-ns](https://github.com/dragi-ns) in https://github.com/laravel/breeze/pull/336
+* Change Livewire Rule Attribute to Validate Attribute by [@achmedislamic](https://github.com/achmedislamic) in https://github.com/laravel/breeze/pull/334
+* [1.x] Uses `json_encode` like Jetstream by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/338
 
 ## [v1.26.2](https://github.com/laravel/breeze/compare/v1.26.1...v1.26.2) - 2023-11-24
 
