@@ -20,7 +20,7 @@ trait InstallsLivewireStack
             return [
                 '@tailwindcss/forms' => '^0.5.2',
                 'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.6',
+                'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.1.0',
             ] + $packages;
         });

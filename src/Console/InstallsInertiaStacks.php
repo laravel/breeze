@@ -26,7 +26,7 @@ trait InstallsInertiaStacks
                 '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-vue' => '^4.0.0',
                 'autoprefixer' => '^10.4.12',
-                'postcss' => '^8.4.18',
+                'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
                 'vue' => '^3.2.41',
             ] + $packages;
@@ -190,7 +190,7 @@ trait InstallsInertiaStacks
                 '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-react' => '^4.0.3',
                 'autoprefixer' => '^10.4.12',
-                'postcss' => '^8.4.18',
+                'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
                 'react' => '^18.2.0',
                 'react-dom' => '^18.2.0',
