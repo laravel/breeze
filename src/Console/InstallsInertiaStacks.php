@@ -393,7 +393,7 @@ trait InstallsInertiaStacks
                     auth: {
                         user: User;
                     };
-                    ziggy: Config;
+                    ziggy: Config & { location: string };
                 EOT,
                 resource_path('js/types/index.d.ts')
             );
