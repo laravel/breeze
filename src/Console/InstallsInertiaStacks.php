@@ -166,6 +166,8 @@ trait InstallsInertiaStacks
             $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
         }
 
+        copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequestsSsr.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
+
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
@@ -329,6 +331,8 @@ trait InstallsInertiaStacks
             copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
             $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
         }
+
+        copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequestsSsr.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
