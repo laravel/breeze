@@ -17,9 +17,7 @@ createServer((page) =>
             return createSSRApp({ render: () => h(App, props) })
                 .use(plugin)
                 .use(ZiggyVue, {
-                    // @ts-expect-error
                     ...page.props.ziggy,
-                    // @ts-expect-error
                     location: new URL(page.props.ziggy.location),
                 });
         },
