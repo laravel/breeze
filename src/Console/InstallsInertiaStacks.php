@@ -338,8 +338,10 @@ trait InstallsInertiaStacks
 
     /**
      * Configure Ziggy for SSR.
+     *
+     * @return void
      */
-    protected function configureZiggyForSsr(): void
+    protected function configureZiggyForSsr()
     {
         $this->replaceInFile(
             <<<'EOT'
