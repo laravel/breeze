@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.26.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.27.0...1.x)
+
+## [v1.27.0](https://github.com/laravel/breeze/compare/v1.26.3...v1.27.0) - 2023-12-19
+
+* Update PostCSS version by [@TENIOS](https://github.com/TENIOS) in https://github.com/laravel/breeze/pull/339
+* Added a x-on:close-modal.window directive so we can close modal from a livewire function by [@lucidpolygon](https://github.com/lucidpolygon) in https://github.com/laravel/breeze/pull/341
+* Improve Ziggy setup in Inertia stacks by [@bakerkretzmar](https://github.com/bakerkretzmar) in https://github.com/laravel/breeze/pull/340
+* [1.x] Vite 5 by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/342
 
 ## [v1.26.3](https://github.com/laravel/breeze/compare/v1.26.2...v1.26.3) - 2023-12-06
 
