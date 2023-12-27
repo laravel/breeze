@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +34,7 @@ $register = function () {
 
     Auth::login($user);
 
-    $this->redirect(RouteServiceProvider::HOME, navigate: true);
+    $this->redirect(route('dashboard', absolute: false), navigate: true);
 };
 
 ?>

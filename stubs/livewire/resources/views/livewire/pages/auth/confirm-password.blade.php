@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
@@ -31,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component
         session(['auth.password_confirmed_at' => time()]);
 
         $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
+            session('url.intended', route('dashboard', absolute: false)),
             navigate: true
         );
     }

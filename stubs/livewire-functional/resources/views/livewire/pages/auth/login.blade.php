@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Forms\LoginForm;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 
 use function Livewire\Volt\form;
@@ -19,7 +18,7 @@ $login = function () {
     Session::regenerate();
 
     $this->redirect(
-        session('url.intended', RouteServiceProvider::HOME),
+        session('url.intended', route('dashboard', absolute: false)),
         navigate: true
     );
 };

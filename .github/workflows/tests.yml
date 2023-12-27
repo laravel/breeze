@@ -17,15 +17,15 @@ jobs:
       fail-fast: true
       matrix:
         stack: [blade, livewire, livewire-functional, react, vue, api]
-        laravel: [10]
+        laravel: [11]
         args: ["", --pest]
         include:
           - stack: vue
             args: --ssr --typescript
-            laravel: 10
+            laravel: 11
           - stack: react
             args: --ssr --typescript
-            laravel: 10
+            laravel: 11
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
 
@@ -33,17 +33,26 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: dom, curl, libxml, mbstring, zip
           ini-values: error_reporting=E_ALL
           tools: composer:v2
           coverage: none
 
       - name: Setup Laravel
+        if: matrix.laravel != 11
         run: |
           composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
+
+      - name: Setup Laravel
+        if: matrix.laravel == 11
+        run: |
+          composer create-project laravel/laravel:dev-master .
+          composer require laravel/breeze:@dev --no-interaction --no-update
+          composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
+
 
       - name: Checkout code
         uses: actions/checkout@v4
