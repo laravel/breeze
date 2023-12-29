@@ -15,9 +15,6 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
-            script: {
-                defineModel: true,
-            },
         }),
     ],
 });

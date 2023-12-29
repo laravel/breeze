@@ -28,7 +28,7 @@ trait InstallsInertiaStacks
                 'autoprefixer' => '^10.4.12',
                 'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
-                'vue' => '^3.2.41',
+                'vue' => '^3.4.0',
             ] + $packages;
         });
 
@@ -153,7 +153,7 @@ trait InstallsInertiaStacks
     {
         $this->updateNodePackages(function ($packages) {
             return [
-                '@vue/server-renderer' => '^3.2.31',
+                '@vue/server-renderer' => '^3.4.0',
             ] + $packages;
         });
 
