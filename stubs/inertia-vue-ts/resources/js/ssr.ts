@@ -5,7 +5,7 @@ import createServer from '@inertiajs/vue3/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-const appName = 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createServer((page) =>
     createInertiaApp({
@@ -17,9 +17,7 @@ createServer((page) =>
             return createSSRApp({ render: () => h(App, props) })
                 .use(plugin)
                 .use(ZiggyVue, {
-                    // @ts-expect-error
                     ...page.props.ziggy,
-                    // @ts-expect-error
                     location: new URL(page.props.ziggy.location),
                 });
         },

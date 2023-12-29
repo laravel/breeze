@@ -12,7 +12,9 @@ const form = useForm({
 
 const submit = () => {
     form.post(route('password.confirm'), {
-        onFinish: () => form.reset(),
+        onFinish: () => {
+            form.reset();
+        },
     });
 };
 </script>
@@ -41,7 +43,7 @@ const submit = () => {
             </div>
 
             <div class="flex justify-end mt-4">
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Confirm
                 </PrimaryButton>
             </div>
