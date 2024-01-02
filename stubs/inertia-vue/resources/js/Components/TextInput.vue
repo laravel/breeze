@@ -1,7 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-const modelValue = defineModel();
+const modelValue = defineModel({
+    type: String,
+    required: true,
+});
 
 const input = ref(null);
 
