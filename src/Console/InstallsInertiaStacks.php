@@ -24,9 +24,9 @@ trait InstallsInertiaStacks
             return [
                 '@inertiajs/vue3' => '^1.0.0',
                 '@tailwindcss/forms' => '^0.5.3',
-                '@vitejs/plugin-vue' => '^4.0.0',
+                '@vitejs/plugin-vue' => '^4.5.0',
                 'autoprefixer' => '^10.4.12',
-                'postcss' => '^8.4.18',
+                'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
                 'vue' => '^3.2.41',
             ] + $packages;
@@ -35,7 +35,6 @@ trait InstallsInertiaStacks
         if ($this->option('typescript')) {
             $this->updateNodePackages(function ($packages) {
                 return [
-                    '@types/ziggy-js' => '^1.3.2',
                     'typescript' => '^5.0.2',
                     'vue-tsc' => '^1.2.0',
                 ] + $packages;
@@ -166,6 +165,8 @@ trait InstallsInertiaStacks
             $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
         }
 
+        $this->configureZiggyForSsr();
+
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
     }
@@ -188,9 +189,9 @@ trait InstallsInertiaStacks
                 '@headlessui/react' => '^1.4.2',
                 '@inertiajs/react' => '^1.0.0',
                 '@tailwindcss/forms' => '^0.5.3',
-                '@vitejs/plugin-react' => '^4.0.3',
+                '@vitejs/plugin-react' => '^4.2.0',
                 'autoprefixer' => '^10.4.12',
-                'postcss' => '^8.4.18',
+                'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
                 'react' => '^18.2.0',
                 'react-dom' => '^18.2.0',
@@ -203,7 +204,6 @@ trait InstallsInertiaStacks
                     '@types/node' => '^18.13.0',
                     '@types/react' => '^18.0.28',
                     '@types/react-dom' => '^18.0.10',
-                    '@types/ziggy-js' => '^1.3.2',
                     'typescript' => '^5.0.2',
                 ] + $packages;
             });
@@ -330,7 +330,75 @@ trait InstallsInertiaStacks
             $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
         }
 
+        $this->configureZiggyForSsr();
+
         $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
         $this->replaceInFile('/node_modules', '/bootstrap/ssr'.PHP_EOL.'/node_modules', base_path('.gitignore'));
+    }
+
+    /**
+     * Configure Ziggy for SSR.
+     *
+     * @return void
+     */
+    protected function configureZiggyForSsr()
+    {
+        $this->replaceInFile(
+            <<<'EOT'
+            use Inertia\Middleware;
+            EOT,
+            <<<'EOT'
+            use Inertia\Middleware;
+            use Tightenco\Ziggy\Ziggy;
+            EOT,
+            app_path('Http/Middleware/HandleInertiaRequests.php')
+        );
+
+        $this->replaceInFile(
+            <<<'EOT'
+                        'auth' => [
+                            'user' => $request->user(),
+                        ],
+            EOT,
+            <<<'EOT'
+                        'auth' => [
+                            'user' => $request->user(),
+                        ],
+                        'ziggy' => fn () => [
+                            ...(new Ziggy)->toArray(),
+                            'location' => $request->url(),
+                        ],
+            EOT,
+            app_path('Http/Middleware/HandleInertiaRequests.php')
+        );
+
+        if ($this->option('typescript')) {
+            $this->replaceInFile(
+                <<<'EOT'
+                export interface User {
+                EOT,
+                <<<'EOT'
+                import { Config } from 'ziggy-js';
+
+                export interface User {
+                EOT,
+                resource_path('js/types/index.d.ts')
+            );
+
+            $this->replaceInFile(
+                <<<'EOT'
+                    auth: {
+                        user: User;
+                    };
+                EOT,
+                <<<'EOT'
+                    auth: {
+                        user: User;
+                    };
+                    ziggy: Config & { location: string };
+                EOT,
+                resource_path('js/types/index.d.ts')
+            );
+        }
     }
 }
