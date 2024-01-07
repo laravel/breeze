@@ -1,4 +1,4 @@
-import { DropdownProvider } from "../../Contexts/DropdownContext";
+import { DropdownProvider } from "./DropdownContext";
 
 export default function DropdownRoot ({children}) {
 return (
