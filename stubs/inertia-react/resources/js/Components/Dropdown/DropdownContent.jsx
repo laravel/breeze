@@ -1,23 +1,27 @@
-import { Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import { useDropdownContext } from './DropdownContext'
+import { Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { useDropdownContext } from "./DropdownContext";
 
-
-export default function DropdownContent({ align = 'right', width = '48', contentClasses = 'py-1 bg-white dark:bg-gray-700', children }) {
+export default function DropdownContent({
+    align = "right",
+    width = "48",
+    contentClasses = "py-1 bg-white dark:bg-gray-700",
+    children,
+}) {
     const { isOpen, setIsOpen } = useDropdownContext();
 
-    let alignmentClasses = 'origin-top';
+    let alignmentClasses = "origin-top";
 
-    if (align === 'left') {
-        alignmentClasses = 'ltr:origin-top-left rtl:origin-top-right start-0';
-    } else if (align === 'right') {
-        alignmentClasses = 'ltr:origin-top-right rtl:origin-top-left end-0';
+    if (align === "left") {
+        alignmentClasses = "ltr:origin-top-left rtl:origin-top-right start-0";
+    } else if (align === "right") {
+        alignmentClasses = "ltr:origin-top-right rtl:origin-top-left end-0";
     }
 
-    let widthClasses = '';
+    let widthClasses = "";
 
-    if (width === '48') {
-        widthClasses = 'w-48';
+    if (width === "48") {
+        widthClasses = "w-48";
     }
 
     return (
@@ -36,9 +40,16 @@ export default function DropdownContent({ align = 'right', width = '48', content
                     className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
                     onClick={() => setIsOpen(false)}
                 >
-                    <div className={`rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses}>{children}</div>
+                    <div
+                        className={
+                            `rounded-md ring-1 ring-black ring-opacity-5 ` +
+                            contentClasses
+                        }
+                    >
+                        {children}
+                    </div>
                 </div>
             </Transition>
         </>
     );
-};
+}

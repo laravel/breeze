@@ -1,28 +1,32 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from "react";
 
-const DropdownContext = createContext()
+const DropdownContext = createContext();
 
 // ====================================
 export function DropdownProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
-  function handleToggleOpen() {
-    setIsOpen((prevState) => !prevState)
-  }
+    function handleToggleOpen() {
+        setIsOpen((prevState) => !prevState);
+    }
 
-  return (
-    <DropdownContext.Provider value={{ isOpen, setIsOpen, handleToggleOpen }}>
-      {children}
-    </DropdownContext.Provider>
-  )
+    return (
+        <DropdownContext.Provider
+            value={{ isOpen, setIsOpen, handleToggleOpen }}
+        >
+            {children}
+        </DropdownContext.Provider>
+    );
 }
 
 export function useDropdownContext() {
-  const context = useContext(DropdownContext)
+    const context = useContext(DropdownContext);
 
-  if (!context) {
-    throw new Error('useDropdownContext must be used within a DropdownProvider')
-  }
+    if (!context) {
+        throw new Error(
+            "useDropdownContext must be used within a DropdownProvider"
+        );
+    }
 
-  return context
+    return context;
 }
