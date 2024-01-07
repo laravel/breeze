@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 const DropdownContext = createContext();
 
@@ -11,11 +11,7 @@ export function DropdownProvider({ children }) {
     }
 
     return (
-        <DropdownContext.Provider
-            value={{ isOpen, setIsOpen, handleToggleOpen }}
-        >
-            {children}
-        </DropdownContext.Provider>
+        <DropdownContext.Provider value={{ isOpen, setIsOpen, handleToggleOpen }}>{children}</DropdownContext.Provider>
     );
 }
 
