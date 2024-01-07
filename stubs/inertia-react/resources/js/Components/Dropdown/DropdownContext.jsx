@@ -19,9 +19,7 @@ export function useDropdownContext() {
     const context = useContext(DropdownContext);
 
     if (!context) {
-        throw new Error(
-            "useDropdownContext must be used within a DropdownProvider"
-        );
+        throw new Error('useDropdownContext must be used within a DropdownProvider');
     }
 
     return context;
