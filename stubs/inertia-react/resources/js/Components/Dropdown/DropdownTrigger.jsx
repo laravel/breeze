@@ -1,5 +1,4 @@
-import { useDropdownContext } from '../../Contexts/DropdownContext'
-
+import { useDropdownContext } from '@/Contexts/DropdownContext'
 
 export default function DropdownTrigger({ children }) {
     const { isOpen, setIsOpen, handleToggleOpen } = useDropdownContext()

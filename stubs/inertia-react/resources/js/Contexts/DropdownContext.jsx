@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react'
 const DropdownContext = createContext()
 
 // ====================================
-export default function DropdownProvider({ children }) {
+export function DropdownProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false)
 
   function handleToggleOpen() {
