@@ -7,8 +7,8 @@ import { useForm } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
 export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
-    const passwordInput = useRef<HTMLInputElement>();
-    const currentPasswordInput = useRef<HTMLInputElement>();
+    const passwordInput = useRef<HTMLInputElement>(null);
+    const currentPasswordInput = useRef<HTMLInputElement>(null);
 
     const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
         current_password: '',
