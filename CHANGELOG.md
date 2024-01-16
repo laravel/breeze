@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.1...1.x)
+
+## [v1.28.1](https://github.com/laravel/breeze/compare/v1.28.0...v1.28.1) - 2024-01-15
+
+* Add default value for useRef calls in .tsx files by [@matthiasweiss](https://github.com/matthiasweiss) in https://github.com/laravel/breeze/pull/348
 
 ## [v1.28.0](https://github.com/laravel/breeze/compare/v1.27.0...v1.28.0) - 2024-01-06
 
