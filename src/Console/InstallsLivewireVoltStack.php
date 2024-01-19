@@ -6,14 +6,14 @@ use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
-trait InstallsLivewireStack
+trait InstallsLivewireVoltStack
 {
     /**
      * Install the Livewire Breeze stack.
      *
      * @return int|null
      */
-    protected function installLivewireStack($functional = false)
+    protected function installLivewireVoltStack($functional = false)
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -44,22 +44,22 @@ trait InstallsLivewireStack
 
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views', resource_path('views'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-volt-common/resources/views', resource_path('views'));
 
         // Livewire Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            .($functional ? 'livewire-functional' : 'livewire')
+            .($functional ? 'livewire-volt-functional' : 'livewire-volt-class')
             .'/resources/views/livewire', resource_path('views/livewire'));
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-volt-common/resources/views/components', resource_path('views/components'));
 
         // Views Layouts...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-volt-common/resources/views/layouts', resource_path('views/layouts'));
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
@@ -67,11 +67,11 @@ trait InstallsLivewireStack
 
         // Actions...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Actions'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Actions', app_path('Livewire/Actions'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-volt-common/app/Livewire/Actions', app_path('Livewire/Actions'));
 
         // Forms...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Forms'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Forms', app_path('Livewire/Forms'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-volt-common/app/Livewire/Forms', app_path('Livewire/Forms'));
 
         // Dark mode...
         if (! $this->option('dark')) {
@@ -88,8 +88,8 @@ trait InstallsLivewireStack
         }
 
         // Routes...
-        copy(__DIR__.'/../../stubs/livewire-common/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/livewire-volt-common/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/livewire-volt-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
@@ -110,6 +110,6 @@ trait InstallsLivewireStack
             $this->runCommands(['npm install', 'npm run build']);
         }
 
-        $this->components->info('Livewire scaffolding installed successfully.');
+        $this->components->info('Livewire with Volt scaffolding installed successfully.');
     }
 }
