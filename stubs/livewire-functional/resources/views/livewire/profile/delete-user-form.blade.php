@@ -48,7 +48,7 @@ $deleteUser = function (Logout $logout) {
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-input-label for="password" :value="__('Password')" class="sr-only" />
 
                 <x-text-input
                     wire:model="password"
