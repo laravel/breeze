@@ -11,10 +11,7 @@ layout('layouts.guest');
 
 $sendVerification = function () {
     if (Auth::user()->hasVerifiedEmail()) {
-        $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
-            navigate: true
-        );
+        $this->redirectIntended(default: RouteServiceProvider::HOME, navigate: true);
 
         return;
     }
