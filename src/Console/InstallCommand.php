@@ -19,7 +19,7 @@ use function Laravel\Prompts\select;
 
 class InstallCommand extends Command implements PromptsForMissingInput
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack, InstallA;
 
     /**
      * The name and signature of the console command.
@@ -52,7 +52,9 @@ class InstallCommand extends Command implements PromptsForMissingInput
         } elseif ($this->argument('stack') === 'react') {
             return $this->installInertiaReactStack();
         } elseif ($this->argument('stack') === 'api') {
-            return $this->installApiStack();
+            return $this->installApiStack('api');
+        }elseif ($this->argument('stack') === 'api-token') {
+            return $this->installApiStack('api-token');
         } elseif ($this->argument('stack') === 'blade') {
             return $this->installBladeStack();
         } elseif ($this->argument('stack') === 'livewire') {
@@ -87,15 +89,15 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 $this->removeComposerPackages(['phpunit/phpunit'], true);
             }
 
-            if (! $this->requireComposerPackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-laravel:^2.0'], true)) {
+            if (!$this->requireComposerPackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-laravel:^2.0'], true)) {
                 return false;
             }
 
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Feature', base_path('tests/Feature'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Unit', base_path('tests/Unit'));
-            (new Filesystem)->copy(__DIR__.'/../../stubs/'.$stubStack.'/pest-tests/Pest.php', base_path('tests/Pest.php'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/' . $stubStack . '/pest-tests/Feature', base_path('tests/Feature'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/' . $stubStack . '/pest-tests/Unit', base_path('tests/Unit'));
+            (new Filesystem)->copy(__DIR__ . '/../../stubs/' . $stubStack . '/pest-tests/Pest.php', base_path('tests/Pest.php'));
         } else {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'.$stubStack.'/tests/Feature', base_path('tests/Feature'));
+            (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/' . $stubStack . '/tests/Feature', base_path('tests/Feature'));
         }
 
         return true;
@@ -104,9 +106,9 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Install the middleware to a group in the application Http Kernel.
      *
-     * @param  string  $after
-     * @param  string  $name
-     * @param  string  $group
+     * @param string $after
+     * @param string $name
+     * @param string $group
      * @return void
      */
     protected function installMiddlewareAfter($after, $name, $group = 'web')
@@ -116,10 +118,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $middlewareGroups = Str::before(Str::after($httpKernel, '$middlewareGroups = ['), '];');
         $middlewareGroup = Str::before(Str::after($middlewareGroups, "'$group' => ["), '],');
 
-        if (! Str::contains($middlewareGroup, $name)) {
+        if (!Str::contains($middlewareGroup, $name)) {
             $modifiedMiddlewareGroup = str_replace(
-                $after.',',
-                $after.','.PHP_EOL.'            '.$name.',',
+                $after . ',',
+                $after . ',' . PHP_EOL . '            ' . $name . ',',
                 $middlewareGroup,
             );
 
@@ -134,7 +136,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Determine if the given Composer package is installed.
      *
-     * @param  string  $package
+     * @param string $package
      * @return bool
      */
     protected function hasComposerPackage($package)
@@ -148,8 +150,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Installs the given Composer Packages into the application.
      *
-     * @param  array  $packages
-     * @param  bool  $asDev
+     * @param array $packages
+     * @param bool $asDev
      * @return bool
      */
     protected function requireComposerPackages(array $packages, $asDev = false)
@@ -167,17 +169,17 @@ class InstallCommand extends Command implements PromptsForMissingInput
         );
 
         return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
-            ->setTimeout(null)
-            ->run(function ($type, $output) {
-                $this->output->write($output);
-            }) === 0;
+                ->setTimeout(null)
+                ->run(function ($type, $output) {
+                    $this->output->write($output);
+                }) === 0;
     }
 
     /**
      * Removes the given Composer Packages from the application.
      *
-     * @param  array  $packages
-     * @param  bool  $asDev
+     * @param array $packages
+     * @param bool $asDev
      * @return bool
      */
     protected function removeComposerPackages(array $packages, $asDev = false)
@@ -195,22 +197,22 @@ class InstallCommand extends Command implements PromptsForMissingInput
         );
 
         return (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
-            ->setTimeout(null)
-            ->run(function ($type, $output) {
-                $this->output->write($output);
-            }) === 0;
+                ->setTimeout(null)
+                ->run(function ($type, $output) {
+                    $this->output->write($output);
+                }) === 0;
     }
 
     /**
      * Update the "package.json" file.
      *
-     * @param  callable  $callback
-     * @param  bool  $dev
+     * @param callable $callback
+     * @param bool $dev
      * @return void
      */
     protected static function updateNodePackages(callable $callback, $dev = true)
     {
-        if (! file_exists(base_path('package.json'))) {
+        if (!file_exists(base_path('package.json'))) {
             return;
         }
 
@@ -227,7 +229,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         file_put_contents(
             base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
         );
     }
 
@@ -249,9 +251,9 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Replace a given string within a given file.
      *
-     * @param  string  $search
-     * @param  string  $replace
-     * @param  string  $path
+     * @param string $search
+     * @param string $replace
+     * @param string $path
      * @return void
      */
     protected function replaceInFile($search, $replace, $path)
@@ -272,7 +274,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Run the given commands.
      *
-     * @param  array  $commands
+     * @param array $commands
      * @return void
      */
     protected function runCommands($commands)
@@ -283,19 +285,19 @@ class InstallCommand extends Command implements PromptsForMissingInput
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> '.$e->getMessage().PHP_EOL);
+                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
             }
         }
 
         $process->run(function ($type, $line) {
-            $this->output->write('    '.$line);
+            $this->output->write('    ' . $line);
         });
     }
 
     /**
      * Remove Tailwind dark classes from the given files.
      *
-     * @param  \Symfony\Component\Finder\Finder  $finder
+     * @param \Symfony\Component\Finder\Finder $finder
      * @return void
      */
     protected function removeDarkClasses(Finder $finder)
@@ -313,7 +315,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     protected function promptForMissingArgumentsUsing()
     {
         return [
-            'stack' => fn () => select(
+            'stack' => fn() => select(
                 label: 'Which Breeze stack would you like to install?',
                 options: [
                     'blade' => 'Blade with Alpine',
@@ -322,6 +324,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'react' => 'React with Inertia',
                     'vue' => 'Vue with Inertia',
                     'api' => 'API only',
+                    'api-token' => 'API with Sanctum Token Authentication',
                 ],
                 scroll: 6,
             ),
@@ -331,8 +334,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Interact further with the user if they were prompted for missing arguments.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return void
      */
     protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output)
@@ -347,19 +350,18 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'ssr' => 'Inertia SSR',
                     'typescript' => 'TypeScript (experimental)',
                 ]
-            ))->each(fn ($option) => $input->setOption($option, true));
+            ))->each(fn($option) => $input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
                 label: 'Would you like dark mode support?',
                 default: false
             ));
         }
-
         $input->setOption('pest', select(
-            label: 'Which testing framework do you prefer?',
-            options: ['PHPUnit', 'Pest'],
-            default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
-        ) === 'Pest');
+                label: 'Which testing framework do you prefer?',
+                options: ['PHPUnit', 'Pest'],
+                default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
+            ) === 'Pest');
     }
 
     /**
