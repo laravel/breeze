@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.1...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.2...1.x)
+
+## [v1.28.2](https://github.com/laravel/breeze/compare/v1.28.1...v1.28.2) - 2024-02-13
+
+* [1.x] Use Livewire's `redirectIntended` function by [@PerryvanderMeer](https://github.com/PerryvanderMeer) in https://github.com/laravel/breeze/pull/352
 
 ## [v1.28.1](https://github.com/laravel/breeze/compare/v1.28.0...v1.28.1) - 2024-01-15
 
