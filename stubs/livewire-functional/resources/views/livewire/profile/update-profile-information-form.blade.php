@@ -36,9 +36,7 @@ $sendVerification = function () {
     $user = Auth::user();
 
     if ($user->hasVerifiedEmail()) {
-        $path = session('url.intended', route('dashboard', absolute: false));
-
-        $this->redirect($path);
+        $this->redirectIntended(default: route('dashboard', absolute: false));
 
         return;
     }

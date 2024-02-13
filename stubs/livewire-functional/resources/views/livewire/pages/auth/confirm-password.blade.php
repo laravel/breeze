@@ -27,10 +27,7 @@ $confirmPassword = function () {
 
     session(['auth.password_confirmed_at' => time()]);
 
-    $this->redirect(
-        session('url.intended', route('dashboard', absolute: false)),
-        navigate: true
-    );
+    $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
 };
 
 ?>

@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.27.0...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.1...master)
+
+## [v1.28.1](https://github.com/laravel/breeze/compare/v1.28.0...v1.28.1) - 2024-01-15
+
+* Add default value for useRef calls in .tsx files by [@matthiasweiss](https://github.com/matthiasweiss) in https://github.com/laravel/breeze/pull/348
+
+## [v1.28.0](https://github.com/laravel/breeze/compare/v1.27.0...v1.28.0) - 2024-01-06
+
+* [1.x] Switch to `defineModel` in Vue stubs by [@osbre](https://github.com/osbre) in https://github.com/laravel/breeze/pull/285
 
 ## [v1.27.0](https://github.com/laravel/breeze/compare/v1.26.3...v1.27.0) - 2023-12-19
 
