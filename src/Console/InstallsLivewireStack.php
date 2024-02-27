@@ -38,8 +38,8 @@ trait InstallsLivewireStack
         // Controllers
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
         (new Filesystem)->copy(
-            __DIR__.'/../../stubs/default/app/Http/Controllers/Auth/VerifyEmailController.php',
-            app_path('Http/Controllers/Auth/VerifyEmailController.php'),
+            __DIR__.'/../../stubs/default/app/Http/Controllers',
+            app_path('Http/Controllers'),
         );
 
         // Views...
