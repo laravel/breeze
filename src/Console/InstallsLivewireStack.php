@@ -36,7 +36,7 @@ trait InstallsLivewireStack
             ->run();
 
         // Controllers
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copy(
             __DIR__.'/../../stubs/default/app/Http/Controllers',
             app_path('Http/Controllers'),
