@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.3...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.0...1.x)
+
+## [v1.29.0](https://github.com/laravel/breeze/compare/v1.28.3...v1.29.0) - 2024-02-21
+
+* Update to Ziggy v2 by [@bakerkretzmar](https://github.com/bakerkretzmar) in https://github.com/laravel/breeze/pull/359
 
 ## [v1.28.3](https://github.com/laravel/breeze/compare/v1.28.2...v1.28.3) - 2024-02-19
 
