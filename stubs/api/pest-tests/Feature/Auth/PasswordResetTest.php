@@ -29,7 +29,9 @@ test('password can be reset with valid token', function () {
             'password_confirmation' => 'password',
         ]);
 
-        $response->assertSessionHasNoErrors();
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertStatus(200);
 
         return true;
     });

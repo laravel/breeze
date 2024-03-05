@@ -1,6 +1,23 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.28.1...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.1...master)
+
+## [v1.29.1](https://github.com/laravel/breeze/compare/v1.29.0...v1.29.1) - 2024-03-04
+
+* Updated throttleKey method to meet Str::lower excepted value in LoginRequest stub by [@rileyshannon](https://github.com/rileyshannon) in https://github.com/laravel/breeze/pull/365
+* Fix Livewire form validation by [@PerryvanderMeer](https://github.com/PerryvanderMeer) in https://github.com/laravel/breeze/pull/364
+
+## [v1.29.0](https://github.com/laravel/breeze/compare/v1.28.3...v1.29.0) - 2024-02-21
+
+* Update to Ziggy v2 by [@bakerkretzmar](https://github.com/bakerkretzmar) in https://github.com/laravel/breeze/pull/359
+
+## [v1.28.3](https://github.com/laravel/breeze/compare/v1.28.2...v1.28.3) - 2024-02-19
+
+* Improve default auth tests inside the stubs by [@Pilskalns](https://github.com/Pilskalns) in https://github.com/laravel/breeze/pull/358
+
+## [v1.28.2](https://github.com/laravel/breeze/compare/v1.28.1...v1.28.2) - 2024-02-13
+
+* [1.x] Use Livewire's `redirectIntended` function by [@PerryvanderMeer](https://github.com/PerryvanderMeer) in https://github.com/laravel/breeze/pull/352
 
 ## [v1.28.1](https://github.com/laravel/breeze/compare/v1.28.0...v1.28.1) - 2024-01-15
 
