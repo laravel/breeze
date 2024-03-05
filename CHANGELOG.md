@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.0...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.1...1.x)
+
+## [v1.29.1](https://github.com/laravel/breeze/compare/v1.29.0...v1.29.1) - 2024-03-04
+
+* Updated throttleKey method to meet Str::lower excepted value in LoginRequest stub by [@rileyshannon](https://github.com/rileyshannon) in https://github.com/laravel/breeze/pull/365
+* Fix Livewire form validation by [@PerryvanderMeer](https://github.com/PerryvanderMeer) in https://github.com/laravel/breeze/pull/364
 
 ## [v1.29.0](https://github.com/laravel/breeze/compare/v1.28.3...v1.29.0) - 2024-02-21
 
