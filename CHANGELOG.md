@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.1...master)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.1...2.x)
 
 ## [v1.29.1](https://github.com/laravel/breeze/compare/v1.29.0...v1.29.1) - 2024-03-04
 
