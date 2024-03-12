@@ -40,19 +40,10 @@ jobs:
           coverage: none
 
       - name: Setup Laravel
-        if: matrix.laravel != 11
         run: |
           composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
-
-      - name: Setup Laravel
-        if: matrix.laravel == 11
-        run: |
-          composer create-project laravel/laravel:dev-master .
-          composer require laravel/breeze:@dev --no-interaction --no-update
-          composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
-
 
       - name: Checkout code
         uses: actions/checkout@v4
