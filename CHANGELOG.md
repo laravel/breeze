@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.29.1...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.0...2.x)
+
+## [v2.0.0](https://github.com/laravel/breeze/compare/v1.29.1...v2.0.0) - 2024-03-12
+
+* Adds Laravel 11 support by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/331
+* Add id to Input component by [@mmkhakdaman](https://github.com/mmkhakdaman) in https://github.com/laravel/breeze/pull/151
+* Implement 11.x welcome page design by [@jasonlbeggs](https://github.com/jasonlbeggs) in https://github.com/laravel/breeze/pull/362
 
 ## [v1.29.1](https://github.com/laravel/breeze/compare/v1.29.0...v1.29.1) - 2024-03-04
 
