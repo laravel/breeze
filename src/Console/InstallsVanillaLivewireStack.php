@@ -6,14 +6,14 @@ use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
-trait InstallsLivewireStack
+trait InstallsVanillaLivewireStack
 {
     /**
      * Install the Livewire Breeze stack.
      *
      * @return int|null
      */
-    protected function installLivewireStack($functional = false)
+    protected function installLivewireStack()
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -26,14 +26,9 @@ trait InstallsLivewireStack
         });
 
         // Install Livewire...
-        if (! $this->requireComposerPackages(['livewire/livewire:^3.4', 'livewire/volt:^1.0'])) {
+        if (! $this->requireComposerPackages(['livewire/livewire:^3.4'])) {
             return 1;
         }
-
-        // Install Volt...
-        (new Process([$this->phpBinary(), 'artisan', 'volt:install'], base_path()))
-            ->setTimeout(null)
-            ->run();
 
         // Controllers
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
@@ -43,14 +38,26 @@ trait InstallsLivewireStack
         );
 
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('livewire'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views', resource_path('views'));
 
-        // Livewire Components...
+        // Livewire view...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            .($functional ? 'livewire-functional' : 'livewire')
-            .'/resources/views/livewire', resource_path('views/livewire'));
+            .'/resources/views/livewire-vanilla/resources/view', resource_path('views'));
+
+        // Livewire Navigation view component...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
+            .'/resources/views/livewire-vanilla/resources/view/components', resource_path('views/components'));
+
+
+        // replacing the welcome file for livewire common
+
+        (new Filesystem)->copy(__DIR__.'/../../stubs/'
+            .'/resources/views/livewire-vanilla/resources/view/welcome.blade.php', resource_path('views'));
+
+
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
@@ -72,6 +79,19 @@ trait InstallsLivewireStack
         // Forms...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Forms'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Forms', app_path('Livewire/Forms'));
+
+        // Auth...
+        (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Auth', app_path('Livewire/Auth'));
+
+        // Layout...
+        (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Layout'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Layout', app_path('Livewire/Layout'));
+
+        // Profile...
+        (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Profile'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Profile', app_path('Livewire/Profile'));
+
 
         // Dark mode...
         if (! $this->option('dark')) {

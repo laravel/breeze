@@ -20,7 +20,7 @@ use function Laravel\Prompts\select;
 
 class InstallCommand extends Command implements PromptsForMissingInput
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsVanillaLivewireStack;
 
     /**
      * The name and signature of the console command.
