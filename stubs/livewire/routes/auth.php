@@ -1,31 +1,36 @@
 <?php
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Auth\ConfirmPassword;
+use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Auth\VerifyEmail;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 Route::middleware('guest')->group(function () {
-    Route::route('register', 'pages.auth.register')
+    Route::get('register', Register::class)
         ->name('register');
 
-    Route::route('login', 'pages.auth.login')
+    Route::get('login', Login::class)
         ->name('login');
 
-    Route::route('forgot-password', 'pages.auth.forgot-password')
+    Route::get('forgot-password', ForgotPassword::class)
         ->name('password.request');
 
-    Route::route('reset-password/{token}', 'pages.auth.reset-password')
+    Route::get('reset-password/{token}', ResetPassword::class)
         ->name('password.reset');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::route('verify-email', 'pages.auth.verify-email')
+    Route::get('verify-email', VerifyEmail::class)
         ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 
-    Route::route('confirm-password', 'pages.auth.confirm-password')
+    Route::get('confirm-password', ConfirmPassword::class)
         ->name('password.confirm');
 });
