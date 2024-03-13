@@ -49,7 +49,7 @@ trait InstallsLivewireVoltStack
         // Livewire Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            .($functional ? 'livewire-functional' : 'livewire')
+            .($functional ? 'livewire-functional' : 'livewire-volt-class-api')
             .'/resources/views/livewire', resource_path('views/livewire'));
 
         // Views Components...

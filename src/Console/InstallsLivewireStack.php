@@ -37,36 +37,20 @@ trait InstallsLivewireStack
             app_path('Http/Controllers/Auth/VerifyEmailController.php'),
         );
 
+
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('livewire'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views', resource_path('views'));
-
-        // Livewire view...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            .'/resources/views/livewire-vanilla/resources/view', resource_path('views'));
-
-        // Livewire Navigation view component...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/'
-            .'/resources/views/livewire-vanilla/resources/view/components', resource_path('views/components'));
-
-
-        // replacing the welcome file for livewire common
-
-        (new Filesystem)->copy(__DIR__.'/../../stubs/'
-            .'/resources/views/livewire-vanilla/resources/view/welcome.blade.php', resource_path('views'));
-
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views', resource_path('views'));
 
 
         // Views Components...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/components', resource_path('views/components'));
 
         // Views Layouts...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
@@ -74,23 +58,23 @@ trait InstallsLivewireStack
 
         // Actions...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Actions'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Actions', app_path('Livewire/Actions'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/app/Livewire/Actions', app_path('Livewire/Actions'));
 
         // Forms...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Forms'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-common/app/Livewire/Forms', app_path('Livewire/Forms'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/app/Livewire/Forms', app_path('Livewire/Forms'));
 
         // Auth...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Auth', app_path('Livewire/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/app/Livewire/Auth', app_path('Livewire/Auth'));
 
         // Layout...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Layout'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Layout', app_path('Livewire/Layout'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/app/Livewire/Layout', app_path('Livewire/Layout'));
 
         // Profile...
         (new Filesystem)->ensureDirectoryExists(app_path('Livewire/Profile'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire-vanilla/app/Livewire/Profile', app_path('Livewire/Profile'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/livewire/app/Livewire/Profile', app_path('Livewire/Profile'));
 
 
         // Dark mode...
@@ -108,8 +92,8 @@ trait InstallsLivewireStack
         }
 
         // Routes...
-        copy(__DIR__.'/../../stubs/livewire-common/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/livewire/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/livewire/routes/auth.php', base_path('routes/auth.php'));
 
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
