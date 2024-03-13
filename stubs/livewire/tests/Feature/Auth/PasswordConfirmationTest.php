@@ -19,7 +19,7 @@ class PasswordConfirmationTest extends TestCase
         $response = $this->actingAs($user)->get('/confirm-password');
 
         $response
-            ->assertSee('pages.auth.confirm-password')
+            ->assertSee('auth.confirm-password')
             ->assertStatus(200);
     }
 

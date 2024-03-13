@@ -15,7 +15,7 @@ test('reset password link screen can be rendered', function () {
     $response = $this->get('/forgot-password');
 
     $response
-        ->assertSee('pages.auth.forgot-password')
+        ->assertSee('auth.forgot-password')
         ->assertStatus(200);
 });
 
@@ -44,7 +44,7 @@ test('reset password screen can be rendered', function () {
         $response = $this->get('/reset-password/'.$notification->token);
 
         $response
-            ->assertSee('pages.auth.reset-password')
+            ->assertSee('auth.reset-password')
             ->assertStatus(200);
 
         return true;

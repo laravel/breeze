@@ -15,7 +15,7 @@ test('confirm password screen can be rendered', function () {
     $response = $this->actingAs($user)->get('/confirm-password');
 
     $response
-        ->assertSee('pages.auth.confirm-password')
+        ->assertSee('auth.confirm-password')
         ->assertStatus(200);
 });
 

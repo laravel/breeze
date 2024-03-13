@@ -19,7 +19,7 @@ class PasswordResetTest extends TestCase
         $response = $this->get('/forgot-password');
 
         $response
-            ->assertSee('pages.auth.forgot-password')
+            ->assertSee('auth.forgot-password')
             ->assertStatus(200);
     }
 
@@ -50,7 +50,7 @@ class PasswordResetTest extends TestCase
             $response = $this->get('/reset-password/'.$notification->token);
 
             $response
-                ->assertSee('pages.auth.reset-password')
+                ->assertSee('auth.reset-password')
                 ->assertStatus(200);
 
             return true;

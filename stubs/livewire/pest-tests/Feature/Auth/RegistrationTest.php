@@ -13,7 +13,7 @@ test('registration screen can be rendered', function () {
 
     $response
         ->assertOk()
-        ->assertSee('pages.auth.register');
+        ->assertSee('auth.register');
 });
 
 test('new users can register', function () {

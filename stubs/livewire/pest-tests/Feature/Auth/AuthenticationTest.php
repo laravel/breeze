@@ -15,7 +15,7 @@ test('login screen can be rendered', function () {
 
     $response
         ->assertOk()
-        ->assertSee('pages.auth.login');
+        ->assertSee('auth.login');
 });
 
 test('users can authenticate using the login screen', function () {
