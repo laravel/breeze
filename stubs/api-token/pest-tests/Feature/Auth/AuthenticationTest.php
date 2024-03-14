@@ -9,9 +9,16 @@ test('users can authenticate using the login screen', function () {
         'email' => $user->email,
         'password' => 'password',
     ]);
+// Assume the token is returned in the registration response
+    $token = $response['token'];
 
-    $this->assertAuthenticated();
-    $response->assertNoContent();
+    // Make a request to a protected route with the token
+    $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . $token,
+    ])->get('/api/user');
+
+    // Assert the user is authenticated and the response is successful
+    $response->assertOk();
 });
 
 test('users can not authenticate with invalid password', function () {
@@ -31,5 +38,5 @@ test('users can logout', function () {
     $response = $this->actingAs($user)->post('/logout');
 
     $this->assertGuest();
-    $response->assertNoContent();
+    $response->assertOk();
 });
