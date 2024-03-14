@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use function Pest\Laravel\{post, get, assertGuest, assertStatus, withHeaders, assertNotNull};
+use function Pest\Laravel\{post, get, assertGuest, assertStatus, withHeaders};
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -16,7 +16,7 @@ test('users can authenticate with token', function () {
     $response->assertStatus(200);
 
     $token = $response->json('token');
-    assertNotNull($token);
+    \Illuminate\Testing\Assert::assertNotNull($token);
 
     $response = withHeaders([
         'Authorization' => 'Bearer ' . $token,
