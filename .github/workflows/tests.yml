@@ -56,11 +56,11 @@ jobs:
           php artisan breeze:install ${{ matrix.stack }} ${{ matrix.args }}
 
       - name: Install NPM dependencies
-        if: matrix.stack != 'api'
+        if: matrix.stack != 'api' && matrix.stack != 'api-token'
         run: npm i
 
       - name: Compile assets
-        if: matrix.stack != 'api'
+        if: matrix.stack != 'api' && matrix.stack != 'api-token'
         run: npm run build
 
       - name: Execute tests
