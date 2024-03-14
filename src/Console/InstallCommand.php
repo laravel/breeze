@@ -81,6 +81,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             'api' => 'api',
             'livewire' => 'livewire-common',
             'livewire-functional' => 'livewire-common',
+            'api-token' => 'api-token',
             default => 'default',
         };
 
