@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use function Pest\Laravel\{post, get, assertGuest, assertStatus, withHeaders};
+use function Pest\Laravel\{post, get, assertGuest, assertStatus, withHeaders, assertNotNull};
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
