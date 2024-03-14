@@ -17,9 +17,8 @@ class RegistrationTest extends TestCase
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
-
-        $token = $response["token"];
-
-        $response->assertNoContent();
+        $response->assertStatus(200);
+        $token = $response->json('token');
+        $this->assertNotEmpty($token);
     }
 }

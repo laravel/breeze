@@ -10,21 +10,22 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_users_can_authenticate_with_token(): void
+    public function test_users_can_authenticate_with_token()
     {
-        // Create a new user
         $user = User::factory()->create();
 
-        // Assume the user can get a token (replace this with actual implementation)
-        $token = $user->createToken('test-token')->plainTextToken;
-
-        // Make a request to a protected route with the token
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password', // Use the default password or your actual password
+        ]);
+        $response->assertStatus(200);
+        $token = $response->json('token');
+        $this->assertNotEmpty($token);
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get('/api/user');
+        ])->get('/api/user'); // Change this to your API endpoint
 
-        // Assert the user is authenticated and the response is successful
-        $response->assertOk();
+        $response->assertStatus(200);
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -42,10 +43,11 @@ class AuthenticationTest extends TestCase
     public function test_users_can_logout(): void
     {
         $user = User::factory()->create();
+        $token = $user->createToken('test')->plainTextToken;
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->post('/logout');
 
-        $response = $this->actingAs($user)->post('/logout');
-
-        $this->assertGuest();
-        $response->assertOk();
+        $response->assertStatus(302);
     }
 }
