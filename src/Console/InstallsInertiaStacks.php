@@ -15,7 +15,7 @@ trait InstallsInertiaStacks
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^0.6.8', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^0.6.8', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^2.0'])) {
             return 1;
         }
 
@@ -179,7 +179,7 @@ trait InstallsInertiaStacks
     protected function installInertiaReactStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^1.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^0.6.3', 'laravel/sanctum:^3.2', 'tightenco/ziggy:^2.0'])) {
             return 1;
         }
 
@@ -349,7 +349,7 @@ trait InstallsInertiaStacks
             EOT,
             <<<'EOT'
             use Inertia\Middleware;
-            use Tightenco\Ziggy\Ziggy;
+            use Tighten\Ziggy\Ziggy;
             EOT,
             app_path('Http/Middleware/HandleInertiaRequests.php')
         );
