@@ -7,9 +7,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->refreshDatabase();
-});
 
 test('reset password link screen can be rendered', function () {
     $response = $this->get('/forgot-password');

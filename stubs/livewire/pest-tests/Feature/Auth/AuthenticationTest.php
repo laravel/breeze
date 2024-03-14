@@ -6,10 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->refreshDatabase();
-});
-
 test('login screen can be rendered', function () {
     $response = $this->get('/login');
 

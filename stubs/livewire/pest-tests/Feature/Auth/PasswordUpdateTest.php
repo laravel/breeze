@@ -6,9 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->refreshDatabase();
-});
 
 test('password can be updated', function () {
     $user = User::factory()->create();

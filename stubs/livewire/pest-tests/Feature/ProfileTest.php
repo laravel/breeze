@@ -6,9 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->user = User::factory()->create();
-});
 
 test('profile page is displayed', function () {
     $this->actingAs($this->user)

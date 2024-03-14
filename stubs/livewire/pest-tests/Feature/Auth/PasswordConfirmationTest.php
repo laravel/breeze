@@ -5,10 +5,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->refreshDatabase();
-});
-
 test('confirm password screen can be rendered', function () {
     $user = User::factory()->create();
 

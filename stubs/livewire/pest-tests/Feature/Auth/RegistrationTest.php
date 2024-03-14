@@ -4,9 +4,6 @@ use App\Livewire\Auth\Register;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-beforeEach(function () {
-    $this->refreshDatabase();
-});
 
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
