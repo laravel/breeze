@@ -18,5 +18,5 @@ test('new users can register', function () {
     ])->get('/api/user');
 
     // Assert the user is authenticated and the response is successful
-    $response->assertOk();
+    $response->assertStatus(200);
 });

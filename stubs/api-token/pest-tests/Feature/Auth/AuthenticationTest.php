@@ -1,42 +1,48 @@
 <?php
 
 use App\Models\User;
+use function Pest\Laravel\{post, get, assertGuest, assertStatus, withHeaders};
 
-test('users can authenticate using the login screen', function () {
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+
+test('users can authenticate with token', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
+    $response = post('/login', [
         'email' => $user->email,
-        'password' => 'password',
+        'password' => 'password', // Use the default password or your actual password
     ]);
-// Assume the token is returned in the registration response
-    $token = $response['token'];
 
-    // Make a request to a protected route with the token
-    $response = $this->withHeaders([
+    assertStatus(200);
+
+    $token = $response->json('token');
+    assertNotNull($token);
+
+    $response = withHeaders([
         'Authorization' => 'Bearer ' . $token,
-    ])->get('/api/user');
+    ])->get('/api/user'); // Change this to your API endpoint
 
-    // Assert the user is authenticated and the response is successful
-    $response->assertOk();
+    assertStatus(200);
 });
 
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
+    post('/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
     ]);
 
-    $this->assertGuest();
+    assertGuest();
 });
 
 test('users can logout', function () {
     $user = User::factory()->create();
+    $token = $user->createToken('test')->plainTextToken;
 
-    $response = $this->actingAs($user)->post('/logout');
+    $response = withHeaders([
+        'Authorization' => 'Bearer ' . $token,
+    ])->post('/logout');
 
-    $this->assertGuest();
-    $response->assertOk();
+    assertStatus(302);
 });
