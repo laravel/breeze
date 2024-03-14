@@ -86,8 +86,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
             default => 'default',
         };
 
-        $this->info($stubStack);
-
         if ($this->option('pest') || $this->isUsingPest()) {
             if ($this->hasComposerPackage('phpunit/phpunit')) {
                 $this->removeComposerPackages(['phpunit/phpunit'], true);
