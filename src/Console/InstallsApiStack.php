@@ -44,7 +44,7 @@ trait InstallsApiStack
         copy(__DIR__ . '/../../stubs/'.$stack.'/routes/auth.php', base_path('routes/auth.php'));
         if ($stack === 'api-token')
         {
-            copy(__DIR__. '/../../stubs/'.$stack.'/Models/User.php', app_path('Models/User.php'));
+            copy(__DIR__. '/../../stubs/'.$stack.'/app/Models/User.php', app_path('Models/User.php'));
         }
         // Configuration...
         $files->copyDirectory(__DIR__ . '/../../stubs/'.$stack.'/config', config_path());
