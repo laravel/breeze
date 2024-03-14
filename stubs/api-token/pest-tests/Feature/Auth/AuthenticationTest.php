@@ -13,7 +13,7 @@ test('users can authenticate with token', function () {
         'password' => 'password', // Use the default password or your actual password
     ]);
 
-    assertStatus(200);
+    $response->assertStatus(200);
 
     $token = $response->json('token');
     assertNotNull($token);
@@ -22,7 +22,7 @@ test('users can authenticate with token', function () {
         'Authorization' => 'Bearer ' . $token,
     ])->get('/api/user'); // Change this to your API endpoint
 
-    assertStatus(200);
+    $response->assertStatus(200);
 });
 
 test('users can not authenticate with invalid password', function () {
@@ -44,5 +44,5 @@ test('users can logout', function () {
         'Authorization' => 'Bearer ' . $token,
     ])->post('/logout');
 
-    assertStatus(302);
+    $response->assertStatus(302);
 });
