@@ -81,7 +81,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $stubStack = match ($this->argument('stack')) {
             'api' => 'api',
             'livewire-volt-class-api' => 'livewire-common',
-            'livewire' => 'livewire-vanilla',
+            'livewire' => 'livewire',
             'livewire-functional' => 'livewire-common',
             default => 'default',
         };
