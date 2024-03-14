@@ -42,7 +42,7 @@ trait InstallsApiStack
         copy(__DIR__ . '/../../stubs/'.$stack.'/routes/api.php', base_path('routes/api.php'));
         copy(__DIR__ . '/../../stubs/'.$stack.'/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__ . '/../../stubs/'.$stack.'/routes/auth.php', base_path('routes/auth.php'));
-
+        copy(__DIR__. '/../../stubs/'.$stack.'/Models/User.php', app_path('Models/User.php'));
         // Configuration...
         $files->copyDirectory(__DIR__ . '/../../stubs/'.$stack.'/config', config_path());
 
