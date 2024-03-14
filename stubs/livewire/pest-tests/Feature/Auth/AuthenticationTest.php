@@ -21,27 +21,34 @@ test('login screen can be rendered', function () {
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    Livewire::test(Login::class)
+    $component = Livewire::test(Login::class)
         ->set('form.email', $user->email)
-        ->set('form.password', 'password')
-        ->call('login')
-        ->assertHasNoErrors()
-        ->assertRedirect(route('dashboard', false));
+        ->set('form.password', 'password');
 
-    expect(auth()->user())->toBeAuthenticated();
+    $component->call('login');
+
+    $component
+        ->assertHasNoErrors()
+        ->assertRedirect(route('dashboard', absolute: false));
+
+    $this->assertAuthenticated();
 });
 
-test('users cannot authenticate with invalid password', function () {
+
+test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    Livewire::test(Login::class)
+    $component = Livewire::test(Login::class)
         ->set('form.email', $user->email)
-        ->set('form.password', 'wrong-password')
-        ->call('login')
+        ->set('form.password', 'wrong-password');
+
+    $component->call('login');
+
+    $component
         ->assertHasErrors()
         ->assertNoRedirect();
 
-    expect(auth()->user())->toBeGuest();
+    $this->assertGuest();
 });
 
 test('navigation menu can be rendered', function () {
@@ -61,10 +68,13 @@ test('users can logout', function () {
 
     $this->actingAs($user);
 
-    Livewire::test(Navigation::class)
-        ->call('logout')
+    $component = Livewire::test(Navigation::class);
+
+    $component->call('logout');
+
+    $component
         ->assertHasNoErrors()
         ->assertRedirect('/');
 
-    expect(auth()->user())->toBeGuest();
+    $this->assertGuest();
 });
