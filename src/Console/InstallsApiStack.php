@@ -85,6 +85,9 @@ trait InstallsApiStack
 
         // Remove Laravel "welcome" view...
         $files->delete(resource_path('views/welcome.blade.php'));
+        if (! $files->isDirectory(resource_path('views'))) {
+            $files->makeDirectory(resource_path('views'), 0755, true);
+        }
         $files->put(resource_path('views/.gitkeep'), PHP_EOL);
 
         // Remove CSS and JavaScript directories...
