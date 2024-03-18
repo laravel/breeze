@@ -280,11 +280,16 @@ function handleImageError() {
                                         href="https://nova.laravel.com"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                         >Nova</a
-                                    >, and
+                                    >,
                                     <a
                                         href="https://envoyer.io"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                         >Envoyer</a
+                                    >, and
+                                    <a
+                                        href="https://herd.laravel.com"
+                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                        >Herd</a
                                     >
                                     help you take your projects to the next level. Pair them with powerful open source
                                     libraries like
