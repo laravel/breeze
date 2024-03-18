@@ -264,12 +264,19 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                             >
                                                 Nova
                                             </a>
-                                            , and{' '}
+                                            ,{' '}
                                             <a
                                                 href="https://envoyer.io"
                                                 className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 Envoyer
+                                            </a>
+                                            , and{' '}
+                                            <a
+                                                href="https://herd.laravel.com"
+                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                            >
+                                                Herd
                                             </a>{' '}
                                             help you take your projects to the next level. Pair them with powerful open
                                             source libraries like{' '}
