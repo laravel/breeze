@@ -18,7 +18,8 @@
         "illuminate/console": "^11.0",
         "illuminate/filesystem": "^11.0",
         "illuminate/support": "^11.0",
-        "illuminate/validation": "^11.0"
+        "illuminate/validation": "^11.0",
+        "symfony/console": "^7.0"
     },
     "autoload": {
         "psr-4": {
