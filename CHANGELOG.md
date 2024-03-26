@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.0...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.1...2.x)
+
+## [v2.0.1](https://github.com/laravel/breeze/compare/v2.0.0...v2.0.1) - 2024-03-21
+
+* Remove duplicate "id" attribute by [@edikurniawan-dev](https://github.com/edikurniawan-dev) in https://github.com/laravel/breeze/pull/368
+* Add Laravel Herd by [@mpociot](https://github.com/mpociot) in https://github.com/laravel/breeze/pull/372
+* [2.x] Make commands lazy by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/373
+* [2.x] Fixes non dark mode on Livewire's `welcome/navigation.blade.php` by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/375
 
 ## [v2.0.0](https://github.com/laravel/breeze/compare/v1.29.1...v2.0.0) - 2024-03-12
 
