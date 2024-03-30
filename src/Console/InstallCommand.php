@@ -379,7 +379,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'dark' => 'Dark mode',
                     'ssr' => 'Inertia SSR',
                     'typescript' => 'TypeScript (experimental)',
-                ]
+                ],
+                hint: 'Use the space bar to select options.',
             ))->each(fn ($option) => $input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
