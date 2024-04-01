@@ -33,7 +33,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--dark : Indicate that dark mode support should be installed}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
-                            {--typescript : Indicates if TypeScript is preferred for the Inertia stack (Experimental)}
+                            {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -378,7 +378,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 options: [
                     'dark' => 'Dark mode',
                     'ssr' => 'Inertia SSR',
-                    'typescript' => 'TypeScript (experimental)',
+                    'typescript' => 'TypeScript',
                 ]
             ))->each(fn ($option) => $input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
