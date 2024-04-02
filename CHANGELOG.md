@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.1...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.2...2.x)
+
+## [v2.0.2](https://github.com/laravel/breeze/compare/v2.0.1...v2.0.2) - 2024-04-01
+
+* [2.x] Removes "(experimental)" label by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/377
 
 ## [v2.0.1](https://github.com/laravel/breeze/compare/v2.0.0...v2.0.1) - 2024-03-21
 
