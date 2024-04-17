@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -10,12 +9,6 @@ export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
         password: '',
     });
-
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
 
     const submit = (e) => {
         e.preventDefault();

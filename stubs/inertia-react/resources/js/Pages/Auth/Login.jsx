@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -13,12 +12,6 @@ export default function Login({ status, canResetPassword }) {
         password: '',
         remember: false,
     });
-
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
 
     const submit = (e) => {
         e.preventDefault();
