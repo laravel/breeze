@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.2...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.3...2.x)
+
+## [v2.0.3](https://github.com/laravel/breeze/compare/v2.0.2...v2.0.3) - 2024-04-24
+
+* Refactor email verification tests by [@javadihugo](https://github.com/javadihugo) in https://github.com/laravel/breeze/pull/379
+* [2.x] Fix React TS errors by [@jessarcher](https://github.com/jessarcher) in https://github.com/laravel/breeze/pull/381
+* Remove welcome view by [@taylorotwell](https://github.com/taylorotwell) in https://github.com/laravel/breeze/commit/86cccf3d7ed843fc60738963ed2ed800eaf314d9
+* Remove welcome view by [@taylorotwell](https://github.com/taylorotwell) in https://github.com/laravel/breeze/commit/0d97c710d25e69916b84eb8ff4b630c838709c11
 
 ## [v2.0.2](https://github.com/laravel/breeze/compare/v2.0.1...v2.0.2) - 2024-04-01
 
