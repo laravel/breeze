@@ -333,7 +333,6 @@ trait InstallsInertiaStacks
         if ($this->option('typescript')) {
             copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/ssr.tsx', resource_path('js/ssr.tsx'));
             $this->replaceInFile("input: 'resources/js/app.tsx',", "input: 'resources/js/app.tsx',".PHP_EOL."            ssr: 'resources/js/ssr.tsx',", base_path('vite.config.js'));
-            
             $this->replaceInFile(
                 <<<'EOT'
                 import { createRoot } from 'react-dom/client';
@@ -343,7 +342,7 @@ trait InstallsInertiaStacks
                 EOT,
                 resource_path('js/app.tsx')
             );
-    
+
             $this->replaceInFile(
                 <<<'EOT'
                         const root = createRoot(el);
@@ -363,7 +362,6 @@ trait InstallsInertiaStacks
         } else {
             copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
             $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
-            
             $this->replaceInFile(
                 <<<'EOT'
                 import { createRoot } from 'react-dom/client';
@@ -373,7 +371,7 @@ trait InstallsInertiaStacks
                 EOT,
                 resource_path('js/app.js')
             );
-    
+
             $this->replaceInFile(
                 <<<'EOT'
                         const root = createRoot(el);
