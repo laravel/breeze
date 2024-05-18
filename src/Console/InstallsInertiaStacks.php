@@ -369,7 +369,7 @@ trait InstallsInertiaStacks
                 <<<'EOT'
                 import { createRoot, hydrateRoot } from 'react-dom/client';
                 EOT,
-                resource_path('js/app.js')
+                resource_path('js/app.jsx')
             );
 
             $this->replaceInFile(
@@ -386,7 +386,7 @@ trait InstallsInertiaStacks
     
                         hydrateRoot(el, <App {...props} />);
                 EOT,
-                resource_path('js/app.js')
+                resource_path('js/app.jsx')
             );
         }
 
