@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.3...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.4...2.x)
+
+## [v2.0.4](https://github.com/laravel/breeze/compare/v2.0.3...v2.0.4) - 2024-05-20
+
+* Update RegisteredUserController.php by [@olivsinz](https://github.com/olivsinz) in https://github.com/laravel/breeze/pull/386
+* Update NewPasswordController.php by [@olivsinz](https://github.com/olivsinz) in https://github.com/laravel/breeze/pull/385
+* Adding bun support within install command by [@Mavv3006](https://github.com/Mavv3006) in https://github.com/laravel/breeze/pull/384
+* fix: add `hydrateRoot` when react ssr enabled by [@jrson83](https://github.com/jrson83) in https://github.com/laravel/breeze/pull/387
 
 ## [v2.0.3](https://github.com/laravel/breeze/compare/v2.0.2...v2.0.3) - 2024-04-24
 
