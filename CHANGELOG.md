@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.4...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.5...2.x)
+
+## [v2.0.5](https://github.com/laravel/breeze/compare/v2.0.4...v2.0.5) - 2024-05-28
+
+* [2.x] Use `[@isset](https://github.com/isset)` directive by [@dasundev](https://github.com/dasundev) in https://github.com/laravel/breeze/pull/388
 
 ## [v2.0.4](https://github.com/laravel/breeze/compare/v2.0.3...v2.0.4) - 2024-05-20
 
