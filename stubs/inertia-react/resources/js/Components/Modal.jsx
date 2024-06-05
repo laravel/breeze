@@ -1,4 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 
 export default function Modal({ children, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
     const close = () => {
@@ -23,7 +23,7 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
                 className="fixed inset-0 flex overflow-y-auto px-4 py-6 sm:px-0 items-center z-50 transform transition-all"
                 onClose={close}
             >
-                <Transition.Child
+                <TransitionChild
                     enter="ease-out duration-300"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
@@ -32,9 +32,9 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
                     leaveTo="opacity-0"
                 >
                     <div className="absolute inset-0 bg-gray-500/75 dark:bg-gray-900/75" />
-                </Transition.Child>
+                </TransitionChild>
 
-                <Transition.Child
+                <TransitionChild
                     enter="ease-out duration-300"
                     enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -42,12 +42,12 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                    <Dialog.Panel
+                    <DialogPanel
                         className={`mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto ${maxWidthClass}`}
                     >
                         {children}
-                    </Dialog.Panel>
-                </Transition.Child>
+                    </DialogPanel>
+                </TransitionChild>
             </Dialog>
         </Transition>
     );
