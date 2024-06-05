@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 export default function Modal({ children, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
@@ -17,7 +16,7 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
     }[maxWidth];
 
     return (
-        <Transition show={show} as={Fragment} leave="duration-200">
+        <Transition show={show} leave="duration-200">
             <Dialog
                 as="div"
                 id="modal"
@@ -25,7 +24,6 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
                 onClose={close}
             >
                 <Transition.Child
-                    as={Fragment}
                     enter="ease-out duration-300"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
@@ -37,7 +35,6 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
                 </Transition.Child>
 
                 <Transition.Child
-                    as={Fragment}
                     enter="ease-out duration-300"
                     enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     enterTo="opacity-100 translate-y-0 sm:scale-100"
