@@ -190,7 +190,7 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@headlessui/react' => '^1.4.2',
+                '@headlessui/react' => '^2.0.0',
                 '@inertiajs/react' => '^1.0.0',
                 '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-react' => '^4.2.0',
