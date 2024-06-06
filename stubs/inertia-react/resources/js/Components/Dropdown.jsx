@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, Fragment } from 'react';
+import { useState, createContext, useContext } from 'react';
 import { Link } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
@@ -50,7 +50,6 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
     return (
         <>
             <Transition
-                as={Fragment}
                 show={open}
                 enter="transition ease-out duration-200"
                 enterFrom="opacity-0 scale-95"
