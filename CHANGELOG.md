@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.0.5...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.0...2.x)
+
+## [v2.1.0](https://github.com/laravel/breeze/compare/v2.0.5...v2.1.0) - 2024-06-06
+
+* Bump `[@headlessui](https://github.com/headlessui)/react` to v2 by [@RobinMalfait](https://github.com/RobinMalfait) in https://github.com/laravel/breeze/pull/389
 
 ## [v2.0.5](https://github.com/laravel/breeze/compare/v2.0.4...v2.0.5) - 2024-05-28
 
