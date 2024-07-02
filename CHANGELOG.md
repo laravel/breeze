@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.0...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.1...2.x)
+
+## [v2.1.1](https://github.com/laravel/breeze/compare/v2.1.0...v2.1.1) - 2024-07-02
+
+* Bump vue-tsc to v2 to fix crash with TypeScript v5.5 by [@daleweaver777](https://github.com/daleweaver777) in https://github.com/laravel/breeze/pull/391
 
 ## [v2.1.0](https://github.com/laravel/breeze/compare/v2.0.5...v2.1.0) - 2024-06-06
 
