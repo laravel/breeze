@@ -71,6 +71,31 @@ trait InstallsApiStack
     }
 
     /**
+     * Add frontend_url to app.php configuration file.
+     *
+     * @return void
+     */
+    protected function addFrontendUrlToAppConfig()
+    {
+        $appConfigPath = config_path('app.php');
+        $appConfig = file_get_contents($appConfigPath);
+
+        // Ensure the closing bracket is on a new line
+        if (strpos($appConfig, "\n];") === false) {
+            $appConfig = str_replace('];', "\n];", $appConfig);
+        }
+
+        // Insert frontend_url before the closing bracket
+        $updatedAppConfig = preg_replace(
+            '/\n\];/',
+            "\n    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),\n];",
+            $appConfig
+        );
+
+        file_put_contents($appConfigPath, $updatedAppConfig);
+    }
+
+    /**
      * Remove any application scaffolding that isn't needed for APIs.
      *
      * @return void
