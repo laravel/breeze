@@ -66,6 +66,7 @@ trait InstallsApiStack
 
         // Cleaning...
         $this->removeScaffoldingUnnecessaryForApis();
+        $this->addFrontendUrlToAppConfig();
 
         $this->components->info('Breeze scaffolding installed successfully.');
     }
