@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.1...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.2...2.x)
+
+## [v2.1.2](https://github.com/laravel/breeze/compare/v2.1.1...v2.1.2) - 2024-07-05
+
+* [2.x] Replace `switch` with `match` in `dropdown.blade.php` by [@osbre](https://github.com/osbre) in https://github.com/laravel/breeze/pull/393
 
 ## [v2.1.1](https://github.com/laravel/breeze/compare/v2.1.0...v2.1.1) - 2024-07-02
 
