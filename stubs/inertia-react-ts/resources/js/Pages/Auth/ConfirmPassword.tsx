@@ -15,7 +15,7 @@ export default function ConfirmPassword() {
         e.preventDefault();
 
         post(route('password.confirm'), {
-          onFinish: () => reset('password'),
+            onFinish: () => reset('password'),
         });
     };
 

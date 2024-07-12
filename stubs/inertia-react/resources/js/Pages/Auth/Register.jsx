@@ -17,7 +17,7 @@ export default function Register() {
         e.preventDefault();
 
         post(route('register'), {
-          onFinish: () => reset('password', 'password_confirmation'),
+            onFinish: () => reset('password', 'password_confirmation'),
         });
     };
 
