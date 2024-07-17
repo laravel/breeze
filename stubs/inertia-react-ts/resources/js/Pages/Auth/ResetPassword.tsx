@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react';
+import { FormEventHandler } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -14,16 +14,12 @@ export default function ResetPassword({ token, email }: { token: string, email: 
         password_confirmation: '',
     });
 
-    useEffect(() => {
-        return () => {
-            reset('password', 'password_confirmation');
-        };
-    }, []);
-
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('password.store'));
+        post(route('password.store'), {
+            onFinish: () => reset('password', 'password_confirmation'),
+        });
     };
 
     return (
