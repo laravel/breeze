@@ -1,5 +1,5 @@
 {
-    "name": "my-laravel/breeze",
+    "name": "laravel/breeze",
     "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
     "keywords": ["laravel", "auth"],
     "license": "MIT",

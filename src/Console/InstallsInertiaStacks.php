@@ -330,11 +330,6 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaSvelteStack()
     {
-        //TODO: fix typescript and remove this
-        if ($this->option('typescript')) {
-            $this->components->error('Typescript is not available for Svelte stack yet. It will be ignored until next updates.');
-            return 1;
-        }
         // Install Inertia...
         if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^1.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
             return 1;
@@ -366,8 +361,12 @@ trait InstallsInertiaStacks
             $this->updateNodePackages(function ($packages) {
                 return [
                         '@types/node' => '^18.13.0',
-                        //'@types/react' => '^18.0.28',
-                        //'@types/react-dom' => '^18.0.10',
+                        "svelte-check" => "^3.8.4",
+                        "svelte-preprocess" => "^6.0.2",
+                        "svelte2tsx" => "^0.7.13",
+                        "ts-loader" => "^9.5.1",
+                        "ts-node" => "^10.9.2",
+                        "@tsconfig/svelte" => "^5.0.4",
                         'typescript' => '^5.0.2',
                     ] + $packages;
             });
@@ -438,10 +437,14 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
+        $prefix = "";
+        if ($this->option('typescript')) {
+            $prefix = "-ts";
+        }
         if ($this->option('ssr')) {
-            copy(__DIR__.'/../../stubs/inertia-svelte/vite.config.ssr.js', base_path('vite.config.js'));
+            copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/vite.config.ssr.js', base_path('vite.config.js'));
         } else {
-            copy(__DIR__.'/../../stubs/inertia-svelte/vite.config.js', base_path('vite.config.js'));
+            copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/vite.config.js', base_path('vite.config.js'));
         }
 
         if (file_exists(resource_path('js/app.js'))) {
@@ -450,6 +453,7 @@ trait InstallsInertiaStacks
 
         if ($this->option('typescript')) {
             copy(__DIR__.'/../../stubs/inertia-svelte-ts/tsconfig.json', base_path('tsconfig.json'));
+            copy(__DIR__.'/../../stubs/inertia-svelte-ts/tsconfig.node.json', base_path('tsconfig.node.json'));
             copy(__DIR__.'/../../stubs/inertia-svelte-ts/resources/js/app.ts', resource_path('js/app.ts'));
             copy(__DIR__.'/../../stubs/inertia-svelte-ts/resources/js/route.ts', resource_path('js/route.ts'));
 
@@ -457,7 +461,7 @@ trait InstallsInertiaStacks
                 rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
             }
 
-            $this->replaceInFile('"vite build', '"tsc && vite build', base_path('package.json'));
+            $this->replaceInFile('vite build', 'php artisan ziggy:generate && tsc && vite build', base_path('package.json'));
             $this->replaceInFile('.js', '.ts', base_path('vite.config.js'));
             $this->replaceInFile('.js', '.ts', resource_path('views/app.blade.php'));
             $this->replaceInFile('.vue', '.svelte', base_path('tailwind.config.js'));
@@ -522,18 +526,27 @@ trait InstallsInertiaStacks
         if ($this->option('typescript')) {
             $ext = "ts";
         }
+        $prefix = "";
+        if ($this->option('typescript')) {
+            $prefix = "-ts";
+        }
 
         if ($ssr) {
-            copy(__DIR__.'/../../stubs/inertia-svelte/resources/js/ssr/route-factory.dev.'.$ext, resource_path('js/route-factory.dev.'.$ext));
-            copy(__DIR__.'/../../stubs/inertia-svelte/resources/js/ssr/route-factory.prod.'.$ext, resource_path('js/route-factory.prod.'.$ext));
-            $this->replaceInFile('"vite build"', '"vite build && vite build --ssr"', base_path('package.json'));
+            copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/ssr/route-factory.dev.'.$ext, resource_path('js/route-factory.dev.'.$ext));
+            copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/ssr/route-factory.prod.'.$ext, resource_path('js/route-factory.prod.'.$ext));
+            if ($this->option('typescript')) {
+                $this->replaceInFile('tsc && vite build', 'tsc && vite build && vite build --ssr', base_path('package.json'));
+            }
+            else {
+                $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
+            }
         }
         else{
-            copy(__DIR__.'/../../stubs/inertia-svelte/resources/js/no-ssr/route-factory.'.$ext, resource_path('js/route-factory.'.$ext));
+            copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/no-ssr/route-factory.'.$ext, resource_path('js/route-factory.'.$ext));
         }
         $scripts = [
             'start' => 'concurrently --kill-others "npm run dev" "php artisan serve"',
-            'start-w-ssr' => 'php artisan ziggy:generate && npm run build && concurrently --kill-others "php artisan serve" "php artisan inertia:start-ssr"',
+            'start-w-ssr' => 'npm run build && concurrently --kill-others "php artisan serve" "php artisan inertia:start-ssr"',
         ];
         if (!$ssr) {
             unset($scripts['start-w-ssr']);
@@ -548,7 +561,7 @@ trait InstallsInertiaStacks
         file_put_contents($packagePath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
         if (!$ssr) return;
-        copy(__DIR__.'/../../stubs/inertia-svelte-ts/resources/js/ssr.'.$ext, resource_path('js/ssr.'.$ext));
+        copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/ssr.'.$ext, resource_path('js/ssr.'.$ext));
         $this->replaceInFile("input: 'resources/js/app.'.$ext,", "input: 'resources/js/app.'.$ext,".PHP_EOL."            ssr: 'resources/js/ssr.$ext',", base_path('vite.config.js'));
         $this->configureSvelteHydrateRootForSsr(resource_path('js/app.'.$ext));
 
