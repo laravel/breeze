@@ -3,6 +3,6 @@ export const route = (name, params, absolute) => {
         // noinspection JSCheckFunctionSignatures
         return window.route(name, params, absolute);
     } else {
-        console.error('route() is only available in the browser')
+        console.error('route() is only available in the browser');
     }
 };

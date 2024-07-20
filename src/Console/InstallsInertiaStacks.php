@@ -190,26 +190,26 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@headlessui/react' => '^2.0.0',
-                    '@inertiajs/react' => '^1.0.0',
-                    '@tailwindcss/forms' => '^0.5.3',
-                    '@vitejs/plugin-react' => '^4.2.0',
-                    'autoprefixer' => '^10.4.12',
-                    'postcss' => '^8.4.31',
-                    'tailwindcss' => '^3.2.1',
-                    'react' => '^18.2.0',
-                    'react-dom' => '^18.2.0',
-                ] + $packages;
+                '@headlessui/react' => '^2.0.0',
+                '@inertiajs/react' => '^1.0.0',
+                '@tailwindcss/forms' => '^0.5.3',
+                '@vitejs/plugin-react' => '^4.2.0',
+                'autoprefixer' => '^10.4.12',
+                'postcss' => '^8.4.31',
+                'tailwindcss' => '^3.2.1',
+                'react' => '^18.2.0',
+                'react-dom' => '^18.2.0',
+            ] + $packages;
         });
 
         if ($this->option('typescript')) {
             $this->updateNodePackages(function ($packages) {
                 return [
-                        '@types/node' => '^18.13.0',
-                        '@types/react' => '^18.0.28',
-                        '@types/react-dom' => '^18.0.10',
-                        'typescript' => '^5.0.2',
-                    ] + $packages;
+                    '@types/node' => '^18.13.0',
+                    '@types/react' => '^18.0.28',
+                    '@types/react-dom' => '^18.0.10',
+                    'typescript' => '^5.0.2',
+                ] + $packages;
             });
         }
 
@@ -338,37 +338,37 @@ trait InstallsInertiaStacks
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    "@tailwindcss/forms" => "^0.5.3",
-                    "autoprefixer" => "^10.4.12",
-                    "laravel-vite-plugin" => "^1.0",
-                    "postcss" => "^8.4.31",
-                    "tailwindcss" => "^3.2.1",
-                    "vite" => "^5.0"
-                ] + $packages;
+                '@tailwindcss/forms' => '^0.5.3',
+                'autoprefixer' => '^10.4.12',
+                'laravel-vite-plugin' => '^1.0',
+                'postcss' => '^8.4.31',
+                'tailwindcss' => '^3.2.1',
+                'vite' => '^5.0'
+            ] + $packages;
         });
         $this->updateNodePackages(function ($packages) {
             return [
-                    "axios" => "^1.6.4",
-                    "@inertiajs/svelte" => "^1.2.0",
-                    "@sveltejs/vite-plugin-svelte" => "^3.1.1",
-                    "concurrently" => "^8.2.2",
-                    "ziggy-js" => "^2.2.1",
-                    "minimist" => "^1.2.8"
-                ] + $packages;
+                'axios' => '^1.6.4',
+                '@inertiajs/svelte' => '^1.2.0',
+                '@sveltejs/vite-plugin-svelte' => '^3.1.1',
+                'concurrently' => '^8.2.2',
+                'ziggy-js' => '^2.2.1',
+                'minimist' => '^1.2.8'
+            ] + $packages;
         }, false);
 
         if ($this->option('typescript')) {
             $this->updateNodePackages(function ($packages) {
                 return [
-                        '@types/node' => '^18.13.0',
-                        "svelte-check" => "^3.8.4",
-                        "svelte-preprocess" => "^6.0.2",
-                        "svelte2tsx" => "^0.7.13",
-                        "ts-loader" => "^9.5.1",
-                        "ts-node" => "^10.9.2",
-                        "@tsconfig/svelte" => "^5.0.4",
-                        'typescript' => '^5.0.2',
-                    ] + $packages;
+                    '@types/node' => '^18.13.0',
+                    'svelte-check' => '^3.8.4',
+                    'svelte-preprocess' => '^6.0.2',
+                    'svelte2tsx' => '^0.7.13',
+                    'ts-loader' => '^9.5.1',
+                    'ts-node' => '^10.9.2',
+                    '@tsconfig/svelte' => '^5.0.4',
+                    'typescript' => '^5.0.2',
+                ] + $packages;
             });
         }
 
@@ -437,9 +437,9 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
-        $prefix = "";
+        $prefix = '';
         if ($this->option('typescript')) {
-            $prefix = "-ts";
+            $prefix = '-ts';
         }
         if ($this->option('ssr')) {
             copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/vite.config.ssr.js', base_path('vite.config.js'));
@@ -468,7 +468,7 @@ trait InstallsInertiaStacks
         } else {
             copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-svelte/resources/js/app.js', resource_path('js/app.js'));
-            copy(__DIR__ . '/../../stubs/inertia-svelte/resources/js/route.js', resource_path('js/route.js'));
+            copy(__DIR__.'/../../stubs/inertia-svelte/resources/js/route.js', resource_path('js/route.js'));
 
             $this->replaceInFile('.vue', '.svelte', base_path('tailwind.config.js'));
         }
@@ -489,6 +489,7 @@ trait InstallsInertiaStacks
 
         $this->line('');
         $this->components->info('Breeze scaffolding installed successfully.');
+
         return 1;
     }
 
@@ -522,13 +523,13 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaSvelteSsrStack($ssr)
     {
-        $ext = "js";
+        $ext = 'js';
         if ($this->option('typescript')) {
-            $ext = "ts";
+            $ext = 'ts';
         }
-        $prefix = "";
+        $prefix = '';
         if ($this->option('typescript')) {
-            $prefix = "-ts";
+            $prefix = '-ts';
         }
 
         if ($ssr) {
@@ -536,19 +537,17 @@ trait InstallsInertiaStacks
             copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/ssr/route-factory.prod.'.$ext, resource_path('js/route-factory.prod.'.$ext));
             if ($this->option('typescript')) {
                 $this->replaceInFile('tsc && vite build', 'tsc && vite build && vite build --ssr', base_path('package.json'));
-            }
-            else {
+            } else {
                 $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
             }
-        }
-        else{
+        } else{
             copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/no-ssr/route-factory.'.$ext, resource_path('js/route-factory.'.$ext));
         }
         $scripts = [
             'start' => 'concurrently --kill-others "npm run dev" "php artisan serve"',
             'start-w-ssr' => 'npm run build && concurrently --kill-others "php artisan serve" "php artisan inertia:start-ssr"',
         ];
-        if (!$ssr) {
+        if (! $ssr) {
             unset($scripts['start-w-ssr']);
         }
 
@@ -560,11 +559,12 @@ trait InstallsInertiaStacks
         }
         file_put_contents($packagePath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
-        if (!$ssr) return;
+        if (! $ssr) {
+            return;
+        }
         copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/ssr.'.$ext, resource_path('js/ssr.'.$ext));
         $this->replaceInFile("input: 'resources/js/app.'.$ext,", "input: 'resources/js/app.'.$ext,".PHP_EOL."            ssr: 'resources/js/ssr.$ext',", base_path('vite.config.js'));
         $this->configureSvelteHydrateRootForSsr(resource_path('js/app.'.$ext));
-
 
         $this->configureZiggyForSsr();
 
@@ -615,7 +615,6 @@ trait InstallsInertiaStacks
      */
     protected function configureSvelteHydrateRootForSsr($path)
     {
-
         $this->replaceInFile(
             <<<'EOT'
                     new App({ target: el, props });

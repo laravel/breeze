@@ -1,9 +1,9 @@
-import {defineConfig, loadEnv} from "vite";
-import laravel from "laravel-vite-plugin";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { defineConfig, loadEnv } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import minimist from 'minimist';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
     const isProduction = env.APP_ENV === 'production';
 
@@ -13,7 +13,7 @@ export default defineConfig(({mode}) => {
     return {
         plugins: [
             laravel({
-                input: ["resources/js/app.js"],
+                input: ['resources/js/app.js'],
                 ssr: 'resources/js/ssr.js',
                 refresh: true,
             }),
@@ -25,8 +25,8 @@ export default defineConfig(({mode}) => {
         ],
         resolve: {
             alias: {
-                './route-factory.js': (isProduction || isSsr) ? './route-factory.prod.js' : './route-factory.dev.js'
+                './route-factory.js': isProduction || isSsr ? './route-factory.prod.js' : './route-factory.dev.js',
             }
         }
-    }
+    };
 });

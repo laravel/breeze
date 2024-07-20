@@ -1,7 +1,7 @@
 // resources/js/route.js
-import {route as r} from 'ziggy-js';
+import { route as r } from 'ziggy-js';
 // noinspection JSFileReferences
-import {Ziggy} from './ziggy.js';
+import { Ziggy } from './ziggy.js';
 
 export const route = (name, params, absolute) => {
     if (typeof window !== 'undefined') {
