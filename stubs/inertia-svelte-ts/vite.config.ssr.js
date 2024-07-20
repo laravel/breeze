@@ -1,8 +1,8 @@
-import { defineConfig, loadEnv } from "vite";
-import laravel from "laravel-vite-plugin";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { defineConfig, loadEnv } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import minimist from 'minimist';
-import * as path from "node:path";
+import * as path from 'node:path';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
