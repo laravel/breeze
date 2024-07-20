@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 './route-factory.js': isProduction || isSsr ? './route-factory.prod.js' : './route-factory.dev.js',
-            }
-        }
+            },
+        },
     };
 });

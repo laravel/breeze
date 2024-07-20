@@ -343,7 +343,7 @@ trait InstallsInertiaStacks
                 'laravel-vite-plugin' => '^1.0',
                 'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
-                'vite' => '^5.0'
+                'vite' => '^5.0',
             ] + $packages;
         });
         $this->updateNodePackages(function ($packages) {
@@ -353,7 +353,7 @@ trait InstallsInertiaStacks
                 '@sveltejs/vite-plugin-svelte' => '^3.1.1',
                 'concurrently' => '^8.2.2',
                 'ziggy-js' => '^2.2.1',
-                'minimist' => '^1.2.8'
+                'minimist' => '^1.2.8',
             ] + $packages;
         }, false);
 
@@ -540,7 +540,7 @@ trait InstallsInertiaStacks
             } else {
                 $this->replaceInFile('vite build', 'vite build && vite build --ssr', base_path('package.json'));
             }
-        } else{
+        } else {
             copy(__DIR__.'/../../stubs/inertia-svelte'.$prefix.'/resources/js/no-ssr/route-factory.'.$ext, resource_path('js/route-factory.'.$ext));
         }
         $scripts = [
