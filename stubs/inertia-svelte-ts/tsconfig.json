@@ -1,0 +1,22 @@
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "esnext",
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "allowJs": true,
+        "checkJs": true,
+        "isolatedModules": true,
+        "paths": {
+            "route-factory.js": ["./route-factory.dev.js"]
+        }
+    },
+    "include": ["resources/js/**/*.d.ts", "resources/js/**/*.ts", "resources/js/**/*.js", "resources/js/**/*.svelte"],
+    "exclude": [
+        "./resources/js/ziggy.js",
+    ],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}
