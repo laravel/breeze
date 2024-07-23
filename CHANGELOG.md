@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.2...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.3...2.x)
+
+## [v2.1.3](https://github.com/laravel/breeze/compare/v2.1.2...v2.1.3) - 2024-07-17
+
+* fix clearing password fields on React auth forms by [@daleweaver777](https://github.com/daleweaver777) in https://github.com/laravel/breeze/pull/395
 
 ## [v2.1.2](https://github.com/laravel/breeze/compare/v2.1.1...v2.1.2) - 2024-07-05
 
