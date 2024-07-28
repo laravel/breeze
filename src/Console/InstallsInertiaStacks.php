@@ -67,7 +67,7 @@ trait InstallsInertiaStacks
                     ];
                 });
 
-                copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.cjs', base_path('.eslintrc.cjs'));
+                copy(__DIR__.'/../../stubs/inertia-vue-ts/.eslintrc.cjs', base_path('.eslintrc.cjs'));
             } else {
                 $this->updateNodeScripts(function ($scripts) {
                     return $scripts + [
