@@ -45,10 +45,9 @@ trait InstallsInertiaStacks
             $this->updateNodePackages(function ($packages) {
                 return [
                     'eslint' => '^8.57.0',
-                    'eslint-plugin-vue' => '^8.0.0',
-                    '@vue/eslint-config-prettier' => '^6.0.0',
-                    // 'eslint-plugin-prettier' => '^5.1.3',
-                    // 'eslint-config-prettier' => '^9.1.0',
+                    'eslint-plugin-vue' => '^9.23.0',
+                    '@rushstack/eslint-patch' => '^1.8.0',
+                    '@vue/eslint-config-prettier' => '^9.0.0',
                     'prettier' => '^3.3.0',
                     'prettier-plugin-organize-imports' => '^4.0.0',
                     'prettier-plugin-tailwindcss' => '^0.6.5',
@@ -58,7 +57,7 @@ trait InstallsInertiaStacks
             if ($this->option('typescript')) {
                 $this->updateNodePackages(function ($packages) {
                     return [
-                        '@vue/eslint-config-typescript' => '^10.0.0',
+                        '@vue/eslint-config-typescript' => '^13.0.0',
                     ] + $packages;
                 });
 
