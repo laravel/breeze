@@ -78,7 +78,7 @@ trait InstallsInertiaStacks
                 copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.cjs', base_path('.eslintrc.cjs'));
             }
 
-            copy(__DIR__.'/../../stubs/inertia-vue/prettier.config.cjs', base_path('prettier.config.cjs'));
+            copy(__DIR__.'/../../stubs/inertia-common/prettier.config.cjs', base_path('prettier.config.cjs'));
         }
 
         // Providers...
@@ -295,7 +295,7 @@ trait InstallsInertiaStacks
                 copy(__DIR__.'/../../stubs/inertia-react/.eslintrc.json', base_path('.eslintrc.json'));
             }
 
-            copy(__DIR__.'/../../stubs/inertia-react/prettier.config.cjs', base_path('prettier.config.cjs'));
+            copy(__DIR__.'/../../stubs/inertia-common/prettier.config.cjs', base_path('prettier.config.cjs'));
         }
 
         // Providers...
