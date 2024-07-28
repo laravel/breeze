@@ -67,15 +67,18 @@ trait InstallsInertiaStacks
                         'lint' => 'eslint resources/js --ext .js,.ts,.vue --ignore-path .gitignore --fix',
                     ];
                 });
+
+                copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.json', base_path('.eslintrc.json'));
             } else {
                 $this->updateNodeScripts(function ($scripts) {
                     return $scripts + [
                         'lint' => 'eslint resources/js --ext .js,.vue --ignore-path .gitignore --fix',
                     ];
                 });
+
+                copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.json', base_path('.eslintrc.json'));
             }
 
-            copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.js', base_path('.eslintrc.js'));
             copy(__DIR__.'/../../stubs/inertia-vue/prettier.config.cjs', base_path('prettier.config.cjs'));
         }
 
@@ -281,15 +284,18 @@ trait InstallsInertiaStacks
                         'lint' => 'eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix',
                     ];
                 });
+
+                copy(__DIR__.'/../../stubs/inertia-react-ts/.eslintrc.json', base_path('.eslintrc.json'));
             } else {
                 $this->updateNodeScripts(function ($scripts) {
                     return $scripts + [
                         'lint' => 'eslint resources/js --ext .js,.jsx --ignore-path .gitignore --fix',
                     ];
                 });
+
+                copy(__DIR__.'/../../stubs/inertia-react/.eslintrc.json', base_path('.eslintrc.json'));
             }
 
-            copy(__DIR__.'/../../stubs/inertia-react/.eslintrc.js', base_path('.eslintrc.js'));
             copy(__DIR__.'/../../stubs/inertia-react/prettier.config.cjs', base_path('prettier.config.cjs'));
         }
 
