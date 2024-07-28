@@ -61,6 +61,18 @@ trait InstallsInertiaStacks
                         '@vue/eslint-config-typescript' => '^10.0.0',
                     ] + $packages;
                 });
+
+                $this->updateNodeScripts(function ($scripts) {
+                    return $scripts + [
+                        'lint' => 'eslint resources/js --ext .js,.ts,.vue --ignore-path .gitignore --fix',
+                    ];
+                });
+            } else {
+                $this->updateNodeScripts(function ($scripts) {
+                    return $scripts + [
+                        'lint' => 'eslint resources/js --ext .js,.vue --ignore-path .gitignore --fix',
+                    ];
+                });
             }
 
             copy(__DIR__.'/../../stubs/inertia-vue/.eslintrc.js', base_path('.eslintrc.js'));
@@ -262,6 +274,18 @@ trait InstallsInertiaStacks
                         '@typescript-eslint/eslint-plugin' => '^7.16.0',
                         '@typescript-eslint/parser' => '^7.16.0',
                     ] + $packages;
+                });
+
+                $this->updateNodeScripts(function ($scripts) {
+                    return $scripts + [
+                        'lint' => 'eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix',
+                    ];
+                });
+            } else {
+                $this->updateNodeScripts(function ($scripts) {
+                    return $scripts + [
+                        'lint' => 'eslint resources/js --ext .js,.jsx --ignore-path .gitignore --fix',
+                    ];
                 });
             }
 

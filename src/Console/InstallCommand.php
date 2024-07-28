@@ -236,7 +236,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     }
 
     /**
-     * Update the "package.json" file.
+     * Update the dependencies in the "package.json" file.
      *
      * @param  callable  $callback
      * @param  bool  $dev
@@ -262,6 +262,30 @@ class InstallCommand extends Command implements PromptsForMissingInput
         file_put_contents(
             base_path('package.json'),
             json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+        );
+    }
+
+    /**
+     * Update the scripts in the "package.json" file.
+     *
+     * @param  callable  $callback
+     * @return void
+     */
+    protected static function updateNodeScripts(callable $callback)
+    {
+        if (! file_exists(base_path('package.json'))) {
+            return;
+        }
+
+        $content = json_decode(file_get_contents(base_path('package.json')), true);
+
+        $content['scripts'] = $callback(
+            array_key_exists('scripts', $content) ? $content['scripts'] : []
+        );
+
+        file_put_contents(
+            base_path('package.json'),
+            json_encode($content, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
     }
 
