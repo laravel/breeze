@@ -25,7 +25,7 @@ const approve = () => {
     form.post(route('passport.authorizations.approve'));
 };
 const deny = () => {
-    form.transform(data => ({
+    form.transform((data) => ({
         ...data,
         _method: 'delete',
     })).post(route('passport.authorizations.deny'));
@@ -37,7 +37,9 @@ const deny = () => {
         <Head title="Authorization Request" />
 
         <div class="mb-4 text-gray-600 text-center">
-            <p><strong>{{ userName }}</strong></p>
+            <p>
+                <strong>{{ userName }}</strong>
+            </p>
             <p class="text-sm">{{ userEmail }}</p>
         </div>
 
@@ -66,8 +68,10 @@ const deny = () => {
                 </SecondaryButton>
             </form>
 
-            <Link :href="promptLoginUrl"
-                  class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+            <Link
+                :href="promptLoginUrl"
+                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+            >
                 Log into another account
             </Link>
         </div>

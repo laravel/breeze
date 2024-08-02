@@ -387,7 +387,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 label: 'Would you like dark mode support?',
                 default: false
             ));
-        } else if ($stack === 'api') {
+        } elseif ($stack === 'api') {
             $input->setOption('oauth', confirm(
                 label: 'Would you like OAuth support via Laravel Passport?',
                 default: false
