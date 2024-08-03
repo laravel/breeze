@@ -5,10 +5,8 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const props = defineProps<{
-    userName: string;
-    userEmail: string;
-    clientId: string;
-    clientName: string;
+    user: { name: string, email: string };
+    client: { id: string, name: string };
     scopes: { description: string }[];
     state: string;
     authToken: string;
@@ -17,7 +15,7 @@ const props = defineProps<{
 
 const form = useForm({
     state: props.state,
-    client_id: props.clientId,
+    client_id: props.client.id,
     auth_token: props.authToken,
 });
 
@@ -38,13 +36,13 @@ const deny = () => {
 
         <div class="mb-4 text-gray-600 text-center">
             <p>
-                <strong>{{ userName }}</strong>
+                <strong>{{ user.name }}</strong>
             </p>
-            <p class="text-sm">{{ userEmail }}</p>
+            <p class="text-sm">{{ user.email }}</p>
         </div>
 
         <div class="mb-4 text-sm text-gray-600">
-            <strong>{{ clientName }}</strong> is requesting permission to access your account.
+            <strong>{{ client.name }}</strong> is requesting permission to access your account.
         </div>
 
         <div v-if="scopes.length" class="mb-4 text-sm text-gray-600">

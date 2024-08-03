@@ -4,10 +4,8 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Authorize({
-    userName,
-    userEmail,
-    clientId,
-    clientName,
+    user,
+    client,
     scopes,
     state,
     authToken,
@@ -15,7 +13,7 @@ export default function Authorize({
 }) {
     const { post, processing, transform } = useForm({
         state: state,
-        client_id: clientId,
+        client_id: client.id,
         auth_token: authToken,
     });
 
@@ -42,13 +40,13 @@ export default function Authorize({
 
             <div className="mb-4 text-gray-600 text-center">
                 <p>
-                    <strong>{userName}</strong>
+                    <strong>{user.name}</strong>
                 </p>
-                <p className="text-sm">{userEmail}</p>
+                <p className="text-sm">{user.email}</p>
             </div>
 
             <div className="mb-4 text-sm text-gray-600">
-                <strong>{clientName}</strong> is requesting permission to access your account.
+                <strong>{client.name}</strong> is requesting permission to access your account.
             </div>
 
             {scopes.length > 0 && (

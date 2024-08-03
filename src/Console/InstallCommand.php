@@ -387,11 +387,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 label: 'Would you like dark mode support?',
                 default: false
             ));
-        } elseif ($stack === 'api') {
-            $input->setOption('oauth', confirm(
-                label: 'Would you like OAuth support via Laravel Passport?',
-                default: false
-            ));
         }
 
         $input->setOption('pest', select(
@@ -399,6 +394,11 @@ class InstallCommand extends Command implements PromptsForMissingInput
             options: ['Pest', 'PHPUnit'],
             default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
         ) === 'Pest');
+
+        $input->setOption('oauth', confirm(
+            label: 'Would you like OAuth support via Laravel Passport?',
+            default: false
+        ));
     }
 
     /**
