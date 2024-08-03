@@ -389,16 +389,18 @@ class InstallCommand extends Command implements PromptsForMissingInput
             ));
         }
 
+        if (in_array($stack, ['api', 'blade', 'react', 'vue'])) {
+            $input->setOption('oauth', confirm(
+                label: 'Would you like OAuth support via Laravel Passport?',
+                default: false
+            ));
+        }
+
         $input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
             options: ['Pest', 'PHPUnit'],
             default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
         ) === 'Pest');
-
-        $input->setOption('oauth', confirm(
-            label: 'Would you like OAuth support via Laravel Passport?',
-            default: false
-        ));
     }
 
     /**
