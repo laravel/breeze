@@ -12,8 +12,8 @@ export default function Authorize({
     authToken,
     promptLoginUrl,
 }: {
-    user: { name: string, email: string },
-    client: { id: string, name: string },
+    user: { name: string; email: string },
+    client: { id: string; name: string },
     scopes: { description: string }[],
     state: string,
     authToken: string,

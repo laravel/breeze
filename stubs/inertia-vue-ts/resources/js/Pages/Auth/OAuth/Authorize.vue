@@ -5,8 +5,8 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const props = defineProps<{
-    user: { name: string, email: string };
-    client: { id: string, name: string };
+    user: { name: string; email: string };
+    client: { id: string; name: string };
     scopes: { description: string }[];
     state: string;
     authToken: string;

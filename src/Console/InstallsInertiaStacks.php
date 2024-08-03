@@ -195,7 +195,7 @@ trait InstallsInertiaStacks
         if (! $this->requireComposerPackages([
             'inertiajs/inertia-laravel:^1.0',
             $this->option('oauth') ? 'laravel/passport:^13.0' : 'laravel/sanctum:^4.0',
-            'tightenco/ziggy:^2.0'
+            'tightenco/ziggy:^2.0',
         ])) {
             return 1;
         }

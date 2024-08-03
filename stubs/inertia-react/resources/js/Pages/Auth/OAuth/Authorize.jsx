@@ -3,14 +3,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Authorize({
-    user,
-    client,
-    scopes,
-    state,
-    authToken,
-    promptLoginUrl,
-}) {
+export default function Authorize({ user, client, scopes, state, authToken, promptLoginUrl }) {
     const { post, processing, transform } = useForm({
         state: state,
         client_id: client.id,
