@@ -8,7 +8,8 @@ declare global {
         axios: AxiosInstance;
     }
 
-    const route: typeof ziggyRoute;
+    /* eslint-disable no-var */
+    var route: typeof ziggyRoute;
 }
 
 declare module '@inertiajs/core' {
