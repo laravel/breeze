@@ -77,7 +77,7 @@ export default function Authorize({
                 </form>
 
                 <Link
-                    href={route(route().current(), {...route().params, prompt: 'login'})}
+                    href={route('passport.authorizations.authorize', { ...route().params, prompt: 'login' })}
                     className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Log into another account
