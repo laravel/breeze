@@ -3,9 +3,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Authorize({ user, client, scopes, state, authToken, promptLoginUrl }) {
+export default function Authorize({ user, client, scopes, authToken }) {
     const { post, processing, transform } = useForm({
-        state: state,
+        state: route().params.state,
         client_id: client.id,
         auth_token: authToken,
     });
@@ -66,7 +66,7 @@ export default function Authorize({ user, client, scopes, state, authToken, prom
                 </form>
 
                 <Link
-                    href={promptLoginUrl}
+                    href={route(route().current(), {...route().params, prompt: 'login'})}
                     className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
                     Log into another account

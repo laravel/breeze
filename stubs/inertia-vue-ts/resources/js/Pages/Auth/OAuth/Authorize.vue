@@ -8,13 +8,11 @@ const props = defineProps<{
     user: { name: string; email: string };
     client: { id: string; name: string };
     scopes: { description: string }[];
-    state: string;
     authToken: string;
-    promptLoginUrl: string;
 }>();
 
 const form = useForm({
-    state: props.state,
+    state: route().params.state,
     client_id: props.client.id,
     auth_token: props.authToken,
 });
@@ -67,7 +65,7 @@ const deny = () => {
             </form>
 
             <Link
-                :href="promptLoginUrl"
+                :href="route(route().current(), {...route().params, prompt: 'login'})"
                 class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
             >
                 Log into another account

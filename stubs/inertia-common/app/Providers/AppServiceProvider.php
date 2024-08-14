@@ -22,14 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Passport::authorizationView(function ($params) {
-            return Inertia::render('Auth/OAuth/Authorize', [
-                'user' => $params['user'],
-                'client' => $params['client'],
-                'scopes' => $params['scopes'],
-                'state' => $params['request']->state,
-                'authToken' => $params['authToken'],
-                'promptLoginUrl' => $params['request']->fullUrlWithQuery(['prompt' => 'login']),
-            ]);
+            return Inertia::render('Auth/OAuth/Authorize', $params);
         });
     }
 }

@@ -8,19 +8,15 @@ export default function Authorize({
     user,
     client,
     scopes,
-    state,
     authToken,
-    promptLoginUrl,
 }: {
     user: { name: string; email: string },
     client: { id: string; name: string },
     scopes: { description: string }[],
-    state: string,
     authToken: string,
-    promptLoginUrl: string,
 }) {
     const { post, processing, transform } = useForm({
-        state: state,
+        state: route().params.state,
         client_id: client.id,
         auth_token: authToken,
     });
@@ -81,7 +77,7 @@ export default function Authorize({
                 </form>
 
                 <Link
-                    href={promptLoginUrl}
+                    href={route(route().current(), {...route().params, prompt: 'login'})}
                     className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Log into another account
