@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.3...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.4...2.x)
+
+## [v2.1.4](https://github.com/laravel/breeze/compare/v2.1.3...v2.1.4) - 2024-08-12
+
+* Update User type to match db schema by [@ninjaparade](https://github.com/ninjaparade) in https://github.com/laravel/breeze/pull/399
 
 ## [v2.1.3](https://github.com/laravel/breeze/compare/v2.1.2...v2.1.3) - 2024-07-17
 
