@@ -106,6 +106,8 @@ trait InstallsLivewireStack
             $this->runCommands(['yarn install', 'yarn run build']);
         } elseif (file_exists(base_path('bun.lockb'))) {
             $this->runCommands(['bun install', 'bun run build']);
+        } elseif (file_exists(base_path('deno.lock'))) {
+            $this->runCommands(['deno install', 'deno task build']);
         } else {
             $this->runCommands(['npm install', 'npm run build']);
         }
