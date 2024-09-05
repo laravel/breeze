@@ -275,6 +275,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
             $files->deleteDirectory(base_path('node_modules'));
 
             $files->delete(base_path('yarn.lock'));
+            $files->delete(base_path('bun.lockb'));
+            $files->delete(base_path('deno.lock'));
             $files->delete(base_path('package-lock.json'));
         });
     }
