@@ -24,8 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
 
-        Passport::authorizationView(function ($params) {
-            return Inertia::render('Auth/OAuth/Authorize', $params);
-        });
+        if (class_exists(Passport::class)) {
+            Passport::authorizationView(function ($params) {
+                return Inertia::render('Auth/OAuth/Authorize', $params);
+            });
+        }
     }
 }
