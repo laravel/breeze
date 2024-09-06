@@ -276,6 +276,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
             $files->deleteDirectory(base_path('node_modules'));
 
             $files->delete(base_path('yarn.lock'));
+            $files->delete(base_path('bun.lockb'));
+            $files->delete(base_path('deno.lock'));
             $files->delete(base_path('package-lock.json'));
         });
     }
@@ -399,7 +401,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
             options: ['Pest', 'PHPUnit'],
-            default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
+            default: 'Pest',
         ) === 'Pest');
     }
 

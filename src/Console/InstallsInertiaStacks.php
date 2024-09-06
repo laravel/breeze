@@ -46,9 +46,7 @@ trait InstallsInertiaStacks
         }
 
         // Providers...
-        if ($this->option('oauth')) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Providers', app_path('Providers'));
-        }
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Providers', app_path('Providers'));
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
@@ -227,9 +225,7 @@ trait InstallsInertiaStacks
         }
 
         // Providers...
-        if ($this->option('oauth')) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Providers', app_path('Providers'));
-        }
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Providers', app_path('Providers'));
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
@@ -333,6 +329,8 @@ trait InstallsInertiaStacks
             $this->runCommands(['yarn install', 'yarn run build']);
         } elseif (file_exists(base_path('bun.lockb'))) {
             $this->runCommands(['bun install', 'bun run build']);
+        } elseif (file_exists(base_path('deno.lock'))) {
+            $this->runCommands(['deno install', 'deno task build']);
         } else {
             $this->runCommands(['npm install', 'npm run build']);
         }
