@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - eslint
       - '*.x'
   pull_request:
   schedule:
