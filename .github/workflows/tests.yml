@@ -71,20 +71,20 @@ jobs:
         run: npm run build
       
       - name: Run ESLint
-        if: matrix.stack == 'vue' || matrix.stack == 'react'
+        if: ${{ contains(matrix.args, '--eslint') }}
         run: npm run lint
 
       - name: Apply ESLint fixes
-        if: matrix.stack == 'vue' || matrix.stack == 'react'
+        if: ${{ contains(matrix.args, '--eslint') }}
         run: |
           if [[ "${{ matrix.args }}" == *"--typescript"* ]]; then
-            cp -r resources/js breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js
+            cp -r resources/js breeze/stubs/inertia-${{ matrix.stack }}-ts/resources
           else
-            cp -r resources/js breeze/stubs/inertia-${{ matrix.stack }}/resources/js
+            cp -r resources/js breeze/stubs/inertia-${{ matrix.stack }}/resources
           fi
 
       - name: Commit changes
-        if: matrix.stack == 'vue' || matrix.stack == 'react'
+        if: ${{ contains(matrix.args, '--eslint') }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           repository: breeze
