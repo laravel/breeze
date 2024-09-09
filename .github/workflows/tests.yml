@@ -22,16 +22,16 @@ jobs:
         args: ["", --pest]
         include:
           - stack: vue
-            args: --ssr --eslint
+            args: --ssr --dark --eslint
             laravel: 11
           - stack: vue
-            args: --ssr --eslint --typescript
+            args: --ssr --dark --eslint --typescript
             laravel: 11
           - stack: react
-            args: --ssr --eslint
+            args: --ssr --dark --eslint
             laravel: 11
           - stack: react
-            args: --ssr --eslint --typescript
+            args: --ssr --dark --eslint --typescript
             laravel: 11
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
