@@ -379,7 +379,7 @@ trait InstallsInertiaStacks
                     root.render(<App {...props} />);
             EOT,
             <<<'EOT'
-                    if (import.meta.env.DEV) {
+                    if (!import.meta.env.SSR) {
                         createRoot(el).render(<App {...props} />);
                         return
                     }
