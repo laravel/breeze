@@ -42,7 +42,6 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
         setConfirmingUserDeletion(false);
 
         clearErrors();
-
         reset();
     };
 
