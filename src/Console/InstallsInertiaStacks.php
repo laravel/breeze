@@ -381,10 +381,10 @@ trait InstallsInertiaStacks
             <<<'EOT'
                     if (import.meta.env.SSR) {
                         hydrateRoot(el, <App {...props} />);
+                        return;
                     }
 
                     createRoot(el).render(<App {...props} />);
-                    return
             EOT,
             $path
         );
