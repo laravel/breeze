@@ -78,7 +78,7 @@ jobs:
         if: ${{ contains(matrix.args, '--eslint') }}
         run: |
           if [[ "${{ matrix.args }}" == *"--typescript"* ]]; then
-            rsync -av --exclude='resources/js/bootstrap.js' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js/
+            rsync -av --exclude='resources/js/bootstrap.ts' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js/
           else
             rsync -av --exclude='resources/js/bootstrap.js' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}/resources/js/
           fi
@@ -110,7 +110,7 @@ jobs:
           ls -la breeze
 
           for dir in breeze/*; do
-            cp -r $dir/* .
+            cp -r "$dir"/* .
           done
 
           rm -rf breeze
