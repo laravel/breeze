@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.5...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.0...2.x)
+
+## [v2.2.0](https://github.com/laravel/breeze/compare/v2.1.5...v2.2.0) - 2024-09-11
+
+* fix: add clearErrors on DeleteUserForm on closeModal function by [@radumargina](https://github.com/radumargina) in https://github.com/laravel/breeze/pull/406
+* check for import.meta.env.SSR instead of import.meta.env.DEV to know… by [@YassineBenh](https://github.com/YassineBenh) in https://github.com/laravel/breeze/pull/409
+* Declare global types for React PageProps by [@matsantosz](https://github.com/matsantosz) in https://github.com/laravel/breeze/pull/405
 
 ## [v2.1.5](https://github.com/laravel/breeze/compare/v2.1.4...v2.1.5) - 2024-09-09
 
