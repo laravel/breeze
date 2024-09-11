@@ -17,9 +17,7 @@ createServer((page) =>
             // @ts-expect-error
             global.route<RouteName> = (name, params, absolute) =>
                 route(name, params as any, absolute, {
-                    // @ts-expect-error
                     ...page.props.ziggy,
-                    // @ts-expect-error
                     location: new URL(page.props.ziggy.location),
                 });
 
