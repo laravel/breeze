@@ -100,6 +100,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: stub-tests
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Download all ESLint fixes
         uses: actions/download-artifact@v4
         with:
