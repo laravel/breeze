@@ -77,6 +77,7 @@ jobs:
       - name: Apply ESLint fixes
         if: ${{ contains(matrix.args, '--eslint') }}
         run: |
+          ls -la
           if [[ "${{ matrix.args }}" == *"--typescript"* ]]; then
             rsync -av --exclude='resources/js/bootstrap.ts' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js/
           else
