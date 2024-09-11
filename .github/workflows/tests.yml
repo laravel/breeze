@@ -88,6 +88,7 @@ jobs:
         with:
           name: eslint-fixes-${{ matrix.stack }}-${{ matrix.args }}
           path: breeze
+          retention-days: 1
 
       - name: Execute tests
         run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }}
