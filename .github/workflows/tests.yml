@@ -21,16 +21,10 @@ jobs:
         args: ["", --pest]
         include:
           - stack: vue
-            args: --ssr --dark --eslint
-            laravel: 11
-          - stack: vue
-            args: --ssr --dark --eslint --typescript
+            args: --ssr --typescript
             laravel: 11
           - stack: react
-            args: --ssr --dark --eslint
-            laravel: 11
-          - stack: react
-            args: --ssr --dark --eslint --typescript
+            args: --ssr --typescript
             laravel: 11
 
     name: Test Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
@@ -68,57 +62,9 @@ jobs:
       - name: Compile assets
         if: matrix.stack != 'api'
         run: npm run build
-      
-      - name: Run ESLint
-        if: ${{ contains(matrix.args, '--eslint') }}
-        run: npm run lint
-
-      - name: Apply ESLint fixes
-        if: ${{ contains(matrix.args, '--eslint') }}
-        run: |
-          if [[ "${{ matrix.args }}" == *"--typescript"* ]]; then
-            rsync -av --exclude='bootstrap.ts' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js/
-          else
-            rsync -av --exclude='bootstrap.js' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}/resources/js/
-          fi
-
-      - name: Upload ESLint fixes
-        if: ${{ contains(matrix.args, '--eslint') }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: eslint-fixes-${{ matrix.stack }}-${{ matrix.args }}
-          path: breeze
-          retention-days: 1
 
       - name: Execute tests
         run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }}
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-
-  commit-changes:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    needs: stub-tests
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download all ESLint fixes
-        uses: actions/download-artifact@v4
-        with:
-          path: breeze
-
-      - name: Merge ESLint fixes
-        run: |
-          for dir in breeze/*; do
-            cp -r "$dir"/* .
-          done
-
-          rm -rf breeze
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Fix code styling
