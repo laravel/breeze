@@ -274,6 +274,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
         tap(new Filesystem, function ($files) {
             $files->deleteDirectory(base_path('node_modules'));
 
+            $files->delete(base_path('pnpm-lock.yaml'));
             $files->delete(base_path('yarn.lock'));
             $files->delete(base_path('bun.lockb'));
             $files->delete(base_path('deno.lock'));
