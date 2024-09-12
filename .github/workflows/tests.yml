@@ -98,6 +98,8 @@ jobs:
 
   commit-changes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: stub-tests
     steps:
       - name: Checkout code
