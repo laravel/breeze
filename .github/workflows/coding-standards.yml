@@ -89,6 +89,10 @@ jobs:
           done
 
           rm -rf breeze
+      
+      # We need to pull the latest changes because the `pint` job might have fixed some code style issues.
+      - name: Pull Remote Changes
+        run: git pull
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
