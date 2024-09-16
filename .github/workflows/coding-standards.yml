@@ -50,13 +50,13 @@ jobs:
             @vue/eslint-config-typescript@^13.0.0
       - name: Run ESLint
         run: |
-          cp stubs/inertia-common/prettier.config.cjs .
+          cp stubs/inertia-common/.prettierrc .
           npx eslint --config stubs/inertia-react/.eslintrc.json stubs/inertia-react/resources/js --ext .js,.jsx --fix
           npx eslint --config stubs/inertia-react-ts/.eslintrc.json stubs/inertia-react-ts/resources/js --ext .js,.jsx,.ts,.tsx --fix
           npx eslint --config stubs/inertia-vue/.eslintrc.cjs stubs/inertia-vue/resources/js --ext .js,.vue --fix
           npx eslint --config stubs/inertia-vue-ts/.eslintrc.cjs stubs/inertia-vue-ts/resources/js --ext .js,.ts,.vue --fix
       - name: Clean up
-        run: rm -rf node_modules package.json package-lock.json prettier.config.cjs
+        run: rm -rf node_modules package.json package-lock.json .prettierrc
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
