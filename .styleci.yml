@@ -1,8 +1,0 @@
-php:
-  preset: laravel
-js:
-  finder:
-    not-name:
-      - vite.config.js
-css: true
-vue: true
