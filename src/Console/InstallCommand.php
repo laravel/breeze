@@ -182,7 +182,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Installs the given Composer Packages into the application.
      *
-     * @param  array  $packages
      * @param  bool  $asDev
      * @return bool
      */
@@ -210,7 +209,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Removes the given Composer Packages from the application.
      *
-     * @param  array  $packages
      * @param  bool  $asDev
      * @return bool
      */
@@ -238,7 +236,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Update the dependencies in the "package.json" file.
      *
-     * @param  callable  $callback
      * @param  bool  $dev
      * @return void
      */
@@ -325,7 +322,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     protected function phpBinary()
     {
-        return (new PhpExecutableFinder())->find(false) ?: 'php';
+        return (new PhpExecutableFinder)->find(false) ?: 'php';
     }
 
     /**
@@ -354,7 +351,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Remove Tailwind dark classes from the given files.
      *
-     * @param  \Symfony\Component\Finder\Finder  $finder
      * @return void
      */
     protected function removeDarkClasses(Finder $finder)
@@ -390,8 +386,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /**
      * Interact further with the user if they were prompted for missing arguments.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @return void
      */
     protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output)
