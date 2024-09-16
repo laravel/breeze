@@ -8,92 +8,52 @@ jobs:
     with:
       message: "Pint: fix code styling"
 
-  # eslint:
-  #   runs-on: ubuntu-latest
+  eslint:
+    name: Lint stubs for Inertia stacks
+    runs-on: ubuntu-latest
+    needs: pint
 
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       stack: [react, vue]
-  #       laravel: [11]
-  #       args: ["--ssr --dark --eslint", "--ssr --dark --eslint --typescript"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #   name: Lint Stubs - Laravel ${{ matrix.laravel }} - ${{ matrix.stack }} ${{ matrix.args }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-  #   steps:
-  #     - name: Setup PHP
-  #       uses: shivammathur/setup-php@v2
-  #       with:
-  #         php-version: 8.2
-  #         extensions: dom, curl, libxml, mbstring, zip
-  #         ini-values: error_reporting=E_ALL
-  #         tools: composer:v2
-  #         coverage: none
+      - name: Install NPM packages
+        run: |
+          # Common packages
+          npm install -g \
+            eslint@^8.57.0 \
+            prettier@^3.3.0 \
+            prettier-plugin-organize-imports@^4.0.0 \
+            prettier-plugin-tailwindcss@^0.6.5
 
-  #     - name: Setup Laravel
-  #       run: |
-  #         composer create-project laravel/laravel:^${{ matrix.laravel }} .
-  #         composer require laravel/breeze:@dev --no-interaction --no-update
-  #         composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
+          # React
+          npm install -g \
+            eslint-plugin-react@^7.34.4 \
+            eslint-plugin-react-hooks@^4.6.2 \
+            eslint-plugin-prettier@^5.1.3 \
+            eslint-config-prettier@^9.1.0 \
+            @typescript-eslint/eslint-plugin@^7.16.0 \
+            @typescript-eslint/parser@^7.16.0
 
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         path: 'breeze'
+          # Vue
+          npm install -g \
+            eslint-plugin-vue@^9.23.0 \
+            @rushstack/eslint-patch@^1.8.0 \
+            @vue/eslint-config-prettier@^9.0.0 \
+            @vue/eslint-config-typescript@^13.0.0
 
-  #     - name: Install Breeze
-  #       run: |
-  #         composer update "laravel/breeze" --prefer-dist --no-interaction --no-progress -W
-  #         php artisan breeze:install ${{ matrix.stack }} ${{ matrix.args }}
+      - name: Run ESLint
+        run: |
+          eslint --config stubs/inertia-react/.eslintrc.json stubs/inertia-react/resources/js --ext .js,.jsx --fix
+          eslint --config stubs/inertia-react-ts/.eslintrc.json stubs/inertia-react-ts/resources/js --ext .js,.jsx,.ts,.tsx --fix
+          eslint --config stubs/inertia-vue/.eslintrc.cjs stubs/inertia-vue/resources/js --ext .js,.vue --fix
+          eslint --config stubs/inertia-vue-ts/.eslintrc.cjs stubs/inertia-vue-ts/resources/js --ext .js,.ts,.vue --fix
 
-  #     - name: Install NPM dependencies
-  #       run: npm i
-      
-  #     - name: Run ESLint
-  #       run: npm run lint
-
-  #     - name: Apply ESLint fixes
-  #       run: |
-  #         if [[ "${{ matrix.args }}" == *"--typescript"* ]]; then
-  #           rsync -av --exclude='bootstrap.ts' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}-ts/resources/js/
-  #         else
-  #           rsync -av --exclude='bootstrap.js' resources/js/ breeze/stubs/inertia-${{ matrix.stack }}/resources/js/
-  #         fi
-
-  #     - name: Upload ESLint fixes
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: eslint-fixes-${{ matrix.stack }}-${{ matrix.args }}
-  #         path: breeze
-  #         retention-days: 1
-
-  # commit-changes:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - pint
-  #     - eslint
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Download all ESLint fixes
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         path: breeze
-
-  #     - name: Merge ESLint fixes
-  #       run: |
-  #         for dir in breeze/*; do
-  #           cp -r "$dir"/* .
-  #         done
-
-  #         rm -rf breeze
-      
-  #     # We need to pull the latest changes because the `pint` job might have fixed some code style issues.
-  #     - name: Pull Remote Changes
-  #       run: git pull
-
-  #     - name: Commit changes
-  #       uses: stefanzweifel/git-auto-commit-action@v5
-  #       with:
-  #         commit_message: "ESLint: fix code styling"
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ESLint: fix code styling"
