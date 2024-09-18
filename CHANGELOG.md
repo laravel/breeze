@@ -1,6 +1,23 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.1.4...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.0...2.x)
+
+## [v2.2.0](https://github.com/laravel/breeze/compare/v2.1.5...v2.2.0) - 2024-09-11
+
+* fix: add clearErrors on DeleteUserForm on closeModal function by [@radumargina](https://github.com/radumargina) in https://github.com/laravel/breeze/pull/406
+* check for import.meta.env.SSR instead of import.meta.env.DEV to know… by [@YassineBenh](https://github.com/YassineBenh) in https://github.com/laravel/breeze/pull/409
+* Declare global types for React PageProps by [@matsantosz](https://github.com/matsantosz) in https://github.com/laravel/breeze/pull/405
+
+## [v2.1.5](https://github.com/laravel/breeze/compare/v2.1.4...v2.1.5) - 2024-09-09
+
+* Adjust feature request template by [@driesvints](https://github.com/driesvints) in https://github.com/laravel/breeze/pull/401
+* [2.x] Add Bun & Deno Support for installStacks (Blade, Livewire, Inertia) by [@thecodechef](https://github.com/thecodechef) in https://github.com/laravel/breeze/pull/403
+* [2.x] Eagerly prefetch assets by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/400
+* [2.x] Added `bun` & `deno` support to `flushNodeModules()` by [@thecodechef](https://github.com/thecodechef) in https://github.com/laravel/breeze/pull/404
+* [2.x] Use Pest as default testing framework by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/breeze/pull/402
+* Uses Pest 3 by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/408
+
+**Full Changelog**: https://github.com/laravel/breeze/compare/v2.1.4...v2.1.5
 
 ## [v2.1.4](https://github.com/laravel/breeze/compare/v2.1.3...v2.1.4) - 2024-08-12
 

@@ -9,6 +9,7 @@
         "target": "ESNext",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
         "noEmit": true,
         "paths": {
             "@/*": ["./resources/js/*"],

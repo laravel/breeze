@@ -1,0 +1,70 @@
+name: fix code styling
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  pint:
+    uses: laravel/.github/.github/workflows/coding-standards.yml@main
+    with:
+      message: "Pint: fix code styling"
+
+  eslint:
+    name: Lint stubs for Inertia stacks
+    runs-on: ubuntu-latest
+    needs: pint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # We need to pull the latest changes because the `pint` job might have pushed changes
+      - name: Pull Remote Changes
+        run: git pull
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install NPM packages
+        run: |
+          # Common packages
+          npm install \
+            eslint@^8.57.0 \
+            prettier@^3.3.0 \
+            prettier-plugin-organize-imports@^4.0.0 \
+            prettier-plugin-tailwindcss@^0.6.5
+
+          # React
+          npm install \
+            react@^18.2.0 \
+            eslint-plugin-react@^7.34.4 \
+            eslint-plugin-react-hooks@^4.6.2 \
+            eslint-plugin-prettier@^5.1.3 \
+            eslint-config-prettier@^9.1.0 \
+            @typescript-eslint/eslint-plugin@^7.16.0 \
+            @typescript-eslint/parser@^7.16.0
+
+          # Vue
+          npm install \
+            eslint-plugin-vue@^9.23.0 \
+            @rushstack/eslint-patch@^1.8.0 \
+            @vue/eslint-config-prettier@^9.0.0 \
+            @vue/eslint-config-typescript@^13.0.0
+
+      - name: Run ESLint
+        run: |
+          cp stubs/inertia-common/.prettierrc .
+          npx eslint --config stubs/inertia-react/.eslintrc.json stubs/inertia-react/resources/js --ext .js,.jsx --fix
+          npx eslint --config stubs/inertia-react-ts/.eslintrc.json stubs/inertia-react-ts/resources/js --ext .js,.jsx,.ts,.tsx --fix
+          npx eslint --config stubs/inertia-vue/.eslintrc.cjs stubs/inertia-vue/resources/js --ext .js,.vue --fix
+          npx eslint --config stubs/inertia-vue-ts/.eslintrc.cjs stubs/inertia-vue-ts/resources/js --ext .js,.ts,.vue --fix
+
+      - name: Clean up
+        run: rm -rf node_modules package.json package-lock.json .prettierrc
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ESLint: fix code styling"
