@@ -1,6 +1,8 @@
 name: fix code styling
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   pint:
