@@ -5,7 +5,7 @@ export default function PrimaryButton({
     disabled,
     children,
     ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+}: Readonly<ButtonHTMLAttributes<HTMLButtonElement>>) {
     return (
         <button
             {...props}

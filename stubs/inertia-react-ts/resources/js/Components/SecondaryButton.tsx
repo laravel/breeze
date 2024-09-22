@@ -6,7 +6,7 @@ export default function SecondaryButton({
     disabled,
     children,
     ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+}: Readonly<ButtonHTMLAttributes<HTMLButtonElement>>) {
     return (
         <button
             {...props}
