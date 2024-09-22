@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from 'react';
 export default function Checkbox({
     className = '',
     ...props
-}: InputHTMLAttributes<HTMLInputElement>) {
+}: Readonly<InputHTMLAttributes<HTMLInputElement>>) {
     return (
         <input
             {...props}
