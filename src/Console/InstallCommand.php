@@ -395,7 +395,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         if (in_array($stack, ['react', 'vue'])) {
             collect(multiselect(
-                label: 'Would you like any optional features?',
+                label: 'Would you like any optional features? Use space bar to select.',
                 options: [
                     'dark' => 'Dark mode',
                     'ssr' => 'Inertia SSR',
