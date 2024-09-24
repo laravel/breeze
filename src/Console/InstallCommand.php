@@ -395,13 +395,14 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         if (in_array($stack, ['react', 'vue'])) {
             collect(multiselect(
-                label: 'Would you like any optional features? Use space bar to select.',
+                label: 'Would you like any optional features?',
                 options: [
                     'dark' => 'Dark mode',
                     'ssr' => 'Inertia SSR',
                     'typescript' => 'TypeScript',
                     'eslint' => 'ESLint with Prettier',
-                ]
+                ],
+                hint: 'Use the space bar to select option(s).'
             ))->each(fn ($option) => $input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
