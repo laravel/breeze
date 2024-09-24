@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.0...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.1...2.x)
+
+## [v2.2.1](https://github.com/laravel/breeze/compare/v2.2.0...v2.2.1) - 2024-09-22
+
+* [2.x] Add `pnpm` lockfile to `flushNodeModules` by [@osbre](https://github.com/osbre) in https://github.com/laravel/breeze/pull/411
+* [2.x] Add option to install ESLint with Prettier by [@avosalmon](https://github.com/avosalmon) in https://github.com/laravel/breeze/pull/412
+* [2.x] Allows GitHub Actions to run directly from GA UI by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/breeze/pull/413
+* Refactor: Break long email validation rule into multiple lines by [@Amidope](https://github.com/Amidope) in https://github.com/laravel/breeze/pull/416
 
 ## [v2.2.0](https://github.com/laravel/breeze/compare/v2.1.5...v2.2.0) - 2024-09-11
 
