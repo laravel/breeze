@@ -402,7 +402,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'typescript' => 'TypeScript',
                     'eslint' => 'ESLint with Prettier',
                 ],
-                hint: 'Use the space bar to select option(s).'
+                hint: 'Use the space bar to select options.'
             ))->each(fn ($option) => $input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
