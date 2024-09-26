@@ -256,6 +256,14 @@ trait InstallsInertiaStacks
             });
         }
 
+        // Flag for bypassing biome if eslint is also passed...
+        $bypassBiome = false;
+
+        if ($this->option('eslint') && $this->option('biome')) {
+            $bypassBiome = true;
+            $this->components->info('Detected both eslint and biome options, eslint will be given precedence.');
+        }
+
         if ($this->option('eslint')) {
             $this->updateNodePackages(function ($packages) {
                 return [
@@ -296,6 +304,29 @@ trait InstallsInertiaStacks
             }
 
             copy(__DIR__.'/../../stubs/inertia-common/.prettierrc', base_path('.prettierrc'));
+        }
+
+        if ($this->option('biome') && !$bypassBiome) {
+            $this->updateNodePackages(function ($packages) {
+                return [
+                        '@biomejs/biome' => '^1.9.2'
+                    ] + $packages;
+            });
+
+            $this->updateNodeScripts(function ($scripts) {
+                return $scripts + [
+                        'fmt' => 'npx biome format --write ./resources/js',
+                        'lint' => 'npx biome lint --apply ./resources/js',
+                        'fix' => 'npx biome lint --apply-unsafe ./resources/js',
+                        'check' => 'npx biome check --apply ./resources/js',
+                    ];
+            });
+
+            if ($this->option('typescript')) {
+                copy(__DIR__.'/../../stubs/inertia-react-ts/biome.json', base_path('biome.json'));
+            } else {
+                copy(__DIR__.'/../../stubs/inertia-react/biome.json', base_path('biome.json'));
+            }
         }
 
         // Providers...

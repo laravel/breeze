@@ -35,6 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
+                            {--biome : Indicates if Biome should be installed for React stack Breeze applications}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
