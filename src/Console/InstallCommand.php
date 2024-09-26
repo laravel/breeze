@@ -126,10 +126,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 $bootstrapApp = str_replace(
                     '->withMiddleware(function (Middleware $middleware) {',
                     '->withMiddleware(function (Middleware $middleware) {'
-                       .PHP_EOL."        \$middleware->$group($modifier: ["
-                       .PHP_EOL."            $names,"
-                       .PHP_EOL.'        ]);'
-                       .PHP_EOL,
+                        .PHP_EOL."        \$middleware->$group($modifier: ["
+                        .PHP_EOL."            $names,"
+                        .PHP_EOL.'        ]);'
+                        .PHP_EOL,
                     $bootstrapApp,
                 );
 
@@ -155,10 +155,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 $bootstrapApp = str_replace(
                     '->withMiddleware(function (Middleware $middleware) {',
                     '->withMiddleware(function (Middleware $middleware) {'
-                       .PHP_EOL.'        $middleware->alias(['
-                       .PHP_EOL."            $aliases,"
-                       .PHP_EOL.'        ]);'
-                       .PHP_EOL,
+                        .PHP_EOL.'        $middleware->alias(['
+                        .PHP_EOL."            $aliases,"
+                        .PHP_EOL.'        ]);'
+                        .PHP_EOL,
                     $bootstrapApp,
                 );
 
