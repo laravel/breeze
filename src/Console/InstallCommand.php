@@ -51,23 +51,21 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        if ($this->argument('stack') === 'vue') {
-            return $this->installInertiaVueStack();
-        } elseif ($this->argument('stack') === 'react') {
-            return $this->installInertiaReactStack();
-        } elseif ($this->argument('stack') === 'api') {
-            return $this->installApiStack();
-        } elseif ($this->argument('stack') === 'blade') {
-            return $this->installBladeStack();
-        } elseif ($this->argument('stack') === 'livewire') {
-            return $this->installLivewireStack();
-        } elseif ($this->argument('stack') === 'livewire-functional') {
-            return $this->installLivewireStack(true);
-        }
+        $unsupportedStackError = function () {
+            $this->components->error('Invalid stack. Supported stacks are [blade], [livewire], [livewire-functional], [react], [vue], and [api].');
 
-        $this->components->error('Invalid stack. Supported stacks are [blade], [livewire], [livewire-functional], [react], [vue], and [api].');
-
-        return 1;
+            return 1;
+        };
+        
+        return match($this->argument('stack')){
+            'vue' => $this->installInertiaVueStack(),
+            'react' => $this->installInertiaReactStack(),
+            'api' => $this->installApiStack(),
+            'blade' => $this->installBladeStack(),
+            'livewire' => $this->installLivewireStack(),
+            'livewire-functional' => $this->installLivewireStack(true),
+            default => $unsupportStackErorr(),
+        };
     }
 
     /**
