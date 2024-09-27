@@ -64,7 +64,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             'blade' => $this->installBladeStack(),
             'livewire' => $this->installLivewireStack(),
             'livewire-functional' => $this->installLivewireStack(true),
-            default => $unsupportStackErorr(),
+            default => $unsupportedStackError(),
         };
     }
 
