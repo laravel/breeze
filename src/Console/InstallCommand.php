@@ -51,7 +51,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        $unsupportedStackError = function () {
+        $invalidStackError = function () {
             $this->components->error('Invalid stack. Supported stacks are [blade], [livewire], [livewire-functional], [react], [vue], and [api].');
 
             return 1;
@@ -64,7 +64,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             'blade' => $this->installBladeStack(),
             'livewire' => $this->installLivewireStack(),
             'livewire-functional' => $this->installLivewireStack(true),
-            default => $unsupportedStackError(),
+            default => $invalidStackError(),
         };
     }
 
