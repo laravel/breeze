@@ -51,6 +51,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
+        $this->promptForOptionalFeatures();
+
         if ($this->argument('stack') === 'vue') {
             return $this->installInertiaVueStack();
         } elseif ($this->argument('stack') === 'react') {
@@ -389,13 +391,13 @@ class InstallCommand extends Command implements PromptsForMissingInput
     }
 
     /**
-     * Interact further with the user if they were prompted for missing arguments.
+     * Prompt for optional features after stack is set.
      *
      * @return void
      */
-    protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output)
+    protected function promptForOptionalFeatures()
     {
-        $stack = $input->getArgument('stack');
+        $stack = $this->argument('stack');
 
         if (in_array($stack, ['react', 'vue'])) {
             collect(multiselect(
@@ -406,16 +408,21 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'typescript' => 'TypeScript',
                     'eslint' => 'ESLint with Prettier',
                 ],
-                hint: 'Use the space bar to select options.'
-            ))->each(fn ($option) => $input->setOption($option, true));
+                default: collect([
+                    'dark' => $this->option('dark'),
+                    'ssr' => $this->option('ssr'),
+                    'typescript' => $this->option('typescript'),
+                    'eslint' => $this->option('eslint'),
+                ])->filter()->keys(),
+            ))->each(fn ($option) => $this->input->setOption($option, true));
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
-            $input->setOption('dark', confirm(
+            $this->input->setOption('dark', confirm(
                 label: 'Would you like dark mode support?',
-                default: false
+                default: $this->option('dark')
             ));
         }
 
-        $input->setOption('pest', select(
+        $this->input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
             options: ['Pest', 'PHPUnit'],
             default: 'Pest',
