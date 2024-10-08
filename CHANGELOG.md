@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.1...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.2...2.x)
+
+## [v2.2.2](https://github.com/laravel/breeze/compare/v2.2.1...v2.2.2) - 2024-10-06
+
+* Update logo to support dark/light theme by [@milewski](https://github.com/milewski) in https://github.com/laravel/breeze/pull/418
+* Add hint to clarify how to use multiselect by [@bdweix](https://github.com/bdweix) in https://github.com/laravel/breeze/pull/417
+* [2.x] Utilise `Illuminate\Support\php_binary()` by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/breeze/pull/421
+* Remove blade unescape for attributes by [@Rattone](https://github.com/Rattone) in https://github.com/laravel/breeze/pull/422
+* [2.x] chore: text-input to use [@disabled](https://github.com/disabled) by [@MrPunyapal](https://github.com/MrPunyapal) in https://github.com/laravel/breeze/pull/427
+* Updated names of the default functions to match the file names. by [@msamgan](https://github.com/msamgan) in https://github.com/laravel/breeze/pull/428
 
 ## [v2.2.1](https://github.com/laravel/breeze/compare/v2.2.0...v2.2.1) - 2024-09-22
 
