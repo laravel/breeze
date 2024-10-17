@@ -35,6 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
+                            {--oauth : Indicates that OAuth support via Laravel Passport should be installed for the API stack}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -411,6 +412,13 @@ class InstallCommand extends Command implements PromptsForMissingInput
         } elseif (in_array($stack, ['blade', 'livewire', 'livewire-functional'])) {
             $input->setOption('dark', confirm(
                 label: 'Would you like dark mode support?',
+                default: false
+            ));
+        }
+
+        if (in_array($stack, ['api', 'blade', 'react', 'vue'])) {
+            $input->setOption('oauth', confirm(
+                label: 'Would you like OAuth support via Laravel Passport?',
                 default: false
             ));
         }
