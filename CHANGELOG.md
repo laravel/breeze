@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.2...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.2.3...2.x)
+
+## [v2.2.3](https://github.com/laravel/breeze/compare/v2.2.2...v2.2.3) - 2024-10-17
+
+* [2.x] Fixed TypeScript Errors in React SSR Setup with Ziggy Props when Builds by [@akr4m](https://github.com/akr4m) in https://github.com/laravel/breeze/pull/430
 
 ## [v2.2.2](https://github.com/laravel/breeze/compare/v2.2.1...v2.2.2) - 2024-10-06
 
