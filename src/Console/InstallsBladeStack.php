@@ -25,6 +25,16 @@ trait InstallsBladeStack
             ] + $packages;
         });
 
+        // Install Passport...
+        if ($this->option('oauth')) {
+            if (! $this->requireComposerPackages(['laravel/passport:^13.0'])) {
+                return 1;
+            }
+
+            // Providers...
+            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Providers', app_path('Providers'));
+        }
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Controllers', app_path('Http/Controllers'));

@@ -13,7 +13,9 @@ trait InstallsApiStack
      */
     protected function installApiStack()
     {
-        $this->runCommands(['php artisan install:api']);
+        $this->runCommands([
+            $this->option('oauth') ? 'php artisan install:api --passport' : 'php artisan install:api',
+        ]);
 
         $files = new Filesystem;
 
@@ -28,9 +30,15 @@ trait InstallsApiStack
             'verified' => '\App\Http\Middleware\EnsureEmailIsVerified::class',
         ]);
 
-        $this->installMiddleware([
-            '\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class',
-        ], 'api', 'prepend');
+        if ($this->option('oauth')) {
+            $this->installMiddleware([
+                '\Laravel\Passport\Http\Middleware\CreateFreshApiToken::class',
+            ], 'web', 'append');
+        } else {
+            $this->installMiddleware([
+                '\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class',
+            ], 'api', 'prepend');
+        }
 
         // Requests...
         $files->ensureDirectoryExists(app_path('Http/Requests/Auth'));
@@ -43,6 +51,11 @@ trait InstallsApiStack
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
         copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
         copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
+
+        // OAuth...
+        if ($this->option('oauth')) {
+            $this->replaceInFile('auth:sanctum', 'auth:api', base_path('routes/api.php'));
+        }
 
         // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
