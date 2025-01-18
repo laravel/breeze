@@ -35,7 +35,7 @@ trait InstallsInertiaStacks
         if ($this->option('typescript')) {
             $this->updateNodePackages(function ($packages) {
                 return [
-                    'typescript' => '~5.5.3',
+                    'typescript' => '^5.6.3',
                     'vue-tsc' => '^2.0.24',
                 ] + $packages;
             });
