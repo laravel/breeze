@@ -65,7 +65,9 @@ trait InstallsApiStack
         $files->delete(base_path('tests/Feature/Auth/PasswordConfirmationTest.php'));
 
         // Cleaning...
-        $this->removeScaffoldingUnnecessaryForApis();
+        if ($this->option('remove-scaffolding')) {
+            $this->removeScaffoldingUnnecessaryForApis();
+        }
 
         $this->components->info('Breeze scaffolding installed successfully.');
     }

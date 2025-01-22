@@ -35,6 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
+                            {--remove-scaffolding : Indicates if default scaffolding should be removed with the API stack}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -412,6 +413,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
             $input->setOption('dark', confirm(
                 label: 'Would you like dark mode support?',
                 default: false
+            ));
+        } elseif ($stack === 'api') {
+            $input->setOption('remove-scaffolding', confirm(
+                label: 'Would you like remove any unnecessary frontend (css, js, etc) scaffolding?',
             ));
         }
 
