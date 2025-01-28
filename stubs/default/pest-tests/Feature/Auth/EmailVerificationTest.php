@@ -44,3 +44,12 @@ test('email is not verified with invalid hash', function () {
 
     expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
 });
+
+test('email verification screen redirects for verified user', function () {
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)->get('/verify-email');
+
+    $response->assertRedirect(route('dashboard'));
+});
+
