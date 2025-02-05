@@ -47,6 +47,17 @@ trait InstallsApiStack
         // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
 
+        // Sail...
+        $dockerComposePath = base_path('docker-compose.yml');
+        $isSail = $files->exists($dockerComposePath);
+        if ($isSail) {
+            $dockerComposeContent = file_get_contents($dockerComposePath);
+            if (! empty($dockerComposeContent)) {
+                $dockerComposeContent = preg_replace('/\s*- \'\${VITE_PORT:-5173}:\${VITE_PORT:-5173}\'/', '', $dockerComposeContent);
+                file_put_contents($dockerComposePath, $dockerComposeContent);
+            }
+        }
+
         // Environment...
         if (! $files->exists(base_path('.env'))) {
             copy(base_path('.env.example'), base_path('.env'));
