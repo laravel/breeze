@@ -69,6 +69,7 @@ trait InstallsApiStack
             if (! empty($envContent)) {
                 $envVars = 'APP_URL=http://localhost:8000'.PHP_EOL.'FRONTEND_URL=http://localhost:3000';
                 $envContent = preg_replace('/APP_URL=.*/', $envVars, $envContent);
+                $envContent = preg_replace('/VITE_APP_NAME=.*\n\n?/', '', $envContent);
                 file_put_contents($envPath, $envContent);
             }
         }
