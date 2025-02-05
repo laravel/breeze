@@ -57,6 +57,17 @@ trait InstallsApiStack
             preg_replace('/APP_URL=(.*)/', 'APP_URL=http://localhost:8000'.PHP_EOL.'FRONTEND_URL=http://localhost:3000', file_get_contents(base_path('.env')))
         );
 
+        // Sail...
+        $dockerComposePath = base_path('docker-compose.yml');
+        if ($files->exists($dockerComposePath)) {
+            $dockerComposeContent = file_get_contents($dockerComposePath);
+            if (! empty($dockerComposeContent)) {
+                $dockerComposeContent = preg_replace('/- \'\${APP_PORT:-\d+}:\d+\'/', '- \'\${APP_PORT:-8000}:8000\'', $dockerComposeContent);
+                $dockerComposeContent = preg_replace('/\s*- \'\${VITE_PORT:-5173}:\${VITE_PORT:-5173}\'/', '', $dockerComposeContent);
+                file_put_contents($dockerComposePath, $dockerComposeContent);
+            }
+        }
+
         // Tests...
         if (! $this->installTests()) {
             return 1;
