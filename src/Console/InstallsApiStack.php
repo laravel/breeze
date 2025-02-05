@@ -63,10 +63,15 @@ trait InstallsApiStack
             copy(base_path('.env.example'), base_path('.env'));
         }
 
-        file_put_contents(
-            base_path('.env'),
-            preg_replace('/APP_URL=(.*)/', 'APP_URL=http://localhost:8000'.PHP_EOL.'FRONTEND_URL=http://localhost:3000', file_get_contents(base_path('.env')))
-        );
+        foreach (['.env', '.env.example'] as $envFile) {
+            $envPath = base_path($envFile);
+            $envContent = file_get_contents($envPath);
+            if (! empty($envContent)) {
+                $envVars = 'APP_URL=http://localhost:8000'.PHP_EOL.'FRONTEND_URL=http://localhost:3000';
+                $envContent = preg_replace('/APP_URL=.*/', $envVars, $envContent);
+                file_put_contents($envPath, $envContent);
+            }
+        }
 
         // Tests...
         if (! $this->installTests()) {
