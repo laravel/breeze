@@ -92,5 +92,8 @@ trait InstallsApiStack
         // Remove CSS and JavaScript directories...
         $files->deleteDirectory(resource_path('css'));
         $files->deleteDirectory(resource_path('js'));
+
+        // Remove the "node_modules" directory and associated lock files...
+        static::flushNodeModules();
     }
 }
