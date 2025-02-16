@@ -35,7 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
-                            {--all : Indicates if All the followings (--dark, --ssr, --typescript, --eslint, --pest) should be installed}
+                            {--all : Indicates if All the followings (--dark, --ssr, --typescript, --eslint) should be installed}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -87,7 +87,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             default => 'default',
         };
 
-        if ($this->option('pest') || $this->isUsingPest() || $this->option('all')) {
+        if ($this->option('pest') || $this->isUsingPest()) {
             if ($this->hasComposerPackage('phpunit/phpunit')) {
                 $this->removeComposerPackages(['phpunit/phpunit'], true);
             }
