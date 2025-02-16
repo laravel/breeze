@@ -32,7 +32,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             $this->updateNodePackages(function ($packages) {
                 return [
                     'typescript' => '^5.6.3',
@@ -41,7 +41,7 @@ trait InstallsInertiaStacks
             });
         }
 
-        if ($this->option('eslint')) {
+        if ($this->option('eslint') || $this->option('all')) {
             $this->updateNodePackages(function ($packages) {
                 return [
                     'eslint' => '^8.57.0',
@@ -54,7 +54,7 @@ trait InstallsInertiaStacks
                 ] + $packages;
             });
 
-            if ($this->option('typescript')) {
+            if ($this->option('typescript') || $this->option('all')) {
                 $this->updateNodePackages(function ($packages) {
                     return [
                         '@vue/eslint-config-typescript' => '^13.0.0',
@@ -111,7 +111,7 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Components', resource_path('js/Components'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Layouts', resource_path('js/Layouts'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/Pages', resource_path('js/Pages'));
@@ -122,7 +122,7 @@ trait InstallsInertiaStacks
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
         }
 
-        if (! $this->option('dark')) {
+        if (! $this->option('dark') || $this->option('all')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
                 ->name('*.vue')
@@ -135,7 +135,7 @@ trait InstallsInertiaStacks
             return 1;
         }
 
-        if ($this->option('pest')) {
+        if ($this->option('pest') || $this->option('all')) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/pest-tests/Feature', base_path('tests/Feature'));
         } else {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
@@ -151,7 +151,7 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-vue/vite.config.js', base_path('vite.config.js'));
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             copy(__DIR__.'/../../stubs/inertia-vue-ts/tsconfig.json', base_path('tsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/app.ts', resource_path('js/app.ts'));
 
@@ -171,7 +171,7 @@ trait InstallsInertiaStacks
             copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
         }
 
-        if ($this->option('ssr')) {
+        if ($this->option('ssr') || $this->option('all')) {
             $this->installInertiaVueSsrStack();
         }
 
@@ -204,7 +204,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.ts', resource_path('js/ssr.ts'));
             $this->replaceInFile("input: 'resources/js/app.ts',", "input: 'resources/js/app.ts',".PHP_EOL."            ssr: 'resources/js/ssr.ts',", base_path('vite.config.js'));
         } else {
@@ -245,7 +245,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             $this->updateNodePackages(function ($packages) {
                 return [
                     '@types/node' => '^18.13.0',
@@ -256,7 +256,7 @@ trait InstallsInertiaStacks
             });
         }
 
-        if ($this->option('eslint')) {
+        if ($this->option('eslint') || $this->option('all')) {
             $this->updateNodePackages(function ($packages) {
                 return [
                     'eslint' => '^8.57.0',
@@ -270,7 +270,7 @@ trait InstallsInertiaStacks
                 ] + $packages;
             });
 
-            if ($this->option('typescript')) {
+            if ($this->option('typescript') || $this->option('all')) {
                 $this->updateNodePackages(function ($packages) {
                     return [
                         '@typescript-eslint/eslint-plugin' => '^7.16.0',
@@ -328,7 +328,7 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Components', resource_path('js/Components'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Layouts', resource_path('js/Layouts'));
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react-ts/resources/js/Pages', resource_path('js/Pages'));
@@ -339,7 +339,7 @@ trait InstallsInertiaStacks
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
         }
 
-        if (! $this->option('dark')) {
+        if (! $this->option('dark') || $this->option('all')) {
             $this->removeDarkClasses((new Finder)
                 ->in(resource_path('js'))
                 ->name(['*.jsx', '*.tsx'])
@@ -352,7 +352,7 @@ trait InstallsInertiaStacks
             return 1;
         }
 
-        if ($this->option('pest')) {
+        if ($this->option('pest') || $this->option('all')) {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/pest-tests/Feature', base_path('tests/Feature'));
         } else {
             (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/tests/Feature', base_path('tests/Feature'));
@@ -368,7 +368,7 @@ trait InstallsInertiaStacks
         copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/inertia-react/vite.config.js', base_path('vite.config.js'));
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             copy(__DIR__.'/../../stubs/inertia-react-ts/tsconfig.json', base_path('tsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/app.tsx', resource_path('js/app.tsx'));
 
@@ -391,7 +391,7 @@ trait InstallsInertiaStacks
             unlink(resource_path('js/app.js'));
         }
 
-        if ($this->option('ssr')) {
+        if ($this->option('ssr') || $this->option('all')) {
             $this->installInertiaReactSsrStack();
         }
 
@@ -420,7 +420,7 @@ trait InstallsInertiaStacks
      */
     protected function installInertiaReactSsrStack()
     {
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/ssr.tsx', resource_path('js/ssr.tsx'));
             $this->replaceInFile("input: 'resources/js/app.tsx',", "input: 'resources/js/app.tsx',".PHP_EOL."            ssr: 'resources/js/ssr.tsx',", base_path('vite.config.js'));
             $this->configureReactHydrateRootForSsr(resource_path('js/app.tsx'));
@@ -508,7 +508,7 @@ trait InstallsInertiaStacks
             app_path('Http/Middleware/HandleInertiaRequests.php')
         );
 
-        if ($this->option('typescript')) {
+        if ($this->option('typescript') || $this->option('all')) {
             $this->replaceInFile(
                 <<<'EOT'
                 export interface User {
