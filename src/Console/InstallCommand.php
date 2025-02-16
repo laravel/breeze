@@ -35,6 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
+                            {--all : Indicates if All the followings (--dark, --ssr, --typescript, --eslint) should be installed}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -406,6 +407,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                     'ssr' => 'Inertia SSR',
                     'typescript' => 'TypeScript',
                     'eslint' => 'ESLint with Prettier',
+                    'all' => 'All the followings (Dark mode, Inertia SSR, TypeScript, ESLint with prettier)',
                 ],
                 hint: 'Use the space bar to select options.'
             ))->each(fn ($option) => $input->setOption($option, true));
