@@ -17,7 +17,7 @@ export default function Login({
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
-        remember: false,
+        remember: false as boolean,
     });
 
     const submit: FormEventHandler = (e) => {
@@ -78,7 +78,10 @@ export default function Login({
                             name="remember"
                             checked={data.remember}
                             onChange={(e) =>
-                                setData('remember', e.target.checked)
+                                setData(
+                                    'remember',
+                                    (e.target.checked || false) as false,
+                                )
                             }
                         />
                         <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">

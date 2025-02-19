@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.3.2...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.3.4...2.x)
+
+## [v2.3.4](https://github.com/laravel/breeze/compare/v2.3.3...v2.3.4) - 2025-02-11
+
+* update bun lockfile by [@fouteox](https://github.com/fouteox) in https://github.com/laravel/breeze/pull/462
+* [2.x] [ApiStack] Remove `node_modules` and associated lock files by [@miclaus](https://github.com/miclaus) in https://github.com/laravel/breeze/pull/467
+
+## [v2.3.3](https://github.com/laravel/breeze/compare/v2.3.2...v2.3.3) - 2025-01-26
+
+* Fix type error in Login component for `setData` function by [@florikodra](https://github.com/florikodra) in https://github.com/laravel/breeze/pull/454
+* Fix tsc error in Pages/Auth/Login.tsx on fresh install by [@MariosIgkiempor](https://github.com/MariosIgkiempor) in https://github.com/laravel/breeze/pull/457
 
 ## [v2.3.2](https://github.com/laravel/breeze/compare/v2.3.1...v2.3.2) - 2025-01-21
 
