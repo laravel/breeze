@@ -27,7 +27,6 @@ jobs:
           - stack: react
             args: --ssr --typescript
             laravel: 11
-        include:
           - stack: vue
             args: --ssr --typescript
             laravel: 12
@@ -52,6 +51,14 @@ jobs:
           composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
+        if: matrix.laravel < 12
+
+      - name: Setup Laravel (dev-master)
+        run: |
+          composer create-project laravel/laravel:dev-master .
+          composer require laravel/breeze:@dev --no-interaction --no-update
+          composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
+        if: matrix.laravel == 12
 
       - name: Checkout code
         uses: actions/checkout@v4
