@@ -26,9 +26,7 @@ const deleteUser = () => {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => passwordInput.value?.focus(),
-        onFinish: () => {
-            form.reset();
-        },
+        onFinish: () => form.reset(),
     });
 };
 
