@@ -26,7 +26,7 @@ trait InstallsLivewireStack
         });
 
         // Install Livewire...
-        if (! $this->requireComposerPackages(['livewire/livewire:^3.4', 'livewire/volt:^1.0'])) {
+        if (! $this->requireComposerPackages(['livewire/livewire:^3.4', 'livewire/volt:^1.7.0'])) {
             return 1;
         }
 
