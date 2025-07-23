@@ -19,9 +19,8 @@ trait InstallsLivewireStack
         $this->updateNodePackages(function ($packages) {
             return [
                 '@tailwindcss/forms' => '^0.5.2',
-                'autoprefixer' => '^10.4.2',
-                'postcss' => '^8.4.31',
-                'tailwindcss' => '^3.1.0',
+                '@tailwindcss/vite' => '^4.0.0',
+                'tailwindcss' => '^4.0.0',
             ] + $packages;
         });
 
@@ -93,8 +92,6 @@ trait InstallsLivewireStack
         copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
 
         // Tailwind / Vite...
-        copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/default/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
 
