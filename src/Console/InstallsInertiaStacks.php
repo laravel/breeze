@@ -24,7 +24,7 @@ trait InstallsInertiaStacks
             return [
                 '@inertiajs/vue3' => '^2.0.0',
                 '@tailwindcss/forms' => '^0.5.3',
-                '@vitejs/plugin-vue' => '^5.0.0',
+                '@vitejs/plugin-vue' => '^6.0.0',
                 'autoprefixer' => '^10.4.12',
                 'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
