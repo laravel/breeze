@@ -124,6 +124,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
+        dd( 'here' );
         if ( $this->argument( 'stack' ) === 'vue' )
         {
             return $this->installInertiaVueStack();
