@@ -63,7 +63,6 @@ trait InstallsForgeDefaultStack
         }
 
         // Routes...
-        copy( __DIR__ . '/../../stubs/forge-default/routes/auth.php', base_path( 'routes/auth.php' ) );
         $routesToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/routes/web.php.append' );
         $this->appendToFile( $routesToAppend, base_path( 'routes/web.php' ) );
 
