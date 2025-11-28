@@ -67,6 +67,9 @@ trait InstallsForgeDefaultStack
         $routesToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/routes/web.php.append' );
         $this->appendToFile( $routesToAppend, base_path( 'routes/web.php' ) );
 
+        // Config...
+        copy( __DIR__ . '/../../stubs/forge-default/config/fortify.php', base_path( 'config/fortify.php' ) );
+
         // "Dashboard" Route...
         $this->replaceInFile( '/home', '/dashboard', resource_path( 'views/welcome.blade.php' ) );
         $this->replaceInFile( 'Home', 'Dashboard', resource_path( 'views/welcome.blade.php' ) );
