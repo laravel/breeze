@@ -1,21 +1,11 @@
 // Laravel Breeze added the following
-import Alpine from 'alpinejs';
-window.Alpine = Alpine;
-Alpine.start();
 
-
--------- want to land here ------------
-
-import "flowbite";
 import {toggleTheme} from './theme.js';
-import {ClientJS} from 'clientjs';
 import Alpine from 'alpinejs'
 
 document.getElementById('theme-toggle')
     .addEventListener('click', toggleTheme);
 
 window.ClientJS = ClientJS;
-
 window.Alpine = Alpine
-
 Alpine.start()
