@@ -3,9 +3,10 @@
 import {toggleTheme} from './theme.js';
 import Alpine from 'alpinejs'
 
-document.getElementById('theme-toggle')
-    .addEventListener('click', toggleTheme);
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
 
-window.ClientJS = ClientJS;
 window.Alpine = Alpine
 Alpine.start()
