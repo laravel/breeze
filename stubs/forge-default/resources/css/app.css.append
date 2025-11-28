@@ -1,0 +1,24 @@
+/* -------- Laravel Breeze Start -------- */
+
+/* Tailwind v4 custom dark variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Ensure browser color-scheme respects theme */
+:root {
+    color-scheme: light;
+}
+
+.dark {
+    color-scheme: dark;
+}
+
+/* Optional helper for smooth transitions */
+.transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+}
+
+@tailwind utilities;
+
+/* -------- Laravel Breeze Stop -------- */
+

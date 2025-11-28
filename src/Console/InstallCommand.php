@@ -21,14 +21,14 @@ use function Laravel\Prompts\select;
 #[AsCommand( name: 'breeze:install' )]
 class InstallCommand extends Command implements PromptsForMissingInput
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsLivewireStack, InstallsForgeDefaultStack;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,livewire,livewire-functional,react,vue,api)}
+    protected $signature = 'breeze:install {stack : The development stack that should be installed (blade,forge-default,livewire,livewire-functional,react,vue,api)}
                             {--dark : Indicate that dark mode support should be installed}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}
@@ -124,7 +124,6 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        // My comment
         if ( $this->argument( 'stack' ) === 'vue' )
         {
             return $this->installInertiaVueStack();
@@ -141,6 +140,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
         {
             return $this->installBladeStack();
         }
+        elseif ( $this->argument( 'stack' ) === 'forge-default' )
+        {
+            return $this->installForgeDefaultStack();
+        }
         elseif ( $this->argument( 'stack' ) === 'livewire' )
         {
             return $this->installLivewireStack();
@@ -153,6 +156,47 @@ class InstallCommand extends Command implements PromptsForMissingInput
         $this->components->error( 'Invalid stack. Supported stacks are [blade], [livewire], [livewire-functional], [react], [vue], and [api].' );
 
         return 1;
+    }
+
+    /**
+     * Install the node modules
+     *
+     * @return void
+     */
+    protected function installNodeModules()
+    {
+        $this->components->info( 'Installing and building Node dependencies.' );
+
+        if ( file_exists( base_path( 'pnpm-lock.yaml' ) ) )
+        {
+            $this->runCommands( [ 'pnpm install', 'pnpm run build' ] );
+        }
+        elseif ( file_exists( base_path( 'yarn.lock' ) ) )
+        {
+            $this->runCommands( [ 'yarn install', 'yarn run build' ] );
+        }
+        elseif ( file_exists( base_path( 'bun.lock' ) ) || file_exists( base_path( 'bun.lockb' ) ) )
+        {
+            $this->runCommands( [ 'bun install', 'bun run build' ] );
+        }
+        elseif ( file_exists( base_path( 'deno.lock' ) ) )
+        {
+            $this->runCommands( [ 'deno install', 'deno task build' ] );
+        }
+        else
+        {
+            $this->runCommands( [ 'npm install', 'npm run build' ] );
+        }
+    }
+
+    /**
+     * Append content to an existing file.
+     *
+     * @return void
+     */
+    protected function appendToFile( string $contentToAppend, string $filePath )
+    {
+        file_put_contents( $filePath, $contentToAppend, FILE_APPEND | LOCK_EX );
     }
 
     /**
