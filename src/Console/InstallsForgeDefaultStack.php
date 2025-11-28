@@ -74,10 +74,10 @@ trait InstallsForgeDefaultStack
         // Tailwind / Vite...
         copy( __DIR__ . '/../../stubs/forge-default/tailwind.config.js', base_path( 'tailwind.config.js' ) );
         copy( __DIR__ . '/../../stubs/forge-default/vite.config.js', base_path( 'vite.config.js' ) );
-        $appCssToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/css/app.css' );
+        $appCssToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/css/app.css.append' );
         $this->appendToFile( $appCssToAppend, base_path( 'resources/css/app.css' ) );
         copy( __DIR__ . '/../../stubs/forge-default/resources/js/theme.js', resource_path( 'js/theme.js' ) );
-        $appJsToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/js/app.js' );
+        $appJsToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/js/app.js.append' );
         $this->appendToFile( $appJsToAppend, base_path( 'resources/js/app.js' ) );
 
         $this->installNodeModules();
