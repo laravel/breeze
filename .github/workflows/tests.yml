@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - develop
+      - rlc_dev
       - '*.x'
   pull_request:
   schedule:
@@ -17,9 +18,9 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        stack: [blade, livewire, livewire-functional, react, vue, api]
-        laravel: [11, 12]
-        args: ["", --pest]
+        stack: [ blade, livewire, livewire-functional, react, vue, api ]
+        laravel: [ 11, 12 ]
+        args: [ "", --pest ]
         include:
           - stack: vue
             args: --ssr --typescript
