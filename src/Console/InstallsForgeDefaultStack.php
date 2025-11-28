@@ -32,15 +32,15 @@ trait InstallsForgeDefaultStack
 
         // Service Providers...
         ( new Filesystem )->ensureDirectoryExists( app_path( 'Providers' ) );
-        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/default/app/Providers', app_path( 'Providers' ) );
+        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/forge-default/app/Providers', app_path( 'Providers' ) );
 
         // Controllers...
         ( new Filesystem )->ensureDirectoryExists( app_path( 'Http/Controllers' ) );
-        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/default/app/Http/Controllers', app_path( 'Http/Controllers' ) );
+        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/forge-default/app/Http/Controllers', app_path( 'Http/Controllers' ) );
 
         // Views...
         ( new Filesystem )->ensureDirectoryExists( resource_path( 'views' ) );
-        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/default/resources/views', resource_path( 'views' ) );
+        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/forge-default/resources/views', resource_path( 'views' ) );
 
         if ( ! $this->option( 'dark' ) )
         {
@@ -54,7 +54,7 @@ trait InstallsForgeDefaultStack
 
         // Components...
         ( new Filesystem )->ensureDirectoryExists( app_path( 'View/Components' ) );
-        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/default/app/View/Components', app_path( 'View/Components' ) );
+        ( new Filesystem )->copyDirectory( __DIR__ . '/../../stubs/forge-default/app/View/Components', app_path( 'View/Components' ) );
 
         // Tests...
         if ( ! $this->installTests() )
@@ -63,8 +63,8 @@ trait InstallsForgeDefaultStack
         }
 
         // Routes...
-        copy( __DIR__ . '/../../stubs/default/routes/auth.php', base_path( 'routes/auth.php' ) );
-        $routesToAppend = file_get_contents( __DIR__ . '/../../stubs/default/routes/web.php.append' );
+        copy( __DIR__ . '/../../stubs/forge-default/routes/auth.php', base_path( 'routes/auth.php' ) );
+        $routesToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/routes/web.php.append' );
         $this->appendToFile( $routesToAppend, base_path( 'routes/web.php' ) );
 
         // "Dashboard" Route...
@@ -72,12 +72,12 @@ trait InstallsForgeDefaultStack
         $this->replaceInFile( 'Home', 'Dashboard', resource_path( 'views/welcome.blade.php' ) );
 
         // Tailwind / Vite...
-        copy( __DIR__ . '/../../stubs/default/tailwind.config.js', base_path( 'tailwind.config.js' ) );
-        copy( __DIR__ . '/../../stubs/default/vite.config.js', base_path( 'vite.config.js' ) );
-        $appCssToAppend = file_get_contents( __DIR__ . '/../../stubs/default/resources/css/app.css' );
+        copy( __DIR__ . '/../../stubs/forge-default/tailwind.config.js', base_path( 'tailwind.config.js' ) );
+        copy( __DIR__ . '/../../stubs/forge-default/vite.config.js', base_path( 'vite.config.js' ) );
+        $appCssToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/css/app.css' );
         $this->appendToFile( $appCssToAppend, base_path( 'resources/css/app.css' ) );
-        copy( __DIR__ . '/../../stubs/default/resources/js/theme.js', resource_path( 'js/theme.js' ) );
-        $appJsToAppend = file_get_contents( __DIR__ . '/../../stubs/default/resources/js/app.js' );
+        copy( __DIR__ . '/../../stubs/forge-default/resources/js/theme.js', resource_path( 'js/theme.js' ) );
+        $appJsToAppend = file_get_contents( __DIR__ . '/../../stubs/forge-default/resources/js/app.js' );
         $this->appendToFile( $appJsToAppend, base_path( 'resources/js/app.js' ) );
 
         $this->installNodeModules();
