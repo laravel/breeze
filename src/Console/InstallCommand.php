@@ -468,6 +468,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
             'stack' => fn() => select(
                 label  : 'Which Breeze stack would you like to install?',
                 options: [
+                             'forge-default'       => 'Laravel Forge + Blade Views',
                              'blade'               => 'Blade with Alpine',
                              'livewire'            => 'Livewire (Volt Class API) with Alpine',
                              'livewire-functional' => 'Livewire (Volt Functional API) with Alpine',
@@ -502,7 +503,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                          hint   : 'Use the space bar to select options.'
                      ) )->each( fn( $option ) => $input->setOption( $option, true ) );
         }
-        elseif ( in_array( $stack, [ 'blade', 'livewire', 'livewire-functional' ] ) )
+        elseif ( in_array( $stack, [ 'blade', 'forge-default', 'livewire', 'livewire-functional' ] ) )
         {
             $input->setOption( 'dark', confirm(
                 label  : 'Would you like dark mode support?',
