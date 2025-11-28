@@ -18,8 +18,8 @@ trait InstallsForgeDefaultStack
         if ( ! $this->hasComposerPackage( 'laravel/fortify' ) )
         {
             $this->requireComposerPackages( [ 'laravel/fortify' ], false );
-            $this->runCommands( [ 'php artisan fortify:install' ] );
         }
+        $this->runCommands( [ 'php artisan fortify:install' ] );
 
         // NPM Packages...
         $this->updateNodePackages( function ( $packages ) {
