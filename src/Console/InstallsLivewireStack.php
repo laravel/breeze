@@ -89,8 +89,7 @@ trait InstallsLivewireStack
         }
 
         // Routes...
-        copy(__DIR__.'/../../stubs/livewire-common/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/livewire-common/routes/auth.php', base_path('routes/auth.php'));
+        $this->installWebRoutes($functional ? 'livewire-functional' : 'livewire');
 
         // Tailwind / Vite...
         copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));

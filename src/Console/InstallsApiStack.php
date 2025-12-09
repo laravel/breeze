@@ -41,8 +41,7 @@ trait InstallsApiStack
 
         // Routes...
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
-        copy(__DIR__.'/../../stubs/api/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/api/routes/auth.php', base_path('routes/auth.php'));
+        $this->installWebRoutes('api');
 
         // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());

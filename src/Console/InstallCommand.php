@@ -35,6 +35,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                             {--ssr : Indicates if Inertia SSR support should be installed}
                             {--typescript : Indicates if TypeScript is preferred for the Inertia stack}
                             {--eslint : Indicates if ESLint with Prettier should be installed}
+                            {--force : Force overwrite of existing routes/web.php file}
                             {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
@@ -443,5 +444,330 @@ class InstallCommand extends Command implements PromptsForMissingInput
     protected function isUsingPest()
     {
         return class_exists(\Pest\TestSuite::class);
+    }
+
+    /**
+     * Check if the web.php file contains only the default Laravel scaffold.
+     *
+     * @return bool
+     */
+    protected function isDefaultWebRoutes()
+    {
+        $webPhpPath = base_path('routes/web.php');
+
+        if (! file_exists($webPhpPath)) {
+            return true;
+        }
+
+        $content = file_get_contents($webPhpPath);
+
+        // Normalize content by removing extra whitespace for comparison
+        $normalizedContent = preg_replace('/\s+/', ' ', trim($content));
+
+        // Default Laravel 11+ web.php patterns (normalized)
+        $defaultPatterns = [
+            // Standard Laravel 11 default
+            preg_replace('/\s+/', ' ', trim("<?php use Illuminate\\Support\\Facades\\Route; Route::get('/', function () { return view('welcome'); });")),
+            // With Health check (some Laravel versions)
+            preg_replace('/\s+/', ' ', trim("<?php use Illuminate\\Support\\Facades\\Route; Route::get('/', function () { return view('welcome'); }); Route::get('/up', function () { return response('OK'); });")),
+        ];
+
+        foreach ($defaultPatterns as $pattern) {
+            if ($normalizedContent === $pattern) {
+                return true;
+            }
+        }
+
+        // Also check if file only contains the welcome route with optional comments
+        $strippedContent = preg_replace('/\/\*.*?\*\/|\s*\/\/.*$/m', '', $content);
+        $strippedNormalized = preg_replace('/\s+/', ' ', trim($strippedContent));
+
+        foreach ($defaultPatterns as $pattern) {
+            if ($strippedNormalized === $pattern) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Create a backup of a file before modification.
+     *
+     * @param  string  $filePath
+     * @return void
+     */
+    protected function backupFile($filePath)
+    {
+        if (file_exists($filePath)) {
+            $backupPath = $filePath.'.backup.'.date('Y-m-d-His');
+            copy($filePath, $backupPath);
+            $this->components->warn("Backed up {$filePath} to {$backupPath}");
+        }
+    }
+
+    /**
+     * Install web routes for the given stack with smart merging.
+     *
+     * @param  string  $stack
+     * @return void
+     */
+    protected function installWebRoutes($stack)
+    {
+        $webPhpPath = base_path('routes/web.php');
+        $stubPath = $this->getWebRoutesStubPath($stack);
+
+        // Always copy auth.php (it's a new file specific to Breeze)
+        $authStubPath = $this->getAuthRoutesStubPath($stack);
+        copy($authStubPath, base_path('routes/auth.php'));
+
+        // If --force flag is used, always overwrite
+        if ($this->option('force')) {
+            $this->components->warn('Force flag used. Overwriting existing routes/web.php.');
+            copy($stubPath, $webPhpPath);
+            return;
+        }
+
+        // If default routes or file doesn't exist, safe to replace entirely
+        if ($this->isDefaultWebRoutes()) {
+            copy($stubPath, $webPhpPath);
+            return;
+        }
+
+        // Custom routes detected - merge instead of overwrite
+        $this->components->warn('Existing custom routes detected in routes/web.php.');
+        $this->backupFile($webPhpPath);
+        $this->components->info('Merging Breeze routes into existing web.php...');
+
+        $this->mergeWebRoutes($stack);
+
+        $this->components->info('Routes merged successfully.');
+    }
+
+    /**
+     * Get the stub path for web routes based on stack.
+     *
+     * @param  string  $stack
+     * @return string
+     */
+    protected function getWebRoutesStubPath($stack)
+    {
+        return match ($stack) {
+            'api' => __DIR__.'/../../stubs/api/routes/web.php',
+            'blade' => __DIR__.'/../../stubs/default/routes/web.php',
+            'livewire', 'livewire-functional' => __DIR__.'/../../stubs/livewire-common/routes/web.php',
+            'vue', 'react' => __DIR__.'/../../stubs/inertia-common/routes/web.php',
+            default => __DIR__.'/../../stubs/default/routes/web.php',
+        };
+    }
+
+    /**
+     * Get the stub path for auth routes based on stack.
+     *
+     * @param  string  $stack
+     * @return string
+     */
+    protected function getAuthRoutesStubPath($stack)
+    {
+        return match ($stack) {
+            'api' => __DIR__.'/../../stubs/api/routes/auth.php',
+            'blade' => __DIR__.'/../../stubs/default/routes/auth.php',
+            'livewire', 'livewire-functional' => __DIR__.'/../../stubs/livewire-common/routes/auth.php',
+            'vue', 'react' => __DIR__.'/../../stubs/inertia-common/routes/auth.php',
+            default => __DIR__.'/../../stubs/default/routes/auth.php',
+        };
+    }
+
+    /**
+     * Merge Breeze routes into existing web.php file.
+     *
+     * @param  string  $stack
+     * @return void
+     */
+    protected function mergeWebRoutes($stack)
+    {
+        $webPhpPath = base_path('routes/web.php');
+        $content = file_get_contents($webPhpPath);
+
+        // Get the routes configuration for the stack
+        $routesConfig = $this->getBreezeRoutesConfig($stack);
+
+        // Add use statements if not present
+        $content = $this->addUseStatements($content, $routesConfig['uses']);
+
+        // Add routes before auth.php require or at end of file
+        $content = $this->addBreezeRoutes($content, $routesConfig['routes']);
+
+        // Ensure auth.php is required
+        $content = $this->ensureAuthRoutesRequired($content);
+
+        file_put_contents($webPhpPath, $content);
+    }
+
+    /**
+     * Get Breeze routes configuration for the given stack.
+     *
+     * @param  string  $stack
+     * @return array
+     */
+    protected function getBreezeRoutesConfig($stack)
+    {
+        return match ($stack) {
+            'blade' => [
+                'uses' => [
+                    'App\Http\Controllers\ProfileController',
+                ],
+                'routes' => <<<'PHP'
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+PHP,
+            ],
+            'api' => [
+                'uses' => [],
+                'routes' => '',
+            ],
+            'vue', 'react' => [
+                'uses' => [
+                    'App\Http\Controllers\ProfileController',
+                    'Illuminate\Foundation\Application',
+                    'Inertia\Inertia',
+                ],
+                'routes' => <<<'PHP'
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+PHP,
+            ],
+            'livewire', 'livewire-functional' => [
+                'uses' => [],
+                'routes' => <<<'PHP'
+
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+PHP,
+            ],
+            default => [
+                'uses' => [
+                    'App\Http\Controllers\ProfileController',
+                ],
+                'routes' => <<<'PHP'
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+PHP,
+            ],
+        };
+    }
+
+    /**
+     * Add use statements to the content if not already present.
+     *
+     * @param  string  $content
+     * @param  array  $useStatements
+     * @return string
+     */
+    protected function addUseStatements($content, array $useStatements)
+    {
+        foreach ($useStatements as $useStatement) {
+            // Check if use statement already exists
+            if (! Str::contains($content, "use {$useStatement};")) {
+                // Find the last use statement and add after it
+                if (preg_match('/^use [^;]+;/m', $content)) {
+                    // Find position after last use statement
+                    preg_match_all('/^use [^;]+;\s*/m', $content, $matches, PREG_OFFSET_CAPTURE);
+                    $lastMatch = end($matches[0]);
+                    $insertPosition = $lastMatch[1] + strlen($lastMatch[0]);
+
+                    $content = substr($content, 0, $insertPosition)
+                        ."use {$useStatement};\n"
+                        .substr($content, $insertPosition);
+                } else {
+                    // No use statements, add after <?php
+                    $content = preg_replace(
+                        '/<\?php/',
+                        "<?php\n\nuse {$useStatement};",
+                        $content,
+                        1
+                    );
+                }
+            }
+        }
+
+        return $content;
+    }
+
+    /**
+     * Add Breeze routes to the content.
+     *
+     * @param  string  $content
+     * @param  string  $routes
+     * @return string
+     */
+    protected function addBreezeRoutes($content, $routes)
+    {
+        if (empty($routes)) {
+            return $content;
+        }
+
+        // Check if routes already exist (idempotency)
+        if (Str::contains($content, "->name('dashboard')") || Str::contains($content, '->name("dashboard")')) {
+            return $content;
+        }
+
+        // Check if auth.php is already required - insert before it
+        if (Str::contains($content, "require __DIR__.'/auth.php'")) {
+            $content = preg_replace(
+                "/(require __DIR__\.\'\/.auth\.php\')/",
+                $routes."\n\n$1",
+                $content
+            );
+        } else {
+            // Add at the end of file
+            $content = rtrim($content)."\n".$routes."\n";
+        }
+
+        return $content;
+    }
+
+    /**
+     * Ensure auth.php is required in the content.
+     *
+     * @param  string  $content
+     * @return string
+     */
+    protected function ensureAuthRoutesRequired($content)
+    {
+        if (! Str::contains($content, "require __DIR__.'/auth.php'")) {
+            $content = rtrim($content)."\n\nrequire __DIR__.'/auth.php';\n";
+        }
+
+        return $content;
     }
 }
