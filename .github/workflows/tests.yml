@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - develop
-      - '*.x'
+      - *.x
   pull_request:
   schedule:
     - cron: '0 0 * * *'
@@ -18,8 +18,8 @@ jobs:
       fail-fast: true
       matrix:
         stack: [blade, livewire, livewire-functional, react, vue, api]
-        laravel: [11, 12]
-        args: ["", --pest]
+        laravel: [11, 12, '13']
+        args: ['', '--pest']
         include:
           - stack: vue
             args: --ssr --typescript
@@ -51,19 +51,19 @@ jobs:
           composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
-        if: matrix.laravel < 12
+        if: 'matrix.laravel < 12'
 
       - name: Setup Laravel (dev-master)
         run: |
           composer create-project laravel/laravel:dev-master .
           composer require laravel/breeze:@dev --no-interaction --no-update
           composer config repositories.breeze '{"type": "path", "url": "breeze"}' --file composer.json
-        if: matrix.laravel == 12
+        if: 'matrix.laravel == 12'
 
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: 'breeze'
+          path: breeze
 
       - name: Install Breeze
         run: |
@@ -71,15 +71,15 @@ jobs:
           php artisan breeze:install ${{ matrix.stack }} ${{ matrix.args }}
 
       - name: Install NPM dependencies
-        if: matrix.stack != 'api'
+        if: "matrix.stack != 'api'"
         run: npm i
 
       - name: Compile assets
-        if: matrix.stack != 'api'
+        if: "matrix.stack != 'api'"
         run: npm run build
 
       - name: Execute tests
         run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }}
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:"
+          DB_DATABASE: :memory:
