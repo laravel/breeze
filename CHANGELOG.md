@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.4.0...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.4.1...2.x)
+
+## [v2.4.1](https://github.com/laravel/breeze/compare/v2.4.0...v2.4.1) - 2026-03-10
+
+* [2.x] Makes imports consistent by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/breeze/pull/481
 
 ## [v2.4.0](https://github.com/laravel/breeze/compare/v2.3.8...v2.4.0) - 2026-02-21
 
