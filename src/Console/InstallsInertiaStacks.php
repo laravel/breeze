@@ -15,14 +15,15 @@ trait InstallsInertiaStacks
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^2.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^3.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
             return 1;
         }
 
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@inertiajs/vue3' => '^2.0.0',
+                '@inertiajs/vite' => '^3.0',
+                '@inertiajs/vue3' => '^3.0',
                 '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-vue' => '^6.0.0',
                 'autoprefixer' => '^10.4.12',
@@ -206,11 +207,37 @@ trait InstallsInertiaStacks
 
         if ($this->option('typescript')) {
             copy(__DIR__.'/../../stubs/inertia-vue-ts/resources/js/ssr.ts', resource_path('js/ssr.ts'));
-            $this->replaceInFile("input: 'resources/js/app.ts',", "input: 'resources/js/app.ts',".PHP_EOL."            ssr: 'resources/js/ssr.ts',", base_path('vite.config.js'));
+            $this->replaceInFile(
+                <<<'EOT'
+            input: ['resources/js/app.ts'],
+            refresh: true,
+            EOT,
+                <<<'EOT'
+            input: ['resources/js/app.ts'],
+            ssr: 'resources/js/ssr.ts',
+            refresh: true,
+            EOT,
+                base_path('vite.config.js')
+            );
         } else {
             copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
-            $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
+            $this->replaceInFile(
+                <<<'EOT'
+            input: ['resources/js/app.js'],
+            refresh: true,
+            EOT,
+                <<<'EOT'
+            input: ['resources/js/app.js'],
+            ssr: 'resources/js/ssr.js',
+            refresh: true,
+            EOT,
+                base_path('vite.config.js')
+            );
         }
+
+        $this->replaceInertiaVitePluginSsrConfig(
+            $this->option('typescript') ? 'resources/js/ssr.ts' : 'resources/js/ssr.js'
+        );
 
         $this->configureZiggyForSsr();
 
@@ -226,7 +253,7 @@ trait InstallsInertiaStacks
     protected function installInertiaReactStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^2.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
+        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^3.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
             return 1;
         }
 
@@ -234,14 +261,15 @@ trait InstallsInertiaStacks
         $this->updateNodePackages(function ($packages) {
             return [
                 '@headlessui/react' => '^2.0.0',
-                '@inertiajs/react' => '^2.0.0',
+                '@inertiajs/vite' => '^3.0',
+                '@inertiajs/react' => '^3.0',
                 '@tailwindcss/forms' => '^0.5.3',
                 '@vitejs/plugin-react' => '^4.2.0',
                 'autoprefixer' => '^10.4.12',
                 'postcss' => '^8.4.31',
                 'tailwindcss' => '^3.2.1',
-                'react' => '^18.2.0',
-                'react-dom' => '^18.2.0',
+                'react' => '^19.0',
+                'react-dom' => '^19.0',
             ] + $packages;
         });
 
@@ -249,8 +277,8 @@ trait InstallsInertiaStacks
             $this->updateNodePackages(function ($packages) {
                 return [
                     '@types/node' => '^18.13.0',
-                    '@types/react' => '^18.0.28',
-                    '@types/react-dom' => '^18.0.10',
+                    '@types/react' => '^19.0',
+                    '@types/react-dom' => '^19.0',
                     'typescript' => '^5.0.2',
                 ] + $packages;
             });
@@ -422,13 +450,37 @@ trait InstallsInertiaStacks
     {
         if ($this->option('typescript')) {
             copy(__DIR__.'/../../stubs/inertia-react-ts/resources/js/ssr.tsx', resource_path('js/ssr.tsx'));
-            $this->replaceInFile("input: 'resources/js/app.tsx',", "input: 'resources/js/app.tsx',".PHP_EOL."            ssr: 'resources/js/ssr.tsx',", base_path('vite.config.js'));
-            $this->configureReactHydrateRootForSsr(resource_path('js/app.tsx'));
+            $this->replaceInFile(
+                <<<'EOT'
+            input: ['resources/js/app.tsx'],
+            refresh: true,
+            EOT,
+                <<<'EOT'
+            input: ['resources/js/app.tsx'],
+            ssr: 'resources/js/ssr.tsx',
+            refresh: true,
+            EOT,
+                base_path('vite.config.js')
+            );
         } else {
             copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
-            $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
-            $this->configureReactHydrateRootForSsr(resource_path('js/app.jsx'));
+            $this->replaceInFile(
+                <<<'EOT'
+            input: ['resources/js/app.jsx'],
+            refresh: true,
+            EOT,
+                <<<'EOT'
+            input: ['resources/js/app.jsx'],
+            ssr: 'resources/js/ssr.jsx',
+            refresh: true,
+            EOT,
+                base_path('vite.config.js')
+            );
         }
+
+        $this->replaceInertiaVitePluginSsrConfig(
+            $this->option('typescript') ? 'resources/js/ssr.tsx' : 'resources/js/ssr.jsx'
+        );
 
         $this->configureZiggyForSsr();
 
@@ -437,38 +489,27 @@ trait InstallsInertiaStacks
     }
 
     /**
-     * Configure the application JavaScript file to utilize hydrateRoot for SSR.
+     * Point the Inertia Vite plugin at the SSR bundle (see https://inertiajs.com/docs/v3/advanced/server-side-rendering).
      *
-     * @param  string  $path
      * @return void
      */
-    protected function configureReactHydrateRootForSsr($path)
+    protected function replaceInertiaVitePluginSsrConfig(string $ssrEntry)
     {
         $this->replaceInFile(
             <<<'EOT'
-            import { createRoot } from 'react-dom/client';
-            EOT,
-            <<<'EOT'
-            import { createRoot, hydrateRoot } from 'react-dom/client';
-            EOT,
-            $path
-        );
-
-        $this->replaceInFile(
-            <<<'EOT'
-                    const root = createRoot(el);
-
-                    root.render(<App {...props} />);
-            EOT,
-            <<<'EOT'
-                    if (import.meta.env.SSR) {
-                        hydrateRoot(el, <App {...props} />);
-                        return;
-                    }
-
-                    createRoot(el).render(<App {...props} />);
-            EOT,
-            $path
+        inertia(),
+        EOT,
+            sprintf(
+                <<<'EOT'
+        inertia({
+            ssr: {
+                entry: '%s',
+            },
+        }),
+        EOT,
+                $ssrEntry
+            ),
+            base_path('vite.config.js')
         );
     }
 
