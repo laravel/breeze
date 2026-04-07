@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - develop
-      - *.x
+      - '*.x'
   pull_request:
   schedule:
     - cron: '0 0 * * *'
@@ -61,7 +61,7 @@ jobs:
         if: 'matrix.laravel == 12'
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: breeze
 
@@ -82,4 +82,4 @@ jobs:
         run: ${{ matrix.args == '--pest' && 'vendor/bin/pest' || 'vendor/bin/phpunit' }}
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: :memory:
+          DB_DATABASE: ':memory:'
