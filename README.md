@@ -173,33 +173,8 @@ Visit:
 http://127.0.0.1:8000
 ```
 
----
 
-## 📸 Screenshots
 
-### Login Page
-
-![Login Screenshot](screenshots/login.png)
-
----
-
-### Register Page
-
-![Register Screenshot](screenshots/register.png)
-
----
-
-### Dashboard
-
-![Dashboard Screenshot](screenshots/dashboard.png)
-
----
-
-### Profile Page
-
-![Profile Screenshot](screenshots/profile.png)
-
----
 
 ## 📁 Project Structure
 
@@ -268,7 +243,7 @@ This project is licensed under the MIT License.
 
 **Your Name**
 
-GitHub: [@yourusername](https://github.com/yourusername)
+GitHub: [@yourusername](https://github.com/IrfanGhuori)
 
 ---
 
