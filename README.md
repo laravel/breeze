@@ -114,6 +114,6 @@ php artisan test
 ## Contributing
 Feel free to fork this repo and submit pull requests.
 
-## vLicense
+## License
 
 This project is open-source and available under the MIT License.
