@@ -1,82 +1,119 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# Laravel Breeze API template
+# Laravel Breeze 
 
-This repository is a template for Laravel projects based on Sail environment to integrate with the Sanctum authentication.
+Laravel Breeze provides a minimal and simple implementation of authentication for Laravel, including login, registration, password reset, and email verification.
 
-You can use this project to integrate with one of these frontend applications:
 
--   [Breeze Next](https://github.com/laravel/breeze-next/) (React/Next)
--   [Breeze Nuxt](https://github.com/manchenkoff/breeze-nuxt) (Vue/Nuxt)
+## Requirements
+Before installing Laravel Breeze, make sure you have:
 
-## Prerequisites
+- PHP >= 8.1
+- Composer
+- Node.js & NPM
+- Laravel installed
 
-To work with this project you will also need to install the following software:
-
--   [Git](https://git-scm.com/)
--   [Docker](https://docker.com/)
--   [Justfile](https://just.systems/)
-
-## Features
-
--   Laravel 12
--   Breeze API with Sanctum
--   Laravel Pint code formatter
--   Larastan static analysis rules
--   IDE helper for Laravel (Stubs generation)
-
-## Installation
-
-1. Clone the repository:
+## Installation Steps
+Create a New Laravel Project
 
 ```bash
-git clone https://github.com/manchenkoff/breeze-api
+composer create-project laravel/laravel my-app
+cd my-app
 ```
 
-2. Build the project and install dependencies:
+## Install Laravel Breeze
 
 ```bash
-just build
+composer require laravel/breeze --dev
 ```
 
-3. Start the project:
+## Install Breeze Scaffolding
+Blade (default)
+```bash
+php artisan breeze:install
+```
+## Vue
 
 ```bash
-just start
+php artisan breeze:install vue
 ```
 
-Once the project is started, you can access it at [http://localhost](http://localhost).
-
-## Development
-
-To get more details about available commands in `justfile`, run the following command:
+## React
 
 ```bash
-just help
+php artisan breeze:install react
 ```
 
-To auto-format your code use `just fmt` command and also `just lint` to check the code quality by running Larastan checks.
+## API Only
 
-## Production
-
-**Environment**
-
-To make sure that Laravel Sanctum will work on your production instance, make sure that you defined properly the following environment variables:
-
-```dotenv
-APP_KEY=base64:your_key_here    # Generate a new key using `php artisan key:generate --show`
-FRONTEND_URL=https://domain.com # Your frontend Nuxt application URL
-SESSION_DOMAIN=.domain.com      # Your domain should start with a dot to support all subdomains like www.* or frontend.*
+```bash
+php artisan breeze:install api
 ```
 
-_💡 Keep in mind, that `SESSION_DOMAIN` is not applicable for `localhost` and should not be used during development with the value other than `null`._
+## Install Frontend Dependencies
 
-**Multiple apps**
-
-If you have multiple frontend applications (e.g. public and admin apps), you can define the `SANCTUM_STATEFUL_DOMAINS` environment variable to allow multiple domains to access the same session.
-
-```dotenv
-SANCTUM_STATEFUL_DOMAINS=domain.com,backoffice.domain.com,admin.domain.com
+```bash
+npm install
+npm run dev
 ```
 
+## Setup Environment
 
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+## **Configure Database**
+
+```bash
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+## Run Migrations
+
+```bash
+php artisan migrate
+```
+
+## **Start Development Server**
+
+```bash
+php artisan serve
+```
+
+## Features Included
+- Login & Registration
+- Password Reset
+- Email Verification
+- CSRF Protection
+- Tailwind CSS UI
+
+## Project Structure
+
+```bash
+app/
+resources/views/
+routes/
+database/
+```
+
+## Testing
+
+```bash
+php artisan test
+```
+
+## Notes
+- Breeze is ideal for simple authentication scaffolding.
+- You can customize UI and logic easily.
+- Works well with Blade, Vue, and React.
+
+## Contributing
+Feel free to fork this repo and submit pull requests.
+
+## vLicense
+
+This project is open-source and available under the MIT License.
