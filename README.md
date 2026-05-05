@@ -2,11 +2,7 @@
 
 
 
-<p align="center">
-  <a href="https://laravel.com">
-    <img src="https://laravel.com/img/logomark.min.svg" width="120" alt="Laravel Logo">
-  </a>
-</p>
+
 
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-12.x-red?style=for-the-badge&logo=laravel">
