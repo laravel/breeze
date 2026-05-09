@@ -25,6 +25,13 @@ trait InstallsBladeStack
             ] + $packages;
         });
 
+        // NPM Dependencies...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                'axios' => '^1.7.4',
+            ] + $packages;
+        }, false);
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/app/Http/Controllers', app_path('Http/Controllers'));
@@ -68,6 +75,7 @@ trait InstallsBladeStack
         copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../stubs/default/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/../../stubs/default/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
 
         $this->components->info('Installing and building Node dependencies.');
