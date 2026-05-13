@@ -10,6 +10,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   stub-tests:
     runs-on: ubuntu-latest
@@ -38,7 +41,7 @@ jobs:
 
     steps:
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # v2
         with:
           php-version: 8.2
           extensions: dom, curl, libxml, mbstring, zip
@@ -61,8 +64,9 @@ jobs:
         if: 'matrix.laravel == 12'
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
+          persist-credentials: false
           path: breeze
 
       - name: Install Breeze
