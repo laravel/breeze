@@ -70,6 +70,10 @@ trait InstallsBladeStack
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
 
+        if (version_compare(\Illuminate\Foundation\Application::VERSION, '13.0.0', '>=')) {
+            $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.js'));
+        }
+
         $this->components->info('Installing and building Node dependencies.');
 
         if (file_exists(base_path('pnpm-lock.yaml'))) {
