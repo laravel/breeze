@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v2.4.1...2.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v2.4.2...2.x)
+
+## [v2.4.2](https://github.com/laravel/breeze/compare/v2.4.1...v2.4.2) - 2026-05-14
+
+* Fix: Remove bootstrap.js import for Laravel 13+ by [@DevKemal](https://github.com/DevKemal) in https://github.com/laravel/breeze/pull/486
 
 ## [v2.4.1](https://github.com/laravel/breeze/compare/v2.4.0...v2.4.1) - 2026-03-10
 
