@@ -28,7 +28,11 @@ new #[Layout('layouts.guest')] class extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
+        $validated['is_super_admin'] = User::count() === 0;
+
+        $user = User::create($validated);
+
+        event(new Registered($user));
 
         Auth::login($user);
 

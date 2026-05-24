@@ -56,6 +56,7 @@ Perfect for developers who need clean authentication scaffolding without unneces
 ✅ Secure Password Reset  
 ✅ Email Verification  
 ✅ Laravel Best Practices  
+✅ Super Admin & User Roles (first registered user becomes super admin)
 
 ---
 
@@ -220,6 +221,43 @@ php artisan migrate:fresh
 ```
 
 ---
+
+## 🔐 Super Admin
+
+When a new application is scaffolded with Breeze, the package will mark the very first registered user as a super admin by setting an `is_super_admin` boolean on the `users` table. This makes it easy to bootstrap an admin account during initial setup.
+
+If your `users` table doesn't include the column yet, add a migration like this:
+
+```php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+  public function up(): void
+  {
+    Schema::table('users', function (Blueprint $table) {
+      $table->boolean('is_super_admin')->default(false)->after('remember_token');
+    });
+  }
+
+  public function down(): void
+  {
+    Schema::table('users', function (Blueprint $table) {
+      $table->dropColumn('is_super_admin');
+    });
+  }
+};
+```
+
+Then run:
+
+```bash
+php artisan migrate
+```
+
+In your application you can check the role with `auth()->user()->is_super_admin`.
+
 
 ## 🤝 Contributing
 
