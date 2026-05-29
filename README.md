@@ -275,9 +275,9 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-**Your Name**
+**IrfanGhuori**
 
-GitHub: [@yourusername](https://github.com/IrfanGhuori)
+GitHub: [@IrfanGhuori](https://github.com/IrfanGhuori)
 
 ---
 
