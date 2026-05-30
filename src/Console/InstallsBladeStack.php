@@ -3,7 +3,6 @@
 namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Application;
 use Symfony\Component\Finder\Finder;
 
 trait InstallsBladeStack
@@ -70,10 +69,6 @@ trait InstallsBladeStack
         copy(__DIR__.'/../../stubs/default/vite.config.js', base_path('vite.config.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
-
-        if (version_compare(Application::VERSION, '13.0.0', '>=')) {
-            $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.js'));
-        }
 
         $this->components->info('Installing and building Node dependencies.');
 
