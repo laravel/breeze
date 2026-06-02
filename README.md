@@ -8,6 +8,10 @@
   </a>
 </p>
 
+<p align="center"> 
+    This enables Laravel 13 compatibility for package development/testing.
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-12.x-red?style=for-the-badge&logo=laravel">
   <img src="https://img.shields.io/badge/PHP-8.1+-blue?style=for-the-badge&logo=php">
@@ -174,33 +178,6 @@ http://127.0.0.1:8000
 ```
 
 ---
-
-## 📸 Screenshots
-
-### Login Page
-
-![Login Screenshot](screenshots/login.png)
-
----
-
-### Register Page
-
-![Register Screenshot](screenshots/register.png)
-
----
-
-### Dashboard
-
-![Dashboard Screenshot](screenshots/dashboard.png)
-
----
-
-### Profile Page
-
-![Profile Screenshot](screenshots/profile.png)
-
----
-
 ## 📁 Project Structure
 
 ```bash
@@ -266,9 +243,9 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Irfan Ghuori**
 
-GitHub: [@yourusername](https://github.com/yourusername)
+GitHub: [@IrfanGhuori](https://github.com/yourusername)
 
 ---
 
