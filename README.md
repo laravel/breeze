@@ -8,6 +8,10 @@
   </a>
 </p>
 
+<p align="center"> 
+    This enables Laravel 13 compatibility for package development/testing.
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-12.x-red?style=for-the-badge&logo=laravel">
   <img src="https://img.shields.io/badge/PHP-8.1+-blue?style=for-the-badge&logo=php">
