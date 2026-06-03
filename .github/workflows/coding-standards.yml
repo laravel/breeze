@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   pint:
-    uses: laravel/.github/.github/workflows/coding-standards.yml@main
+    uses: laravel/.github/.github/workflows/coding-standards.yml@dd86ce0a18475504e42fa809d7454c1cb1a88028 # main
     with:
       message: "Pint: fix code styling"
 
@@ -20,13 +20,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       # We need to pull the latest changes because the `pint` job might have pushed changes
       - name: Pull Remote Changes
         run: git pull
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
 
@@ -68,6 +68,6 @@ jobs:
         run: rm -rf node_modules package.json package-lock.json .prettierrc
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5
         with:
           commit_message: "ESLint: fix code styling"
