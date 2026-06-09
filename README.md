@@ -73,11 +73,11 @@ Before installation, ensure you have:
 
 | Requirement | Version |
 |------------|---------|
-| PHP | 8.1+ |
+| PHP | 8.4+ |
 | Composer | Latest |
-| Node.js | 18+ |
+| Node.js | 24 |
 | NPM | Latest |
-| Laravel | 10+ |
+| Laravel | 13 |
 
 ---
 
