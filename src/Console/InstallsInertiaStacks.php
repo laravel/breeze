@@ -3,6 +3,7 @@
 namespace Laravel\Breeze\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Application;
 use Symfony\Component\Finder\Finder;
 
 trait InstallsInertiaStacks
@@ -163,12 +164,20 @@ trait InstallsInertiaStacks
                 rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
             }
 
+            if (version_compare(Application::VERSION, '13.0.0', '>=')) {
+                $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.ts'));
+            }
+
             $this->replaceInFile('"vite build', '"vue-tsc && vite build', base_path('package.json'));
             $this->replaceInFile('.js', '.ts', base_path('vite.config.js'));
             $this->replaceInFile('.js', '.ts', resource_path('views/app.blade.php'));
         } else {
             copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
+
+            if (version_compare(Application::VERSION, '13.0.0', '>=')) {
+                $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.js'));
+            }
         }
 
         if ($this->option('ssr')) {
@@ -376,6 +385,10 @@ trait InstallsInertiaStacks
                 rename(resource_path('js/bootstrap.js'), resource_path('js/bootstrap.ts'));
             }
 
+            if (version_compare(Application::VERSION, '13.0.0', '>=')) {
+                $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.tsx'));
+            }
+
             $this->replaceInFile('"vite build', '"tsc && vite build', base_path('package.json'));
             $this->replaceInFile('.jsx', '.tsx', base_path('vite.config.js'));
             $this->replaceInFile('.jsx', '.tsx', resource_path('views/app.blade.php'));
@@ -383,6 +396,10 @@ trait InstallsInertiaStacks
         } else {
             copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
             copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
+
+            if (version_compare(Application::VERSION, '13.0.0', '>=')) {
+                $this->replaceInFile("import './bootstrap';", '', resource_path('js/app.jsx'));
+            }
 
             $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
         }
