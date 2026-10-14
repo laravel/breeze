@@ -16,7 +16,11 @@ trait InstallsInertiaStacks
     protected function installInertiaVueStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^2.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
+        if (! $this->requireComposerPackages([
+            'inertiajs/inertia-laravel:^2.0',
+            $this->option('oauth') ? 'laravel/passport:^13.0' : 'laravel/sanctum:^4.0',
+            'tightenco/ziggy:^2.0',
+        ])) {
             return 1;
         }
 
@@ -235,7 +239,11 @@ trait InstallsInertiaStacks
     protected function installInertiaReactStack()
     {
         // Install Inertia...
-        if (! $this->requireComposerPackages(['inertiajs/inertia-laravel:^2.0', 'laravel/sanctum:^4.0', 'tightenco/ziggy:^2.0'])) {
+        if (! $this->requireComposerPackages([
+            'inertiajs/inertia-laravel:^2.0',
+            $this->option('oauth') ? 'laravel/passport:^13.0' : 'laravel/sanctum:^4.0',
+            'tightenco/ziggy:^2.0',
+        ])) {
             return 1;
         }
 
