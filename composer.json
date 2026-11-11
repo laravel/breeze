@@ -18,15 +18,15 @@
     ],
     "require": {
         "php": "^8.2.0",
-        "illuminate/console": "^11.0|^12.0|^13.0",
-        "illuminate/filesystem": "^11.0|^12.0|^13.0",
-        "illuminate/support": "^11.0|^12.0|^13.0",
-        "illuminate/validation": "^11.0|^12.0|^13.0",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/filesystem": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/validation": "^12.0|^13.0",
         "symfony/console": "^7.0|^8.0"
     },
     "require-dev": {
-        "laravel/framework": "^11.0|^12.0|^13.0",
-        "orchestra/testbench-core": "^9.0|^10.0|^11.0",
+        "laravel/framework": "^12.0|^13.0",
+        "orchestra/testbench-core": "^10.0|^11.0",
         "phpstan/phpstan": "^2.0"
     },
     "autoload": {
